@@ -1,9 +1,9 @@
 package bean;
 
 public class AdminPower {
-    private int adminPowerId; 
-    private int adminId;
-    private int powerId;
+    private int adminPowerId;   //管理员权限ID
+    private int adminId;    //管理员ID
+    private int powerId;     //权限ID
 	
 	public int getAdminPowerId() {
 		return adminPowerId;

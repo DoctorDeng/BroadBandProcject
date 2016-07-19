@@ -8,6 +8,9 @@ public interface OsDao {
     public List<Os> findAll();
 	
 	public Os findOne(int osId);
+	/*
+	 * 
+	 */
 	
 	public boolean add(Os os);
 	

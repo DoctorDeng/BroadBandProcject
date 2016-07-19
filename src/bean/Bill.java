@@ -1,13 +1,13 @@
 package bean;
 
 public class Bill {
-   private int billId;
-   private int customerId;
-   private int adminId;
-   private double cost;
-   private String  month;
-   private String payWay;
-   private String payStatus;
+   private int billId;    //账单ID
+   private int customerId;   //客户ID
+   private int adminId;    //管理员ID
+   private double cost;    //客户一个月宽带总费用
+   private String  month;    //账单年月
+   private String payWay;    //支付方式
+   private String payStatus;     //支付状态
 	public int getBillId() {
 		return billId;
 	}
