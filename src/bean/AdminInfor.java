@@ -1,12 +1,25 @@
 package bean;
 
 public class AdminInfor {
-    private int inforId;   //管理员信息ID
+   
+	private int inforId;   //管理员信息ID
     private int adminId;   //管理员ID
     private String idNumber;    //管理员身份证号
     private String phone;     //电话
     private String email;      //邮箱
     private String createTime;    //创建时间
+	public AdminInfor() {
+		super();
+	}
+	public AdminInfor(int inforId, int adminId, String idNumber, String phone, String email, String createTime) {
+			super();
+			this.inforId = inforId;
+			this.adminId = adminId;
+			this.idNumber = idNumber;
+			this.phone = phone;
+			this.email = email;
+			this.createTime = createTime;
+	}
 	public int getInforId() {
 		return inforId;
 	}

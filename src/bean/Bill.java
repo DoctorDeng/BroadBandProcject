@@ -8,6 +8,19 @@ public class Bill {
    private String  month;    //账单年月
    private String payWay;    //支付方式
    private String payStatus;     //支付状态
+   public Bill() {
+	super();
+    }
+   public Bill(int billId, int customerId, int adminId, double cost, String month, String payWay, String payStatus) {
+		super();
+		this.billId = billId;
+		this.customerId = customerId;
+		this.adminId = adminId;
+		this.cost = cost;
+		this.month = month;
+		this.payWay = payWay;
+		this.payStatus = payStatus;
+	}
 	public int getBillId() {
 		return billId;
 	}

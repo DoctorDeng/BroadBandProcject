@@ -5,6 +5,15 @@ public class AdminPower {
     private int adminId;    //管理员ID
     private int powerId;     //权限ID
 	
+	public AdminPower() {
+		super();
+	}
+	public AdminPower(int adminPowerId, int adminId, int powerId) {
+		super();
+		this.adminPowerId = adminPowerId;
+		this.adminId = adminId;
+		this.powerId = powerId;
+	}
 	public int getAdminPowerId() {
 		return adminPowerId;
 	}

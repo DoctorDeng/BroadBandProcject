@@ -5,6 +5,18 @@ public class Bussiness {
     private int adminId;    //管理员ID
     private String status;   //业务状态
     private int osId;     //宽带账号ID
+	public Bussiness() {
+		super();
+	}
+	
+	public Bussiness(int bussinessId, int adminId, String status, int osId) {
+		super();
+		this.bussinessId = bussinessId;
+		this.adminId = adminId;
+		this.status = status;
+		this.osId = osId;
+	}
+
 	public int getBussinessId() {
 		return bussinessId;
 	}
