@@ -2,39 +2,39 @@ package dao.impl;
 
 import java.util.List;
 
-import bean.Customer;
-import dao.CustomerDao;
+import bean.AdminInfor;
+import bean.Tariff;
 
-public class CustomerDaoImpl implements CustomerDao {
+public class AdminInforDao implements dao.AdminInforDao {
 
 	@Override
-	public List<Customer> findAll() {
+	public List<Tariff> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Customer findOne(int CustomerId) {
+	public AdminInfor findOne(int adminInforId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean add(Customer customer) {
+	public boolean add(AdminInfor adminInfor) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean del(Customer customer) {
+	public boolean del(int adminInforId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Customer customer) {
+	public boolean update(AdminInfor adminInfor) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 }
