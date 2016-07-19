@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>LoginAction</display-name>
+    <servlet-name>LoginAction</servlet-name>
+    <servlet-class>action.LoginAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginAction</servlet-name>
+    <url-pattern>/LoginAction</url-pattern>
+  </servlet-mapping>
 </web-app>
