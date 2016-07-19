@@ -6,11 +6,9 @@ public class Customer {
     private String customerName;   //客户的身份证号码
     private String phone;     //客户的电话
 	public Customer() {
-		super();
 	}
 	
 	public Customer(int customerId, String idNumber, String customerName, String phone) {
-		super();
 		this.customerId = customerId;
 		this.idNumber = idNumber;
 		this.customerName = customerName;

@@ -8,11 +8,9 @@ public class Os {
     private String osPassword;     //宽带账号密码
     private String serverId;      //服务器ip地址
 	public Os() {
-		super();
 	}
 	
 	public Os(int osId, int customerId, int tariffId, String osAccount, String osPassword, String serverId) {
-		super();
 		this.osId = osId;
 		this.customerId = customerId;
 		this.tariffId = tariffId;

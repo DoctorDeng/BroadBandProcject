@@ -9,12 +9,10 @@ public class Tariff {
 	private String openTime;      //资费开启时间
 	private String status;     //资费状态（开通或暂停）
     public Tariff() {
-	 	super();
 	}
    
     public Tariff(int tariffId, String traiffName, int timeLong, double tariff, String creaTime, String openTime,
 			String status) {
-		super();
 		this.tariffId = tariffId;
 		this.traiffName = traiffName;
 		this.timeLong = timeLong;

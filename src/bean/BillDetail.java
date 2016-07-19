@@ -7,11 +7,9 @@ public class BillDetail {
    private double timeLong;     //宽带账号登录总时长
    private double cost;        //宽带账号总费用
 	public BillDetail() {
-	super();
     }
 	
 	public BillDetail(int billDetailId, int billId, int osId, double timeLong, double cost) {
-		super();
 		this.billDetailId = billDetailId;
 		this.billId = billId;
 		this.osId = osId;

@@ -6,11 +6,9 @@ public class Bussiness {
     private String status;   //业务状态
     private int osId;     //宽带账号ID
 	public Bussiness() {
-		super();
 	}
 	
 	public Bussiness(int bussinessId, int adminId, String status, int osId) {
-		super();
 		this.bussinessId = bussinessId;
 		this.adminId = adminId;
 		this.status = status;

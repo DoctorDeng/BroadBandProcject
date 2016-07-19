@@ -9,10 +9,8 @@ public class AdminInfor {
     private String email;      //邮箱
     private String createTime;    //创建时间
 	public AdminInfor() {
-		super();
 	}
 	public AdminInfor(int inforId, int adminId, String idNumber, String phone, String email, String createTime) {
-			super();
 			this.inforId = inforId;
 			this.adminId = adminId;
 			this.idNumber = idNumber;

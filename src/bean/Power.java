@@ -5,11 +5,9 @@ public class Power {
    private String powerName;    //权限名称
    private int power;       //权限
 	public Power() {
-	super();
    }
 	
 	public Power(int powerId, String powerName, int power) {
-		super();
 		this.powerId = powerId;
 		this.powerName = powerName;
 		this.power = power;

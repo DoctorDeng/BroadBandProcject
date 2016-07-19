@@ -8,11 +8,9 @@ public class Oslogin {
    private String loginOutTime;       //客户登出时间
    private int timeLong;      //客户登录时长
 	public Oslogin() {
-	super();
    }
 	
 	public Oslogin(int osLoginId, int osId, String loginIp, String loginInTime, String loginOutTime, int timeLong) {
-		super();
 		this.osLoginId = osLoginId;
 		this.osId = osId;
 		this.loginIp = loginIp;

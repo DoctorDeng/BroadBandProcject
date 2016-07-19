@@ -9,10 +9,8 @@ public class Bill {
    private String payWay;    //支付方式
    private String payStatus;     //支付状态
    public Bill() {
-	super();
     }
    public Bill(int billId, int customerId, int adminId, double cost, String month, String payWay, String payStatus) {
-		super();
 		this.billId = billId;
 		this.customerId = customerId;
 		this.adminId = adminId;
