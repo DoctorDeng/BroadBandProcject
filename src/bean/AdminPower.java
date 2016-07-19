@@ -1,7 +1,7 @@
 package bean;
 
 public class AdminPower {
-    private int adminPowerId;
+    private int adminPowerId; 
     private int adminId;
     private int powerId;
 	
