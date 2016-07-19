@@ -1,9 +1,9 @@
 package bean;
 
 public class Power {
-   private int powerId;
-   private String powerName;
-   private int power;
+   private int powerId;   //权限ID
+   private String powerName;    //权限名称
+   private int power;       //权限
 	public int getPowerId() {
 		return powerId;
 	}

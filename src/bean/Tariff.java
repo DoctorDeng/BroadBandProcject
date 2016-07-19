@@ -1,13 +1,13 @@
 package bean;
 
 public class Tariff {
-    private int tariffId;
-	private String traiffName;
-	private int timeLong;
-	private double tariff;
-	private String creaTime;
-	private String openTime;
-	private String status;
+    private int tariffId;     //资费ID
+	private String traiffName;     //资费名称
+	private int timeLong;       //资费时长
+	private double tariff;      //资费金额
+	private String creaTime;      //资费创建时间
+	private String openTime;      //资费开启时间
+	private String status;     //资费状态（开通或暂停）
    public int getTariffId() {
 		return tariffId;
 	}
