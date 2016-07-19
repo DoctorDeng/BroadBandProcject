@@ -1,5 +1,5 @@
 package dao;
 
-public class PowerDao {
+public interface PowerDao {
 
 }

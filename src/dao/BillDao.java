@@ -1,5 +1,5 @@
 package dao;
 
-public class BillDao {
+public interface BillDao {
 
 }

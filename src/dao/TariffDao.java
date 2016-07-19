@@ -1,5 +1,5 @@
 package dao;
 
-public class TariffDao {
+public interface TariffDao {
 
 }

@@ -1,5 +1,5 @@
 package dao;
 
-public class OsDao {
+public interface OsDao {
 
 }
