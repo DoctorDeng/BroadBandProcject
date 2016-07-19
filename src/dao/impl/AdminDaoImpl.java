@@ -7,7 +7,7 @@ import dao.AdminDao;
 import util.DBHelper;
 
 public class AdminDaoImpl implements AdminDao{
-  
+	
 	public List<Admin> findAll(){
 		return null;
 	}

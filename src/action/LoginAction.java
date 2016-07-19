@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Admin;
+
 /**
  * Servlet implementation class LoginAction
  */
@@ -27,6 +29,10 @@ public class LoginAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
+		Admin admin =new Admin();
+		admin.setAdminAccount(name);
+		admin.setPassword(password);
+		
 	}
 
 	/**

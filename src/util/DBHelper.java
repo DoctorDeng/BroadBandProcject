@@ -82,10 +82,12 @@ public class DBHelper {
 		List<Map<String, Object>> list = new ArrayList<>();
 		getPreparedStatement(sql);
 		try {
-			if (obj.length >0) {
-				for (int i=0;i <obj.length; i++) {
-					ps.setObject(i, obj[i]);
-					ps.setObject(i+1, obj[i]);
+			if (null != obj) {
+				if (obj.length >0) {
+					for (int i=0;i <obj.length; i++) {
+						ps.setObject(i, obj[i]);
+						ps.setObject(i+1, obj[i]);
+					}
 				}
 			}
 			rs = ps.executeQuery();

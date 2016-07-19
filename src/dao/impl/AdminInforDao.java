@@ -36,5 +36,5 @@ public class AdminInforDao implements dao.AdminInforDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 }

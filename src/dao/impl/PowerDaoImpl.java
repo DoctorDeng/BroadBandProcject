@@ -18,5 +18,5 @@ public class PowerDaoImpl implements PowerDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }
