@@ -1,12 +1,12 @@
 package bean;
 
 public class Os {
-    private int osId;
-    private int customerId;
-    private int tariffId;
-    private String osAccount;
-    private String osPassword;
-    private String serverId;
+    private int osId;    //宽带账号ID
+    private int customerId;    //客户ID
+    private int tariffId;    //资费ID
+    private String osAccount;     //宽带账号
+    private String osPassword;     //宽带账号密码
+    private String serverId;      //服务器ip地址
 	public int getOsId() {
 		return osId;
 	}

@@ -1,9 +1,9 @@
 package bean;
 
 public class Admin {
-    private int adminId;
-    private String adminAccount;
-    private String password;
+    private int adminId;   //管理员ID
+    private String adminAccount;   //管理员登录账号
+    private String password;      //账号密码
 	public int getAdminId() {
 		return adminId;
 	}

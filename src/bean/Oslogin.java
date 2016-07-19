@@ -1,12 +1,12 @@
 package bean;
 
 public class Oslogin {
-   private int osLoginId;
-   private int osId;
-   private String loginIp;
-   private String loginInTime;
-   private String loginOutTime;
-   private int timeLong;
+   private int osLoginId;    //宽带账号登录ID
+   private int osId;      //宽带账号ID
+   private String loginIp;      //客户登录IP
+   private String loginInTime;     //客户登录时间
+   private String loginOutTime;       //客户登出时间
+   private int timeLong;      //客户登录时长
 	public int getOsLoginId() {
 		return osLoginId;
 	}

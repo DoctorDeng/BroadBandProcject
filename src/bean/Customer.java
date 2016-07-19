@@ -1,10 +1,10 @@
 package bean;
 
 public class Customer {
-    private int customerId;
-    private String idNumber;
-    private String customerName;
-    private String phone;
+    private int customerId;   //客户ID
+    private String idNumber;   //客户的名称
+    private String customerName;   //客户的身份证号码
+    private String phone;     //客户的电话
 	public int getCustomerId() {
 		return customerId;
 	}

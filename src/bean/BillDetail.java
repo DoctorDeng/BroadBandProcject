@@ -1,11 +1,11 @@
 package bean;
 
 public class BillDetail {
-   private int billDetailId;
-   private int billId;
-   private int osId;
-   private double timeLong;
-   private double cost;
+   private int billDetailId;   //账单详细ID
+   private int billId;       //账单ID
+   private int osId;      //宽带账号ID
+   private double timeLong;     //宽带账号登录总时长
+   private double cost;        //宽带账号总费用
 	public int getBillDetailId() {
 		return billDetailId;
 	}
