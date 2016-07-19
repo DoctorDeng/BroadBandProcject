@@ -61,16 +61,36 @@ public class AdminPowerDaoImpl implements AdminPowerDao {
 		return powerList;
 	}
 	
-	public boolean addPowers() {
+	
+	public boolean updateAdminPower(int adminId, Power power) {
+		String sql = "UPDATE adminPower SET powerId = " + power.getPowerId() 
+		             + " WHERE adminId = " + adminId + " AND " 
+				     + " powerId = " + power.getPowerId();
+		int result = DBHelper.update(sql, null);
+		
+		if (result==0) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean delAdminPower(int adminId, Power power) {
+		return true;
+	}
+	
+	public boolean addPowers(int adminId, List<Power> powerList) {
+		String sql = "INSERT INTO ";
 		return true;
 	}
 	
 	public static void main(String[] args) {
-	/*	AdminPowerDaoImpl admin = new AdminPowerDaoImpl();
-		List<Power> list = admin.findPowersById(1);
+		AdminPowerDaoImpl admin = new AdminPowerDaoImpl();
+		/*List<Power> list = admin.findPowersById(1);
 		for (Power power: list) {
 			System.out.println(power.getPowerName());
 		}*/
+		Power power = new Power();
+		Power.set		
 	}
 	
 }
