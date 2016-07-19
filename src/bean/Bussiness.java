@@ -1,10 +1,10 @@
 package bean;
 
 public class Bussiness {
-    private int bussinessId;
-    private int adminId;
-    private String status;
-    private int osId;
+    private int bussinessId;   //业务ID
+    private int adminId;    //管理员ID
+    private String status;   //业务状态
+    private int osId;     //宽带账号ID
 	public int getBussinessId() {
 		return bussinessId;
 	}
