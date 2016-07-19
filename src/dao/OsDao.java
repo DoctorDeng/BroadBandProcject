@@ -5,7 +5,7 @@ import java.util.List;
 import bean.Os;
 
 public interface OsDao {
-public List<Os> findAll();
+    public List<Os> findAll();
 	
 	public Os findOne(int osId);
 	
