@@ -12,7 +12,7 @@ public class Power {
 		this.powerName = powerName;
 		this.power = power;
 	}
-
+	
 	public int getPowerId() {
 		return powerId;
 	}

@@ -4,37 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import bean.AdminPower;
 import bean.Power;
-import dao.AdminPowerDao;
 import util.DBHelper;
 
-public class AdminPowerDaoImpl implements AdminPowerDao {
-
-	@Override
-	public List<AdminPower> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+public class AdminPowerDaoImpl {
+	/**
+	 * 批量为管理员添加权限   
+	 * @param adminId       管理员ID 
+	 * @param powerList     要添加的权限的集合
+	 * @return              添加成功返回true，失败返回false
+	 */
+	public boolean addAdminPowers(int adminId, List<Power> powerList) {
+		StringBuilder sql = new StringBuilder("INSERT INTO adminPower (adminId,powerId) VALUES");
+		
+		for (int i=0; i<powerList.size(); i++) {
+			Power power = powerList.get(i);
+			if (i==powerList.size() -1) {
+				sql.append(" ("+ adminId+"," + power.getPowerId()+")");
+			} else {
+				sql.append(" ("+ adminId+"," + power.getPowerId()+"),");
+			}
+		}
+		/*System.out.println(sql.toString());*/
+		int result = DBHelper.update(sql.toString(), null);
+		if (result==0) {
+			return false;
+		}
+	/*	for (Power power: powerList) {
+			String sql = "INSERT INTO adminPower (adminId,powerId) "
+					+ "VALUES(" + adminId+"," + power.getPowerId()+")";
+			int result = DBHelper.update(sql, null);
+			if (result==0) {
+				return false;
+			}
+		}*/
+		return true;
 	}
-
-	@Override
-	public boolean update(AdminPower adminpower) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean del(AdminPower adminpower) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean add(AdminPower adminpower) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	/**
 	 * 通过管理员的ID来查找对应得权限
 	 * @param adminId
@@ -61,25 +66,53 @@ public class AdminPowerDaoImpl implements AdminPowerDao {
 		return powerList;
 	}
 	
-	
-	public boolean updateAdminPower(int adminId, Power power) {
-		String sql = "UPDATE adminPower SET powerId = " + power.getPowerId() 
-		             + " WHERE adminId = " + adminId + " AND " 
-				     + " powerId = " + power.getPowerId();
+	/**
+	 * 更新管理员的权限
+	 * @param adminId
+	 * @param powerList
+	 * @return
+	 */
+	public boolean updateAdminPower(int adminId, List<Power> powerList) {
+		/**
+		 * 当管理员有权限时，删除管理员所有的权限
+		 */
+		if (adminHasPower(adminId)) {
+			/**
+			 * 当删除权限失败时，返回false，即更新失败
+			 */
+			if (!delAdminPowers(adminId)) {
+				return false;
+			}
+			/**
+			 * 删除成功，开始为管理员添加权限
+			 */
+			return addAdminPowers(adminId, powerList);
+		} 
+		return addAdminPowers(adminId, powerList);
+	}
+	/**
+	 * 删除指定管理员所有的权限
+	 * @param adminId   管理员的ID
+	 * @return          删除成功返回true，失败返回false
+	 */
+	public boolean delAdminPowers(int adminId) {
+		String sql = "DELETE FROM adminPower WHERE adminId = "  + adminId;
 		int result = DBHelper.update(sql, null);
-		
 		if (result==0) {
 			return false;
+		} 
+		return true;
+	}
+	/**
+	 * 确认管理员是否有权限
+	 * @param adminId   管理员ID
+	 * @return          管理员有权限返回true ，没有返回false
+	 */
+	public boolean adminHasPower(int adminId) {
+		List<Power> powerList = findPowersById(adminId);
+		if (powerList.isEmpty()) {
+			return false;
 		}
-		return true;
-	}
-	
-	public boolean delAdminPower(int adminId, Power power) {
-		return true;
-	}
-	
-	public boolean addPowers(int adminId, List<Power> powerList) {
-		String sql = "INSERT INTO ";
 		return true;
 	}
 	
@@ -89,8 +122,16 @@ public class AdminPowerDaoImpl implements AdminPowerDao {
 		for (Power power: list) {
 			System.out.println(power.getPowerName());
 		}*/
-		Power power = new Power();
-		Power.set		
+		Power power1 = new Power();
+		power1.setPowerId(1);
+		Power power2 = new Power();
+		power2.setPowerId(2);
+		List<Power> list = new ArrayList<>();
+		list.add(power1);
+		list.add(power2);
+		System.out.println(admin.addAdminPowers(2, list));
+				
+//		System.out.println(admin.adminHasPower(1));
 	}
 	
 }

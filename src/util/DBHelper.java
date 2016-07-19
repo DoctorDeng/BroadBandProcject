@@ -229,9 +229,11 @@ public class DBHelper {
 		int result = 0;
 		getPreparedStatement(sql);// 实例化预编译对象ps
 		try {
-			if (obj.length > 0) {
-				for (int i = 0; i < obj.length; i++) {
-					ps.setObject(i + 1, obj[i]);
+			if (null != obj) {
+				if (obj.length > 0) {
+					for (int i = 0; i < obj.length; i++) {
+						ps.setObject(i + 1, obj[i]);
+					}
 				}
 			}
 			result = ps.executeUpdate();
