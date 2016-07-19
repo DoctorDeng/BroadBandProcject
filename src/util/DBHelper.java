@@ -1,6 +1,7 @@
 package util;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -16,6 +17,26 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DBHelper {
+	
+	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DATABASE_NAME = "kuandai";
+	private static final String USER = "root";
+	private static final String PWD = "denghuajie123";
+	private static final String URL = "jdbc:mysql://119.29.223.16:3306/"+ DATABASE_NAME + 
+			"?user=" + USER +
+			"&password=" + PWD +
+			"&useUnicode=true" + 
+			"&useSSL=false" +
+			"&characterEncoding=UTF-8";
+	
+	static {
+		try {
+			Class.forName(JDBC_DRIVER);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static Connection conn = null;
 	private static PreparedStatement ps = null;
 	private static ResultSet rs = null;
@@ -25,13 +46,14 @@ public class DBHelper {
 	 */
 	public static Connection getConnection() {
 		try {
-			Context ctx = new InitialContext();
-			DataSource ds = (DataSource)ctx.lookup("java:comp/env/mysql/imooc");
-			conn = ds.getConnection();
-		} catch (NamingException e) {
+			/*Context ctx = new InitialContext();
+			DataSource ds = (DataSource)ctx.lookup("java:comp/env/mysql/kuandai");*/
+			 DriverManager.getConnection(URL);
+			conn =  DriverManager.getConnection(URL);
+		} /*catch (NamingException e) {
 			System.out.println("数据源不存在");
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} */catch (SQLException e) {
 			System.out.println("数据源获取连接出错");
 			e.printStackTrace();
 		}
