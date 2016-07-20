@@ -29,8 +29,9 @@ public class CustomerAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String customerName = request.getParameter("customerName");
-		String idNumber       = request.getParameter("idName");
+		response.setContentType("text/html;charset=UTF-8");
+		String customerName = new String(request.getParameter("customerName").getBytes("ISO-8859-1"),"UTF-8");
+		String idNumber     = request.getParameter("idName");
 		String phone        = request.getParameter("phone");
 		Customer customer = new Customer();
 		customer.setCustomerName(customerName);
