@@ -26,13 +26,11 @@ public class Tariff {
 		this.tariffExplain = tariffExplain;
 	}
     
-    public Tariff(String traiffName, int timeLong, double tariff, String creaTime, String openTime,
+    public Tariff(String traiffName, int timeLong, double tariff,
 			String status,String tariffType, String tariffExplain) {
     	this.traiffName = traiffName;
 		this.timeLong = timeLong;
 		this.tariff = tariff;
-		this.creaTime = creaTime;
-		this.openTime = openTime;
 		this.status = status;
 		this.tariffType = tariffType;
 		this.tariffExplain = tariffExplain;
@@ -79,6 +77,22 @@ public class Tariff {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getTariffType() {
+		return tariffType;
+	}
+
+	public void setTariffType(String tariffType) {
+		this.tariffType = tariffType;
+	}
+
+	public String getTariffExplain() {
+		return tariffExplain;
+	}
+
+	public void setTariffExplain(String tariffExplain) {
+		this.tariffExplain = tariffExplain;
 	}
 
 }

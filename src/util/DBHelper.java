@@ -74,7 +74,7 @@ public class DBHelper {
 		}
 		return ps;
 	}
-	
+
 	public static List<Map<String, Object>> find(String sql, Object...obj) {
 		/**
 		 * 存放结果集合
@@ -129,9 +129,11 @@ public class DBHelper {
 		getPreparedStatement(sql);
 		
 		try {
-			if (obj.length >0) {
-				for (int i=0; i<obj.length; i++) {
-					ps.setObject(i + 1, obj[i]);
+			if (null == obj) {
+				if (obj.length >0) {
+					for (int i=0; i<obj.length; i++) {
+						ps.setObject(i + 1, obj[i]);
+					}
 				}
 			}
 			rs = ps.executeQuery();
