@@ -3,16 +3,16 @@ package dao.impl;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import com.mysql.jdbc.SQLError;
 
 import bean.Customer;
 import dao.CustomerDao;
+import util.DBHelper;
 
 public class CustomerDaoImpl implements CustomerDao {
-	
-	private Connection conn ;
+	private DBHelper db = new DBHelper();
+	private Connection conn = db.getConnection() ;
 	private PreparedStatement ps;
 	@Override
 	public List<Customer> findAll() {
@@ -27,21 +27,24 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public int add(Customer customer) {
+	public boolean add(Customer customer) {
 		// TODO Auto-generated method stub
 		String sql  = "INSERT into customer(customerName,idNumber,phone)VALUES(?,?,?)";
 		int i = 0;
 		try{
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, customer.getCustomerName());
-			ps.setString(2,customer.getIdNumber());
-			ps.setString(3, customer.getPhone());
-			i = ps.executeUpdate();
-			return i;
+			ps.setString(1, customer.getCustomerName().trim());
+			ps.setString(2, customer.getIdNumber().trim());
+			ps.setString(3, customer.getPhone().trim());
+			System.out.println(customer.getCustomerName().trim());
+			System.out.println(customer.getIdNumber().trim());
+			System.out.println(customer.getPhone().trim());
+			i = ps.executeUpdate();		
 		}catch(SQLException se){
 			se.printStackTrace();
-			return i;
 		}
+		if(i == 0) return false;
+		else return true;
 	}
 
 	@Override

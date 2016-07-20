@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
 import bean.Customer;
+import dao.impl.CustomerDaoImpl;
 
 /**
  * Servlet implementation class CustomerAction
@@ -29,12 +30,13 @@ public class CustomerAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String customerName = request.getParameter("customerName");
-		String idName       = request.getParameter("idName");
+		String idNumber       = request.getParameter("idName");
 		String phone        = request.getParameter("phone");
 		Customer customer = new Customer();
 		customer.setCustomerName(customerName);
-		customer.setCustomerId(Integer.parseInt(idName));
+		customer.setIdNumber(idNumber);
 		customer.setPhone(phone);
+		boolean c = new CustomerDaoImpl().add(customer);
 	}
 
 	/**

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="CustomerAction">
+	<form action="CustomerAction" method="post">
 	<div>
 	<label>客户姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 	<input type = "text" name = "customerName"/>
@@ -22,6 +22,5 @@
 	</div>
 	<div><input type = "submit" value = "提交" /></div>
 	</form>
-
 </body>
 </html>
