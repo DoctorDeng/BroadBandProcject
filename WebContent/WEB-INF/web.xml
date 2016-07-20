@@ -39,4 +39,10 @@
     <servlet-name>CustomersAction</servlet-name>
     <url-pattern>/CustomersAction</url-pattern>
   </servlet-mapping>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+      <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+    </taglib>
+  </jsp-config>
 </web-app>

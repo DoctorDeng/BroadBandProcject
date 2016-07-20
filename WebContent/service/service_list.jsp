@@ -1,4 +1,5 @@
-<%@page import="dao.impl.BussinessViewDaoImpl"%>
+<%@page import="dao.*"%>
+<%@page import="dao.impl.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="bean.viewBean.BussinessViewBean" %>
@@ -7,11 +8,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-		<%
-		BussinessViewDaoImpl bv = new BussinessViewDaoImpl();
-		List<BussinessViewBean> lv = bv.findAll();
-		for(BussinessViewBean sv:lv){
-		%>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
@@ -99,6 +95,11 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
+		<%
+		BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
+		List<BussinessViewBean> lv = bv.findAll();
+		for(BussinessViewBean sv:lv){
+		%>
                     <tr>
                         <td><a href="service_detail.jsp" title="查看明细"><%=sv.getbussinessId()%></a></td>
                         <td><%=sv.getAdminId() %></td>
