@@ -4,6 +4,7 @@ public class Tariff {
     private int tariffId;     //资费ID
 	private String traiffName;     //资费名称
 	private int timeLong;       //资费时长
+	private int timeTariff;     //单位费用
 	private double tariff;      //资费金额
 	private String creaTime;      //资费创建时间
 	private String openTime;      //资费开启时间
@@ -13,27 +14,26 @@ public class Tariff {
     public Tariff() {
 	}
    
-    public Tariff(int tariffId, String traiffName, int timeLong, double tariff, String creaTime, String openTime,
-			String status,String tariffType, String tariffExplain) {
+    public Tariff(int tariffId, String traiffName, int timeLong, int timeTariff, double tariff,
+			 String status, String tariffType, String tariffExplain) {
 		this.tariffId = tariffId;
 		this.traiffName = traiffName;
 		this.timeLong = timeLong;
+		this.timeTariff = timeTariff;
 		this.tariff = tariff;
-		this.creaTime = creaTime;
-		this.openTime = openTime;
-		this.status = status;
 		this.tariffType = tariffType;
 		this.tariffExplain = tariffExplain;
 	}
-    
-    public Tariff(String traiffName, int timeLong, double tariff,
-			String status,String tariffType, String tariffExplain) {
+
+	public Tariff(String traiffName, int timeLong, double tariff,
+    		int timeTariff,String status,String tariffType, String tariffExplain) {
     	this.traiffName = traiffName;
 		this.timeLong = timeLong;
 		this.tariff = tariff;
 		this.status = status;
 		this.tariffType = tariffType;
 		this.tariffExplain = tariffExplain;
+		this.timeTariff = timeTariff;
     }
 
 	public int getTariffId() {
@@ -93,6 +93,14 @@ public class Tariff {
 
 	public void setTariffExplain(String tariffExplain) {
 		this.tariffExplain = tariffExplain;
+	}
+
+	public int getTimeTariff() {
+		return timeTariff;
+	}
+
+	public void setTimeTariff(int timeTariff) {
+		this.timeTariff = timeTariff;
 	}
 
 }
