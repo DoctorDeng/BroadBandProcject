@@ -54,6 +54,7 @@ public class TariffDaoImpl implements TariffDao {
 				+ "tariffType=?,"
 				+ "tariffExplain=? "
 				+ "WHERE tariffId = ?";
+		
 		String[] fields = {tariff.getTraiffName(),
 				String.valueOf(tariff.getTimeLong()),
 				String.valueOf(tariff.getTariff()),
@@ -61,19 +62,34 @@ public class TariffDaoImpl implements TariffDao {
 				tariff.getTariffType(),
 				tariff.getTariffExplain(), 
 				String.valueOf(tariff.getTariffId())};
+		
 		int result = DBHelper.update(sql, fields);
 		if (result >0) {
 			return true;
 		}
 		return false;
 	}
+	/**
+	 * 将指定tariff启用
+	 * @param tariffId
+	 * @return
+	 */
+	public boolean startUsingTariff(int tariffId) {
+		String sql = "UPDATE tariff SET openTime=now(),status='1' WHERE tariffId=?";
+		String[] fields = {String.valueOf(tariffId)};
+		int result = DBHelper.update(sql, fields);
+		if (result==0) {
+			return false;
+		}
+		return true;
+	}
 	
 	public static void main(String[] args) {
 		TariffDaoImpl tariffDao = new TariffDaoImpl();
-		Tariff tariff = new Tariff(3, "包月", 30, 5, 30.00,"2", "3", "没有");
+//		Tariff tariff = new Tariff(3, "包月", 30, 5, 30.00,"2", "3", "没有");
 		/*Tariff tariff = new Tariff("doctor",20,20,3,"1","1","哈哈哈");
 		System.out.println(tariffDao.add(tariff));*/
 //		System.out.println(tariffDao.findAll().size());
-		System.out.println(tariffDao.update(tariff));
+		System.out.println(tariffDao.startUsingTariff(3));
 	}
 }
