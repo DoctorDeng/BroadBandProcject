@@ -21,7 +21,7 @@ public class TariffDaoImpl implements TariffDao {
 
 	@Override
 	public boolean add(Tariff tariff) {
-		String sql = "INSERT INTO tariff ()";
+		String sql = "INSERT INTO tariff (tariffName,tariff,timeLong,timeLong,status)";
 		return false;
 	}
 
