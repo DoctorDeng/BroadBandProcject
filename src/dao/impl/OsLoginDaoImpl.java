@@ -67,6 +67,30 @@ public class OsLoginDaoImpl implements OsLoginDao {
 				
 		return o;
 	}
+	public List<Oslogin> findAlls(int osId) {
+		// TODO Auto-generated method stub
+		List<Oslogin> n = new ArrayList<Oslogin>();
+		conn = DBHelper.getConnection();
+		try {
+			ps = conn.prepareStatement("select * from oslogin where osId=?");
+			ps.setInt(1, osId);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				Oslogin c = new Oslogin();
+				c.setOsLoginId((rs.getInt(1)));
+				c.setOsId(rs.getInt(2));
+				c.setLoginIp(rs.getString(3));
+				c.setLoginInTime(rs.getString(4));
+				c.setLoginOutTime(rs.getString(5));
+				c.setTimeLong(rs.getInt(6));
+				n.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return n;
+	}
 
 	@Override
 	public boolean add(Oslogin oslogin) {
