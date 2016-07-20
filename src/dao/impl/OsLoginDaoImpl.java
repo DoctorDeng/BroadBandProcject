@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import bean.Oslogin;
 import dao.OsLoginDao;
@@ -19,7 +20,6 @@ public class OsLoginDaoImpl implements OsLoginDao {
 	
 	@Override
 	public List<Oslogin> findAll() {
-		// TODO Auto-generated method stub
 		List<Oslogin> l = new ArrayList<Oslogin>();
 		conn = DBHelper.getConnection();
 		try {
@@ -95,6 +95,11 @@ public class OsLoginDaoImpl implements OsLoginDao {
 		return n;
 	}
 
+	public List<Map<String,Object>> findLoginForm(int osId) {
+		String sql = "SELECT loginIp,loginTime,loginOutTime,tariffName,timeTraff";
+		return new ArrayList<Map<String,Object>>();
+	}
+	
 	@Override
 	public boolean add(Oslogin oslogin) {
 		// TODO Auto-generated method stub
