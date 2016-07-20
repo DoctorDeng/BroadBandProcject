@@ -1,8 +1,17 @@
+<%@page import="dao.impl.BussinessViewDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="bean.viewBean.BussinessViewBean" %>
+    <%@page import="java.util.*" %>
+ <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+		<%
+		BussinessViewDaoImpl bv = new BussinessViewDaoImpl();
+		List<BussinessViewBean> lv = bv.findAll();
+		for(BussinessViewBean sv:lv){
+		%>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
@@ -91,96 +100,15 @@
                         <th class="width200"></th>
                     </tr>
                     <tr>
-                        <td><a href="service_detail.jsp" title="查看明细">1</a></td>
-                        <td>101</td>
-                        <td>230102197902137862</td>
-                        <td>张三</td>
-                        <td>openlab1</td>
-                        <td>开通</td>
-                        <td>192.168.0.23</td>
+                        <td><a href="service_detail.jsp" title="查看明细"><%=sv.getbussinessId()%></a></td>
+                        <td><%=sv.getAdminId() %></td>
+                        <td><%=sv.getIdNumber() %></td>
+                        <td><%=sv.getCustomerName() %></td>
+                        <td><%=sv.getOsAccount() %></td>
+                        <td><%=sv.getStatus() %></td>
+                        <td><%=sv.getServerId()%></td>
                         <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包 20 小时</a>
-                            <!--浮动的详细信息-->
-                            <div class="detail_info">
-                                20小时，24.5 元，超出部分 0.03元/分钟
-                            </div>
-                        </td>                            
-                        <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="service_detail.jsp" title="查看明细">2</a></td>
-                        <td>101</td>
-                        <td>230102197902137862</td>
-                        <td>张三</td>
-                        <td>openlab2</td>
-                        <td>暂停</td>
-                        <td>192.168.100.20</td>
-                        <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包 40 小时</a>
-                            <!--浮动的详细信息-->
-                            <div class="detail_info">
-                                40小时，40.5 元，超出部分 0.03元/分钟
-                            </div>
-                        </td>                            
-                        <td class="td_modi">
-                            <input type="button" value="开通" class="btn_start" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="service_detail.jsp" title="查看明细">3</a></td>
-                        <td>101</td>
-                        <td>230102197902137862</td>
-                        <td>张三</td>
-                        <td>openlab3</td>
-                        <td>删除</td>
-                        <td>192.168.10.23</td>
-                        <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包 60 小时</a>
-                            <!--浮动的详细信息-->
-                            <div class="detail_info">
-                                60小时，55 元，超出部分 0.03元/分钟
-                            </div>
-                        </td>                            
-                        <td class="td_modi">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="service_detail.jsp" title="查看明细">4</a></td>
-                        <td>102</td>
-                        <td>230102197902111111</td>
-                        <td>李四</td>
-                        <td>openlab1</td>
-                        <td>开通</td>
-                        <td>192.168.0.23</td>
-                        <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包 20 小时</a>
-                            <!--浮动的详细信息-->
-                            <div class="detail_info">
-                                20小时，24.5 元，超出部分 0.03元/分钟
-                            </div>
-                        </td>                            
-                        <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><a href="service_detail.jsp" title="查看明细">5</a></td>
-                        <td>102</td>
-                        <td>230102197902137862</td>
-                        <td>张三</td>
-                        <td>openlab1</td>
-                        <td>开通</td>
-                        <td>192.168.0.23</td>
-                        <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包 20 小时</a>
+                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);"><%=sv.getTraiffName() %></a>
                             <!--浮动的详细信息-->
                             <div class="detail_info">
                                 20小时，24.5 元，超出部分 0.03元/分钟
@@ -217,7 +145,8 @@
         </div>
         <!--主要区域结束-->
         <div id="footer">
-           
+          
         </div>
+        <%} %>
     </body>
 </html>
