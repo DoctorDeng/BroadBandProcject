@@ -7,7 +7,7 @@ import bean.Tariff;
 
 public interface AdminInforDao {
 
-	public List<Tariff> findAll();
+	public List<AdminInfor> findAll();
 	
 	public AdminInfor findOne(int adminInforId);
 	
