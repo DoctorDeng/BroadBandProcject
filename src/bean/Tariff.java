@@ -8,11 +8,13 @@ public class Tariff {
 	private String creaTime;      //资费创建时间
 	private String openTime;      //资费开启时间
 	private String status;     //资费状态（开通或暂停）
+	private String tariffType;  //资费类型
+	private String tariffExplain; //资费说明
     public Tariff() {
 	}
    
     public Tariff(int tariffId, String traiffName, int timeLong, double tariff, String creaTime, String openTime,
-			String status) {
+			String status,String tariffType, String tariffExplain) {
 		this.tariffId = tariffId;
 		this.traiffName = traiffName;
 		this.timeLong = timeLong;
@@ -20,7 +22,21 @@ public class Tariff {
 		this.creaTime = creaTime;
 		this.openTime = openTime;
 		this.status = status;
+		this.tariffType = tariffType;
+		this.tariffExplain = tariffExplain;
 	}
+    
+    public Tariff(String traiffName, int timeLong, double tariff, String creaTime, String openTime,
+			String status,String tariffType, String tariffExplain) {
+    	this.traiffName = traiffName;
+		this.timeLong = timeLong;
+		this.tariff = tariff;
+		this.creaTime = creaTime;
+		this.openTime = openTime;
+		this.status = status;
+		this.tariffType = tariffType;
+		this.tariffExplain = tariffExplain;
+    }
 
 	public int getTariffId() {
 		return tariffId;

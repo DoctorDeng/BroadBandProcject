@@ -21,7 +21,7 @@ public class TariffDaoImpl implements TariffDao {
 
 	@Override
 	public boolean add(Tariff tariff) {
-		// TODO 自动生成的方法存根
+		String sql = "INSERT INTO tariff ()";
 		return false;
 	}
 
@@ -36,5 +36,7 @@ public class TariffDaoImpl implements TariffDao {
 		// TODO 自动生成的方法存根
 		return false;
 	}
+	
+	
 
 }

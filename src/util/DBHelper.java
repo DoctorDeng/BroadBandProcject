@@ -85,7 +85,6 @@ public class DBHelper {
 			if (null != obj) {
 				if (obj.length >0) {
 					for (int i=0;i <obj.length; i++) {
-						ps.setObject(i, obj[i]);
 						ps.setObject(i+1, obj[i]);
 					}
 				}
