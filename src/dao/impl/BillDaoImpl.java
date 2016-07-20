@@ -70,6 +70,10 @@ public class BillDaoImpl implements BillDao{
 		return billViewList;
 	}
 	
+	public List<Map<String,Object>> findBillDetailForm(int billId) {
+		
+	}
+	
 	public static void main(String[] args) {
 		BillDaoImpl billDao = new BillDaoImpl();
 		System.out.println(billDao.findBillForm().get(0).toString());

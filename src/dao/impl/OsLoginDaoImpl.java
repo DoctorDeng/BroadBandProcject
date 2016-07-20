@@ -67,8 +67,12 @@ public class OsLoginDaoImpl implements OsLoginDao {
 				
 		return o;
 	}
+	/**
+	 * 通过宽带账号ID查询出所有的宽带账号登陆记录
+	 * @param osId
+	 * @return
+	 */
 	public List<Oslogin> findAlls(int osId) {
-		// TODO Auto-generated method stub
 		List<Oslogin> n = new ArrayList<Oslogin>();
 		conn = DBHelper.getConnection();
 		try {
@@ -86,7 +90,6 @@ public class OsLoginDaoImpl implements OsLoginDao {
 				n.add(c);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return n;
