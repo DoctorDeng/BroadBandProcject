@@ -29,4 +29,14 @@
     <servlet-name>CustomerAction</servlet-name>
     <url-pattern>/CustomerAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomersAction</display-name>
+    <servlet-name>CustomersAction</servlet-name>
+    <servlet-class>action.CustomerAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomersAction</servlet-name>
+    <url-pattern>/CustomersAction</url-pattern>
+  </servlet-mapping>
 </web-app>

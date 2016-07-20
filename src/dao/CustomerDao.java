@@ -16,7 +16,7 @@ public interface CustomerDao {
 	/**
 	 * 增加用户信息
 	 */
-	public boolean add(Customer customer);
+	public int add(Customer customer);
 	
 	/**
 	 * 删除用户信息
