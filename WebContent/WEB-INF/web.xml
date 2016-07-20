@@ -19,4 +19,14 @@
     <servlet-name>LoginAction</servlet-name>
     <url-pattern>/LoginAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CustomerAction</display-name>
+    <servlet-name>CustomerAction</servlet-name>
+    <servlet-class>action.CustomerAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerAction</servlet-name>
+    <url-pattern>/CustomerAction</url-pattern>
+  </servlet-mapping>
 </web-app>

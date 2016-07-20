@@ -22,6 +22,10 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public boolean add(Customer customer) {
 		// TODO Auto-generated method stub
+		String customerName = customer.getCustomerName();
+		String idNumber     = customer.getIdNumber();
+		String phone        = customer.getPhone();
+		String sql  = "INSERT into customer(customerName,idNumber,phone)VALUES('','','')";
 		return false;
 	}
 
