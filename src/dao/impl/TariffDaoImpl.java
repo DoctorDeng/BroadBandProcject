@@ -70,9 +70,9 @@ public class TariffDaoImpl implements TariffDao {
 		return false;
 	}
 	/**
-	 * 将指定tariff启用
-	 * @param tariffId
-	 * @return
+	 * 将指定tariff(资费)启用
+	 * @param tariffId   资费ID
+	 * @return           启用成功返回true，失败返回false
 	 */
 	public boolean startUsingTariff(int tariffId) {
 		String sql = "UPDATE tariff SET openTime=now(),status='1' WHERE tariffId=?";
