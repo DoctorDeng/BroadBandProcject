@@ -71,7 +71,14 @@ public class BillDaoImpl implements BillDao{
 	}
 	
 	public List<Map<String,Object>> findBillDetailForm(int billId) {
+		String sql = "SELECT billDetailId,osAccount,serverIp,adminId,timelong,cost,tariffName "
+				+ "FROM "
+				+ "INNER JOIN billDetail as bd "
+				+ "INNER JOIN os "
+				+ "ON bd.osId = os.osId"
+				+ "";
 		
+		return new ArrayList<Map<String,Object>>();
 	}
 	
 	public static void main(String[] args) {

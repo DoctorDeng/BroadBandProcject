@@ -5,11 +5,11 @@ public class BillDetailViewBean {
 	private  String osAccount;
 	private  String serverIp;
 	private  int    adminId;
-	private  int    timeLong;
+	private  String timeLong;
 	private  double cost;
 	private  String tariffName;
 	
-	public BillDetailViewBean(int billDetailId, String osAccount, String serverIp, int adminId, int timeLong,
+	public BillDetailViewBean(int billDetailId, String osAccount, String serverIp, int adminId, String timeLong,
 			double cost, String tariffName) {
 		super();
 		this.billDetailId = billDetailId;
@@ -45,10 +45,10 @@ public class BillDetailViewBean {
 	public void setAdminId(int adminId) {
 		this.adminId = adminId;
 	}
-	public int getTimeLong() {
+	public String getTimeLong() {
 		return timeLong;
 	}
-	public void setTimeLong(int timeLong) {
+	public void setTimeLong(String timeLong) {
 		this.timeLong = timeLong;
 	}
 	public double getCost() {
