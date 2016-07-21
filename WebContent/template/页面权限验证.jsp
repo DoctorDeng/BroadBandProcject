@@ -20,6 +20,6 @@
   	<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   	<c:if test="${hasPower==false}">
   		<%
-  			response.sendRedirect("xxx.jsp");
+  			response.sendRedirect("nopower.jsp");
   		%>
   	</c:if>
