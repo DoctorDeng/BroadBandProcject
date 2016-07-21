@@ -31,13 +31,12 @@ public class LoginAction extends HttpServlet {
 		String adminAccount = request.getParameter("adminAccount");
 		String password = request.getParameter("password");
 		AccountManage accountManage = new AccountManage();
-		
 		if (null != adminAccount && null != password) {
 			Admin  admin = accountManage.login(adminAccount, password);
 			request.getSession().setAttribute("admin", admin);
-			request.getRequestDispatcher("xxx.sjp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("xxx.jsp").forward(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 		
 		

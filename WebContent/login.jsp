@@ -7,37 +7,35 @@
         <title></title>
         <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
+        <script type="text/javascript" src="js/login.js"></script>
         <script type="text/javascript">
-        function submit(){
-        	document.getElementById("form").submit();
-		}
         </script>
     </head>
     <body class="index">
         <div class="login_box">
-        <form action="LoginAction" method="post" id = "form">
+        <form action="LoginAction" method="post" id ="form" name= "login">
             <table>
                 <tr>
                     <td class="login_info">账号：</td>
-                    <td colspan="2"><input name="name" type="text" class="width150" /></td>
-                    <td class="login_error_info"><span class="required" >30长度的字母、数字和下划线</span></td>
+                    <td colspan="2"><input name="adminAccount" type="text" class="width150" /></td>
+                    <td class="login_error_info"><span class="required" id = "iname"></span></td>
                 </tr>
                 <tr>
                     <td class="login_info">密码：</td>
                     <td colspan="2"><input name="password" type="password" class="width150" /></td>
-                    <td><span class="required">30长度的字母、数字和下划线</span></td>
+                    <td><span class="required" id = "ipswd"></span></td>
                 </tr>
                 <tr>
                     <td class="login_info">验证码：</td>
-                    <td class="width70"><input name="" type="text" class="width70" /></td>
+                    <td class="width70"><input id="validate" name="" type="text" class="width70" /></td>
                     <td><img src="images/valicode.jpg" alt="验证码" title="点击更换" /></td>  
-                    <td><span class="required">验证码错误</span></td>              
+                    <td><span class="required" id="validateError"></span></td>              
                 </tr>            
                 <tr>
                     <td></td>
                     <td class="login_button" colspan="2">
-                        <img src="images/login_btn.png" onclick="submit()" /></td>  
-                    <td><span class="required">用户名或密码错误，请重试</span></td>                               
+                    <a href = "javascript:login.submit()"><img src="images/login_btn.png" onclick="tipsName()" /></a></td>  
+                    <td><span class="required"></span></td>                               
                 </tr>
             </table>
             </form>
