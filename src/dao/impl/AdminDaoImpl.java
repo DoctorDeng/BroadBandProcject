@@ -35,7 +35,13 @@ public class AdminDaoImpl implements AdminDao{
 		Admin admin = null;
 		String sql = "SELECT adminId, adminAccount, password FROM admin WHERE adminAccount = ? AND password= ?";
 		String[] fields = {adminAccount, password};
-		admin = DBHelper.findOne(new Admin(), sql, fields);
+		
+		List<Map<String, Object>> list = DBHelper.find(sql, fields);
+		
+		if(list.size() == 1 ) {
+			int adminId = Integer.parseInt(list.get(0).get("adminId").toString());
+			admin = new Admin(adminId, adminAccount, password);
+		}
 		
 		return admin;
 	}
@@ -93,9 +99,9 @@ public class AdminDaoImpl implements AdminDao{
 	
 	public static void main(String[] args) {
 		AdminDaoImpl adminDao = new AdminDaoImpl();
-		Admin admin = new Admin(1,"222","555");
-		/*System.out.println(adminDao.findAdminByAccount("123", "123").getAdminId());*/
+/*		Admin admin = new Admin(1,"222","555");*/
+		System.out.println(adminDao.verifyAdminByAccount("dingcong", "123456").getAdminId());
 		/*System.out.println(adminDao.addAdmin("555", "333"));*/
-		System.out.println(adminDao.updateAdminPassword("222","777"));
+		/*System.out.println(adminDao.updateAdminPassword("222","777"));*/
 	}
 }
