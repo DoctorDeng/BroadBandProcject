@@ -65,4 +65,14 @@
     <servlet-name>AddAdminAction</servlet-name>
     <url-pattern>/AddAdminAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffAction</display-name>
+    <servlet-name>TariffAction</servlet-name>
+    <servlet-class>action.TariffAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffAction</servlet-name>
+    <url-pattern>/TariffAction</url-pattern>
+  </servlet-mapping>
 </web-app>

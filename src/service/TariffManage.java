@@ -27,7 +27,11 @@ public class TariffManage {
 	public boolean addTariff(Tariff t){
 		return tariffDao.add(t);
 	}
-	
+	/**
+	 * 开启资费
+	 * @param tariffId  资费的ID
+	 * @return          开启成功返回true，失败返回false
+	 */
 	public boolean openTariff(int tariffId) {
 		return tariffDao.startUsingTariff(tariffId);
 	}

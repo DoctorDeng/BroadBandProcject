@@ -37,5 +37,13 @@ public class AccountManage {
 	public boolean changePassword(int adminId,String newPassword) {
 		return adminDao.updateAdminPasswordByAdminId(adminId, newPassword);
 	}
+	/**
+	 * 批量重置管理员密码
+	 * @param adminIds  批量管理员ID
+	 * @return
+	 */
+	public boolean resetPassword(int[] adminIds) {
+		return adminDao.resetAdminsPassword(adminIds);
+	}
 	
 }

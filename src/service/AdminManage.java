@@ -66,4 +66,5 @@ public class AdminManage {
 	public boolean delAdmin(int adminId) {
 		return adminDao.delAdmin(adminId);
 	}
+
 }
