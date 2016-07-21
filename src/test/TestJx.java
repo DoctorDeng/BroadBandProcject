@@ -61,7 +61,11 @@ public class TestJx {
 	}
 	@Ignore
 	public void testupdateAdminInfor() {
-	System.out.println(admininforDao.updateAdminInfor("151@qq.com", "1"));
+		AdminInfor adminInfor = new AdminInfor();
+		adminInfor.setAdminId(1);
+		adminInfor.setAdminName("徐川川 ");
+		adminInfor.setPhone("13255523625");
+		adminInfor.setEmail("1412@qq.com");
+		System.out.println(admininforDao.updateAdminInfor(adminInfor));
 	}
-
 }
