@@ -24,6 +24,7 @@ public class AdminManage {
 		
 		if (adminDao.addAdmin(admin.getAdminAccount(), admin.getAdminAccount())) {
 			Admin temp = adminDao.verifyAdminByAccount(admin.getAdminAccount(), admin.getPassword());
+			adminInfor.setAdminId(temp.getAdminId());
 			if (null !=temp) {
 				if (adminInforDao.addAdminInfor(adminInfor)) {
 					if (adminPowerDao.addAdminPowers(temp.getAdminId(), powerList)) {

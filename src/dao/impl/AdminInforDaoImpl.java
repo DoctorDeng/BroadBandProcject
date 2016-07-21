@@ -76,11 +76,10 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 	public boolean addAdminInfor(AdminInfor admininfor){
 		int    adminId   = admininfor.getAdminId();
 		String adminName = admininfor.getAdminName();
-		String idNumber = admininfor.getIdNumber();
 		String phone = admininfor.getPhone();
 		String email = admininfor.getEmail();
-		String sql  = "insert into adminInfor(adminId,adminName,idNumber,phone,email,createTime) values(?,?,?,?,?,now())";	
-		String[] field = {String.valueOf(adminId),adminName,idNumber,phone,email};
+		String sql  = "insert into adminInfor(adminId,adminName,phone,email,createTime) values(?,?,?,?,?,now())";	
+		String[] field = {String.valueOf(adminId),adminName,phone,email};
 		int result = DBHelper.update(sql,field);
 	    if(result == 0){
 	    	return false;

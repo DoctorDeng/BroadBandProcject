@@ -55,4 +55,14 @@
     <servlet-name>AdminAction</servlet-name>
     <url-pattern>/AdminAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddAdminAction</display-name>
+    <servlet-name>AddAdminAction</servlet-name>
+    <servlet-class>action.AddAdminAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddAdminAction</servlet-name>
+    <url-pattern>/AddAdminAction</url-pattern>
+  </servlet-mapping>
 </web-app>
