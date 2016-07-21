@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 	      <li><a href="index.jsp" class="index_on"></a></li>
-                	<!-- 获取管理员拥有的权限 -->
+            <!-- 获取管理员拥有的权限 -->
             <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   				<c:set var="power">${adminPower.power}</c:set>
   				<!-- 通过管理员有的权限来显示菜单 -->
@@ -63,5 +56,3 @@
                 <li><a href="report/report_list.jsp" class="report_off"></a></li> -->
                 <li><a href="user/user_info.jsp" class="information_off"></a></li>
                 <li><a href="user/user_modi_pwd.jsp" class="password_off"></a></li>
-</body>
-</html>
