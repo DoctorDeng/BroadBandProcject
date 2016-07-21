@@ -9,9 +9,7 @@
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
         <script type="text/javascript">
         function submit(){
-        	var sub = document.getElementsById("form");
-        	sub.submit();
-
+        	document.getElementById("form").submit();
 		}
         </script>
     </head>
@@ -38,9 +36,8 @@
                 <tr>
                     <td></td>
                     <td class="login_button" colspan="2">
-                        <a href="index.jsp"><img src="images/login_btn.png" onclick="submit()" /></a>
-                    </td>    
-                    <td><span class="required">用户名或密码错误，请重试</span></td>                
+                        <img src="images/login_btn.png" onclick="submit()" /></td>  
+                    <td><span class="required">用户名或密码错误，请重试</span></td>                               
                 </tr>
             </table>
             </form>
