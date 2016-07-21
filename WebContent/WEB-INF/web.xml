@@ -75,4 +75,14 @@
     <servlet-name>TariffAction</servlet-name>
     <url-pattern>/TariffAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>账务账号增加页面接收servlet</description>
+    <display-name>BussinessAccountAddAction</display-name>
+    <servlet-name>BussinessAccountAddAction</servlet-name>
+    <servlet-class>action.BussinessAccountAddAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BussinessAccountAddAction</servlet-name>
+    <url-pattern>/BussinessAccountAddAction</url-pattern>
+  </servlet-mapping>
 </web-app>

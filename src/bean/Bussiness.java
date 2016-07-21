@@ -7,7 +7,21 @@ public class Bussiness {
     private String loginAccount;  		//登陆账号
     private String createTime;			//账号创建日期
     private String status;				//状态
-    private String lastLongTime;		//上次登录时间
+    private String lastLoginTime;		//上次登录时间
+    private String phone;				//电话号码
+    public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	private String password;			//账户密码
 	public int getBussinessId() {
 		return bussinessId;
 	}
@@ -44,11 +58,12 @@ public class Bussiness {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getLastLongTime() {
-		return lastLongTime;
+	public String getLastLoginTime() {
+		return lastLoginTime;
 	}
-	public void setLastLongTime(String lastLongTime) {
-		this.lastLongTime = lastLongTime;
+	public void setLastLoginTime(String lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
 	}
+	
 	
 }

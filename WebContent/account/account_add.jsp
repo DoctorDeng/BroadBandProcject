@@ -11,7 +11,7 @@
             //保存成功的提示信息
             function showResult() {
                 showResultDiv(true);
-                window.setTimeout("showResultDiv(false);", 3000);
+                window.setTimeout("showResultDiv(true);", 3000);
             }
             function showResultDiv(flag) {
                 var divResult = document.getElementById("save_result_info");
@@ -33,6 +33,9 @@
                     imgObj.src = "../images/show.png";
                 }
             }
+            function sub(){
+            	document.getElementById("form").submit();
+            }
         </script>
     </head>
     <body>
@@ -53,29 +56,29 @@
         <div id="main">       
             <!--保存成功或者失败的提示消息-->     
             <div id="save_result_info" class="save_fail">保存失败，该身份证已经开通过账务账号！</div>
-            <form action="" method="" class="main_form">
+            <form action="http://localhost:8080/lanqiao/BussinessAccountAddAction" method="post" class="main_form"  id="form" onsubmit="return showResult();">
                 <!--必填项-->
                 <div class="text_info clearfix"><span>姓名：</span></div>
                 <div class="input_info">
-                    <input type="text" value="张三" />
+                    <input type="text" value="张三" name="name"/>
                     <span class="required">*</span>
                     <div class="validate_msg_long">20长度以内的汉字、字母和数字的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" value="230198765432123456" />
+                    <input type="text" value="230198765432123456" name="idNumber"/>
                     <span class="required">*</span>
                     <div class="validate_msg_long">正确的身份证号码格式</div>
                 </div>
                 <div class="text_info clearfix"><span>登录账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="创建即启用，状态为开通"  />
+                    <input type="text" value="创建即启用，状态为开通" name="loginAccount" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>密码：</span></div>
                 <div class="input_info">
-                    <input type="password"  />
+                    <input type="password"  name="password"/>
                     <span class="required">*</span>
                     <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
                 </div>
@@ -87,7 +90,7 @@
                 </div>     
                 <div class="text_info clearfix"><span>电话：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width200"/>
+                    <input type="text" class="width200" name="phone" />
                     <span class="required">*</span>
                     <div class="validate_msg_medium">正确的电话号码格式：手机或固话</div>
                 </div>                
@@ -145,7 +148,7 @@
                 </div>
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save" onclick="showResult();" />
+                    <input type="button" value="保存" class="btn_save" onclick="sub()" />
                     <input type="button" value="取消" class="btn_save" />
                 </div>
             </form>  

@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Bussiness;
 import bean.viewBean.AccountViewBean;
 import dao.impl.AccountViewDaoImpl;
 
@@ -15,6 +16,10 @@ public class AccountService {
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
 		l = new AccountViewDaoImpl().getAccountViewBean(currentPage, pageSize);
 		return l;
+	}
+	
+	public boolean addBussinessAccount(Bussiness a){
+		return new AccountViewDaoImpl().addBussinessAccount(a);
 	}
 	
 	/*public static void main(String[] args){
