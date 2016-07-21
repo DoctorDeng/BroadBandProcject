@@ -27,8 +27,8 @@ public class BussinessDaoImpl implements BussinessDao{
 			while(rs.next()){
 				Bussiness b = new Bussiness();
 				b.setBussinessId(rs.getInt(1));
-				b.setAdminId(rs.getInt(2));
-				b.setOsId(rs.getInt(3));
+				//b.setAdminId(rs.getInt(2));
+				//b.setOsId(rs.getInt(3));
 				b.setStatus(rs.getString(4));
 				l.add(b);
 			}

@@ -16,9 +16,9 @@ public class AccountViewDaoImpl {
 	 * @param pageIndex
 	 * @return
 	 */
-	public List<AccountViewBean> getAdminInforViewBean(int currentPage,int pageSize){
+	public List<AccountViewBean> getAccountViewBean(int currentPage,int pageSize){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
-		String sql = "select * from bussiness limit "+(currentPage-1)*pageSize+","+pageSize;
+		String sql = "select * from bussiness";
 		System.out.println(sql);
 		String[] fields = null;
 		List<Map<String,Object>> list = DBHelper.find(sql, fields);

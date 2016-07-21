@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.viewBean.AccountViewBean;
-import dao.impl.AdminInforDaoImpl;
 import dao.impl.AccountViewDaoImpl;
 
 public class AccountService {
@@ -12,22 +11,23 @@ public class AccountService {
 	
 	int pageSize = 5;
 	
-	public List<AccountViewBean> getAdminInforViewBean(int currentPage){
+	public List<AccountViewBean> getAccountViewBean(int currentPage){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
-		l = new AccountViewDaoImpl().getAdminInforViewBean(currentPage, pageSize);
+		l = new AccountViewDaoImpl().getAccountViewBean(currentPage, pageSize);
 		return l;
 	}
 	
 	/*public static void main(String[] args){
 		System.out.println("测试开始.....");
-		List<AdminInforViewBean> l = new AdminInforService().getAdminInforViewBean(1);
-        for(AdminInforViewBean a:l){
-        	System.out.println(a.getAdminId());
+		List<AccountViewBean> l = new AccountService().getAccountViewBean(1);
+        for(AccountViewBean a:l){
+        	System.out.println(a.getBussinessId());
+        	System.out.println(a.getBussinessName());
         	System.out.println(a.getIdNumber());
-        	System.out.println(a.getCreateTime());
-        	System.out.println(a.getAdminAccount());
+        	System.out.println(a.getLoginAccount());
         	System.out.println(a.getStatus());
-        	System.out.println(a.getName());
+        	System.out.println(a.getCreateTime());
+        	System.out.println(a.getLastLoginTime());
         }
         System.out.println("测试结束.");
 	}*/

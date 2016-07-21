@@ -87,7 +87,7 @@
                     } else{
                     	currentPage = 1;
                     }                           
-                    List<AccountViewBean> l = new AccountService().getAdminInforViewBean(currentPage);
+                    List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
                     for(AccountViewBean a:l){
                     %>
                     <tr>
@@ -97,7 +97,7 @@
                         <td><%=a.getLoginAccount() %></td>
                         <td><%=a.getStatus() %></td>
                         <td><%=a.getCreateTime() %></td>
-                        <td><%=a.getLastLoginTime() %>></td>                           
+                        <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
