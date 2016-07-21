@@ -8,7 +8,6 @@ public class Admin {
     private String adminAccount;   //管理员登录账号
     private String password;      //账号密码
     private List<Power> powerList; //管理员权限集合
-    
     public Admin() {
 	}
     

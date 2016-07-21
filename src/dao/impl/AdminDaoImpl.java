@@ -1,5 +1,6 @@
 package dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,6 @@ public class AdminDaoImpl implements AdminDao{
 			int adminId = Integer.parseInt(list.get(0).get("adminId").toString());
 			admin = new Admin(adminId, adminAccount, password);
 		}
-		
 		return admin;
 	}
 	/**
@@ -70,7 +70,7 @@ public class AdminDaoImpl implements AdminDao{
 		 * 当没有此管理员账号时，才开始添加管理员账号
 		 */
 		if (!findAdminByAccount(adminAccount)) {
-			String sql = "INSERT INTO admin (adminAccount,password) VALUES(?,?)";
+			String sql = "INSERT INTO admin (adminAccount,password,createTime) VALUES(?,?,now())";
 			String[] fields = {adminAccount,password};
 			
 			int result = DBHelper.update(sql, fields);
@@ -96,12 +96,28 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		return true;
 	}
+	/**
+	 * 获取管理员的所有信息，包括个人信息和账号信息
+	 * @return 返回包含所有管理员信息的集合
+	 */
+	public List<Map<String,Object>> findAllAdminInfor() {
+		String sql = "SELECT ad.adminId,ai.adminName,ad.adminAccount,ai.phone,ai.email,ai.createTime "
+				+ "FROM admin as ad "
+				+ "INNER JOIN adminInfor as ai "
+				+ "ON ad.adminId = ai.adminId";
+		
+		List<Map<String,Object>> list = DBHelper.find(sql, null);
+		
+		return list;
+	}
 	
 	public static void main(String[] args) {
 		AdminDaoImpl adminDao = new AdminDaoImpl();
 /*		Admin admin = new Admin(1,"222","555");*/
-		System.out.println(adminDao.verifyAdminByAccount("dingcong", "123456").getAdminId());
+		//System.out.println(adminDao.verifyAdminByAccount("dingcong", "123456").getAdminId());
 		/*System.out.println(adminDao.addAdmin("555", "333"));*/
 		/*System.out.println(adminDao.updateAdminPassword("222","777"));*/
+		/*System.out.println(adminDao.findAllAdminInfor().size());*/
 	}
+	
 }
