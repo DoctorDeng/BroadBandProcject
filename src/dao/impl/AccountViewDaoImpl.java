@@ -19,7 +19,6 @@ public class AccountViewDaoImpl {
 	public List<AccountViewBean> getAccountViewBean(int currentPage,int pageSize){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
 		String sql = "select * from bussiness";
-		System.out.println(sql);
 		String[] fields = null;
 		List<Map<String,Object>> list = DBHelper.find(sql, fields);
 		for(Map<String,Object> m:list){
@@ -34,6 +33,11 @@ public class AccountViewDaoImpl {
 			l.add(a);
 		}	
 		return l;
+	}
+	
+	public boolean addBussinessAccount(AccountViewBean a){
+		
+		return false;
 	}
 	
 }
