@@ -6,11 +6,6 @@
             <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   				<c:set var="power">${adminPower.power}</c:set>
   				<!-- 通过管理员有的权限来显示菜单 -->
-  				<c:choose>
-  					<c:when test="${power==1}">
-                		<li><a href="role/role_list.jsp" class="role_off"></a></li>
-  					</c:when>
-  				</c:choose>
   				<!-- 当管理员的权限中有2权限时显示对应权限菜单 -->
   				<c:choose>
   					<c:when test="${power==2}">
