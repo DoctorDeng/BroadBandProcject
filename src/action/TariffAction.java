@@ -1,24 +1,23 @@
 package action;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Admin;
+import service.TariffManage;
 
 /**
- * Servlet implementation class AdminAction
+ * Servlet implementation class TariffAction
  */
-public class AdminAction extends HttpServlet {
+public class TariffAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminAction() {
+    public TariffAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,17 +26,29 @@ public class AdminAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String adminName    = request.getParameter("adminName");
-		String adminAccount = request.getParameter("adminAccount");
-		String password     = request.getParameter("password");
-		String phone        = request.getParameter("phone");
-		String email        = request.getParameter("email");
-		String[] powerStr   = request.getParameterValues("power");
-		
-		Admin admin = new Admin();
-		admin.setAdminAccount(adminAccount);
-		admin.setPassword(password);
-		
+		TariffManage tariffManage = new TariffManage();
+		/**
+		 * 获取操作的类型，注意在jsp页面中应定义相应的隐藏字段，来代表操作的类型，
+		 */
+		/**
+		 * 操作类型说明如下：  addTariff    添加资费信息
+		 *              openTariff   开启资费
+		 *              delTariff    删除资费
+		 *              updateTariff 更新资费信息
+		 */
+		String operationType = request.getParameter("operation");
+		switch(operationType) {
+		case "addTariff":
+			//具体获取参数，调用TariffManage的方法我就不写了，注意返回错误信息
+			break;
+		case "openTariff":
+			break;
+		case "delTariff":
+			break;
+		case "updateTariff":
+			break;
+		}
+	
 	}
 
 	/**

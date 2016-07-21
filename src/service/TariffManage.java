@@ -35,4 +35,12 @@ public class TariffManage {
 	public boolean openTariff(int tariffId) {
 		return tariffDao.startUsingTariff(tariffId);
 	}
+	/**
+	 * 更新Tariff
+	 * @param tariff
+	 * @return
+	 */
+	public boolean updateTariff(Tariff tariff) {
+		return tariffDao.update(tariff);
+	}
 }
