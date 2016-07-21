@@ -18,7 +18,7 @@
   	</c:if>
   	
   	<!-- 以下是显示菜单的模板代码 -->
-  	<div id="index_navi">
+  	<div id="index_navi"> 
             <ul id="menu">
                 <li><a href="index.jsp" class="index_on"></a></li>
                 	<!-- 获取管理员拥有的权限 -->
