@@ -6,7 +6,7 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <c:set var="hasPower">false</c:set>
+         <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -18,7 +18,7 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   		<%
-  			response.sendRedirect("nopower.jsp");
+  			response.sendRedirect("../nopower.jsp");
   		%>
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />

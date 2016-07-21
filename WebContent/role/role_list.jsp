@@ -19,7 +19,7 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   		<%
-  			response.sendRedirect("nopower.jsp");
+  			response.sendRedirect("../nopower.jsp");
   		%>
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />

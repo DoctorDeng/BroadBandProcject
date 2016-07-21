@@ -22,7 +22,7 @@
                 }
                 else {
                     window.clearInterval(timer);
-                    location.href = "index.jsp";
+                    location.href = "login.jsp";
                 }
             }
 
@@ -30,7 +30,7 @@
             function resetTimer() {
                 if (timer != null && timer != undefined) {
                     window.clearInterval(timer);
-                    location.href = "index.jsp";
+                    location.href = "login.jsp";
                 }
             }
         </script> 
