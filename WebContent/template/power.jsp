@@ -9,45 +9,39 @@
   				<!-- 当管理员的权限中有2权限时显示对应权限菜单 -->
   				<c:choose>
   					<c:when test="${power==2}">
-                		 <li><a href="admin/admin_list.jsp" class="admin_off"></a></li>
+                		 <li><a href="/lanqiao/admin/admin_list.jsp" class="admin_off"></a></li>
   					</c:when>
   				</c:choose>
   				
   				<c:choose>
   					<c:when test="${power==3}">
-                		<li><a href="fee/fee_list.jsp" class="fee_off"></a></li>
+                		<li><a href="/lanqiao/fee/fee_list.jsp" class="fee_off"></a></li>
   					</c:when>
   				</c:choose>
   				
   				<c:choose>
   					<c:when test="${power==4}">
-                		 <li><a href="account/account_list.jsp" class="account_off"></a></li>
+                		 <li><a href="/lanqiao/account/account_list.jsp" class="account_off"></a></li>
   					</c:when>
   				</c:choose>
   				
   				<c:choose>
   					<c:when test="${power==5}">
-                		<li><a href="service/service_list.jsp" class="service_off"></a></li>
+                		<li><a href="/lanqiao/service/service_list.jsp" class="service_off"></a></li>
   					</c:when>
   				</c:choose>
   				
   				<c:choose>
   					<c:when test="${power==6}">
-                		 <li><a href="bill/bill_list.jsp" class="bill_off"></a></li>
+                		 <li><a href="/lanqiao/bill/bill_list.jsp" class="bill_off"></a></li>
   					</c:when>
   				</c:choose>
   				
   				<c:choose>
   					<c:when test="${power==7}">
-                		<li><a href="report/report_list.jsp" class="report_off"></a></li>
+                		<li><a href="/lanqiao/report/report_list.jsp" class="report_off"></a></li>
   					</c:when>
   				</c:choose>
   			</c:forEach>
-                <!-- <li><a href="admin/admin_list.jsp" class="admin_off"></a></li>
-                <li><a href="fee/fee_list.jsp" class="fee_off"></a></li>
-                <li><a href="account/account_list.jsp" class="account_off"></a></li>
-                <li><a href="service/service_list.jsp" class="service_off"></a></li>
-                <li><a href="bill/bill_list.jsp" class="bill_off"></a></li>
-                <li><a href="report/report_list.jsp" class="report_off"></a></li> -->
-                <li><a href="user/user_info.jsp" class="information_off"></a></li>
-                <li><a href="user/user_modi_pwd.jsp" class="password_off"></a></li>
+                <li><a href="/lanqiao/user/user_info.jsp" class="information_off"></a></li>
+                <li><a href="/lanqiao/user/user_modi_pwd.jsp" class="password_off"></a></li>
