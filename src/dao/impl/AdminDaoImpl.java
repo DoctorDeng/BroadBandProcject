@@ -26,7 +26,7 @@ public class AdminDaoImpl implements AdminDao{
 	}
 	
 	/**
-	 * 通过管理员账号和密码来判断管理员账号密码是否错误
+	 * 通过管理 是否错误
 	 * @param adminAccount   管理员账号
 	 * @param password       管理员密码
 	 * @return               返回NULl，表示没有此管理员，有则返回一个admin对象
