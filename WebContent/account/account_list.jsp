@@ -1,5 +1,12 @@
+<%@page import="service.AccountService"%>
+<%@page import="bean.viewBean.AccountViewBean"%>
+<%@page import="dao.impl.AccountViewDaoImpl"%>
+<%@page import="dao.impl.AdminInforDaoImpl"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="bean.viewBean.AccountViewBean" %>
+<%@ page import="service.AccountService" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -69,76 +76,35 @@
                         <th>登录名</th>
                         <th>状态</th>
                         <th class="width100">创建日期</th>
-                        <th class="width150">上次登录时间</th>                                                        
+                        <th class="width150">上次登录时间</th>                                                      
                         <th class="width200"></th>
                     </tr>
+                    <%
+                    int currentPage = 0;
+                    String c = request.getParameter("currentPage");
+                    if(c!=""&&c!=null){
+                    	currentPage = Integer.parseInt(c);
+                    } else{
+                    	currentPage = 1;
+                    }                           
+                    List<AccountViewBean> l = new AccountService().getAdminInforViewBean(currentPage);
+                    for(AccountViewBean a:l){
+                    %>
                     <tr>
-                        <td>1</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>开通</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
+                        <td><%=a.getBussinessId() %></td>
+                        <td><a href="account_detail.jsp"><%=a.getBussinessName() %></a></td>
+                        <td><%=a.getIdNumber() %></td>
+                        <td><%=a.getLoginAccount() %></td>
+                        <td><%=a.getStatus() %></td>
+                        <td><%=a.getCreateTime() %></td>
+                        <td><%=a.getLastLoginTime() %>></td>                           
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>暂停</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                            <input type="button" value="开通" class="btn_start" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>删除</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>开通</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>暂停</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                            <input type="button" value="开通" class="btn_start" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>                    
+                    </tr> 
+                    <%} %>             
                 </table>
                 <p>业务说明：<br />
                 1、创建则开通，记载创建时间；<br />

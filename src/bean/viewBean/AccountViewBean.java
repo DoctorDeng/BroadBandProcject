@@ -1,13 +1,17 @@
-package bean;
+package bean.viewBean;
 
-public class Bussiness {
-    private int bussinessId;   		//账务账号ID
-    private String bussinessName;     //姓名
-    private String idNumber;   	    //身份证号码
-    private String loginAccount;  		//登陆账号
-    private String createTime;			//账号创建日期
-    private String status;				//状态
-    private String lastLongTime;		//上次登录时间
+public class AccountViewBean {
+	//account_list页面表格数据封装
+	
+	private int bussinessId;			//账务账号ＩＤ
+	private String bussinessName;		//姓名
+	private String idNumber;			//身份证号码
+	private String loginAccount;		//登陆账号
+	private String createTime;			//创建日期
+	private String lastLoginTime;		//上次登录时间
+	private String status;				//状态
+	
+	
 	public int getBussinessId() {
 		return bussinessId;
 	}
@@ -38,17 +42,19 @@ public class Bussiness {
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
+	public String getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(String lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getLastLongTime() {
-		return lastLongTime;
-	}
-	public void setLastLongTime(String lastLongTime) {
-		this.lastLongTime = lastLongTime;
-	}
+	
+	
 	
 }
