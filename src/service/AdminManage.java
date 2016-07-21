@@ -23,8 +23,8 @@ public class AdminManage {
 	 * 添加管理员 
 	 * @param admin      
 	 * @param adminInfor 
-	 * @param powerList
-	 * @return           添加成功返回true，失败返回false;
+	 * @param powerList   管理员权限列表
+	 * @return            添加成功返回true，失败返回false;
 	 */
 	public boolean  addAdmin(Admin admin,AdminInfor adminInfor, List<Power> powerList) {
 		
@@ -45,8 +45,8 @@ public class AdminManage {
 	 * 更新管理员的个人信息的权限
 	 * @param adminId      
 	 * @param adminInfor
-	 * @param powerList 
-	 * @return
+	 * @param powerList   管理员权限列表
+	 * @return            更新成功返回true，失败返回false
 	 */
 	public boolean updateAdmin(int adminId,AdminInfor adminInfor,List<Power> powerList) {
 		adminInfor.setAdminId(adminId);

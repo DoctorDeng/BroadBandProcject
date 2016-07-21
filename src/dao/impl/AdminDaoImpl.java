@@ -1,6 +1,5 @@
 package dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +109,75 @@ public class AdminDaoImpl implements AdminDao{
 		
 		return list;
 	}
+	/**
+	 * 通过管理员ID来更新管理员密码
+	 * @param adminId   管理员ID
+	 * @param password  新的管理员账号密码
+	 * @return          更新成功返回true，失败返回false
+	 */
+	public Boolean updateAdminPassword(int adminId, String password) {
+		String sql = "UPDATE admin SET password = ? WHERE adminId = ?";
+		String[] fileds = {password,String.valueOf(adminId)};
+		int result = DBHelper.update(sql, fileds);
+		if (result == 0) {
+			return false;
+		}
+		return true;
+	}
+	/**
+	 * 重置管理员的账号和密码
+	 * @param adminId  管理员ID
+	 * @return         重置成功返回true,失败返回false
+	 */
+	public Boolean resetAdminPassword(int adminId) {
+		String sql = "UPDATE admin SET password = ‘123456789’ WHERE adminId = ?";
+		String[] fileds = {String.valueOf(adminId)};
+		int result = DBHelper.update(sql, fileds);
+		if (result == 0) {
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 批量重置管理员密码
+	 * @param adminIds
+	 * @return
+	 */
+	public Boolean resetAdminsPassword(int[] adminIds) {
+			StringBuilder sql = new StringBuilder("UPDATE admin SET password = '123456789' WHERE ");
+		
+			for (int i=0; i<adminIds.length; i++) {
+				int adminId = adminIds[i];
+				if (i == adminIds.length -1) {
+					sql.append(" adminId = " +adminId);
+				} else {
+					sql.append(" adminId = " +adminId+ " OR ");
+				}
+			}
+					
+			int result = DBHelper.update(sql.toString(), null);
+			if (result == 0) {
+				return false;
+			}
+			return true;
+	}
+	
+	/**
+	 * 删除指定管理员
+	 * @param adminId  需要删除的管理员的Id
+	 * @return         删除成功返回true，失败返回false
+	 */
+	public Boolean delAdmin(int adminId) {
+		String sql = "DELETE FROM admin WHERE adminId = " + adminId;
+		
+		int result = DBHelper.update(sql, null);
+		
+		if (result == 0) {
+			return false;
+		}
+		return true;
+	}
 	
 	public static void main(String[] args) {
 		AdminDaoImpl adminDao = new AdminDaoImpl();
@@ -118,6 +186,8 @@ public class AdminDaoImpl implements AdminDao{
 		/*System.out.println(adminDao.addAdmin("555", "333"));*/
 		/*System.out.println(adminDao.updateAdminPassword("222","777"));*/
 		/*System.out.println(adminDao.findAllAdminInfor().size());*/
+//		int[] adminIds = {1,2,3};
+//		System.out.println(adminDao.resetAdminsPassword(adminIds));
 	}
 	
 }
