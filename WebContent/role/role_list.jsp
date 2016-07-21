@@ -53,8 +53,8 @@
                 <div id="data">                      
                     <table id="datalist">
                         <tr>                            
-                            <th>角色 ID</th>
-                            <th>角色名称</th>
+                            <th>管理员 ID</th>
+                            <th>管理员姓名</th>
                             <th class="width600">拥有的权限</th>
                             <th class="td_modi"></th>
                         </tr>                      
