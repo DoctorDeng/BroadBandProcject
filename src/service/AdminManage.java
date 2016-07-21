@@ -6,11 +6,13 @@ import bean.Admin;
 import bean.AdminInfor;
 import bean.Power;
 import dao.impl.AdminDaoImpl;
+import dao.impl.AdminInforDaoImpl;
 import dao.impl.AdminPowerDaoImpl;
 
 public class AdminManage {
 	
 	private AdminDaoImpl adminDao;
+	private AdminInforDaoImpl adminInforDao;
 	private AdminPowerDaoImpl adminPowerDao;
 	
 	public AdminManage() {
@@ -19,6 +21,17 @@ public class AdminManage {
 	}
 	
 	public boolean  addAdmin(Admin admin,AdminInfor adminInfor, List<Power> powerList) {
-		return true;
+		
+		if (adminDao.addAdmin(admin.getAdminAccount(), admin.getAdminAccount())) {
+			Admin temp = adminDao.verifyAdminByAccount(admin.getAdminAccount(), admin.getPassword());
+			if (null !=temp) {
+				if (adminInforDao.addAdminInfor(adminInfor)) {
+					if (adminPowerDao.addAdminPowers(temp.getAdminId(), powerList)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
