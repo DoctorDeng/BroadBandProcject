@@ -8,23 +8,6 @@ import dao.AdminDao;
 import util.DBHelper;
 
 public class AdminDaoImpl implements AdminDao{
-	
-	public List<Admin> findAll(){
-		return null;
-	}
-	
-	public Admin findOne(int adminId){
-		return null;
-	}
-	
-	public boolean add(Admin admin){
-		return false;
-	}
-	
-	public boolean update(Admin admin){
-		return false;
-	}
-	
 	/**
 	 * 通过管理 是否错误
 	 * @param adminAccount   管理员账号
@@ -95,6 +78,22 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		return true;
 	}
+	/**
+	 * 修改管理员账号密码
+	 * @param adminId        管理员Id
+	 * @param password       账号密码
+	 * @return               修改成功返回TRUE，修改失败返回FALSE
+	 */
+	public Boolean updateAdminPasswordByAdminId(int adminId, String password) {
+		String sql = "UPDATE admin SET password = ? WHERE adminId = ?";
+		String[] fileds = {password,String.valueOf(adminId)};
+		int result = DBHelper.update(sql, fileds);
+		if (result == 0) {
+			return false;
+		}
+		return true;
+	}
+	
 	/**
 	 * 获取管理员的所有信息，包括个人信息和账号信息
 	 * @return 返回包含所有管理员信息的集合

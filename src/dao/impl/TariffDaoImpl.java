@@ -17,10 +17,13 @@ public class TariffDaoImpl implements TariffDao {
 
 	@Override
 	public Tariff findOne(int tariffId) {
-		// TODO 自动生成的方法存根
-		return null;
+		String sql = "SELECT * FROM tariff";
+		Tariff tariff = DBHelper.findOne(new Tariff(), sql,null);
+		return tariff;
 	}
-
+	/**
+	 * 添加资费
+	 */
 	@Override
 	public boolean add(Tariff tariff) {
 		String sql = "INSERT INTO tariff "
@@ -40,8 +43,14 @@ public class TariffDaoImpl implements TariffDao {
 
 	@Override
 	public boolean del(int tariffId) {
-		// TODO 自动生成的方法存根
-		return false;
+		String sql = "DELETE FROM tariff WHERE tariffId =" + tariffId;
+		
+		int result =DBHelper.update(sql, null);
+		
+		if (result == 0) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -83,6 +92,7 @@ public class TariffDaoImpl implements TariffDao {
 		}
 		return true;
 	}
+	
 	
 	public static void main(String[] args) {
 		TariffDaoImpl tariffDao = new TariffDaoImpl();

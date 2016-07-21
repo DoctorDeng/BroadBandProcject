@@ -57,4 +57,13 @@ public class AdminManage {
 		}
 		return false;
 	}
+	
+	/**
+	 * 删除指定管理员
+	 * @param adminId  管理员ID
+	 * @return         成功
+	 */
+	public boolean delAdmin(int adminId) {
+		return adminDao.delAdmin(adminId);
+	}
 }

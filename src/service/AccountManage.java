@@ -1,9 +1,6 @@
 package service;
 
-import java.util.List;
-
 import bean.Admin;
-import bean.Power;
 import dao.impl.AdminDaoImpl;
 import dao.impl.AdminPowerDaoImpl;
 
@@ -30,6 +27,15 @@ public class AccountManage {
 			admin.setPowerList(adminPowerDao.findPowersById(admin.getAdminId()));
 		}
 		return admin;
+	}
+	/**
+	 * 更改管理员账号密码 
+	 * @param adminId           管理员ID
+	 * @param newPassword       新的管理员账号密码
+	 * @return
+	 */
+	public boolean changePassword(int adminId,String newPassword) {
+		return adminDao.updateAdminPasswordByAdminId(adminId, newPassword);
 	}
 	
 }
