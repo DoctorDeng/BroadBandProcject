@@ -74,12 +74,13 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 	 * @return 添加成功返回true 添加失败返回false 
 	 */
 	public boolean addAdminInfor(AdminInfor admininfor){
-		String adminId =String.valueOf(admininfor.getAdminId());
+		int    adminId   = admininfor.getAdminId();
+		String adminName = admininfor.getAdminName();
 		String idNumber = admininfor.getIdNumber();
 		String phone = admininfor.getPhone();
 		String email = admininfor.getEmail();
-		String sql  = "insert into adminInfor(adminId,idNumber,phone,email,createTime) values(?,?,?,?,now())";	
-		String[] field = {adminId,idNumber,phone,email};
+		String sql  = "insert into adminInfor(adminId,adminName,idNumber,phone,email,createTime) values(?,?,?,?,?,now())";	
+		String[] field = {String.valueOf(adminId),adminName,idNumber,phone,email};
 		int result = DBHelper.update(sql,field);
 	    if(result == 0){
 	    	return false;
@@ -92,9 +93,14 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 	 * @param adminId  通过adminId查询到相应的管理员信息
 	 * @return 更新成功返回true 更新失败返回false
 	 */
-	public boolean updateAdminInfor(String newEmail,String adminId){
-		String sql = "update adminInfor set email= ? where adminId = ?";
-		String[] field = {newEmail,adminId};
+	public boolean updateAdminInfor(AdminInfor adminInfor){
+		int    adminId   = adminInfor.getAdminId();
+		String adminName = adminInfor.getAdminName();
+		String phone     = adminInfor.getPhone();
+		String email     = adminInfor.getEmail();
+		
+		String sql = "update adminInfor set adminName = ?,phone = ?,email= ? where adminId = ?";
+		String[] field = {adminName,phone,email,String.valueOf(adminId)};
 		int result = DBHelper.update(sql, field);
 		if(result == 0){
 			return false;
@@ -114,6 +120,20 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 		}
 		return true;
 	}
+	/**
+	 * 开启账务账号
+	 * @param adminId   指定的账号ID
+	 * @return 开启成功返回true ，开启失败返回false
+	 */
+	public boolean updateAdminStatus(int adminId) {
+		String sql = "update adminInfor set status = 1 WHERE adminId = " + adminId;
+		
+		int result = DBHelper.update(sql, null);
+		if (result ==0) {
+			return false;
+		}
+		return true;
+	}
 	
 	
 	
@@ -129,8 +149,9 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 		System.out.println(bb);
 		*/
         /* admininforDao.delAdminInfor(1);*/
-         System.out.println(admininforDao.findAll().size());
+        /* System.out.println(admininforDao.findAll().size());
          System.out.println(admininforDao.findAdminInforByadminId(1).getEmail());   
-         System.out.println(admininforDao.findAdminInforByInforId(8).getEmail()); 
+         System.out.println(admininforDao.findAdminInforByInforId(8).getEmail()); */
+//		admininforDao.updateAdminStatus(1);
 	}	
 }
