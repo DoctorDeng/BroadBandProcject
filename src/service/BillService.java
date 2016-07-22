@@ -100,7 +100,7 @@ public class BillService {
 	public List<BillDetailFormBean> getBillDetailForm(int billId) {
 		List<BillDetailFormBean> list = new ArrayList<>();
 		List<Map<String, Object>> listMap = billDao.findBillDetailForm(billId);
-		
+				
 		for (int i=0; i<listMap.size(); i++) {
 			Map<String,Object> map = listMap.get(i);
 			
@@ -110,8 +110,60 @@ public class BillService {
 			String serverIp     = map.get("serverIp").toString();
 			String loginAccount = map.get("loginAccount").toString();
 			String tariffName   = map.get("tariffName").toString();
+			/**
+			 * 总时常长：秒
+			 */
+			int totalTime = 0;
+			String timeStr     = map.get("totalTime").toString();
+			if (!"".equals(timeStr)) {
+				totalTime = Integer.parseInt(timeStr);
+			}
+			/**
+			 * 获取总的时长 时/分/秒
+			 */
+			int h = totalTime/3600;
+			int m = (totalTime%3600)/60;
+			int s = (totalTime%3600)%60;
+			String timeLong    = h + "时" + m + "分" + s +"秒";
 			
-			BillDetailFormBean billDetailForm = new BillDetailFormBean(billDetailId,osAccount,serverIp,loginAccount,tariffName,osId);
+			String tariffType = map.get("tariffType").toString();
+			double tariff     = 0;
+			int    timeTariff = 0;
+			int    timeLongs  = 0;
+			double cost       = 0;
+			
+			String tariffStr     = map.get("tariff").toString();
+			String timeTariffStr = map.get("timeTariff").toString();
+			String timeLongsStr  = map.get("timeLong").toString();
+			
+			if (!"".equals(tariffStr)) {
+				tariff     = Double.parseDouble(tariffStr);
+			}
+			if (!"".equals(timeTariffStr)) {
+				timeTariff = Integer.parseInt(timeTariffStr);
+			}
+			if (!"".equals(timeLongsStr)) {
+				timeLongs  = Integer.parseInt(timeLongsStr);
+			}
+			
+			if ("1".equals(tariffType)) {
+				cost = tariff;
+			} else if ("2".equals(tariffType)) {
+				/**
+				 * 当总时长小于套餐时长
+				 */
+				if (totalTime/3600 < timeLongs) {
+					cost = tariff;
+				}
+				//当总时长大于套餐时长
+				else {
+					cost = tariff + (totalTime/3600 - timeLongs)*timeTariff;
+				}
+			} else if ("3".equals(tariffType)){
+				cost = (totalTime/3600)*timeTariff;
+			}
+			
+			BillDetailFormBean billDetailForm = new BillDetailFormBean(billDetailId,osAccount,serverIp,loginAccount,timeLong,cost,tariffName,osId);
 			list.add(billDetailForm);
 		}
 		return list;
@@ -119,6 +171,11 @@ public class BillService {
 	
 	public static void main(String[] args) {
 		BillService bill = new BillService();
+		List<BillDetailFormBean> list = bill.getBillDetailForm(2);
+		for (BillDetailFormBean billForm : list) {
+			System.out.println("总时长:" + billForm.getTimeLong());
+			System.out.println("资费:" + billForm.getCost());
+		}
 		/*System.out.println(bill.getBillDetailForm(1).size());*/
 		/*System.out.println(bill.getOsLoginForm(1).size());*/
 		/*System.out.println(bill.getBill().size());*/

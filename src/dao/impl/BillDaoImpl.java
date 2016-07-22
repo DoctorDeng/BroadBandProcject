@@ -59,7 +59,8 @@ public class BillDaoImpl implements BillDao{
 	 */
 	public List<Map<String,Object>> findBillDetailForm(int billId) {
 		String sql = "SELECT bd.billDetailId,os.osAccount,os.serverIp,"
-				+"bu.loginAccount,tariffName,os.osId "
+				+"bu.loginAccount,ta.tariffName,os.osId ,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,"
+				+"(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId) as totalTime "
 				+"FROM billDetail as bd "
 				+"INNER JOIN bill as bi "
 				+"ON bi.billId = bd.billId "
@@ -68,7 +69,7 @@ public class BillDaoImpl implements BillDao{
 				+"INNER JOIN bussiness as bu "
 				+"ON bi.customerId = bu.customerId "
 				+"INNER JOIN tariff as ta "
-				+"ON ta.tariffId = os.tariffId "
+				+"ON ta.tariffId = os.tariffId  "
 				+"WHERE bd.billId = " + billId;
 		
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
@@ -78,7 +79,14 @@ public class BillDaoImpl implements BillDao{
 	
 	public static void main(String[] args) {
 		BillDaoImpl billDao = new BillDaoImpl();
-		System.out.println(billDao.findBillForm().get(0).toString());
+		/*System.out.println(billDao.findBillForm().get(0).toString());*/
+		Object obj = billDao.findBillDetailForm(2).get(2).get("totalTime");
+		if (obj.toString() == null) {
+			System.out.println(1);
+		}
+		if ("".equals(obj.toString())) {
+			System.out.println(2);
+		}
 	}
 	
 

@@ -18,6 +18,14 @@ public class BillDetailFormBean {
 	 */
 	private String loginAccount;
 	/**
+	 * 时长
+	 */
+	private String timeLong;
+	/**
+	 * 费用
+	 */
+	private double cost;
+	/**
 	 * 资费名称
 	 */
 	private String tariffName;
@@ -26,12 +34,16 @@ public class BillDetailFormBean {
 	 */
 	private int    osId;
 	
-	public BillDetailFormBean(int billDetailId, String osAccount, String serverIp, String loginAccount,
-			String tariffName, int osId) {
+
+	public BillDetailFormBean(int billDetailId, String osAccount, String serverIp, String loginAccount, String timeLong,
+			double cost, String tariffName, int osId) {
+		super();
 		this.billDetailId = billDetailId;
 		this.osAccount = osAccount;
 		this.serverIp = serverIp;
 		this.loginAccount = loginAccount;
+		this.timeLong = timeLong;
+		this.cost = cost;
 		this.tariffName = tariffName;
 		this.osId = osId;
 	}
@@ -86,5 +98,21 @@ public class BillDetailFormBean {
 
 	public void setTariffName(String tariffName) {
 		this.tariffName = tariffName;
+	}
+
+	public String getTimeLong() {
+		return timeLong;
+	}
+
+	public void setTimeLong(String timeLong) {
+		this.timeLong = timeLong;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 }
