@@ -36,7 +36,7 @@ public class ChangePasswordAction extends HttpServlet {
 			/**
 			 * 当Obj为空即用户没有登陆获取不到存储在session中的admin中时，跳转到指定页面
 			 */
-			response.sendRedirect("xxx.jsp");
+			response.sendRedirect("login.jsp");
 			return;
 		}
 		Admin admin = (Admin)obj;
@@ -45,10 +45,10 @@ public class ChangePasswordAction extends HttpServlet {
 		 */
 		String oldPassword   = request.getParameter("oldPassword");
 		/**
-		 * 当用户输入的新密码和老密码不相等时,应跳转回页面并返回提示信息
+		 * 当用户输入的新密码和session中的密码不相等时,应跳转回页面并返回提示信息
 		 */
 		if (!admin.getPassword().equals(oldPassword)) {
-			request.getRequestDispatcher("xxx.jsp").forward(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			/**
 			 * 这里应该是获取用户输入的新的密码
@@ -56,13 +56,11 @@ public class ChangePasswordAction extends HttpServlet {
 			String newPassword = request.getParameter("newPassword");
 			
 			if (accountManage.changePassword(admin.getAdminId(), newPassword)) {
-				/**
-				 * 当用户改密成功时应返回登陆界面，并且应将session重置为空，此处代码省去
-				 */
+				System.out.println("更改成功..");
+				request.getSession().setAttribute("admin", null);
 			} else {
-				/**
-				 * 当用户改密不成功应做出的操作
-				 */
+				//改密不成功
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		}
 	}
