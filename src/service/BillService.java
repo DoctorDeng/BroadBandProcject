@@ -4,15 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import bean.Bill;
+import bean.viewBean.BillDetailFormBean;
 import bean.viewBean.OsLoginFormBean;
 import dao.impl.BillDaoImpl;
 import dao.impl.OsLoginDaoImpl;
 
 public class BillService {
 	private OsLoginDaoImpl  osLoginDao;
+	private BillDaoImpl   billDao;
 	
 	public BillService() {
 		osLoginDao = new OsLoginDaoImpl();
+		billDao = new BillDaoImpl();
 	}
 	/**
 	 * 获取账单表格显示所需要的信息，涉及到多表查询，暂时统一封装在Bill里面
@@ -21,7 +24,11 @@ public class BillService {
 		return new BillDaoImpl().findAll();
 	}
 	
-	
+	/**
+	 * 获取账号登陆表单信息
+	 * @param osId   账号Id
+	 * @return
+	 */
 	public List<OsLoginFormBean>   getOsLoginForm(int osId) {
 		List<Map<String,Object>> list = osLoginDao.findLoginFormById(osId);
 		List<OsLoginFormBean> loginList = new ArrayList<>();
@@ -67,10 +74,34 @@ public class BillService {
 		}
 		return loginList;
 	}
-	
+	/**
+	 * 获取用户详单信息
+	 * @param billId  账单Id
+	 * @return  返回详单表单Bean的集合
+	 */
+	public List<BillDetailFormBean> getBillDetailForm(int billId) {
+		List<BillDetailFormBean> list = new ArrayList<>();
+		List<Map<String, Object>> listMap = billDao.findBillDetailForm(billId);
+		
+		for (int i=0; i<listMap.size(); i++) {
+			Map<String,Object> map = listMap.get(i);
+			
+			int billDetailId 	= Integer.parseInt(map.get("billDetailId").toString());
+			int osId         	= Integer.parseInt(map.get("osId").toString());
+			String osAccount    = map.get("osAccount").toString();
+			String serverIp     = map.get("serverIp").toString();
+			String loginAccount = map.get("loginAccount").toString();
+			String tariffName   = map.get("tariffName").toString();
+			
+			BillDetailFormBean billDetailForm = new BillDetailFormBean(billDetailId,osAccount,serverIp,loginAccount,tariffName,osId);
+			list.add(billDetailForm);
+		}
+		return list;
+	}
 	public static void main(String[] args) {
 		BillService bill = new BillService();
-		System.out.println(bill.getOsLoginForm(1).size());
+		System.out.println(bill.getBillDetailForm(1).size());
+		/*System.out.println(bill.getOsLoginForm(1).size());*/
 	}
 	/**
 	 * 代码备份

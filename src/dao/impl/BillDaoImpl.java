@@ -71,11 +71,22 @@ public class BillDaoImpl implements BillDao{
 	}
 	/**
 	 * 多表操作，查找客户（Customer）每个账号的账单记录
-	 * @param billId   客户账单ID
-	 * @return         返回客户每个账号的账单记录
+	 * @param billId   		     客户账单ID
+	 * @return         	                返回客户每个账号的账单记录
 	 */
 	public List<Map<String,Object>> findBillDetailForm(int billId) {
-		String sql = "SELECT billDetailId,os";
+		String sql = "SELECT bd.billDetailId,os.osAccount,os.serverIp,"
+				+"bu.loginAccount,tariffName,os.osId "
+				+"FROM billDetail as bd "
+				+"INNER JOIN bill as bi "
+				+"ON bi.billId = bd.billId "
+				+"INNER JOIN os "
+				+"ON os.osId = bd.osId "
+				+"INNER JOIN bussiness as bu "
+				+"ON bi.customerId = bu.customerId "
+				+"INNER JOIN tariff as ta "
+				+"ON ta.tariffId = os.tariffId "
+				+"WHERE bd.billId = " + billId;
 		
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
 		
