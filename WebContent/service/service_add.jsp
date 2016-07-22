@@ -61,11 +61,11 @@
         <div id="main">
             <!--保存操作的提示信息-->
             <div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过 OS 账号 “mary”。</div>
-            <form action="" method="" class="main_form">
+            <form action="ServiceAddAction" method="post" class="main_form">
                 <!--内容项-->
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" value="查询出的结果写入账务账号" class="width180" />
+                    <input type="text" value="查询出的结果写入账务账号" class="width180" name= "customerId"/>
                     <input type="button" value="查询账务账号" class="btn_search_large" />
                     <span class="required">*</span>
                     <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
@@ -78,40 +78,40 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info">
-                    <select>
-                        <option>包 20 小时</option>
-                        <option>包 40 小时</option>
-                        <option>包 60 小时</option>
-                        <option>包月</option>
+                    <select name = "traiffName">
+                        <option value= "1">包月</option>
+                        <option value= "2">套餐</option>
+                        <option value= "3">计时</option>
+
                     </select>                        
                 </div> 
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input type="text" value="192.168.0.23"  />
+                    <input type="text" value="192.168.0.23"  name = "serverIp" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">15 长度，符合IP的地址规范</div>
                 </div>                   
                 <div class="text_info clearfix"><span>登录 OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="创建即启用，状态为开通"  />
+                    <input type="text" value="创建即启用，状态为开通" name="osAccount" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">8长度以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>密码：</span></div>
                 <div class="input_info">
-                    <input type="password"  />
+                    <input type="password" name="osPassword" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>重复密码：</span></div>
                 <div class="input_info">
-                    <input type="password"  />
+                    <input type="password"  name = "rosPassword"/>
                     <span class="required">*</span>
                     <div class="validate_msg_long">两次密码必须相同</div>
                 </div>     
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save" onclick="showResult();" />
+                    <input type="submit" value="保存" class="btn_save" onclick="showResult();" />
                     <input type="button" value="取消" class="btn_save" />
                 </div>
             </form>

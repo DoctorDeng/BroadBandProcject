@@ -24,7 +24,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public List<BussinessViewBean> findAll() {
 		// TODO Auto-generated method stub 
 		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
-		
 		String sql = " SELECT b.bussinessId,a.adminId,c.idNumber,c.customerName,o.osAccount,o.serverIp,b.status,t.tariffName"
 				+ "customer c,admininfor a,bussiness b, os o ,tariff t  "
 				+ "WHERE a.idNumber = c.idNumber "

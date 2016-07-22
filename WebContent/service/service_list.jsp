@@ -65,7 +65,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="" method="post">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>OS 账号：<input type="text" value="" class="width100 text_search" /></div>                            

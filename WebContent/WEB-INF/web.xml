@@ -85,4 +85,14 @@
     <servlet-name>BussinessAccountAddAction</servlet-name>
     <url-pattern>/BussinessAccountAddAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServiceAddAction</display-name>
+    <servlet-name>ServiceAddAction</servlet-name>
+    <servlet-class>action.ServiceAddAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServiceAddAction</servlet-name>
+    <url-pattern>/ServiceAddAction</url-pattern>
+  </servlet-mapping>
 </web-app>
