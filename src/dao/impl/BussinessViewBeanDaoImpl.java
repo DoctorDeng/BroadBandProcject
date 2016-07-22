@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Customer;
 import bean.viewBean.BussinessViewBean;
 import bean.viewBean.ServiceAddViewBean;
 import dao.BussinessViewDao;
+import service.CustomerManage;
 import util.DBHelper;
 
 public class BussinessViewBeanDaoImpl implements BussinessViewDao {
@@ -53,14 +55,17 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	@Override
 	public boolean add(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub
+			CustomerManage customerM = new CustomerManage();
+			Customer customer = customerM.customerIdUtil();
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
 				ps = conn.prepareStatement(sql);
-				ps.setString(1,serviceAddViewBean.getTraiffName());
-				ps.setString(2, serviceAddViewBean.getTraiffName());
-				ps.setInt(3, serviceAddViewBean.getOsLoginId());
-				ps.setString(4, serviceAddViewBean.getOsPassword());
+				ps.setInt(1, customer.getCustomerId());
+				ps.setString(2,serviceAddViewBean.getTraiffName());
+				ps.setString(3, serviceAddViewBean.getTraiffName());
+				ps.setInt(4, serviceAddViewBean.getOsLoginId());
+				ps.setString(5, serviceAddViewBean.getOsPassword());
 				i = ps.executeUpdate();		
 			}catch(SQLException se){
 				se.printStackTrace();
@@ -77,8 +82,12 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
-				
+				ServiceAddViewBean svb = new ServiceAddViewBean();
+				svb.setAdminId(rs.getInt(1));
+				svb.setCustomerId(rs.getInt(2));
+				siew.add(svb);
 			}
+			return siew;
 		}catch(SQLException se){
 			se.printStackTrace();
 		}

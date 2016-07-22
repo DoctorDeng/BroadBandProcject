@@ -7,6 +7,7 @@ public class ServiceAddViewBean {
 	private String serverId;      //服务器ip地址
 	private int osLoginId;    //宽带账号登录ID
 	private String osPassword;     //宽带账号密码
+	private int customerId;   //客户ID
 	public String getIdNumber() {
 		return idNumber;
 	}
@@ -42,6 +43,12 @@ public class ServiceAddViewBean {
 	}
 	public void setOsPassword(String osPassword) {
 		this.osPassword = osPassword;
+	}
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 	
 }
