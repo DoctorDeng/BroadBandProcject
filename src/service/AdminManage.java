@@ -28,10 +28,10 @@ public class AdminManage {
 	 */
 	public boolean  addAdmin(Admin admin,AdminInfor adminInfor, List<Power> powerList) {
 		
-		if (adminDao.addAdmin(admin.getAdminAccount(), admin.getAdminAccount())) {
+		if (adminDao.addAdmin(admin.getAdminAccount(), admin.getPassword())) {
 			Admin temp = adminDao.verifyAdminByAccount(admin.getAdminAccount(), admin.getPassword());
-			adminInfor.setAdminId(temp.getAdminId());
 			if (null !=temp) {
+				adminInfor.setAdminId(temp.getAdminId());
 				if (adminInforDao.addAdminInfor(adminInfor)) {
 					if (adminPowerDao.addAdminPowers(temp.getAdminId(), powerList)) {
 						return true;
