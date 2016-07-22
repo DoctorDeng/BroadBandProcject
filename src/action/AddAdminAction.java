@@ -26,7 +26,7 @@ public class AddAdminAction extends HttpServlet {
     public AddAdminAction() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    }    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
