@@ -26,7 +26,7 @@ public class OsLoginFormBean {
 	 */
 	private String cost;
 	/**
-	 * 资费
+	 * 资费名称
 	 */
 	private String tariffName;
 	
