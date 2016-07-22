@@ -22,6 +22,15 @@ public class BillService {
 	
 	
 	public List<Map<String,Object>>  getOsLoginForm(int osId) {
+		List<Map<String,Object>> list = osLoginDao.findLoginFormById(osId);
+		
+		double cost = 0;
+		
+		for (int i=0; i<list.size(); i++) {
+			Map<String,Object> map = list.get(i);
+			
+			String tariffType = map.get("timeLogin").toString();
+		}
 		
 		return new ArrayList<Map<String,Object>>();
 	}

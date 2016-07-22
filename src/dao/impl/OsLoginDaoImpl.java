@@ -100,14 +100,33 @@ public class OsLoginDaoImpl implements OsLoginDao {
 	 * @return      包含宽带长账号登陆信息的集合
 	 */
 	public List<Map<String,Object>> findLoginFormById(int osId) {
-		String sql = "SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,"
-				+ "TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeTariff "
+		String sql = "SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,ta.tariff,ta.timeLong,ta.timeTariff,"
+				+ "TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeLogin "
 				+ "FROM osLogin as ol "
 				+ "INNER JOIN os "
 				+ "ON ol.osId = os.osId "
 				+ "INNER JOIN tariff as ta "
 				+ "ON os.tariffId = ta.tariffId "
 				+ "WHERE ol.osId = " + osId;
+		List<Map<String,Object>> list = DBHelper.find(sql, null);
+		
+		return list;
+	}
+	
+	/**
+	 * 通过宽带账号查找宽带账号登陆表单信息
+	 * @param osAccount  指定的宽带账号
+	 * @return           包含宽带长账号登陆信息的集合
+	 */
+	public List<Map<String,Object>> findLoginFormByAccount(String osAccount) {
+		String sql = "SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,ta.tariff,ta.timeLong,ta.timeTariff"
+				+ "TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeTariff "
+				+ "FROM osLogin as ol "
+				+ "INNER JOIN os "
+				+ "ON ol.osId = os.osId "
+				+ "INNER JOIN tariff as ta "
+				+ "ON os.tariffId = ta.tariffId "
+				+ "WHERE ol.osAccount = " + osAccount;
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
 		
 		return list;

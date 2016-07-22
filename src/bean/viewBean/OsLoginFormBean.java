@@ -30,11 +30,10 @@ public class OsLoginFormBean {
 	 */
 	private String tariffName;
 	
-	
+	public OsLoginFormBean() {}
 	
 	public OsLoginFormBean(String loginIp, String loginInTime, String loginOutTime, int timeLong, String cost,
 			String tariffName) {
-		super();
 		this.loginIp = loginIp;
 		this.loginInTime = loginInTime;
 		this.loginOutTime = loginOutTime;
