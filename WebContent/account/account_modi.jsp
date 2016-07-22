@@ -68,7 +68,7 @@
                     <!--必填项-->
                     <div class="text_info clearfix"><span>账务账号ID：</span></div>
                     <div class="input_info">
-                        <input type="text" value="10" readonly class="readonly" />
+                        <input type="text" value="<%=request.getParameter("id") %>" readonly class="readonly" />
                     </div>
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">

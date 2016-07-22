@@ -35,7 +35,8 @@ public class BussinessAccountAddAction extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
 		AccountViewBean b = new AccountViewBean();
-		b.setBussinessName(request.getParameter("name"));
+		String name = new String(request.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
+		b.setBussinessName(name);
 		b.setIdNumber(request.getParameter("idNumber"));
 		b.setPassword(request.getParameter("password"));
 		b.setPhone(request.getParameter("phone"));

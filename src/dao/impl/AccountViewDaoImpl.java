@@ -19,13 +19,16 @@ public class AccountViewDaoImpl {
 	 */
 	public List<AccountViewBean> getAccountViewBean(int currentPage,int pageSize){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
-		String sql = "select * from bussiness";
+		String sql = "select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
+				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId"
+				+ " limit "+(currentPage-1)*pageSize+","+pageSize;
+		System.out.println(sql);
 		String[] fields = null;
 		List<Map<String,Object>> list = DBHelper.find(sql, fields);
 		for(Map<String,Object> m:list){
 			AccountViewBean a = new AccountViewBean();
 			a.setBussinessId(Integer.parseInt(m.get("bussinessId").toString()));
-			a.setBussinessName(m.get("bussinessName").toString());
+			a.setBussinessName(m.get("customerName").toString());
 			a.setIdNumber(m.get("idNumber").toString());
 			a.setLoginAccount(m.get("loginAccount").toString());
 			a.setStatus(m.get("status").toString());
@@ -35,24 +38,6 @@ public class AccountViewDaoImpl {
 		}	
 		return l;
 	}
-	/**
-	 * 增加账务账号对应account_add页面业务
-	 * @param a
-	 * @return
-	 */
-	public boolean addBussinessAccount(AccountViewBean a){
-		String sql = "insert into bussiness (idNumber,loginAccount,createTime,status,lastLoginTime,password) values(?,?,?,?,?,?);";
-		String[] fields = {
-				a.getIdNumber(),a.getLoginAccount(),
-				a.getCreateTime(),a.getStatus(),a.getLastLoginTime(),a.getPassword()};
-		System.out.println(sql);
-		int rs = DBHelper.update(sql, fields);
-		if(rs<1){
-			return false;
-		}else{
-			return true;
-		}
-		
-	}
+	
 	
 }

@@ -2,7 +2,7 @@ package bean;
 
 public class Bussiness {
     private int bussinessId;   		//账务账号ID
-    private String idNumber;   	    //身份证号码
+    private int customerId;   	    //业务账号ID
     private String loginAccount;  		//登陆账号
     private String createTime;			//账号创建日期
     private String status;				//状态
@@ -23,11 +23,12 @@ public class Bussiness {
 		this.bussinessId = bussinessId;
 	}
 	
-	public String getIdNumber() {
-		return idNumber;
+	
+	public int getCustomerId() {
+		return customerId;
 	}
-	public void setIdNumber(String idNumber) {
-		this.idNumber = idNumber;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 	public String getLoginAccount() {
 		return loginAccount;
