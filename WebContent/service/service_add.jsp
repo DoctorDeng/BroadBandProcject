@@ -6,7 +6,7 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <c:set var="hasPower">false</c:set>
+        <%-- <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -20,7 +20,7 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if>
+  		</c:if> --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <script language="javascript" type="text/javascript">
@@ -61,7 +61,7 @@
         <div id="main">
             <!--保存操作的提示信息-->
             <div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过 OS 账号 “mary”。</div>
-            <form action="ServiceAddAction" method="post" class="main_form">
+            <form action="../ServiceAddAction" method="post" class="main_form">
                 <!--内容项-->
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">

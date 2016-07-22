@@ -24,12 +24,18 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public List<BussinessViewBean> findAll() {
 		// TODO Auto-generated method stub 
 		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
-		String sql = " SELECT b.bussinessId,a.adminId,c.idNumber,c.customerName,o.osAccount,o.serverIp,b.status,t.tariffName"
-				+ "customer c,admininfor a,bussiness b, os o ,tariff t  "
-				+ "WHERE a.idNumber = c.idNumber "
-				+ "AND b.idNumber = a.idNumber"
-				+ "AND o.customerId = c.customerId  "
-				+ "AND t.tariffId = o.tariffId  ";
+		String sql = " SELECT bussiness.bussinessId, admininfor.adminId,customer.idNumber,customer.customerName,os.osAccount,bussiness.`status`,os.serverIp,tariff.tariffName "
+				+ " FROM  "
+				+ " bussiness,"
+				+ " admininfor,"
+				+ " customer,"
+				+ " os,tariff "
+				+ " WHERE "
+				+" admininfor.idNumber = customer.idNumber AND "
+				+" os.customerId = customer.customerId AND "
+				+" os.tariffId = tariff.tariffId AND "
+				+" os.customerId = bussiness.customerId ";
+		//System.out.println(sql);
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();

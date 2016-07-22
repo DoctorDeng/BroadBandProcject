@@ -1,7 +1,7 @@
-<%@page import="dao.*"%>
-<%@page import="dao.impl.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="dao.*"%>
+<%@page import="dao.impl.*" %>
     <%@page import="bean.viewBean.BussinessViewBean" %>
     <%@page import="java.util.*" %>
  <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
@@ -10,7 +10,7 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <c:set var="hasPower">false</c:set>
+        <%-- <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -24,7 +24,7 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if>
+  		</c:if> --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -59,7 +59,7 @@
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
+                <%@include file= "/template/power.jsp" %>
             </ul>            
         </div>
         <!--导航区域结束-->
@@ -126,8 +126,9 @@
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp';" />
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
                         </td>
-                    </tr>                                                                
-                </table>                
+                    </tr>
+                      <%} %>                                                                 
+                </table>
                 <p>业务说明：<br />
                 1、创建即开通，记载创建时间；<br />
                 2、暂停后，记载暂停时间；<br />
@@ -154,6 +155,5 @@
         <div id="footer">
           
         </div>
-        <%} %>
     </body>
 </html>

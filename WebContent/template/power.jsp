@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	      <li><a href="index.jsp" class="index_on"></a></li>
             <!-- 获取管理员拥有的权限 -->
             <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >

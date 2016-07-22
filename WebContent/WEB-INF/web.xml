@@ -95,4 +95,14 @@
     <servlet-name>ServiceAddAction</servlet-name>
     <url-pattern>/ServiceAddAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServiceShowAction</display-name>
+    <servlet-name>ServiceShowAction</servlet-name>
+    <servlet-class>action.ServiceShowAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServiceShowAction</servlet-name>
+    <url-pattern>/ServiceShowAction</url-pattern>
+  </servlet-mapping>
 </web-app>
