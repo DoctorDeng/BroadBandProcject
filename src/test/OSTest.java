@@ -40,7 +40,7 @@ public class OSTest {
 
 	@Test
 	public void testfindLoginForm() {
-		System.out.println(osdi.findLoginForm(1));
+		System.out.println(osdi.findLoginFormById(1));
 	}
 
 	@Test

@@ -21,7 +21,7 @@ public class BillService {
 	}
 	
 	
-	public List<Map<String,Object>>  getOsLoginForm() {
+	public List<Map<String,Object>>  getOsLoginForm(int osId) {
 		
 		return new ArrayList<Map<String,Object>>();
 	}

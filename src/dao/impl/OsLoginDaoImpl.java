@@ -99,7 +99,7 @@ public class OsLoginDaoImpl implements OsLoginDao {
 	 * @param osId  指定的宽带账号ID
 	 * @return      包含宽带长账号登陆信息的集合
 	 */
-	public List<Map<String,Object>> findLoginForm(int osId) {
+	public List<Map<String,Object>> findLoginFormById(int osId) {
 		String sql = "SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,"
 				+ "TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeTariff "
 				+ "FROM osLogin as ol "
