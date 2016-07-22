@@ -67,6 +67,15 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 			return admininfor;
 		}
 		return null;  
+	}
+	public  AdminInfor findAdminInforByadminCount(int adminId){
+		String sql = "select * from adminInfor where adminId=?";
+		String[] field = {String.valueOf(adminId)};
+		AdminInfor admininfor = DBHelper.findOne(new AdminInfor(), sql, field);
+		if (admininfor!=null) {
+			return admininfor;
+		}
+		return null;  
 	} 
 	/**
 	 * 添加管理员个人信息

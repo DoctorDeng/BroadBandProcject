@@ -29,15 +29,16 @@
     <servlet-name>CustomerAction</servlet-name>
     <url-pattern>/CustomerAction</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
-    <display-name>CustomersAction</display-name>
-    <servlet-name>CustomersAction</servlet-name>
-    <servlet-class>action.CustomerAction</servlet-class>
+    <display-name>ChangePasswordAction</display-name>
+    <servlet-name>ChangePasswordAction</servlet-name>
+    <servlet-class>action.ChangePasswordAction</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CustomersAction</servlet-name>
-    <url-pattern>/CustomersAction</url-pattern>
+    <servlet-name>ChangePasswordAction</servlet-name>
+    <url-pattern>/ChangePasswordAction</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <taglib>
@@ -104,5 +105,15 @@
   <servlet-mapping>
     <servlet-name>ServiceShowAction</servlet-name>
     <url-pattern>/ServiceShowAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowAdminMess</display-name>
+    <servlet-name>ShowAdminMess</servlet-name>
+    <servlet-class>action.ShowAdminMess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowAdminMess</servlet-name>
+    <url-pattern>/ShowAdminMess</url-pattern>
   </servlet-mapping>
 </web-app>

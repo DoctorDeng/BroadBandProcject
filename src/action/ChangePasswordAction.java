@@ -58,13 +58,10 @@ public class ChangePasswordAction extends HttpServlet {
 			if (accountManage.changePassword(admin.getAdminId(), newPassword)) {
 				System.out.println("更改成功..");
 				request.getSession().setAttribute("admin", null);
-			} else {
-				//改密不成功
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
+				request.getRequestDispatcher("login.jsp").forward(request, response);	
+			} 
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
