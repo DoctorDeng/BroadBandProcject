@@ -87,6 +87,12 @@
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg" id="phoneError">正确的电话号码格式：手机或固话</div>
                     </div>
+                    <div class="text_info clearfix"><span>身份证号：</span></div>
+                    <div class="input_info">
+                        <input type="text" class="width200" name="idnumber" id="idnumber"/>
+                        <span class="required">*</span>
+                        <div class="validate_msg_medium error_msg" id="idnumberError">真实的18位身份证号</div>
+                    </div>
                     <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="email" id="emial"/>

@@ -52,7 +52,7 @@ public class AdminDaoImpl implements AdminDao{
 		 * 当没有此管理员账号时，才开始添加管理员账号
 		 */
 		if (!findAdminByAccount(adminAccount)) {
-			String sql = "INSERT INTO admin (adminAccount,password) VALUES(?,?,now())";
+			String sql = "INSERT INTO admin (adminAccount,password) VALUES(?,?)";
 			String[] fields = {adminAccount,password};
 			
 			int result = DBHelper.update(sql, fields);

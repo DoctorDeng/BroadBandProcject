@@ -37,6 +37,7 @@ public class AddAdminAction extends HttpServlet {
 			String adminAccount = request.getParameter("adminAccount");
 			String password     = request.getParameter("password");
 			String phone        = request.getParameter("phone");
+			String idNumber     = request.getParameter("idnumber");
 			String email        = request.getParameter("email");
 			String[] powerStr   = request.getParameterValues("power");
 			
@@ -46,6 +47,7 @@ public class AddAdminAction extends HttpServlet {
 			AdminInfor adminInfor = new AdminInfor();
 			adminInfor.setAdminName(adminName);
 			adminInfor.setPhone(phone);
+			adminInfor.setIdNumber(idNumber);
 			adminInfor.setEmail(email);
 
 			List<Power> powerList = new ArrayList<>();
