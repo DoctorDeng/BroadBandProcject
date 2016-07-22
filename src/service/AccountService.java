@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Bussiness;
+import bean.Customer;
 import bean.viewBean.AccountViewBean;
 import dao.impl.AccountViewDaoImpl;
+import dao.impl.BussinessDaoImpl;
+import dao.impl.CustomerDaoImpl;
 
 public class AccountService {
 	//账务账号页面获取数据类
@@ -19,7 +22,23 @@ public class AccountService {
 	}
 	
 	public boolean addBussinessAccount(AccountViewBean a){
-		return new AccountViewDaoImpl().addBussinessAccount(a);
+		boolean b = true;
+		Customer customer = new Customer();
+		customer.setCustomerName(a.getBussinessName());
+		customer.setIdNumber(a.getIdNumber());
+		customer.setPhone(a.getPhone());
+		CustomerDaoImpl c = new CustomerDaoImpl();
+		b = b&&c.add(customer);
+		int customerId = c.findByIdNumber(a.getIdNumber()).getCustomerId();
+		Bussiness bussiness = new Bussiness();
+		bussiness.setCreateTime(a.getCreateTime());
+		bussiness.setCustomerId(customerId);
+		bussiness.setLastLoginTime(a.getLastLoginTime());
+		bussiness.setLoginAccount(a.getLoginAccount());
+		bussiness.setPassword(a.getPassword());
+		bussiness.setStatus(a.getStatus());
+		b = b&&new BussinessDaoImpl().add(bussiness);
+		return b;
 	}
 	
 	/*public static void main(String[] args){

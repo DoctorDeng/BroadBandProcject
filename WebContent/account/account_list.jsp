@@ -116,7 +116,7 @@
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=a.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
                         </td>
                     </tr> 
@@ -134,13 +134,13 @@
                 <!--分页-->
                 <div id="pages">
                     <a href="#">首页</a>
-        	        <a href="#">上一页</a>
+        	        <a href="account_list.jsp?currentPage=<%=currentPage-1 %>">上一页</a>
                     <a href="#" class="current_page">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
-                    <a href="#">下一页</a>
+                    <a href="account_list.jsp?currentPage=<%=currentPage+1 %>">下一页</a>
                     <a href="#">末页</a>
                 </div>                    
             </form>

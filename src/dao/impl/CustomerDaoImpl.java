@@ -2,11 +2,14 @@ package dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.sql.Connection;
 import com.mysql.jdbc.SQLError;
 
 import bean.Customer;
+import bean.viewBean.AccountViewBean;
 import dao.CustomerDao;
 import util.DBHelper;
 
@@ -58,5 +61,18 @@ public class CustomerDaoImpl implements CustomerDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public Customer findByIdNumber(String idNumber){
+		Customer c = new Customer();
+		String sql = "select customerId from customer where idNumber="+idNumber;
+		String[] fields = null;
+		List<Map<String,Object>> list = DBHelper.find(sql, fields);
+		for(Map<String,Object> m:list){
+			c.setCustomerId(Integer.parseInt(m.get("customerId").toString()));
+		}
+		return c;
+	}
+	
+	
 	
 }
