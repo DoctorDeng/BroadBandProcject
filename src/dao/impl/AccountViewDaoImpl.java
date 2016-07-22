@@ -36,7 +36,7 @@ public class AccountViewDaoImpl {
 		return l;
 	}
 	/**
-	 * 增加账务账号
+	 * 增加账务账号对应account_add页面业务
 	 * @param a
 	 * @return
 	 */
