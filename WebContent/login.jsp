@@ -8,12 +8,10 @@
         <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
         <script type="text/javascript" src="js/login.js"></script>
-        <script type="text/javascript">
-        </script>
     </head>
     <body class="index">
         <div class="login_box">
-        <form action="LoginAction" method="post" id ="form" name= "login">
+        <form action="LoginAction" method="post" id ="form" name= "login" onsubmit="return tipsName()">
             <table>
                 <tr>
                     <td class="login_info">账号：</td>

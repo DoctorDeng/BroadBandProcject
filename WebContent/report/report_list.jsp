@@ -10,7 +10,7 @@
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
-  				<c:when test="${power==1}">
+  				<c:when test="${power==7}">
                 	<c:set var="hasPower">true</c:set>
   				</c:when>
   			</c:choose>

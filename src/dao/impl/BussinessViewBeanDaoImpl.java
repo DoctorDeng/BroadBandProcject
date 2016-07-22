@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.viewBean.BussinessViewBean;
+import bean.viewBean.ServiceAddViewBean;
 import dao.BussinessViewDao;
 import util.DBHelper;
 
@@ -49,6 +50,25 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		}			
 		return view;
 	}
-
+	@Override
+	public boolean add(ServiceAddViewBean serviceAddViewBean) {
+		// TODO Auto-generated method stub
+			String sql  = "INSERT into customer(customerName,idNumber,phone)VALUES(?,?,?)";
+			int i = 0;
+			try{
+				ps = conn.prepareStatement(sql);
+				ps.setString(1,serviceAddViewBean.getIdNumber());
+				ps.setInt(2,serviceAddViewBean.getAdminId());
+				ps.setString(3,serviceAddViewBean.getTraiffName());
+				ps.setString(4, serviceAddViewBean.getTraiffName());
+				ps.setInt(5, serviceAddViewBean.getOsLoginId());
+				ps.setString(6, serviceAddViewBean.getOsPassword());
+				i = ps.executeUpdate();		
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+			if(i == 0) return false;
+			else return true;
+	}
 
 }
