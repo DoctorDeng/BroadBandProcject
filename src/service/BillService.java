@@ -23,13 +23,35 @@ public class BillService {
 	
 	public List<Map<String,Object>>  getOsLoginForm(int osId) {
 		List<Map<String,Object>> list = osLoginDao.findLoginFormById(osId);
-		
+		/**
+		 * 总的费用
+		 */
 		double cost = 0;
+		/**
+		 * 总时长
+		 */
+		int    times = 0;
+		/**
+		 * 资费类型
+		 */
+		String tariffType = "";
+		double tariff = 0;
+		int    timeTariff = 0;
+		int    timeLong = 0;
 		
 		for (int i=0; i<list.size(); i++) {
 			Map<String,Object> map = list.get(i);
 			
-			String tariffType = map.get("timeLogin").toString();
+			tariffType = map.get("tariffType").toString();
+			times += Integer.parseInt(map.get("timeLong").toString());
+		}
+		
+		if ("2".equals(tariffType)) {
+			
+			
+			
+		} else if ("3".equals(tariffType)){
+			
 		}
 		
 		return new ArrayList<Map<String,Object>>();

@@ -18,6 +18,7 @@ public class AdminManage {
 	public AdminManage() {
 		adminDao      = new AdminDaoImpl();
 		adminPowerDao = new AdminPowerDaoImpl();
+		adminInforDao = new AdminInforDaoImpl();
 	}
 	/**
 	 * 添加管理员 

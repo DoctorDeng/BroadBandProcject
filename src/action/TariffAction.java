@@ -48,7 +48,6 @@ public class TariffAction extends HttpServlet {
 		case "updateTariff":
 			break;
 		}
-	
 	}
 
 	/**

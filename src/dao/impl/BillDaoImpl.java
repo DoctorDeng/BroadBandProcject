@@ -70,7 +70,7 @@ public class BillDaoImpl implements BillDao{
 		return billViewList;
 	}
 	/**
-	 * 多变操作，查找客户（Customer）每个账号的账单记录
+	 * 多表操作，查找客户（Customer）每个账号的账单记录
 	 * @param billId   客户账单ID
 	 * @return         返回客户每个账号的账单记录
 	 */
