@@ -23,12 +23,12 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		// TODO Auto-generated method stub 
 		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
 		
-		String sql = " SELECT t.tariffId,a.adminId,c.idNumber,c.customerName,o.osAccount,t.tariffName,o.serverIp,t.status FROM "
-				+ "customer c,admin a ,bussiness b, os o ,tariff t "
-				+ "WHERE a.adminId = b.adminId "
-				+ "AND b.osId = o.osId "
-				+ "AND O.customerId = c.customerId "
-				+ "AND t.tariffId = o.tariffId ";
+		String sql = " SELECT b.bussinessId,a.adminId,c.idNumber,c.customerName,o.osAccount,o.serverIp,b.status,t.tariffName"
+				+ "customer c,admininfor a,bussiness b, os o ,tariff t  "
+				+ "WHERE a.idNumber = c.idNumber "
+				+ "AND b.idNumber = a.idNumber"
+				+ "AND o.customerId = c.customerId  "
+				+ "AND t.tariffId = o.tariffId  ";
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
