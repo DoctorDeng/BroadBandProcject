@@ -49,7 +49,12 @@ public class BillDaoImpl implements BillDao{
 				+"INNER JOIN bussiness as ad On bi.customerId = ad.customerId ";
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
 		
-		
+	/*	SELECT bi.billId,cu.customerName, cu.idNumber, loginAccount,
+		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM billdetail WHERE billId = bi.billId)) as timeLong,
+		bi.payWay,bi.payStatus 
+						FROM bill as bi 
+						INNER JOIN customer as cu ON bi.customerId = cu.customerId 
+						INNER JOIN bussiness as ad On bi.customerId = ad.customerId */
 		return list;
 	}
 	/**

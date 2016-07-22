@@ -18,13 +18,9 @@ public class BillFormBean {
 	 */
 	private String loginAccount;
 	/**
-	 * 总费用
+	 * 总时长
 	 */
-	private String cost;
-	/**
-	 * 月份
-	 */
-	private String month;
+	private String timeLong;
 	/**
 	 * 支付方式
 	 */
@@ -34,14 +30,13 @@ public class BillFormBean {
 	 */
 	private String payStatus;
 	
-	public BillFormBean(int billId, String customerName, String idNumber, String loginAccount, String cost,
-			String month, String payWay, String payStatus) {
+	public BillFormBean(int billId, String customerName, String idNumber, String loginAccount, String timeLong,
+			 String payWay, String payStatus) {
 		this.billId = billId;
 		this.customerName = customerName;
 		this.idNumber = idNumber;
 		this.loginAccount = loginAccount;
-		this.cost = cost;
-		this.month = month;
+		this.timeLong = timeLong;
 		this.payWay = payWay;
 		this.payStatus = payStatus;
 	}
@@ -70,17 +65,11 @@ public class BillFormBean {
 	public void setLoginAccount(String loginAccount) {
 		this.loginAccount = loginAccount;
 	}
-	public String getCost() {
-		return cost;
+	public String getTimeLong() {
+		return timeLong;
 	}
-	public void setCost(String cost) {
-		this.cost = cost;
-	}
-	public String getMonth() {
-		return month;
-	}
-	public void setMonth(String month) {
-		this.month = month;
+	public void setTimeLong(String timeLong) {
+		this.timeLong = timeLong;
 	}
 	public String getPayWay() {
 		return payWay;
