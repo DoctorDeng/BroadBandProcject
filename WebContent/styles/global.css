@@ -4,7 +4,6 @@ body, p, div, ul, ol, li, dl, dd, dt, h1, h2, h3, h4, h5, h6, form, input, selec
 {
     margin: 0px auto;
     padding: 0px;
-    border: 0;
 }
 ul, ol
 {
@@ -22,7 +21,6 @@ table
     border-collapse: collapse;
     border-spacing: 0px;
     width: 910px;
-    border: 0px;
     text-align: left;
 }
 a
@@ -294,7 +292,7 @@ div.text_info span
 }
 div.input_info
 {
-    width: 580px;
+    width: 590px;
     text-align: left;
     margin-left: 10px;
     float: left;
@@ -360,6 +358,7 @@ div.validate_msg_long, div.validate_msg_medium, div.validate_msg_short, div.vali
 div.error_msg
 {
     padding-left:17px;
+    padding-top:0em;
 }
 div.validate_msg_long
 {

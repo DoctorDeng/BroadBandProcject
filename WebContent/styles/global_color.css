@@ -146,11 +146,11 @@ span.required
 /*div.validate_msg_long,div.validate_msg_medium,div.validate_msg_short,div.validate_msg_tiny*/
 div.error_msg
 {
-    color:Red;
+    /* color:Red; */
     background-image:url("../images/wrong.gif") ;
     background-repeat:no-repeat;
     background-position:left center;
-    border:1px solid red;
+   /*  border:1px solid red; */
 }
 p.hide
 {

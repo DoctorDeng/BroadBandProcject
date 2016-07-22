@@ -45,24 +45,24 @@ public class AddAdminAction extends HttpServlet {
 			admin.setPassword(password);
 			AdminInfor adminInfor = new AdminInfor();
 			adminInfor.setAdminName(adminName);
-			adminInfor.setPhone(password);
+			adminInfor.setPhone(phone);
 			adminInfor.setEmail(email);
-			
+
 			List<Power> powerList = new ArrayList<>();
 			for (String str : powerStr) {
 				Power power = new Power();
 				power.setPowerId(Integer.parseInt(str));
 				powerList.add(power);
 			}
-			
+		
 			AdminManage adminManage = new AdminManage();
 			boolean isAdd = adminManage.addAdmin(admin, adminInfor, powerList);
 			
-			/**
-			 * 下面自己去修改 isAdd 未是否添加成功，TRUE为添加成功，FALSE为没有添加成功
-			 */
+			if(isAdd==true){
+				System.out.println("恭喜你,添加管理员成功...");
+			}
+			System.out.println("添加管理员失败...");		
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
