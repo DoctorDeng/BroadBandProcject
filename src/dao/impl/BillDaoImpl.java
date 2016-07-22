@@ -75,15 +75,7 @@ public class BillDaoImpl implements BillDao{
 	 * @return         返回客户每个账号的账单记录
 	 */
 	public List<Map<String,Object>> findBillDetailForm(int billId) {
-		String sql = "SELECT bd.billDetailId,os.osAccount,os.serverIp,bi.adminId,bd.timelong,bd.cost,tariff.tariffName "
-				+ "FROM bill as bi"
-				+ "INNER JOIN billDetail as bd "
-				+ "ON bi.billId = bd.billId"
-				+ "INNER JOIN os "
-				+ "ON bd.osId = os.osId"
-				+ "INNER JOIN tariff "
-				+ "ON os.tariffId = tariff.tariffId "
-				+ "WHERE bd.billId = " + billId;
+		String sql = "SELECT billDetailId,os";
 		
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
 		

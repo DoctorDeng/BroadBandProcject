@@ -28,11 +28,11 @@ public class TariffDaoImpl implements TariffDao {
 	public boolean add(Tariff tariff) {
 		String sql = "INSERT INTO tariff "
 				+ "(tariffName,tariff,timeLong,timeTariff,createTime,status,tariffType,tariffExplain)"
-				+ "VALUES(?,?,?,?,now(),?,?,?)";
+				+ "VALUES(?,?,?,?,now(),'0',?,?)";
 		String[] fields = {tariff.getTraiffName(),
 				String.valueOf(tariff.getTariff()),String.valueOf(tariff.getTimeLong()),
 				String.valueOf(tariff.getTimeTariff()),
-				tariff.getStatus(),tariff.getTariffType(),tariff.getTariffExplain()};
+				tariff.getTariffType(),tariff.getTariffExplain()};
 		int result = DBHelper.update(sql, fields);
 		
 		if (result==0) {
