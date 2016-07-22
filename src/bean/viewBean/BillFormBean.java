@@ -1,51 +1,51 @@
 package bean.viewBean;
 
-public class BillViewBean {
+public class BillFormBean {
 	/**
-	 * 账单ID
+	 * 用户账单ID
 	 */
 	private int billId;
 	/**
-	 * 客户姓名
+	 * 用户姓名
 	 */
 	private String customerName;
 	/**
-	 * 客户身份证号码
+	 * 身份证号
 	 */
 	private String idNumber;
 	/**
-	 * 处理此账单的管理员账号
+	 * 账务账号
 	 */
-	private String adminAccount;
+	private String loginAccount;
 	/**
-	 * 客户一个月宽带总的费用
+	 * 总费用
 	 */
-	private double cost;
+	private String cost;
 	/**
-	 * 账单时间  xx年xx月
+	 * 月份
 	 */
 	private String month;
 	/**
-	 * 账单支付方式
+	 * 支付方式
 	 */
 	private String payWay;
 	/**
-	 * 账单支付状态
+	 * 支付状态 0 未支付， 1已支付
 	 */
 	private String payStatus;
 	
-	public BillViewBean(int billId, String customerName, String idNumber, String adminAccount, double cost,
+	public BillFormBean(int billId, String customerName, String idNumber, String loginAccount, String cost,
 			String month, String payWay, String payStatus) {
-		super();
 		this.billId = billId;
 		this.customerName = customerName;
 		this.idNumber = idNumber;
-		this.adminAccount = adminAccount;
+		this.loginAccount = loginAccount;
 		this.cost = cost;
 		this.month = month;
 		this.payWay = payWay;
 		this.payStatus = payStatus;
 	}
+	
 	public int getBillId() {
 		return billId;
 	}
@@ -64,16 +64,16 @@ public class BillViewBean {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
-	public String getAdminAccount() {
-		return adminAccount;
+	public String getLoginAccount() {
+		return loginAccount;
 	}
-	public void setAdminAccount(String adminAccount) {
-		this.adminAccount = adminAccount;
+	public void setLoginAccount(String loginAccount) {
+		this.loginAccount = loginAccount;
 	}
-	public double getCost() {
+	public String getCost() {
 		return cost;
 	}
-	public void setCost(double cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
 	}
 	public String getMonth() {

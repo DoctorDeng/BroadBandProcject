@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import bean.Bill;
 import bean.viewBean.BillDetailFormBean;
+import bean.viewBean.BillFormBean;
 import bean.viewBean.OsLoginFormBean;
 import dao.impl.BillDaoImpl;
 import dao.impl.OsLoginDaoImpl;
@@ -18,10 +18,28 @@ public class BillService {
 		billDao = new BillDaoImpl();
 	}
 	/**
-	 * 获取账单表格显示所需要的信息，涉及到多表查询，暂时统一封装在Bill里面
+	 * 获取账单表格显示所需要的信息，涉及到多表查询
 	 */
-	public List<Bill> getBill(){
-		return new BillDaoImpl().findAll();
+	public List<BillFormBean> getBill(){
+		List<BillFormBean> billFormList  = new ArrayList<>();
+		List<Map<String,Object>> listMap = billDao.findBillForm();
+		
+		for (int i=0; i<listMap.size(); i++) {
+			Map<String,Object> map = listMap.get(i);
+			
+			int billId 			= Integer.parseInt(map.get("billId").toString());
+			String customerName = map.get("customerName").toString();
+			String idNumber     = map.get("idNumber").toString();
+			String loginAccount = map.get("loginAccount").toString();
+			String cost         = map.get("cost").toString();
+			String month        = map.get("month").toString();
+			String payWay       = map.get("payWay").toString();
+			String payStatus    = map.get("payStatus").toString();
+			
+			BillFormBean billForm = new BillFormBean(billId, customerName, idNumber, loginAccount, cost, month, payWay, payStatus);
+			billFormList.add(billForm);
+		}
+		return billFormList;
 	}
 	
 	/**
@@ -98,10 +116,12 @@ public class BillService {
 		}
 		return list;
 	}
+	
 	public static void main(String[] args) {
 		BillService bill = new BillService();
-		System.out.println(bill.getBillDetailForm(1).size());
+		/*System.out.println(bill.getBillDetailForm(1).size());*/
 		/*System.out.println(bill.getOsLoginForm(1).size());*/
+		/*System.out.println(bill.getBill().size());*/
 	}
 	/**
 	 * 代码备份
