@@ -53,22 +53,37 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	@Override
 	public boolean add(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub
-			String sql  = "INSERT into customer(customerName,idNumber,phone)VALUES(?,?,?)";
+			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
 				ps = conn.prepareStatement(sql);
-				ps.setString(1,serviceAddViewBean.getIdNumber());
-				ps.setInt(2,serviceAddViewBean.getAdminId());
-				ps.setString(3,serviceAddViewBean.getTraiffName());
-				ps.setString(4, serviceAddViewBean.getTraiffName());
-				ps.setInt(5, serviceAddViewBean.getOsLoginId());
-				ps.setString(6, serviceAddViewBean.getOsPassword());
+				ps.setString(1,serviceAddViewBean.getTraiffName());
+				ps.setString(2, serviceAddViewBean.getTraiffName());
+				ps.setInt(3, serviceAddViewBean.getOsLoginId());
+				ps.setString(4, serviceAddViewBean.getOsPassword());
 				i = ps.executeUpdate();		
 			}catch(SQLException se){
 				se.printStackTrace();
 			}
 			if(i == 0) return false;
 			else return true;
+	}
+	@Override
+	public List<ServiceAddViewBean> find() {
+		// TODO Auto-generated method stub
+		List<ServiceAddViewBean> siew = new ArrayList<ServiceAddViewBean>();
+		String sql = "SELECT admininfor.adminId, customer.customerId FROM admininfor ,customer";
+		try{
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				
+			}
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		
+		return siew;
 	}
 
 }
