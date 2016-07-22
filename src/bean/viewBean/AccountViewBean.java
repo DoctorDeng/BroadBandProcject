@@ -10,8 +10,21 @@ public class AccountViewBean {
 	private String createTime;			//创建日期
 	private String lastLoginTime;		//上次登录时间
 	private String status;				//状态
+	private String password;			//账务账号密码
+	private String phone;				//业务账号对应的电话号码
 	
-	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public int getBussinessId() {
 		return bussinessId;
 	}

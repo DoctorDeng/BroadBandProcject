@@ -18,7 +18,7 @@ public class AccountService {
 		return l;
 	}
 	
-	public boolean addBussinessAccount(Bussiness a){
+	public boolean addBussinessAccount(AccountViewBean a){
 		return new AccountViewDaoImpl().addBussinessAccount(a);
 	}
 	

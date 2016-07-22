@@ -40,11 +40,11 @@ public class AccountViewDaoImpl {
 	 * @param a
 	 * @return
 	 */
-	public boolean addBussinessAccount(Bussiness a){
-		String sql = "insert into bussiness (bussinessId,bussinessName,idNumber,loginAccount,createTime,status,lastLoginTime,password,phone) values(12,?,?,?,?,?,?,?,?);";
+	public boolean addBussinessAccount(AccountViewBean a){
+		String sql = "insert into bussiness (idNumber,loginAccount,createTime,status,lastLoginTime,password) values(?,?,?,?,?,?);";
 		String[] fields = {
-				a.getBussinessName(),a.getIdNumber(),a.getLoginAccount(),
-				a.getCreateTime(),a.getStatus(),a.getLastLoginTime(),a.getPassword(),a.getPhone()};
+				a.getIdNumber(),a.getLoginAccount(),
+				a.getCreateTime(),a.getStatus(),a.getLastLoginTime(),a.getPassword()};
 		System.out.println(sql);
 		int rs = DBHelper.update(sql, fields);
 		if(rs<1){

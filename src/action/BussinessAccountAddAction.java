@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
+import bean.viewBean.AccountViewBean;
 import service.AccountService;
 
 /**
@@ -33,7 +34,7 @@ public class BussinessAccountAddAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
-		Bussiness b = new Bussiness();
+		AccountViewBean b = new AccountViewBean();
 		b.setBussinessName(request.getParameter("name"));
 		b.setIdNumber(request.getParameter("idNumber"));
 		b.setPassword(request.getParameter("password"));
