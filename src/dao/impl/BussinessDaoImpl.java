@@ -41,7 +41,13 @@ public class BussinessDaoImpl implements BussinessDao{
 	}*/
 	
 	public Bussiness findOne(int bussinessId){
-		return new Bussiness();
+		Bussiness b =  new Bussiness();
+		String sql = "select * from bussiness where bussinessId="+bussinessId;
+		List<Map<String, Object>> l = DBHelper.find(sql, null);
+		for(Map<String, Object> m:l){
+			b.setCustomerId(Integer.parseInt(m.get("customerId").toString()));
+		}
+		return b;
 	}
 	
 	public boolean add(Bussiness bussiness){
@@ -78,12 +84,10 @@ public class BussinessDaoImpl implements BussinessDao{
 	}
 	
 	/*public static void main(String[] args){
-		Bussiness c = new Bussiness();
-		c.setBussinessId(25);
-		c.setCreateTime("2000-11-11 12:12:12");
-		c.setLoginAccount("hahahha");
-		c.setPassword("999999999");
-		new BussinessDaoImpl().update(c);
+		
+		
+		int cu = new BussinessDaoImpl().findOne(10).getCustomerId();
+		System.out.println(cu);
 	}*/
 	
 }

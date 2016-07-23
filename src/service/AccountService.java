@@ -50,15 +50,13 @@ public class AccountService {
 		BussinessDaoImpl bu = new BussinessDaoImpl();
 		b = b&&bu.update(bussiness);
 		int customerId = bu.findOne(a.getBussinessId()).getCustomerId();
+		System.out.println("业务账号ID："+customerId);
 		Customer customer = new Customer();
 		customer.setCustomerId(customerId);
 		customer.setCustomerName(a.getBussinessName());
 		customer.setIdNumber(a.getIdNumber());
 		customer.setPhone(a.getPhone());
-		CustomerDaoImpl c = new CustomerDaoImpl();
-		b = b&&new CustomerDaoImpl().update(customer);
-		
-		
+		b = b&&new CustomerDaoImpl().update(customer);				
 		return b;
 	}
 	

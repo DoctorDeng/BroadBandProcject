@@ -1,3 +1,6 @@
+<%@page import="bean.viewBean.AccountViewBean"%>
+<%@page import="java.util.List" %>
+<%@page import="bean.viewBean.AccountViewBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -44,6 +47,9 @@
                 else
                     document.getElementById("divPwds").style.display = "none";
             }
+            function sub(){
+            	document.getElementById("form").submit();
+            }
         </script>
     </head>
     <body>
@@ -64,25 +70,34 @@
         <div id="main">  
             <!--保存成功或者失败的提示消息-->          
             <div id="save_result_info" class="save_fail">保存失败，旧密码错误！</div>
-            <form action="#" method="" class="main_form">
+            <form action="http://localhost:8080/lanqiao/BussinessAccountModiAction" method="" class="main_form" id="form">
                     <!--必填项-->
+                    <%
+                    AccountViewBean a = null;
+                    int bussinessId = Integer.parseInt(request.getParameter("id"));
+                    List<AccountViewBean> l = (List<AccountViewBean>)session.getAttribute("l");
+                    for(AccountViewBean ac:l){
+                    	if(ac.getBussinessId()==bussinessId)
+                    		a = ac;
+                    }
+                    %>
                     <div class="text_info clearfix"><span>账务账号ID：</span></div>
                     <div class="input_info">
-                        <input type="text" value="<%=request.getParameter("id") %>" readonly class="readonly" />
+                        <input type="text" name="bussinessId" value="<%=request.getParameter("id") %>" readonly class="readonly" />
                     </div>
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                        <input type="text" value="张三" />
+                        <input type="text" name="name" value="<%=a.getBussinessName() %>" />
                         <span class="required">*</span>
                         <div class="validate_msg_long error_msg">20长度以内的汉字、字母和数字的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>身份证：</span></div>
                     <div class="input_info">
-                        <input type="text" value="230198765432123456" readonly class="readonly" />
+                        <input type="text" value="<%=a.getIdNumber() %>" readonly class="readonly" />
                     </div>
                     <div class="text_info clearfix"><span>登录账号：</span></div>
                     <div class="input_info">
-                        <input type="text" value="user1" readonly class="readonly"  />                        
+                        <input type="text" value="<%=a.getLoginAccount() %>" readonly class="readonly"  />                        
                         <div class="change_pwd">
                             <input id="chkModiPwd" type="checkbox" onclick="showPwd(this);" />
                             <label for="chkModiPwd">修改密码</label>
@@ -98,7 +113,7 @@
                         </div>
                         <div class="text_info clearfix"><span>新密码：</span></div>
                         <div class="input_info">
-                            <input type="password"  />
+                            <input type="password" name="password" />
                             <span class="required">*</span>
                             <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
                         </div>
@@ -111,7 +126,7 @@
                     </div>                   
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
-                        <input type="text" class="width200"/>
+                        <input type="text" name="phone" class="width200"/>
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg">正确的电话号码格式：手机或固话</div>
                     </div>
@@ -162,7 +177,7 @@
                     </div>                
                     <!--操作按钮-->
                     <div class="button_info clearfix">
-                        <input type="button" value="保存" class="btn_save" onclick="showResult();" />
+                        <input type="button" value="保存" class="btn_save" onclick="sub();" />
                         <input type="button" value="取消" class="btn_save" />
                     </div>
                 </form>  
