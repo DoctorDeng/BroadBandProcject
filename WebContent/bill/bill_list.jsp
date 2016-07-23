@@ -88,8 +88,6 @@
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
-                    
-                    
                     <tr>
                         <th class="width50">账单ID</th>
                         <th class="width70">姓名</th>
@@ -117,6 +115,7 @@
   					<c:if test="{billForm}">
   						<c:forEach items="${requestScope.billForm}" var="bill" >
   							<tr>
+  								<td>aaa</td>
   								<td><c:out value="${bill.billId}"/></td>
   								<td><c:out value="${bill.customerName}"/></td>
   								<td><c:out value="${bill.idNumber}"/></td>

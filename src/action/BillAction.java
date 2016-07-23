@@ -43,7 +43,9 @@ public class BillAction extends HttpServlet {
 		case "showBill":
 			List<BillFormBean> billList = billService.getBill();
 			request.setAttribute("billForm", billList);
+			System.out.println(billList.size());
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
+			
 			break;
 		/**
 		 * 显示详单信息
