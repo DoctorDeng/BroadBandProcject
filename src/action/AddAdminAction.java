@@ -32,8 +32,8 @@ public class AddAdminAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		    response.setContentType("text/html;charset=UTF-8");		    
-			String adminName    = new String(request.getParameter("adminName").getBytes("ISO-8859-1"),"UTF-8");
+		  	    
+			String adminName    = request.getParameter("adminName");
 			String adminAccount = request.getParameter("adminAccount");
 			String password     = request.getParameter("password");
 			String phone        = request.getParameter("phone");

@@ -258,4 +258,14 @@
     <servlet-name>BussinessAccountSearchAction</servlet-name>
     <url-pattern>/BussinessAccountSearchAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DelAdminAction</display-name>
+    <servlet-name>DelAdminAction</servlet-name>
+    <servlet-class>action.DelAdminAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelAdminAction</servlet-name>
+    <url-pattern>/DelAdminAction</url-pattern>
+  </servlet-mapping>
 </web-app>
