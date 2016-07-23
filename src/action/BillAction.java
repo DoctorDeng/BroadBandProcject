@@ -79,7 +79,7 @@ public class BillAction extends HttpServlet {
 		 */
 		case "page":
 			Page page = new Page();
-			int pageCount = billService.get
+			//int pageCount = billService.get
 			int pageSize    = 4;
 			int currentPage = 1;
 			
