@@ -6,6 +6,13 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
+        <c:set var="admin" value="${not empty sessionScope.admin}" />
+  		<c:if test="${not admin}">
+  			<%
+			//跳转到登陆页面
+  			response.sendRedirect("/lanqiao/login.jsp");
+  			%>
+  		</c:if>
         <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
@@ -18,12 +25,14 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   		<%
-  			response.sendRedirect("../nopower.jsp");
+  			response.sendRedirect("/lanqiao/nopower.jsp");
   		%>
   		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
-        <!-- <script language="javascript" type="text/javascript">
+  		
+  	
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
+        <script language="javascript" type="text/javascript">
             //写入下拉框中的年份和月份
             function initialYearAndMonth() {
                 //写入最近3年
@@ -41,7 +50,7 @@
                     var opObj = new Option(i, i);
                     monthObj.options[i] = opObj;
                 }
-            } -->
+            }
         </script>
     </head>
     <body onload="initialYearAndMonth();">
@@ -79,18 +88,48 @@
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
+                    
+                    
                     <tr>
                         <th class="width50">账单ID</th>
                         <th class="width70">姓名</th>
                         <th class="width150">身份证</th>
                         <th class="width150">账务账号</th>
-                        <th>费用</th>
-                        <th class="width100">月份</th>
+                        <th class="width100">总时长</th>
                         <th class="width100">支付方式</th>
                         <th class="width100">支付状态</th>                                                        
                         <th class="width50"></th>
                     </tr>
-                    <tr>
+                    <c:set var="billForm" value="${not empty requestScope.billForm}" />
+  					<c:if test="${not billForm}">
+  						<tr>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  						</tr>
+  					</c:if>
+  					
+  					<c:if test="{billForm}">
+  						<c:forEach items="${requestScope.billForm}" var="bill" >
+  							<tr>
+  								<td><c:out value="${bill.billId}"/></td>
+  								<td><c:out value="${bill.customerName}"/></td>
+  								<td><c:out value="${bill.idNumber}"/></td>
+  								<td><c:out value="${bill.loginAccount}"/></td>
+  								<td><c:out value="${bill.timeLong}"/></td>
+  								<td><c:out value="${bill.payWay}"/></td>
+  								<td><c:out value="${bill.payStatus}"/></td>
+  								<td><a href="/lanqiao/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
+  							<tr>
+  						</c:forEach>
+  					</c:if>
+  					
+                   <!--  <tr>
                         <td>1</td>
                         <td>张三</td>
                         <td>230102197902137862</td>
@@ -155,7 +194,7 @@
                         <td></td>
                         <td>未支付</td>                            
                         <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr>
+                    </tr> -->
                 </table>
                 
                 <p>业务说明：<br />

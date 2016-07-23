@@ -32,7 +32,7 @@
   				
   				<c:choose>
   					<c:when test="${power==6}">
-                		 <li><a href="/lanqiao/bill/bill_list.jsp" class="bill_off"></a></li>
+                		 <li><a href="/lanqiao/BillAction?operation=showBill" class="bill_off"></a></li>
   					</c:when>
   				</c:choose>
   				

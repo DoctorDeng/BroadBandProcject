@@ -5,6 +5,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
+		<c:set var="admin" value="${not empty sessionScope.admin}" />
+  			<c:if test="${not admin}">
+  			<%
+			//跳转到登陆页面
+  			response.sendRedirect("/lanqiao/login.jsp");
+  			%>
+  		</c:if>
         <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
