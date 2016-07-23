@@ -78,6 +78,7 @@ public class BillDaoImpl implements BillDao{
 		return list;
 	}
 	
+	
 	public static void main(String[] args) {
 		BillDaoImpl billDao = new BillDaoImpl();
 		System.out.println(billDao.findBillForm());
