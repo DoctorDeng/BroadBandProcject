@@ -23,5 +23,10 @@ public interface BussinessViewDao {
 	 * 业务界面用业务账号修改业务信息
 	 */
 	public boolean update(BussinessViewBean bussinessViewBean);
+	
+	/**
+	 * 业务界面的删除业务信息
+	 */
+	public boolean del(BussinessViewBean bussinessViewBean);
 }
 

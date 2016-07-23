@@ -33,7 +33,8 @@ public class BussinessAccountAction extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		int bussinessId = 0;
 		if(request.getParameter("id")!=null&&request.getParameter("id")!=""){
-			bussinessId = Integer.parseInt(request.getParameter("id"));
+			String bus = request.getParameter("id");
+			bussinessId = Integer.parseInt(bus);
 		}
 		boolean b = true;
 		int customerId = new BussinessDaoImpl().findOne(bussinessId).getCustomerId();

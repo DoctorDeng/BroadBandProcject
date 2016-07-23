@@ -125,7 +125,7 @@
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=sv.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
                       <%} %>                                                                 

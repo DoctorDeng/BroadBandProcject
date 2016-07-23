@@ -122,5 +122,15 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		if(i == 0) return false;
 		else return true;
 	}
+	@Override
+	public boolean del(BussinessViewBean bussinessViewBean) {
+		// TODO Auto-generated method stub
+		String sql= "delete from bussiness where bussinessId="+bussinessViewBean.getBussinessId();
+		int rs = DBHelper.update(sql, null);
+		if(rs>0){
+			return true;
+		}
+		return false;
+	}
 
 }
