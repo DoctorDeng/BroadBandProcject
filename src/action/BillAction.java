@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Page;
 import bean.viewBean.BillDetailFormBean;
 import bean.viewBean.BillFormBean;
 import bean.viewBean.OsLoginFormBean;
@@ -73,7 +74,18 @@ public class BillAction extends HttpServlet {
 			request.setAttribute("osLoginForm", osLoginList);
 			request.getRequestDispatcher("/bill/bill_service_detail.jsp").forward(request, response);
 			break;
+		/**
+		 * 通过分页来显示信息
+		 */
+		case "page":
+			Page page = new Page();
+			int pageCount = billService.get
+			int pageSize    = 4;
+			int currentPage = 1;
+			
+			break;
 		}
+		
 	}
 
 	/**

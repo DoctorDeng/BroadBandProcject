@@ -181,6 +181,14 @@ public class BillService {
 		}
 		return list;
 	}
+	/**
+	 * 获取账单信息长度
+	 * @return    账单信息长度
+	 */
+	public int getBillFormSize() {
+		return billDao.getBillFormSize();
+	}
+	
 	
 	public static void main(String[] args) {
 		BillService bill = new BillService();
