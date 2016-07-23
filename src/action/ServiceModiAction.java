@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.viewBean.BussinessViewBean;
+import bean.viewBean.ServiceAddViewBean;
+
 /**
  * Servlet implementation class ServiceModiAction
  */
@@ -25,7 +28,11 @@ public class ServiceModiAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		BussinessViewBean bvb = new BussinessViewBean();
+		bvb.setAdminId(Integer.parseInt(request.getParameter("adminId")));
+		bvb.setOsAccount(request.getParameter("osAccount"));
+		bvb.setServerId(request.getParameter("serverId"));
+		bvb.setServerId(request.getParameter("serverId"));
 	}
 
 	/**

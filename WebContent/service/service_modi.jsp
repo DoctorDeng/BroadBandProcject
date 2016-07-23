@@ -57,8 +57,7 @@
         <!--主要区域开始-->
         <div id="main">
             <!--保存操作的提示信息-->
-            <div id="save_result_info" class="save_fail">资费修改失败！数据并发错误。</div>
-            <form action="" method="" class="main_form">
+            <form action="../ServiceModiAction" method="post" class="main_form">
                 <!--必填项-->
                <%
         		List<BussinessViewBean> list = (List<BussinessViewBean>)session.getAttribute("lv");
@@ -92,7 +91,7 @@
                 </div>
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save" onclick="showResult();" />
+                    <input type="submit" value="保存" class="btn_save" />
                     <input type="button" value="取消" class="btn_save" />
                 </div>
 
