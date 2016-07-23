@@ -41,6 +41,27 @@ public class AccountService {
 		return b;
 	}
 	
+	public boolean updateBussinessAccount(AccountViewBean a){
+		boolean b = true;
+		Bussiness bussiness = new Bussiness();
+		bussiness.setBussinessId(a.getBussinessId());		
+		bussiness.setLoginAccount(a.getLoginAccount());
+		bussiness.setPassword(a.getPassword());
+		BussinessDaoImpl bu = new BussinessDaoImpl();
+		b = b&&bu.update(bussiness);
+		int customerId = bu.findOne(a.getBussinessId()).getCustomerId();
+		Customer customer = new Customer();
+		customer.setCustomerId(customerId);
+		customer.setCustomerName(a.getBussinessName());
+		customer.setIdNumber(a.getIdNumber());
+		customer.setPhone(a.getPhone());
+		CustomerDaoImpl c = new CustomerDaoImpl();
+		b = b&&new CustomerDaoImpl().update(customer);
+		
+		
+		return b;
+	}
+	
 	/*public static void main(String[] args){
 		System.out.println("测试开始.....");
 		List<AccountViewBean> l = new AccountService().getAccountViewBean(1);
