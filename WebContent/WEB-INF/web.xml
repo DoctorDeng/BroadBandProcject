@@ -218,4 +218,14 @@
     <servlet-name>TariffUpdateAction</servlet-name>
     <url-pattern>/TariffUpdateAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffOpenAction</display-name>
+    <servlet-name>TariffOpenAction</servlet-name>
+    <servlet-class>action.TariffOpenAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffOpenAction</servlet-name>
+    <url-pattern>/TariffOpenAction</url-pattern>
+  </servlet-mapping>
 </web-app>
