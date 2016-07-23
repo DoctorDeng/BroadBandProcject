@@ -178,4 +178,14 @@
     <servlet-name>StatementAction</servlet-name>
     <url-pattern>/StatementAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminInforAction</display-name>
+    <servlet-name>AdminInforAction</servlet-name>
+    <servlet-class>action.AdminInforAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminInforAction</servlet-name>
+    <url-pattern>/AdminInforAction</url-pattern>
+  </servlet-mapping>
 </web-app>
