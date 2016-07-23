@@ -199,15 +199,15 @@
                 </div>                    
                 <!--分页-->
                 <div id="pages">
-                    <a href="#">首页</a>
-        	        <a href="#">上一页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.indexPage}">首页</a>
+        	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.upPage}">上一页</a>
                     <a href="#" class="current_page">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
-                    <a href="#">下一页</a>
-                    <a href="#">末页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.nextPage}">下一页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.endPage}">末页</a>
                 </div>                    
             </form>
         </div>
