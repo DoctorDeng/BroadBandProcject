@@ -2,11 +2,11 @@ package bean;
 
 public class Tariff {
     private int tariffId;     //资费ID
-	private String traiffName;     //资费名称
+	private String tariffName;     //资费名称
 	private int timeLong;       //资费时长
 	private int timeTariff;     //单位费用
 	private double tariff;      //资费金额
-	private String creaTime;      //资费创建时间
+	private String createTime;      //资费创建时间
 	private String openTime;      //资费开启时间
 	private String status;     //资费状态（开通或暂停）
 	private String tariffType;  //资费类型
@@ -17,7 +17,7 @@ public class Tariff {
     public Tariff(int tariffId, String traiffName, int timeLong, int timeTariff, double tariff,
 			 String status, String tariffType, String tariffExplain) {
 		this.tariffId = tariffId;
-		this.traiffName = traiffName;
+		this.tariffName = traiffName;
 		this.timeLong = timeLong;
 		this.timeTariff = timeTariff;
 		this.tariff = tariff;
@@ -27,7 +27,7 @@ public class Tariff {
 
 	public Tariff(String traiffName, int timeLong, double tariff,
     		int timeTariff,String status,String tariffType, String tariffExplain) {
-    	this.traiffName = traiffName;
+    	this.tariffName = traiffName;
 		this.timeLong = timeLong;
 		this.tariff = tariff;
 		this.status = status;
@@ -42,11 +42,11 @@ public class Tariff {
 	public void setTariffId(int tariffId) {
 		this.tariffId = tariffId;
 	}
-	public String getTraiffName() {
-		return traiffName;
+	public String getTariffName() {
+		return tariffName;
 	}
-	public void setTraiffName(String traiffName) {
-		this.traiffName = traiffName;
+	public void setTariffName(String traiffName) {
+		this.tariffName = traiffName;
 	}
 	public int getTimeLong() {
 		return timeLong;
@@ -60,11 +60,11 @@ public class Tariff {
 	public void setTariff(double tariff) {
 		this.tariff = tariff;
 	}
-	public String getCreaTime() {
-		return creaTime;
+	public String getCreateTime() {
+		return createTime;
 	}
-	public void setCreaTime(String creaTime) {
-		this.creaTime = creaTime;
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
 	}
 	public String getOpenTime() {
 		return openTime;

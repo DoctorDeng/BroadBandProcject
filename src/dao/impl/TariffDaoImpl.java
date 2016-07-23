@@ -29,7 +29,7 @@ public class TariffDaoImpl implements TariffDao {
 		String sql = "INSERT INTO tariff "
 				+ "(tariffName,tariff,timeLong,timeTariff,createTime,status,tariffType,tariffExplain)"
 				+ "VALUES(?,?,?,?,now(),'0',?,?)";
-		String[] fields = {tariff.getTraiffName(),
+		String[] fields = {tariff.getTariffName(),
 				String.valueOf(tariff.getTariff()),String.valueOf(tariff.getTimeLong()),
 				String.valueOf(tariff.getTimeTariff()),
 				tariff.getTariffType(),tariff.getTariffExplain()};
@@ -64,7 +64,7 @@ public class TariffDaoImpl implements TariffDao {
 				+ "tariffExplain=? "
 				+ "WHERE tariffId = ?";
 		
-		String[] fields = {tariff.getTraiffName(),
+		String[] fields = {tariff.getTariffName(),
 				String.valueOf(tariff.getTimeLong()),
 				String.valueOf(tariff.getTariff()),
 				String.valueOf(tariff.getTimeTariff()),
