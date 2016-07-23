@@ -61,9 +61,10 @@ public class AddAdminAction extends HttpServlet {
 			boolean isAdd = adminManage.addAdmin(admin, adminInfor, powerList);
 			
 			if(isAdd==true){
-				System.out.println("恭喜你,添加管理员成功...");
+				response.sendRedirect("admin/admin_list.jsp");
+			}else{
+			   response.sendRedirect("login.jsp");	
 			}
-			System.out.println("添加管理员失败...");		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

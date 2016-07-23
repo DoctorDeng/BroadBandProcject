@@ -268,4 +268,14 @@
     <servlet-name>DelAdminAction</servlet-name>
     <url-pattern>/DelAdminAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateAdminInfor</display-name>
+    <servlet-name>UpdateAdminInfor</servlet-name>
+    <servlet-class>action.UpdateAdminInfor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateAdminInfor</servlet-name>
+    <url-pattern>/UpdateAdminInfor</url-pattern>
+  </servlet-mapping>
 </web-app>
