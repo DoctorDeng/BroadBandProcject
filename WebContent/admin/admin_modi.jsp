@@ -68,7 +68,7 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="../AdminInforAction" method="post" class="main_form">
+            <form action="../UpdateAdminInfor?adminId=<%=adminId %>" method="post" class="main_form">
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
                         <input type="text" name="adminName" value="<%=m.get("adminName").toString() %>"/>

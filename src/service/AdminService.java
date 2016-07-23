@@ -51,7 +51,7 @@ public class AdminService {
 	 */
 	public boolean updateAdmin(int adminId,AdminInfor adminInfor,List<Power> powerList) {
 		adminInfor.setAdminId(adminId);
-		if (adminInforDao.update(adminInfor)) {
+		if (adminInforDao.updateAdminInfor(adminInfor)) {
 			if (adminPowerDao.updateAdminPower(adminId, powerList)) {
 				return true;
 			}

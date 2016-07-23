@@ -31,12 +31,12 @@ public class UpdateAdminInfor extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String adminName    = request.getParameter("adminName");
 		int adminId         = Integer.parseInt(request.getParameter("adminId"));
+		System.out.println(adminId);
 		String phone        = request.getParameter("phone");
 		String email        = request.getParameter("email");
 		String[] powerStr   = request.getParameterValues("power");
 		
 		AdminInfor adminInfor = new AdminInfor();
-		adminInfor.setAdminId(adminId);
 		adminInfor.setAdminName(adminName);
 		adminInfor.setPhone(phone);
 		adminInfor.setEmail(email);
