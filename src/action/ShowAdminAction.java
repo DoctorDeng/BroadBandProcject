@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ShowAdminMess
  */
-public class ShowAdminMess extends HttpServlet {
+public class ShowAdminAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShowAdminMess() {
+    public ShowAdminAction() {
         super();
         // TODO Auto-generated constructor stub
     }
