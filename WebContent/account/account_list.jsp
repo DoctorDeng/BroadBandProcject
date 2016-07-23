@@ -42,6 +42,9 @@
                 var r = window.confirm("确定要开通此账务账号吗？");
                 document.getElementById("operate_result_info").style.display = "block";
             }
+            function sub(){
+            	document.getElementById("form").submit();
+            }
         </script>
     </head>
     <body>
@@ -60,7 +63,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="" method="" id="form">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>身份证：<input type="text" value="不验证" class="text_search" /></div>                            
@@ -75,7 +78,7 @@
                             <option>删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" /></div>
+                    <div><input type="button" value="搜索" class="btn_search" onclick="sub()"/></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='account_add.jsp';" />
                 </div>  
                 <!--删除等的操作提示-->
