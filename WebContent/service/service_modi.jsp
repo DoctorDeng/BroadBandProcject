@@ -82,7 +82,7 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select name = "traiffName" class="width150" value = "<%=bv.getTraiffName()%>">
+                    <select name = "traiffId" class="width150" value = "<%=bv.getTraiffName()%>">
                         <option value= "1">包月</option>
                         <option value= "2">套餐</option>
                         <option value= "3">计时</option>

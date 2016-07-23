@@ -57,7 +57,7 @@ public class BussinessDaoImpl implements BussinessDao{
 				bussiness.getLastLoginTime(),bussiness.getPassword(),Integer.valueOf(bussiness.getCustomerId()).toString()};
 		int rs = DBHelper.update(sql, fields);
 		if(rs>0){
-			return true;
+			return true; 	
 		}
 		return false;
 	}
