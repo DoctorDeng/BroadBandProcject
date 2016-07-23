@@ -208,4 +208,14 @@
     <servlet-name>TariffAddAction</servlet-name>
     <url-pattern>/TariffAddAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffUpdateAction</display-name>
+    <servlet-name>TariffUpdateAction</servlet-name>
+    <servlet-class>action.TariffUpdateAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffUpdateAction</servlet-name>
+    <url-pattern>/TariffUpdateAction</url-pattern>
+  </servlet-mapping>
 </web-app>
