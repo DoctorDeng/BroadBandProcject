@@ -248,4 +248,14 @@
     <servlet-name>ServiceAccountAction</servlet-name>
     <url-pattern>/ServiceAccountAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BussinessAccountSearchAction</display-name>
+    <servlet-name>BussinessAccountSearchAction</servlet-name>
+    <servlet-class>action.BussinessAccountSearchAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BussinessAccountSearchAction</servlet-name>
+    <url-pattern>/BussinessAccountSearchAction</url-pattern>
+  </servlet-mapping>
 </web-app>
