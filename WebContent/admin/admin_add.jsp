@@ -89,7 +89,7 @@
                     </div>
                     <div class="text_info clearfix"><span>身份证号：</span></div>
                     <div class="input_info">
-                        <input type="text" class="width200" name="idnumber" id="idnumber"/>
+                        <input type="text" class="width200" name="idNumber" id="idNumber"/>
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg" id="idnumberError">真实的18位身份证号</div>
                     </div>
