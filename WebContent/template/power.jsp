@@ -38,7 +38,7 @@
   				
   				<c:choose>
   					<c:when test="${power==7}">
-                		<li><a href="/lanqiao/report/report_list.jsp" class="report_off"></a></li>
+                		<li><a href="/lanqiao/StatementAction?operation=default" class="report_off"></a></li>
   					</c:when>
   				</c:choose>
   			</c:forEach>
