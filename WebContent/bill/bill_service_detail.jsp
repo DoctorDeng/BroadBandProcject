@@ -6,11 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
 		<c:set var="admin" value="${not empty sessionScope.admin}" />
-  			<c:if test="${not admin}">
-  			<%
-			//跳转到登陆页面
-  			response.sendRedirect("/lanqiao/login.jsp");
-  			%>
+  		<c:if test="${not admin}">
+  			<script type="text/javascript">
+  				window.location.href="/lanqiao/login.jsp";
+  			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
@@ -23,17 +22,17 @@
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
+  			<script type="text/javascript">
+  				window.location.href="/lanqiao/nopowr.jsp";
+  			</script>
   		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
     </head>
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/lanqiao/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -54,7 +53,8 @@
                     <div>服务器 IP：<span class="readonly width100">192.168.0.20</span></div>
                     <div>计费时间：<span class="readonly width70">2013年8月</span></div>
                     <div>费用：<span class="readonly width70">34.78</span></div>
-                    <input type="button" value="返回" class="btn_add" onclick="location.href='bill_item.jsp';" />
+                    <input type="button" value="返回" class="btn_add" 
+                    onclick="location.href='/lanqiao/BillAction?operation=showBill';" />
                 </div>  
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -67,7 +67,31 @@
                             <th class="width150">费用</th>
                             <th>资费</th>
                         </tr>
-                        <tr>
+                        
+                     <c:set var="osLoginForm" value="${not empty requestScope.osLoginForm}" />
+  					<c:if test="${not osLoginForm}">
+  						<tr>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  						</tr>
+  					</c:if>
+  					
+  						<c:forEach items="${requestScope.osLoginForm}" var="osLogin" >
+  							<tr>
+  								<td><c:out value="${osLogin.loginIp}"/></td>
+  								<td><c:out value="${osLogin.loginInTime}"/></td>
+  								<td><c:out value="${osLogin.loginOutTime}"/></td>
+  								<td><c:out value="${osLogin.timeLong}"/></td>
+  								<td><c:out value="${osLogin.cost}"/></td>
+  								<td><c:out value="${osLogin.tariffName}"/></td>
+  							<tr>
+  						</c:forEach>
+                        
+                        <!-- <tr>
                             <td>192.168.100.100</td>
                             <td>2013/01/01 12:12:12</td>
                             <td>2013/01/01 12:12:22</td>
@@ -98,7 +122,7 @@
                             <td>10</td>
                             <td>0.45</td>
                             <td>包 20 小时</td>
-                        </tr>
+                        </tr> -->
                     </table>
                 </div>
                 <!--分页-->

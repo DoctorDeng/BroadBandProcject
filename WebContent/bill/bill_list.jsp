@@ -8,10 +8,9 @@
         <title></title>
         <c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
-  			<%
-			//跳转到登陆页面
-  			response.sendRedirect("/lanqiao/login.jsp");
-  			%>
+  			<script type="text/javascript">
+  				window.location.href="/lanqiao/login.jsp";
+  			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
@@ -24,9 +23,9 @@
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("/lanqiao/nopower.jsp");
-  		%>
+  		<script type="text/javascript">
+  				window.location.href="/lanqiao/nopowr.jsp";
+  			</script>
   		</c:if>
   		
   	
@@ -56,7 +55,7 @@
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/lanqiao/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -112,22 +111,18 @@
   						</tr>
   					</c:if>
   					
-  					<c:if test="{billForm}">
   						<c:forEach items="${requestScope.billForm}" var="bill" >
   							<tr>
-  								<td>aaa</td>
   								<td><c:out value="${bill.billId}"/></td>
   								<td><c:out value="${bill.customerName}"/></td>
   								<td><c:out value="${bill.idNumber}"/></td>
   								<td><c:out value="${bill.loginAccount}"/></td>
   								<td><c:out value="${bill.timeLong}"/></td>
   								<td><c:out value="${bill.payWay}"/></td>
-  								<td><c:out value="${bill.payStatus}"/></td>
+  								<td><c:out value="${bill.payStatus=='0'?'未支付':'支付'}"/></td>
   								<td><a href="/lanqiao/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
-  					</c:if>
-  					
                    <!--  <tr>
                         <td>1</td>
                         <td>张三</td>

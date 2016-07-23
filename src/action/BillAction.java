@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.viewBean.BillDetailFormBean;
 import bean.viewBean.BillFormBean;
+import bean.viewBean.OsLoginFormBean;
 import service.BillService;
 
 /**
@@ -43,21 +45,33 @@ public class BillAction extends HttpServlet {
 		case "showBill":
 			List<BillFormBean> billList = billService.getBill();
 			request.setAttribute("billForm", billList);
-			System.out.println(billList.size());
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
-			
 			break;
 		/**
 		 * 显示详单信息
 		 */
 		case "showDetailBill":
-			
+			String billIdStr  = request.getParameter("billId");
+			if (null == billIdStr | "".equals(billIdStr)) {
+				billIdStr = "0";
+			}
+			List<BillDetailFormBean> billDetailList = 
+					billService.getBillDetailForm(Integer.parseInt(billIdStr));
+			request.setAttribute("billDetailForm", billDetailList);
+			request.getRequestDispatcher("/bill/bill_item.jsp").forward(request, response);
 			break;
 		/**
 		 * 展示账号登陆信息
 		 */
 		case "showLogin":
-			
+			String osIdStr  = request.getParameter("osId");
+			if (null == osIdStr | "".equals(osIdStr)) {
+				osIdStr = "0";
+			}
+			List<OsLoginFormBean> osLoginList = 
+					billService.getOsLoginForm(Integer.parseInt(osIdStr));
+			request.setAttribute("osLoginForm", osLoginList);
+			request.getRequestDispatcher("/bill/bill_service_detail.jsp").forward(request, response);
 			break;
 		}
 	}
