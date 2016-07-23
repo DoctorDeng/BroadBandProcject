@@ -24,7 +24,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public List<BussinessViewBean> findAll() {
 		// TODO Auto-generated method stub 
 		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
-		String sql = " SELECT bussiness.bussinessId, admininfor.adminId,customer.idNumber,customer.customerName,os.osAccount,bussiness.`status`,os.serverIp,tariff.tariffName "
+		String sql = " SELECT bussiness.bussinessId, admininfor.adminId,customer.idNumber,customer.customerName,os.osAccount,bussiness.`status`,os.serverIp,tariff.tariffId "
 				+ " FROM  "
 				+ " bussiness,"
 				+ " admininfor,"
@@ -41,7 +41,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			rs = ps.executeQuery();
 			while(rs.next()){
 				BussinessViewBean viewbean = new BussinessViewBean();
-				viewbean.setTariffId(Integer.parseInt(rs.getString(1)));
+				viewbean.setBussinessId(Integer.parseInt(rs.getString(1)));
 				viewbean.setAdminId(Integer.parseInt(rs.getString(2)));
 				viewbean.setIdNumber(rs.getString(3));
 				viewbean.setCustomerName(rs.getString(4));
@@ -107,8 +107,20 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	@Override
 	public boolean update(BussinessViewBean bussinessViewBean) {
 		// TODO Auto-generated method stub
-		
-		return false;
+		/*System.out.println(bussinessViewBean.getTraiffId());
+		System.out.println(bussinessViewBean.getOsAccount());*/
+		String sql = "UPDATE os SET tariffId = ? WHERE osAccount = ?";
+		int i = 0 ;
+		try{
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, bussinessViewBean.getTariffId());
+			ps.setString(2, bussinessViewBean.getOsAccount());
+			i=ps.executeUpdate();
+		}catch(SQLException se){
+			se.printStackTrace();
+		}
+		if(i == 0) return false;
+		else return true;
 	}
 
 }

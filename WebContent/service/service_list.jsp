@@ -10,7 +10,7 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <%-- <c:set var="hasPower">false</c:set>
+      	 <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -24,7 +24,7 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> --%>
+  		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -108,7 +108,7 @@
 		for(BussinessViewBean sv:lv){
 		%>
                     <tr>
-                        <td><a href="service_detail.jsp" title="查看明细"><%=sv.getbussinessId()%></a></td>
+                        <td><a href="service_detail.jsp" title="查看明细"><%=sv.getBussinessId()%></a></td>
                         <td><%=sv.getAdminId() %></td>
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
@@ -116,7 +116,7 @@
                         <td><%=sv.getStatus() %></td>
                         <td><%=sv.getServerId()%></td>
                         <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);"><%=sv.getTraiffName() %></a>
+                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);"><%=sv.getTariffId() %></a>
                             <!--浮动的详细信息-->
                             <div class="detail_info">
                                 20小时，24.5 元，超出部分 0.03元/分钟
@@ -124,8 +124,8 @@
                         </td>                            
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getbussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='';" />
                         </td>
                     </tr>
                       <%} %>                                                                 

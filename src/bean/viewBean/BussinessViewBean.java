@@ -9,11 +9,21 @@ public class BussinessViewBean {
 	private String traiffName;     //资费名称
 	private String serverId;      //服务器ip地址
 	private String status;     //资费状态（开通或暂停）
-	public int getbussinessId() {
+	private int tariffId; //资费ID
+	
+	
+	
+	public int getBussinessId() {
 		return bussinessId;
 	}
-	public void setTariffId(int bussinessId) {
+	public void setBussinessId(int bussinessId) {
 		this.bussinessId = bussinessId;
+	}
+	public int getTariffId() {
+		return tariffId;
+	}
+	public void setTariffId( int tariffId) {
+		this.tariffId = tariffId;
 	}
 	public int getAdminId() {
 		return adminId;

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.viewBean.BussinessViewBean;
 import bean.viewBean.ServiceAddViewBean;
+import dao.impl.BussinessViewBeanDaoImpl;
 
 /**
  * Servlet implementation class ServiceModiAction
@@ -28,11 +29,16 @@ public class ServiceModiAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BussinessViewBean bvb = new BussinessViewBean();
-		bvb.setAdminId(Integer.parseInt(request.getParameter("adminId")));
-		bvb.setOsAccount(request.getParameter("osAccount"));
-		bvb.setServerId(request.getParameter("serverId"));
-		bvb.setServerId(request.getParameter("serverId"));
+		BussinessViewBean bussinessViewBean  = new BussinessViewBean();
+		String tariffId = request.getParameter("traiffId");
+		/*System.out.println(request.getParameter("traiffId"));
+		System.out.println(request.getParameter("osAccount"));*/
+		bussinessViewBean.setOsAccount(request.getParameter("osAccount"));
+		bussinessViewBean.setTariffId(Integer.parseInt(tariffId));
+		boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);
+		if(b){
+			response.sendRedirect("service/service_list.jsp");
+		}
 	}
 
 	/**
