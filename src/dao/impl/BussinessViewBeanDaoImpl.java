@@ -104,5 +104,11 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		}
 		return siew;
 	}
+	@Override
+	public boolean update(BussinessViewBean bussinessViewBean) {
+		// TODO Auto-generated method stub
+		
+		return false;
+	}
 
 }

@@ -19,5 +19,9 @@ public interface BussinessViewDao {
 	 * 业务界面用身份证查询账务账号
 	 */
 	public List<ServiceAddViewBean> find(ServiceAddViewBean serviceAddViewBean);
+	/**
+	 * 业务界面用业务账号修改业务信息
+	 */
+	public boolean update(BussinessViewBean bussinessViewBean);
 }
 
