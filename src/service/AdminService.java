@@ -67,5 +67,28 @@ public class AdminService {
 	public boolean delAdmin(int adminId) {
 		return adminDao.delAdmin(adminId);
 	}
-
+	/**
+	 * 通过管理员ID获取管理员个人信息
+	 * @param adminId  管理员ID
+	 * @return         返回adminInfor，为查找成功，失败返回null
+	 */
+	public AdminInfor getAdminInforById(int adminId) {
+		return adminInforDao.findAdminInforById(adminId);
+	}
+	/**
+	 * 初始化管理员信息表
+	 * @param adminId  管理员ID
+	 * @return         成功返回true,失败返回false
+	 */
+	public boolean initAdminInfor(int adminId) {
+		return adminInforDao.initAdminInfor(adminId);
+	}
+	/**
+	 * 更新管理员的个人信息
+	 * @param adminInfor   
+	 * @return         更新成功返回TRUE，失败返回FALSE
+	 */
+	public boolean updateInfor(AdminInfor adminInfor) {
+		return adminInforDao.updateAdminInfor(adminInfor);
+	}
 }

@@ -1,6 +1,7 @@
 package dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import bean.AdminInfor;
 import util.DBHelper;
@@ -11,9 +12,10 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 	 * 功能：查找所有管理员信息
 	 * 查找成功返回管理员集合
 	 */
-	public List<AdminInfor> findAll(){
+	public List<Map<String, Object>> findAll(){
 		String sql = "SELECT * FROM admininfor";
-		List<AdminInfor> adminInforList = DBHelper.find(new AdminInfor(),sql,null);
+		List<Map<String, Object>> adminInforList = DBHelper.find(sql, null);
+		
 		return adminInforList;  //返回一个集合
 	}
 	public AdminInfor findOne(int adminInforId) {
@@ -68,7 +70,12 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 		}
 		return null;  
 	}
-	public  AdminInfor findAdminInforByadminCount(int adminId){
+	/**
+	 * 通过管理员ID来获取管理员个人信息
+	 * @param adminId    管理员ID
+	 * @return           获取失败返回null,成功返回AdminInfor
+	 */
+	public  AdminInfor findAdminInforById(int adminId){
 		String sql = "select * from adminInfor where adminId=?";
 		String[] field = {String.valueOf(adminId)};
 		AdminInfor admininfor = DBHelper.findOne(new AdminInfor(), sql, field);
@@ -86,9 +93,10 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 		int    adminId   = admininfor.getAdminId();
 		String adminName = admininfor.getAdminName();
 		String phone = admininfor.getPhone();
+		String idNumber = admininfor.getIdNumber();
 		String email = admininfor.getEmail();
-		String sql  = "insert into adminInfor(adminId,adminName,phone,email,createTime) values(?,?,?,?,now())";	
-		String[] field = {String.valueOf(adminId),adminName,phone,email};
+		String sql  = "insert into adminInfor(adminId,adminName,idNumber,phone,email,createTime) values(?,?,?,?,?,now())";	
+		String[] field = {String.valueOf(adminId),adminName,idNumber,phone,email};
 		int result = DBHelper.update(sql,field);
 	    if(result == 0){
 	    	return false;
@@ -142,8 +150,23 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 		}
 		return true;
 	}
-	
-	
+	/**
+	 * 通过管理员ID初始化AdminInfor表
+	 * @param adminId   管理员ID
+	 * @return          初始化成功返回TRUE，失败返回FALSE
+	 */
+	public boolean initAdminInfor(int adminId) {
+		String sql = "INSERT INTO adminInfor (adminId,adminName,IdNumber,phone,email,createTime) "
+				+ " VALUES (?,'','','','',now())";
+		String[] fields = {String.valueOf(adminId)};
+		
+		int result = DBHelper.update(sql, fields);
+		
+		if (result==0) {
+			return false;
+		}
+		return true;
+	}
 	
 	public static void main(String[] args){
 		AdminInforDaoImpl admininforDao = new AdminInforDaoImpl();
@@ -157,9 +180,11 @@ public class AdminInforDaoImpl implements dao.AdminInforDao {
 		System.out.println(bb);
 		*/
         /* admininforDao.delAdminInfor(1);*/
-        /* System.out.println(admininforDao.findAll().size());
-         System.out.println(admininforDao.findAdminInforByadminId(1).getEmail());   
-         System.out.println(admininforDao.findAdminInforByInforId(8).getEmail()); */
+       /* System.out.println(admininforDao.findAll().get(0).get("adminName"));*/
+        /*
+        System.out.println(admininforDao.findAdminInforByadminId(1).getEmail());   
+         System.out.println(admininforDao.findAdminInforByInforId(8).getEmail()); 
+         */
 //		admininforDao.updateAdminStatus(1);
 	}	
 }
