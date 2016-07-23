@@ -21,6 +21,12 @@ public class AccountService {
 		return l;
 	}
 	
+	public List<AccountViewBean> searchAccountViewBean(AccountViewBean a,int currentPage){
+		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
+		l = new AccountViewDaoImpl().searchAccountViewBean(a,currentPage, pageSize);
+		return l;
+	}
+	
 	public boolean addBussinessAccount(AccountViewBean a){
 		boolean b = true;
 		Customer customer = new Customer();

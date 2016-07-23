@@ -39,5 +39,26 @@ public class AccountViewDaoImpl {
 		return l;
 	}
 	
+	public List<AccountViewBean> searchAccountViewBean(AccountViewBean ac,int currentPage,int pageSize){
+		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
+		String sql = "select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
+				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId"
+				+ " limit "+(currentPage-1)*pageSize+","+pageSize;
+		System.out.println(sql);
+		String[] fields = null;
+		List<Map<String,Object>> list = DBHelper.find(sql, fields);
+		for(Map<String,Object> m:list){
+			AccountViewBean a = new AccountViewBean();
+			a.setBussinessId(Integer.parseInt(m.get("bussinessId").toString()));
+			a.setBussinessName(m.get("customerName").toString());
+			a.setIdNumber(m.get("idNumber").toString());
+			a.setLoginAccount(m.get("loginAccount").toString());
+			a.setStatus(m.get("status").toString());
+			a.setCreateTime(m.get("createTime").toString());
+			a.setLastLoginTime(m.get("lastLoginTime").toString());
+			l.add(a);
+		}	
+		return l;
+	}
 	
 }
