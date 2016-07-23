@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import service.CustomerManage;
+import service.CustomerService;
 
 public class JUcustomer {
 
@@ -30,7 +30,7 @@ public class JUcustomer {
 
 	@Test
 	public void testCustomerIdUtil() {
-		CustomerManage ci =new CustomerManage();
+		CustomerService ci =new CustomerService();
 		
 	}
 

@@ -5,10 +5,10 @@ import java.util.List;
 import bean.Tariff;
 import dao.impl.TariffDaoImpl;
 
-public class TariffManage {
+public class TariffService {
 	private TariffDaoImpl tariffDao;
 	
-	public TariffManage() {
+	public TariffService() {
 		tariffDao = new TariffDaoImpl();
 	}
 	/**

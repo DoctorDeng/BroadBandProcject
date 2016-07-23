@@ -9,13 +9,13 @@ import dao.impl.AdminDaoImpl;
 import dao.impl.AdminInforDaoImpl;
 import dao.impl.AdminPowerDaoImpl;
 
-public class AdminManage {
+public class AdminService {
 	
 	private AdminDaoImpl adminDao;
 	private AdminInforDaoImpl adminInforDao;
 	private AdminPowerDaoImpl adminPowerDao;
 	
-	public AdminManage() {
+	public AdminService() {
 		adminDao      = new AdminDaoImpl();
 		adminPowerDao = new AdminPowerDaoImpl();
 		adminInforDao = new AdminInforDaoImpl();

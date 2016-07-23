@@ -11,7 +11,7 @@ import bean.Customer;
 import bean.viewBean.BussinessViewBean;
 import bean.viewBean.ServiceAddViewBean;
 import dao.BussinessViewDao;
-import service.CustomerManage;
+import service.CustomerService;
 import util.DBHelper;
 
 public class BussinessViewBeanDaoImpl implements BussinessViewDao {
@@ -60,7 +60,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	@Override
 	public boolean add(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub
-			CustomerManage customerM = new CustomerManage();
+			CustomerService customerM = new CustomerService();
 			Customer customer = new Customer();
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;

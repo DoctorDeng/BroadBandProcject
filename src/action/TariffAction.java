@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.TariffManage;
+import service.TariffService;
 
 /**
  * Servlet implementation class TariffAction
@@ -26,7 +26,7 @@ public class TariffAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		TariffManage tariffManage = new TariffManage();
+		TariffService tariffManage = new TariffService();
 		/**
 		 * 获取操作的类型，注意在jsp页面中应定义相应的隐藏字段，来代表操作的类型，
 		 */

@@ -7,7 +7,7 @@ import bean.Customer;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 
-public class CustomerManage {
+public class CustomerService {
 	/**
 	 * CustomerID的取出
 	 */

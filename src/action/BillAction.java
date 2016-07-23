@@ -24,8 +24,22 @@ public class BillAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String operation = request.getParameter("operation");
+		
+		if (null == operation | "".equals(operation)) {
+			response.sendRedirect("/lanqiao/login.jsp");
+			return;
+		}
+		
+		switch (operation) {
+		case "showBill":
+			break;
+		case "showDetailBill":
+			break;
+		case "showLogin":
+			break;
+		}
+	
 	}
 
 	/**

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Admin;
 import bean.AdminInfor;
 import bean.Power;
-import service.AdminManage;
+import service.AdminService;
 
 /**
  * Servlet implementation class AddAdminAction
@@ -32,12 +32,12 @@ public class AddAdminAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-			String adminName    = request.getParameter("adminName");
+		    response.setContentType("text/html;charset=UTF-8");		    
+			String adminName    = new String(request.getParameter("adminName").getBytes("ISO-8859-1"),"UTF-8");
 			String adminAccount = request.getParameter("adminAccount");
 			String password     = request.getParameter("password");
 			String phone        = request.getParameter("phone");
-			String idNumber     = request.getParameter("idnumber");
+			String idNumber     = request.getParameter("idNumber");
 			String email        = request.getParameter("email");
 			String[] powerStr   = request.getParameterValues("power");
 			
@@ -57,7 +57,7 @@ public class AddAdminAction extends HttpServlet {
 				powerList.add(power);
 			}
 		
-			AdminManage adminManage = new AdminManage();
+			AdminService adminManage = new AdminService();
 			boolean isAdd = adminManage.addAdmin(admin, adminInfor, powerList);
 			
 			if(isAdd==true){

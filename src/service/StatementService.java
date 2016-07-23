@@ -12,10 +12,10 @@ import dao.impl.StatementDaoImpl;
  * @author Doctor邓
  *
  */
-public class StatementManage {
+public class StatementService {
 	private StatementDaoImpl statementDao;
 	
-	public StatementManage() {
+	public StatementService() {
 		statementDao = new StatementDaoImpl();
 	}
 	
@@ -93,7 +93,7 @@ public class StatementManage {
 	}
 	
 	public static void main(String[] args) {
-		StatementManage statementManage = new StatementManage();
+		StatementService statementManage = new StatementService();
 		List<StatementFormBean> formList = statementManage.getAllStatementByDesc();
 		for (StatementFormBean form : formList) {
 			System.out.println("客户姓名："+form.getCustomerName() +" 时长： "+form.getTimeLong());
