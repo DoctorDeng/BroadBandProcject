@@ -109,7 +109,7 @@
                             <td><%=sv.getStatus() %></td>
                             <td>                                
                                 <input type="button" value="启用" class="btn_start" onclick="startFee();" />
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.jsp';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
                                 <input type="button" value="删除" class="btn_delete" onclick="deleteFee();" />
                             </td>
                         </tr>
