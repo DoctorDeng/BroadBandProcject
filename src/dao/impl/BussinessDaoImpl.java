@@ -63,6 +63,11 @@ public class BussinessDaoImpl implements BussinessDao{
 	}
 	
 	public boolean del(Bussiness bussinessId){
+		String sql= "delete from bussiness where bussinessId="+bussinessId.getBussinessId();
+		int rs = DBHelper.update(sql, null);
+		if(rs>0){
+			return true;
+		}
 		return false;
 	}
 	
