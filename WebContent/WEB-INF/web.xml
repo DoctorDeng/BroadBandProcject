@@ -238,4 +238,14 @@
     <servlet-name>BussinessAccountAction</servlet-name>
     <url-pattern>/BussinessAccountAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServiceAccountAction</display-name>
+    <servlet-name>ServiceAccountAction</servlet-name>
+    <servlet-class>action.ServiceAccountAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServiceAccountAction</servlet-name>
+    <url-pattern>/ServiceAccountAction</url-pattern>
+  </servlet-mapping>
 </web-app>
