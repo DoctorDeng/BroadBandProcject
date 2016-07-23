@@ -104,6 +104,7 @@
 		<%
 		BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
 		List<BussinessViewBean> lv = bv.findAll();
+		session.setAttribute("lv", lv);
 		for(BussinessViewBean sv:lv){
 		%>
                     <tr>
@@ -123,7 +124,7 @@
                         </td>                            
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp';" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getbussinessId() %>>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
                         </td>
                     </tr>

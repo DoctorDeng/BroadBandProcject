@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="bean.viewBean.BussinessViewBean" %>
+<%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -58,17 +60,26 @@
             <div id="save_result_info" class="save_fail">资费修改失败！数据并发错误。</div>
             <form action="#" method="" class="main_form">
                 <!--必填项-->
+               <%
+        		List<BussinessViewBean> list = (List<BussinessViewBean>)session.getAttribute("lv");
+       		    BussinessViewBean bv = null;
+        		int id = Integer.parseInt(request.getParameter("id"));
+        		for(BussinessViewBean sa : list){
+        			if(sa.getAdminId() == id)
+        				bv = sa;
+        		}
+      		  %>
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info">
-                    <input type="text" value="1" readonly class="readonly" />
+                    <input type="text" value="<%=request.getParameter("id") %>" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="openlab1" readonly class="readonly" />
+                    <input type="text" value="<%=bv.getOsAccount() %>" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input type="text" value="192.168.0.23" readonly class="readonly" />
+                    <input type="text" value="<%=bv.getServerId() %>" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info">
