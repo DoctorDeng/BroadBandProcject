@@ -43,18 +43,14 @@ public class BillDaoImpl implements BillDao{
 	 * @return   返回一个与表单数据对应的表单bean
 	 */
 	public  List<Map<String,Object>> findBillForm() {
-		String sql = "SELECT bi.billId,cu.customerName, cu.idNumber, loginAccount, bi.cost,bi.month,bi.payWay,bi.payStatus " 
-				+"FROM bill as bi "
-				+"INNER JOIN customer as cu ON bi.customerId = cu.customerId "
-				+"INNER JOIN bussiness as ad On bi.customerId = ad.customerId ";
+		String sql = "SELECT bi.billId,cu.customerName, cu.idNumber, loginAccount,"
+		+" (SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM billdetail WHERE billId = bi.billId)) as totalTime,"
+		+" bi.payWay,bi.payStatus "
+						+"FROM bill as bi "
+						+"INNER JOIN customer as cu ON bi.customerId = cu.customerId "
+						+"INNER JOIN bussiness as ad On bi.customerId = ad.customerId";
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
-		
-	/*	SELECT bi.billId,cu.customerName, cu.idNumber, loginAccount,
-		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM billdetail WHERE billId = bi.billId)) as timeLong,
-		bi.payWay,bi.payStatus 
-						FROM bill as bi 
-						INNER JOIN customer as cu ON bi.customerId = cu.customerId 
-						INNER JOIN bussiness as ad On bi.customerId = ad.customerId */
+	
 		return list;
 	}
 	/**
@@ -84,14 +80,14 @@ public class BillDaoImpl implements BillDao{
 	
 	public static void main(String[] args) {
 		BillDaoImpl billDao = new BillDaoImpl();
-		/*System.out.println(billDao.findBillForm().get(0).toString());*/
-		Object obj = billDao.findBillDetailForm(2).get(2).get("totalTime");
+		System.out.println(billDao.findBillForm());
+		/*Object obj = billDao.findBillDetailForm(2).get(2).get("totalTime");
 		if (obj.toString() == null) {
 			System.out.println(1);
 		}
 		if ("".equals(obj.toString())) {
 			System.out.println(2);
-		}
+		}*/
 	}
 	
 

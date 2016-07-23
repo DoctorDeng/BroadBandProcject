@@ -31,12 +31,25 @@ public class BillService {
 			String customerName = map.get("customerName").toString();
 			String idNumber     = map.get("idNumber").toString();
 			String loginAccount = map.get("loginAccount").toString();
-			String cost         = map.get("cost").toString();
-			String month        = map.get("month").toString();
+			String totalTime    = map.get("totalTime").toString();
 			String payWay       = map.get("payWay").toString();
 			String payStatus    = map.get("payStatus").toString();
 			
-			BillFormBean billForm = new BillFormBean(billId, customerName, idNumber, loginAccount, cost, month, payWay, payStatus);
+			int times = 0;
+			if (!"".equals(totalTime)) {
+				times = Integer.parseInt(totalTime);
+			}
+			
+			/**
+			 * 获取总的时长 时/分/秒
+			 */
+			int h = times/3600;
+			int m = (times%3600)/60;
+			int s = (times%3600)%60;
+			String timeLong    = h + "时" + m + "分" + s +"秒";
+			
+			
+			BillFormBean billForm = new BillFormBean(billId, customerName, idNumber, loginAccount, timeLong, payWay, payStatus);
 			billFormList.add(billForm);
 		}
 		return billFormList;
@@ -171,14 +184,19 @@ public class BillService {
 	
 	public static void main(String[] args) {
 		BillService bill = new BillService();
-		List<BillDetailFormBean> list = bill.getBillDetailForm(2);
+		/*List<BillDetailFormBean> list = bill.getBillDetailForm(2);
 		for (BillDetailFormBean billForm : list) {
 			System.out.println("总时长:" + billForm.getTimeLong());
 			System.out.println("资费:" + billForm.getCost());
-		}
+		}*/
 		/*System.out.println(bill.getBillDetailForm(1).size());*/
 		/*System.out.println(bill.getOsLoginForm(1).size());*/
 		/*System.out.println(bill.getBill().size());*/
+		/*List<BillFormBean> billForm = bill.getBill();
+		for (BillFormBean billFormBean : billForm) {
+			System.out.println("总时长: " + billFormBean.getTimeLong());
+		}*/
+		
 	}
 	/**
 	 * 代码备份
