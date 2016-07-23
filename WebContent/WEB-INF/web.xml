@@ -29,7 +29,6 @@
     <servlet-name>CustomerAction</servlet-name>
     <url-pattern>/CustomerAction</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ChangePasswordAction</display-name>
@@ -115,5 +114,15 @@
   <servlet-mapping>
     <servlet-name>ShowAdminMess</servlet-name>
     <url-pattern>/ShowAdminMess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BussinessAccountModiAction</display-name>
+    <servlet-name>BussinessAccountModiAction</servlet-name>
+    <servlet-class>action.BussinessAccountModiAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BussinessAccountModiAction</servlet-name>
+    <url-pattern>/BussinessAccountModiAction</url-pattern>
   </servlet-mapping>
 </web-app>
