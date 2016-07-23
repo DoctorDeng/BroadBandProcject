@@ -44,7 +44,7 @@ public class StatementAction extends HttpServlet {
 		 */
 		case "default":
 			List<StatementFormBean> statementList = statementService.getAllStatement();
-			request.setAttribute("statementListForm", statementList);
+			request.setAttribute("statementForm", statementList);
 			request.getRequestDispatcher("/report/report_list.jsp").forward(request, response);
 			break;
 		/**
@@ -52,7 +52,7 @@ public class StatementAction extends HttpServlet {
 		 */
 		case "orderByDesc":
 			List<StatementFormBean> statementListDesc = statementService.getAllStatementByDesc();
-			request.setAttribute("statementListForm", statementListDesc);
+			request.setAttribute("statementForm", statementListDesc);
 			request.getRequestDispatcher("/report/report_list.jsp").forward(request, response);
 			break;
 		}

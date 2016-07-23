@@ -6,6 +6,12 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
+        <c:set var="admin" value="${not empty sessionScope.admin}" />
+  		<c:if test="${not admin}">
+  			<script type="text/javascript">
+  				window.location.href="/lanqiao/login.jsp";
+  			</script>
+  		</c:if>
         <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
@@ -17,12 +23,12 @@
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
+  		<script type="text/javascript">
+  				window.location.href="/lanqiao/nopowr.jsp";
+  			</script>
   		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
             function changeTab(e,ulObj) {                
                 var obj = e.srcElement || e.target;
@@ -43,7 +49,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/lanqiao/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -58,9 +64,8 @@
         <div id="report_main">
         	<div class="tabs">
     	        <ul onclick="changeTab(event,this);">
-        	        <li><a href="#####" class="tab_on" title="每位客户每月的累计时长">客户使用时长</a></li>
-                    <li><a href="#####" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
-                    <li><a href="#####" class="tab_out" title="每台服务器每种资费标准的使用次数">资费使用率</a></li>
+        	        <li><a href="/lanqiao/StatementAction?operation=default" class="tab_on" title="每位客户每月的累计时长">客户使用时长</a></li>
+                    <li><a href="/lanqiao/StatementAction?operation=orderByDesc" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
                 </ul>
             </div>            
             <div class="report_box">
@@ -73,10 +78,34 @@
                             <th>客户名称</th>
                             <th class="width200">身份证号码</th>
                             <th>电话</th>
-                            <th class="width150">月份</th>
                             <th class="width150">累积时长</th>
-                        </tr>                      
-                        <tr>
+                        </tr>     
+                   <c:set var="statementForm" value="${not empty requestScope.statementForm}" />
+  					<c:if test="${not statementForm}">
+  						<tr>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  							<td>没有信息</td>
+  						</tr>
+  					</c:if>
+  					
+  						<c:forEach items="${requestScope.statementForm}" var="statement" >
+  							<tr>
+  								<td><c:out value="${statement.bussinessId}"/></td>
+  								<td><c:out value="${statement.loginAccount}"/></td>
+  								<td><c:out value="${statement.customerName}"/></td>
+  								<td><c:out value="${statement.idNumber}"/></td>
+  								<td><c:out value="${statement.phone}"/></td>
+  								<td><c:out value="${statement.timeLong}"/></td>
+  							<tr>
+  						</c:forEach>     
+                                         
+                        <!-- <tr>
                             <td>1</td>
                             <td>mary</td>
                             <td>贾强</td>
@@ -167,7 +196,7 @@
                             <td>32</td>
                             <td>221</td>
                             <td>314</td>
-                        </tr>                        
+                        </tr>   -->                      
                     </table>
                 </div>
                 <!--分页-->
