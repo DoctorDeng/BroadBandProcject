@@ -188,4 +188,14 @@
     <servlet-name>AdminInforAction</servlet-name>
     <url-pattern>/AdminInforAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServiceModiAction</display-name>
+    <servlet-name>ServiceModiAction</servlet-name>
+    <servlet-class>action.ServiceModiAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServiceModiAction</servlet-name>
+    <url-pattern>/ServiceModiAction</url-pattern>
+  </servlet-mapping>
 </web-app>
