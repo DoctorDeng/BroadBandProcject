@@ -168,4 +168,14 @@
     <servlet-name>BillAction</servlet-name>
     <url-pattern>/BillAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StatementAction</display-name>
+    <servlet-name>StatementAction</servlet-name>
+    <servlet-class>action.StatementAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StatementAction</servlet-name>
+    <url-pattern>/StatementAction</url-pattern>
+  </servlet-mapping>
 </web-app>
