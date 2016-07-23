@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="java.util.*,bean.Admin" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,27 +53,39 @@
             </ul>
         </div>
         <!--导航区域结束-->
+        <%
+           String adminId = request.getParameter("adminId");
+           Map m = null;
+           Admin admin =(Admin)session.getAttribute("admin");
+           List<Map<String, Object>> admininforList =(List<Map<String, Object>>)session.getAttribute("admininforList");
+           for(Map infor:admininforList){
+        	   if(adminId.equals(infor.get("adminId").toString())){ 
+        	      m = infor; 
+        	     
+        	   }
+        	 }
+          %>
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="" method="" class="main_form">
+            <form action="../AdminInforAction" method="post" class="main_form">
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                        <input type="text" value="张三" />
+                        <input type="text" name="adminName" value="<%=m.get("adminName").toString() %>"/>
                         <span class="required">*</span>
                         <div class="validate_msg_long error_msg">20长度以内的汉字、字母、数字的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>管理员账号：</span></div>
-                    <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="admin1"  /></div>
+                    <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="<%=admin.getAdminAccount() %>" name="adminAccount" /></div>
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
-                        <input type="text" value="13111111111"  />
+                        <input type="text" value="<%=m.get("phone").toString()%>" name="phone" />
                         <span class="required">*</span>
                         <div class="validate_msg_long error_msg">正确的电话号码格式：手机或固话</div>
                     </div>
                     <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">
-                        <input type="text" class="width200" value="aa@aa.com"/>
+                        <input type="text" class="width200" value="<%=m.get("email").toString()%>" name="email"/>
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg">50长度以内，正确的 email 格式</div>
                     </div>
@@ -80,24 +93,25 @@
                     <div class="input_info_high">
                         <div class="input_info_scroll">
                             <ul>
-                                <li><input type="checkbox" />超级管理员</li>
-                                <li><input type="checkbox" />账务账号管理员</li>
-                                <li><input type="checkbox" />业务账号管理员</li>
-                                <li><input type="checkbox" />账务账号管理员</li>
-                                <li><input type="checkbox" />业务账号管理员</li>
-                                <li><input type="checkbox" />账务账号管理员</li>
-                                <li><input type="checkbox" />业务账号管理员</li>
+                                <li><input type="checkbox" name="power" value="2" />超级管理员</li>
+                                <li><input type="checkbox" name="power" value="3"/> 资费管理员</li>
+                                <li><input type="checkbox" name="power" value="4"/> 账务账号管理员</li>
+                                <li><input type="checkbox" name="power" value="5"/> 业务账号管理员</li>
+                                <li><input type="checkbox" name="power" value="6"/> 账单管理员</li>
+                                <li><input type="checkbox" name="power" value="7"/> 报表管理员</li>
                             </ul>
                         </div>
+                        
                         <span class="required">*</span>
                         <div class="validate_msg_tiny error_msg">至少选择一个</div>
                     </div>
                     <div class="button_info clearfix">
-                        <input type="button" value="保存" class="btn_save" onclick="showResult();" />
-                        <input type="button" value="取消" class="btn_save" />
+                        <input type="submit" value="保存" class="btn_save" />
+                        <input type="reset" value="取消" class="btn_save" />
                     </div>
                 </form>  
         </div>
+        
         <!--主要区域结束-->
         <div id="footer">
            
