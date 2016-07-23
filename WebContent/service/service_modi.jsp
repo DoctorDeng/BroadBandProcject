@@ -64,7 +64,7 @@
        		    BussinessViewBean bv = null;
         		int id = Integer.parseInt(request.getParameter("id"));
         		for(BussinessViewBean sa : list){
-        			if(sa.getbussinessId() == id)
+        			if(sa.getBussinessId() == id)
         				bv = sa;
         		}
       		  %>

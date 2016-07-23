@@ -228,4 +228,14 @@
     <servlet-name>TariffOpenAction</servlet-name>
     <url-pattern>/TariffOpenAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BussinessAccountAction</display-name>
+    <servlet-name>BussinessAccountAction</servlet-name>
+    <servlet-class>action.BussinessAccountAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BussinessAccountAction</servlet-name>
+    <url-pattern>/BussinessAccountAction</url-pattern>
+  </servlet-mapping>
 </web-app>

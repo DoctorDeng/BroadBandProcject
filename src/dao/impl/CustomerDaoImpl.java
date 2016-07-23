@@ -52,7 +52,12 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public boolean del(Customer customer) {
-		// TODO Auto-generated method stub
+		String sql= "delete from customer where customerId="+customer.getCustomerId();
+		System.out.println(sql);
+		int rs = DBHelper.update(sql, null);
+		if(rs>0){
+			return true;
+		}
 		return false;
 	}
 
