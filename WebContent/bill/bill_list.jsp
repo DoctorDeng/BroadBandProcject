@@ -23,7 +23,7 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
-        <script language="javascript" type="text/javascript">
+        <!-- <script language="javascript" type="text/javascript">
             //写入下拉框中的年份和月份
             function initialYearAndMonth() {
                 //写入最近3年
@@ -41,7 +41,7 @@
                     var opObj = new Option(i, i);
                     monthObj.options[i] = opObj;
                 }
-            }
+            } -->
         </script>
     </head>
     <body onload="initialYearAndMonth();">
