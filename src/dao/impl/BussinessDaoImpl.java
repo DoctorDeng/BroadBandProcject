@@ -60,7 +60,14 @@ public class BussinessDaoImpl implements BussinessDao{
 		return false;
 	}
 	
-	public boolean update(Bussiness business){
+	public boolean update(Bussiness bussiness){
+		String sql= "update bussiness set loginAccount='"+bussiness.getLoginAccount()+"',password='"+bussiness.getPassword()+
+				"' where bussinessId="+bussiness.getBussinessId();
+		String[] fields = null;
+		int rs = DBHelper.update(sql, fields);
+		if(rs>0){
+			return true;
+		}
 		return false;
 	}
 
@@ -69,5 +76,14 @@ public class BussinessDaoImpl implements BussinessDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/*public static void main(String[] args){
+		Bussiness c = new Bussiness();
+		c.setBussinessId(25);
+		c.setCreateTime("2000-11-11 12:12:12");
+		c.setLoginAccount("hahahha");
+		c.setPassword("999999999");
+		new BussinessDaoImpl().update(c);
+	}*/
 	
 }

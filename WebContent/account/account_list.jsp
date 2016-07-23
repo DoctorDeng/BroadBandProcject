@@ -1,3 +1,4 @@
+<%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@page import="service.AccountService"%>
 <%@page import="bean.viewBean.AccountViewBean"%>
 <%@page import="dao.impl.AccountViewDaoImpl"%>
@@ -104,6 +105,7 @@
                     	currentPage = 1;
                     }                           
                     List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
+					session.setAttribute("l", l);
                     for(AccountViewBean a:l){
                     %>
                     <tr>

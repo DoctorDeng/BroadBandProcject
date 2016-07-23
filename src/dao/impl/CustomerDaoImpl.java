@@ -58,8 +58,15 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public boolean update(Customer customer) {
-		// TODO Auto-generated method stub
-		return false;
+		String sql  = "update customer set customerName='"+customer.getCustomerName()+
+		"',idNumber="+customer.getIdNumber()+",phone="+customer.getPhone()+
+		" where customerId="+customer.getCustomerId();
+		System.out.println(sql);
+		int i = 0;
+		String[] fields = null;
+		i = DBHelper.update(sql, fields);
+		if(i < 1) return false;
+		else return true;
 	}
 	
 	public Customer findByIdNumber(String idNumber){
@@ -73,6 +80,13 @@ public class CustomerDaoImpl implements CustomerDao {
 		return c;
 	}
 	
-	
+	/*public static void main(String[] args){
+		Customer c = new Customer();
+		c.setCustomerId(16);
+		c.setCustomerName("哈哈");
+		c.setIdNumber("1111111111111111");
+		c.setPhone("18186323116");
+		new CustomerDaoImpl().update(c);
+	}*/
 	
 }
