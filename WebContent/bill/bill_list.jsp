@@ -33,7 +33,7 @@
         <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
             //写入下拉框中的年份和月份
-            function initialYearAndMonth() {
+       /*      function initialYearAndMonth() {
                 //写入最近3年
                 var yearObj = document.getElementById("selYears");
                 var year = (new Date()).getFullYear();
@@ -49,14 +49,14 @@
                     var opObj = new Option(i, i);
                     monthObj.options[i] = opObj;
                 }
-            }
+            } */
         </script>
     </head>
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
         <div id="header">
             <img src="/lanqiao/images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
+            <a href="# ">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
@@ -74,14 +74,14 @@
                     <div>身份证：<input type="text"  value="230101111111111111" class="text_search" /></div>
                     <div>账务账号：<input type="text" value="admin1" class="width100 text_search" /></div>                            
                     <div>姓名：<input type="text" value="张三" class="width70 text_search" /></div>
-                    <div>
+           <!--          <div>
                         <select class="select_search" id="selYears">
                         </select>
                         年
                         <select class="select_search" id="selMonths">
                         </select>
                         月
-                    </div>
+                    </div> -->
                     <div><input type="button" value="搜索" class="btn_search" /></div>
                 </div>  
                 <!--数据区域：用表格展示数据-->     
