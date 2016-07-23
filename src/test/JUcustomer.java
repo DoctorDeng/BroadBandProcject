@@ -31,7 +31,7 @@ public class JUcustomer {
 	@Test
 	public void testCustomerIdUtil() {
 		CustomerManage ci =new CustomerManage();
-		System.out.println(ci.customerIdUtil().getCustomerId());
+		
 	}
 
 }

@@ -18,6 +18,6 @@ public interface BussinessViewDao {
 	/**
 	 * 业务界面用身份证查询账务账号
 	 */
-	public List<ServiceAddViewBean> find();
+	public List<ServiceAddViewBean> find(ServiceAddViewBean serviceAddViewBean);
 }
 

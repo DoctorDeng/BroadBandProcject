@@ -23,7 +23,7 @@
   		</c:if> --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
-        <script language="javascript" type="text/javascript">
+       	<script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
                 showResultDiv(true);
@@ -41,6 +41,11 @@
             function searchAccounts(txtObj) {
                 //document.getElementById("a1").innerHTML = txtObj.value;
             }
+            
+            function selIdNumber() {
+				var idNumber = document.getElementById('idNumber').value;
+				window.location.href = "../ServiceShowAction?idNumer="+idNumber;
+			}
         </script>
     </head>
     <body>
@@ -61,12 +66,12 @@
         <div id="main">
             <!--保存操作的提示信息-->
             <div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过 OS 账号 “mary”。</div>
-            <form action="../ServiceAddAction" method="post" class="main_form">
+            <form action="" method="post" class="main_form">
                 <!--内容项-->
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" value="查询出的结果写入账务账号" class="width180" name= "customerId"/>
-                    <input type="button" value="查询账务账号" class="btn_search_large" />
+                    <input type="text" class="width180" id= "idNumber"/>
+                    <input type="button"  class="btn_search_large" onclick="selIdNumber()"/>
                     <span class="required">*</span>
                     <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
                 </div>
@@ -118,7 +123,6 @@
         </div>
         <!--主要区域结束-->
         <div id="footer">
-          
         </div>
     </body>
 </html>

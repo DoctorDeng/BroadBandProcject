@@ -61,7 +61,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public boolean add(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub
 			CustomerManage customerM = new CustomerManage();
-			Customer customer = customerM.customerIdUtil();
+			Customer customer = new Customer();
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
@@ -79,12 +79,18 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			else return true;
 	}
 	@Override
-	public List<ServiceAddViewBean> find() {
+	public List<ServiceAddViewBean> find(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub
 		List<ServiceAddViewBean> siew = new ArrayList<ServiceAddViewBean>();
-		String sql = "SELECT admininfor.adminId, customer.customerId FROM admininfor ,customer";
+		ServiceAddViewBean sab = new ServiceAddViewBean();
+		String sql = "SELECT a.adminId, c.customerId FROM customer AS c , admininfor AS a "
+				+ " WHERE "
+				+ " c.idNumber = ? AND "
+				+ " c.idNumber = a.idNumber" ;
+		//System.out.println(sql);
 		try{
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, sab.getIdNumber());
 			rs = ps.executeQuery();
 			while(rs.next()){
 				ServiceAddViewBean svb = new ServiceAddViewBean();
@@ -96,7 +102,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		}catch(SQLException se){
 			se.printStackTrace();
 		}
-		
 		return siew;
 	}
 
