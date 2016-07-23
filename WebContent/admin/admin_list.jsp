@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="dao.impl.AdminInforDaoImpl"%>
+<%@page import="java.util.*,bean.AdminInfor,bean.Admin"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -91,14 +93,16 @@
                     <input type="button" value="密码重置" class="btn_add" onclick="resetPwd();" />
                     <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />
                 </div>
+                
                 <!--删除和密码重置的操作提示-->
                 <div id="operate_result_info" class="operate_fail">
                     <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
                     <span>删除失败！数据并发错误。</span><!--密码重置失败！数据并发错误。-->
                 </div> 
+                
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
-                    <table id="datalist">
+                    <table id="datalist">             
                         <tr>
                             <th class="th_select_all">
                                 <input type="checkbox" onclick="selectAdmins(this);" />
@@ -106,177 +110,49 @@
                             </th>
                             <th>管理员ID</th>
                             <th>姓名</th>
-                            <th>登录名</th>
                             <th>电话</th>
                             <th>电子邮件</th>
                             <th>授权日期</th>
-                            <th class="width100">拥有角色</th>
+                            <!-- <th class="width100">拥有角色</th> -->
                             <th></th>
-                        </tr>                      
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>
+                        </tr>  
+                        <%                
+                       /*  int currentPage = 0;
+                        String c = request.getParameter("currentPage");
+                        if(c!=""&&c!=null){
+                        	currentPage = Integer.parseInt(c);
+                        } else{
+                        	currentPage = 1;
+                        }  */
+                        
+                        AdminInforDaoImpl adminInfor = new AdminInforDaoImpl();
+                        List<Map<String, Object>> admininforList = adminInfor.findAll(); 
+                        session.setAttribute("admininforList", admininforList);
+                        for(Map infor:admininforList){              	
+                        %>
+                              
+                         <tr>
+                            <td><input type="checkbox" name="choose"/></td>              
+                            <td><%=infor.get("adminId").toString()%></td>
+                            <td><%=infor.get("adminName").toString()%></td>
+                            <td><%=infor.get("phone").toString()%></td>
+                            <td><%=infor.get("email").toString()%></td>                 
+                            <td><%=infor.get("createTime").toString()%></td> 
+                            
+                            <!-- <td>
                                 <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员...</a>
-                                <!--浮动的详细信息-->
+                                浮动的详细信息
                                 <div class="detail_info">
                                     超级管理员，角色管理员，账单管理员，报表管理员，业务账号管理员，账务账号管理员，aa，bb
                                 </div>
-                            </td>
+                            </td> -->
                             <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=<%=infor.get("adminId").toString()%>';" />
                                 <input type="button" value="删除" class="btn_delete" onclick="deleteAdmin();" />
                             </td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>2</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>
-                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员...</a>
-                                <!--浮动的详细信息-->
-                                <div class="detail_info">
-                                    超级管理员，角色管理员
-                                </div>
-                            </td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" onclick="deleteAdmin();" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>3</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>
-                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员...</a>
-                                <!--浮动的详细信息-->
-                                <div class="detail_info">
-                                    超级管理员，角色管理员，账单管理员，报表管理员，业务账号管理员，账务账号管理员
-                                </div>
-                            </td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>4</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>
-                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员</a>
-                                <!--浮动的详细信息-->
-                                <div class="detail_info">
-                                    超级管理员
-                                </div>
-                            </td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>5</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>超级管理员</td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>6</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>超级管理员</td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>7</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>超级管理员</td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>8</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>超级管理员</td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>9</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>超级管理员</td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>10</td>
-                            <td>贾强</td>
-                            <td>admin</td>
-                            <td>13077332357</td>
-                            <td>jiaqiang123@qq.com.cn</td>
-                            <td>2011-31-12</td>
-                            <td>超级管理员</td>
-                            <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
+                       <%} %>
+         
                     </table>
                 </div>
                 <!--分页-->
