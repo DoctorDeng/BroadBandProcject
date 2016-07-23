@@ -126,7 +126,7 @@
                     </table>
                 </div>
                 <!--分页-->
-                <div id="pages">
+                <<!-- div id="pages">
         	        <a href="#">上一页</a>
                     <a href="#" class="current_page">1</a>
                     <a href="#">2</a>
@@ -134,7 +134,7 @@
                     <a href="#">4</a>
                     <a href="#">5</a>
                     <a href="#">下一页</a>
-                </div>                    
+                </div>  -->                   
             </form>
         </div>
         <!--主要区域结束-->
