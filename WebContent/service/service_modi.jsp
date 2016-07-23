@@ -58,14 +58,14 @@
         <div id="main">
             <!--保存操作的提示信息-->
             <div id="save_result_info" class="save_fail">资费修改失败！数据并发错误。</div>
-            <form action="#" method="" class="main_form">
+            <form action="" method="" class="main_form">
                 <!--必填项-->
                <%
         		List<BussinessViewBean> list = (List<BussinessViewBean>)session.getAttribute("lv");
        		    BussinessViewBean bv = null;
         		int id = Integer.parseInt(request.getParameter("id"));
         		for(BussinessViewBean sa : list){
-        			if(sa.getAdminId() == id)
+        			if(sa.getbussinessId() == id)
         				bv = sa;
         		}
       		  %>
@@ -75,20 +75,19 @@
                 </div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="<%=bv.getOsAccount() %>" readonly class="readonly" />
+                    <input type="text" name= "osAccount" value="<%=bv.getOsAccount() %>" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input type="text" value="<%=bv.getServerId() %>" readonly class="readonly" />
+                    <input name = "serverId" type="text" value="<%=bv.getServerId() %>" readonly class="readonly" />
                 </div>
-                <div class="text_info clearfix"><span>资费类型：</span></div>
+                <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select class="width150">
-                        <option>包 20 小时</option>
-                        <option>包 40 小时</option>
-                        <option>包 60 小时</option>
-                        <option>包月</option>
-                    </select>
+                    <select name = "traiffName" class="width150" value = "<%=bv.getTraiffName()%>">
+                        <option value= "1">包月</option>
+                        <option value= "2">套餐</option>
+                        <option value= "3">计时</option>
+                    </select> 
                     <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>                      
                 </div>
                 <!--操作按钮-->
