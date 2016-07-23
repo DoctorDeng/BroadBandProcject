@@ -198,4 +198,14 @@
     <servlet-name>ServiceModiAction</servlet-name>
     <url-pattern>/ServiceModiAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffAddAction</display-name>
+    <servlet-name>TariffAddAction</servlet-name>
+    <servlet-class>action.TariffAddAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffAddAction</servlet-name>
+    <url-pattern>/TariffAddAction</url-pattern>
+  </servlet-mapping>
 </web-app>

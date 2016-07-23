@@ -1,3 +1,6 @@
+<%@page import="service.TariffService"%>
+<%@page import="bean.Tariff"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -16,11 +19,11 @@
   			</c:choose>
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
+  		<%-- <c:if test="${hasPower==false}">
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if>
+  		</c:if> --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <script language="javascript" type="text/javascript">
@@ -61,7 +64,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="../TariffOpenAction" method="post">
                 <!--排序-->
                 <div class="search_add">
                     <div>
@@ -89,34 +92,28 @@
                             <th>开通时间</th>
                             <th class="width50">状态</th>
                             <th class="width200"></th>
-                        </tr>                      
+                        </tr>   
+                        <%
+                             TariffService tm = new TariffService();
+                             List<Tariff> tv = tm.getShowMessage();
+                             for(Tariff sv:tv){
+                        %>                   
                         <tr>
-                            <td>1</td>
-                            <td><a href="fee_detail.jsp">包 20 小时</a></td>
-                            <td>20 小时</td>
-                            <td>24.50 元</td>
-                            <td>3.00 元/小时</td>
-                            <td>2013/01/01 00:00:00</td>
-                            <td></td>
-                            <td>暂停</td>
+                            <td><%=sv.getTariffId() %></td>
+                            <td><a href="fee_detail.jsp"><%=sv.getTariffName() %></a></td>
+                            <td><%=sv.getTimeLong() %></td>
+                            <td><%=sv.getTariff() %></td>
+                            <td><%=sv.getTimeTariff() %></td>
+                            <td><%=sv.getCreateTime() %></td>
+                            <td><%=sv.getOpenTime() %></td>
+                            <td><%=sv.getStatus() %></td>
                             <td>                                
                                 <input type="button" value="启用" class="btn_start" onclick="startFee();" />
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.jsp';" />
                                 <input type="button" value="删除" class="btn_delete" onclick="deleteFee();" />
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><a href="fee_detail.jsp">包 40 小时</a></td>
-                            <td>40 小时</td>
-                            <td>40.50 元</td>
-                            <td>3.00 元/小时</td>
-                            <td>2013/01/21 00:00:00</td>
-                            <td>2013/01/23 00:00:00</td>
-                            <td>开通</td>
-                            <td>                                
-                            </td>
-                        </tr>
+                        <%} %>
                     </table>
                     <p>业务说明：<br />
                     1、创建资费时，状态为暂停，记载创建时间；<br />
