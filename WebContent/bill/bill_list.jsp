@@ -136,16 +136,35 @@
                     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
         	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
                     
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">1</a>
-                    <c:set var="pageList" value="${requestScope.page.endPage-requestScope.page.currentPage}" />
+                   <%--  <c:set var="pageList" value="${requestScope.page.endPage-requestScope.page.currentPage}" />
                     <c:if test="${pageList>0}" >
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">
+                    	${requestScope.page.currentPage}
+                    </a>
+                    	<c:forEach var="i" begin="1" end="${pageList}" step="1">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
+                    			<c:out value="${requestScope.page.currentPage + i}" />
+                    		</a>
+                   	    </c:forEach>
                     </c:if>
-                    <c:forEach var="i" begin="1" end="${pageList}" step="1">
-                    	<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
-                    		<c:out value="${requestScope.page.currentPage + i}" />
+                    <c:if test="${pageList<=0}" >
+                    	<c:forEach var="i" begin="0" end="${pageList}" step="1">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
+                    			<c:out value="${requestScope.page.currentPage + i}" />
+                    		</a>
+                   	    </c:forEach>
+                   	     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">
+                    		${requestScope.page.currentPage}
                     	</a>
+                    </c:if> --%>
+                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    	<c:if test="${i == requestScope.page.currentPage}">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
+                    	</c:if>
+                    	<c:if test="${i != requestScope.page.currentPage}">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
+                    	</c:if>
                     </c:forEach>
-                    
                     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
                     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
                 </div>                    
