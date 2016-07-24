@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import service.AccountService;
 /**
  * Servlet implementation class BussinessAccountModiAction
  */
+@WebServlet(name="BussinessAccountModiAction",urlPatterns="/BussinessAccountModiAction")
 public class BussinessAccountModiAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
