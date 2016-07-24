@@ -60,7 +60,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		return view;
 	}
 	@Override
-	public boolean add(ServiceAddViewBean serviceAddViewBean) {
+	public int add(ServiceAddViewBean serviceAddViewBean) {
 			
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
@@ -71,12 +71,12 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				ps.setString(3, serviceAddViewBean.getOsAccount());
 				ps.setString(4, serviceAddViewBean.getOsPassword());
 				ps.setString(5, serviceAddViewBean.getServerId());
-				i = ps.executeUpdate();		
+				i = ps.executeUpdate();	
+				return i;
 			}catch(SQLException se){
 				se.printStackTrace();
 			}
-			if(i == 0) return false;
-			else return true;
+			return i;
 	}
 	@Override
 	public List<ServiceAddViewBean> find(ServiceAddViewBean serviceAddViewBean) {
