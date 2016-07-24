@@ -1,9 +1,9 @@
 package service.impl;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
-import service.professionService;
+import service.ProfessionService;
 
-public class professionServiceImpl implements professionService {
+public class ProfessionServiceImpl implements ProfessionService {
 	@Override
 	public boolean addService(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub

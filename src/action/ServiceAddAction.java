@@ -12,7 +12,7 @@ import javax.websocket.Session;
 import bean.Customer;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
-import service.impl.professionServiceImpl;
+import service.impl.ProfessionServiceImpl;
 
 /**
  * Servlet implementation class ServiceAddAction
@@ -43,7 +43,7 @@ public class ServiceAddAction extends HttpServlet {
 		String traiffId = request.getParameter("traiffId");
 		sab.setTariffId(Integer.parseInt(traiffId));
 		sab.setServerId(request.getParameter("serverIp"));
-		boolean succiess = new professionServiceImpl().addService(sab);
+		boolean succiess = new ProfessionServiceImpl().addService(sab);
 		if(succiess){
 			response.sendRedirect("ServiceMainAction");
 		}

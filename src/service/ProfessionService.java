@@ -2,7 +2,7 @@ package service;
 
 import bean.viewBean.ServiceAddViewBean;
 
-public interface professionService {
+public interface ProfessionService {
 	/**
 	 * 增加业务完成之后进行跳转
 	 */
