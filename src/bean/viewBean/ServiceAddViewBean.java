@@ -8,6 +8,8 @@ public class ServiceAddViewBean {
 	private int osLoginId;    //宽带账号登录ID
 	private String osPassword;     //宽带账号密码
 	private int customerId;   //客户ID
+	private String osAccount;     //宽带账号
+	private int tariffId;    //资费ID
 	public String getIdNumber() {
 		return idNumber;
 	}
@@ -49,6 +51,18 @@ public class ServiceAddViewBean {
 	}
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
+	}
+	public String getOsAccount() {
+		return osAccount;
+	}
+	public void setOsAccount(String osAccount) {
+		this.osAccount = osAccount;
+	}
+	public int getTariffId() {
+		return tariffId;
+	}
+	public void setTariffId(int tariffId) {
+		this.tariffId = tariffId;
 	}
 	
 }

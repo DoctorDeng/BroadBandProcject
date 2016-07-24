@@ -5,7 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
+import bean.Customer;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 
@@ -28,14 +31,16 @@ public class ServiceAddAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session =request.getSession();
+		Customer customer = (Customer) session.getAttribute("customer");
 		ServiceAddViewBean  sab = new ServiceAddViewBean();
-		sab.setAdminId(Integer.parseInt(request.getParameter("adminId")));
-		sab.setCustomerId(Integer.parseInt(request.getParameter("customerId")));
-		sab.setOsLoginId(Integer.parseInt(request.getParameter("osLoginId")));
-		sab.setIdNumber(request.getParameter("idNumber"));
+		sab.setCustomerId(customer.getCustomerId());
+		String osAccount = request.getParameter("osAccount");
+		sab.setOsLoginId(Integer.parseInt(osAccount));
 		sab.setOsPassword(request.getParameter("osPassword"));
-		sab.setTraiffName(request.getParameter("traiffName"));
-		sab.setServerId(request.getParameter("serverId"));
+		String traiffId = request.getParameter("traiffId");
+		sab.setTariffId(Integer.parseInt(traiffId));
+		sab.setServerId(request.getParameter("serverIp"));
 		BussinessViewBeanDaoImpl bbdi = new BussinessViewBeanDaoImpl();
 		boolean succiess = bbdi.add(sab);
 	}

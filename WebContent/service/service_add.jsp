@@ -64,7 +64,7 @@
         <div id="main">
             <!--保存操作的提示信息-->
             <div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过 OS 账号 “mary”。</div>
-            <form action="" method="post" class="main_form">
+            <form action="../ServiceAddAction" method="post" class="main_form">
                 <!--内容项-->
                	 <div class="text_info clearfix"><span>身份证：</span></div>   
                  <div class="input_info">       
@@ -83,7 +83,7 @@
 
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info">
-                    <select name = "traiffName">
+                    <select name = "traiffId">
                         <option value= "1">包月</option>
                         <option value= "2">套餐</option>
                         <option value= "3">计时</option>

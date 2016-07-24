@@ -59,17 +59,16 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	}
 	@Override
 	public boolean add(ServiceAddViewBean serviceAddViewBean) {
-			CustomerService customerService = new CustomerService();
 			
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
 				ps = conn.prepareStatement(sql);
-				ps.setInt(1, customer.getCustomerId());
+				ps.setInt(1, serviceAddViewBean.getCustomerId());
 				ps.setString(2,serviceAddViewBean.getTraiffName());
-				ps.setString(3, serviceAddViewBean.getTraiffName());
-				ps.setInt(4, serviceAddViewBean.getOsLoginId());
-				ps.setString(5, serviceAddViewBean.getOsPassword());
+				ps.setString(3, serviceAddViewBean.getOsAccount());
+				ps.setString(4, serviceAddViewBean.getOsPassword());
+				ps.setString(5, serviceAddViewBean.getServerId());
 				i = ps.executeUpdate();		
 			}catch(SQLException se){
 				se.printStackTrace();

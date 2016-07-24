@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import bean.Customer;
@@ -45,7 +46,8 @@ public class ServiceShowAction extends HttpServlet {
 			out.println(sav.getAdminId());
 			Customer customer = new Customer();
 			customer.setCustomerId(sav.getCustomerId());
-			
+			HttpSession session = request.getSession();
+			session.setAttribute("customer", customer);
 		}
 		out.close();
 	}
