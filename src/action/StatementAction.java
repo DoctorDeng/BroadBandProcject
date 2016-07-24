@@ -80,6 +80,8 @@ public class StatementAction extends HttpServlet {
 		case "default":
 			List<StatementFormBean> statementList = statementService.getStatementPage(currentPage,pageSize);
 			request.setAttribute("statementForm", statementList);
+			request.setAttribute("page", page);
+			request.setAttribute("operation", "default");
 			request.getRequestDispatcher("/report/report_list.jsp").forward(request, response);
 			break;
 		/**
@@ -88,6 +90,8 @@ public class StatementAction extends HttpServlet {
 		case "orderByDesc":
 			List<StatementFormBean> statementListDesc = statementService.getStatementPageByDesc(currentPage,pageSize);
 			request.setAttribute("statementForm", statementListDesc);
+			request.setAttribute("page", page);
+			request.setAttribute("operation", "orderByDesc");
 			request.getRequestDispatcher("/report/report_list.jsp").forward(request, response);
 			break;
 		}
