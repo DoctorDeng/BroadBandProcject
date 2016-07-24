@@ -127,6 +127,9 @@
                     </table> -->
                 </div>
                 <!--分页-->
+                <c:choose>
+                	<c:when test="${operation == 'default'}">
+                		 
                 <div id="pages">
                     <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
         	        <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
@@ -141,6 +144,40 @@
                     <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.nextPage}">下一页</a>
                     <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.endPage}">末页</a>
                 </div>
+                	</c:when>
+                	<c:when test="${operation == 'orderByDesc'}">
+                		 
+                <div id="pages">
+                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.upPage}">上一页</a>
+                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    	<c:if test="${i == requestScope.page.currentPage}">
+                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
+                    	</c:if>
+                    	<c:if test="${i != requestScope.page.currentPage}">
+                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
+                    	</c:if>
+                    </c:forEach>
+                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
+                </div>
+                	</c:when>
+                </c:choose>
+                
+                <%-- <div id="pages">
+                    <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
+                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    	<c:if test="${i == requestScope.page.currentPage}">
+                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
+                    	</c:if>
+                    	<c:if test="${i != requestScope.page.currentPage}">
+                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
+                    	</c:if>
+                    </c:forEach>
+                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
+                </div> --%>
             </div>
         </div>
         <!--主要区域结束-->
