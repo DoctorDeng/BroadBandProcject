@@ -1,6 +1,8 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import bean.Admin;
 import bean.AdminInfor;
@@ -92,5 +94,23 @@ public class AdminService {
 		return adminInforDao.updateAdminInfor(adminInfor);
 	}
 	
-	public List<Map>
+	public List<Map<String,Object>> getAllAdminInfor() {
+		List<Map<String,Object>> list = adminDao.findAllAdminInfor();
+		List<Map<String,Object>> adminList = new ArrayList<>();
+		
+		for (Map map : list) {
+			String powerListStr = map.get("powerList").toString();
+			String[] powerList = powerListStr.split(",");
+			map.put("powerList", powerList);
+		}
+		return list;
+	}
+	
+	public static void main(String[] args) {
+		AdminService adminService = new AdminService();
+		String[] str = (String[])adminService.getAllAdminInfor().get(0).get("powerList");
+		for (String s:str) {
+			System.out.println(s);
+		}
+	}
 }
