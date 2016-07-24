@@ -110,7 +110,7 @@
                             <td>                                
                                 <input type="submit" value="启用" class="btn_start" onclick="location.href='/lanqiao/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="deleteFee();" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="location.href='/lanqiao/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             </td>
                         </tr>
                         <%} %>

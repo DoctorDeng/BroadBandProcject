@@ -87,6 +87,7 @@ public class TariffDaoImpl implements TariffDao {
 		String sql = "UPDATE tariff SET openTime=now(),status='1' WHERE tariffId=?";
 		String[] fields = {String.valueOf(tariffId)};
 		int result = DBHelper.update(sql, fields);
+		System.out.println(sql);
 		if (result==0) {
 			return false;
 		}

@@ -278,4 +278,14 @@
     <servlet-name>UpdateAdminInfor</servlet-name>
     <url-pattern>/UpdateAdminInfor</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffDelAction</display-name>
+    <servlet-name>TariffDelAction</servlet-name>
+    <servlet-class>action.TariffDelAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffDelAction</servlet-name>
+    <url-pattern>/TariffDelAction</url-pattern>
+  </servlet-mapping>
 </web-app>
