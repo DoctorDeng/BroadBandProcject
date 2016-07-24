@@ -65,7 +65,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			try{
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, serviceAddViewBean.getCustomerId());
-				ps.setString(2,serviceAddViewBean.getTraiffName());
+				ps.setInt(2,serviceAddViewBean.getTariffId());
 				ps.setString(3, serviceAddViewBean.getOsAccount());
 				ps.setString(4, serviceAddViewBean.getOsPassword());
 				ps.setString(5, serviceAddViewBean.getServerId());

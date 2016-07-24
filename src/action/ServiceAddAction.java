@@ -35,10 +35,11 @@ public class ServiceAddAction extends HttpServlet {
 		Customer customer = (Customer) session.getAttribute("customer");
 		ServiceAddViewBean  sab = new ServiceAddViewBean();
 		sab.setCustomerId(customer.getCustomerId());
-		String osAccount = request.getParameter("osAccount");
-		sab.setOsLoginId(Integer.parseInt(osAccount));
+		System.out.println(customer.getCustomerId());
+		sab.setOsAccount(request.getParameter("osAccount"));
 		sab.setOsPassword(request.getParameter("osPassword"));
 		String traiffId = request.getParameter("traiffId");
+		System.out.println(traiffId);
 		sab.setTariffId(Integer.parseInt(traiffId));
 		sab.setServerId(request.getParameter("serverIp"));
 		BussinessViewBeanDaoImpl bbdi = new BussinessViewBeanDaoImpl();
