@@ -24,8 +24,8 @@
   			response.sendRedirect("../nopower.jsp");
   		%>
   		</c:if> --%>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             //排序按钮的点击事件
             function sort(btnObj) {
