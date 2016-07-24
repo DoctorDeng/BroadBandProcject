@@ -50,7 +50,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="<%=request.getContextPath() %>/images/logo.png" alt="logo" class="left"/>
 			<span>当前账号：<b>scott</b></span>
             <a href="#">[退出]</a>            
         </div>
@@ -76,7 +76,7 @@
                 </div> 
                 <!--启用操作的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
+                    <img src="<%=request.getContextPath() %>/images/close.png" onclick="this.parentNode.style.display='none';" />
                     删除成功！
                 </div>    
                 <!--数据区域：用表格展示数据-->     

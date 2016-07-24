@@ -96,11 +96,11 @@ public class TariffDaoImpl implements TariffDao {
 	
 	
 	public static void main(String[] args) {
-		TariffDaoImpl tariffDao = new TariffDaoImpl();
+		//TariffDaoImpl tariffDao = new TariffDaoImpl();
 //		Tariff tariff = new Tariff(3, "包月", 30, 5, 30.00,"2", "3", "没有");
 		/*Tariff tariff = new Tariff("doctor",20,20,3,"1","1","哈哈哈");
 		System.out.println(tariffDao.add(tariff));*/
 //		System.out.println(tariffDao.findAll().size());
-		System.out.println(tariffDao.startUsingTariff(3));
+		//System.out.println(tariffDao.startUsingTariff(3));
 	}
 }
