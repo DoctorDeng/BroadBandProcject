@@ -26,7 +26,7 @@
   				
   				<c:choose>
   					<c:when test="${power==5}">
-                		<li><a href="/lanqiao/service/service_list.jsp" class="service_off"></a></li>
+                		<li><a href="/lanqiao/ServiceMainAction" class="service_off"></a></li>
   					</c:when>
   				</c:choose>
   				
