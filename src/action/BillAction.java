@@ -72,6 +72,7 @@ public class BillAction extends HttpServlet {
 	  		page.setEndPage(endPage);
 	  		page.setNextPage(nextPage);
 	  		page.setUpPage(upPage);
+	  		page.setCurrentPage(currentPage);
 	  		
 	  		List<BillFormBean> billFormList = billService.getBillFormByPage((currentPage-1)*pageSize, pageSize);
 	  		request.setAttribute("billForm", billFormList);
