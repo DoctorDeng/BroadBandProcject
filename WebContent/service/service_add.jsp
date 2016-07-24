@@ -23,7 +23,7 @@
   		</c:if> --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
-        <script type="text/javascript" src="../js/jquery-1.12.4"></script>
+        <script type="text/javascript" src="../js/jquery.js"></script>
        	<script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -50,7 +50,7 @@
             		}else{
             			$.ajax({
             				url:'../ServiceShowAction',
-            				date:{"idNumber": id},
+            				date:{"id": id},
             				success:function(result){
             					$("#adminId").val(result)           		
             				}
