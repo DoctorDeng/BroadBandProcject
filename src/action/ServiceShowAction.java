@@ -30,8 +30,9 @@ public class ServiceShowAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
 		ServiceAddViewBean savb =new ServiceAddViewBean();
-		String idNumber = request.getParameter("id");
+		String idNumber = request.getParameter("idNumber");
 		savb.setIdNumber(idNumber);
 		System.out.println(request.getParameter("idNumber"));
 		BussinessViewBeanDaoImpl bvbdi = new BussinessViewBeanDaoImpl();

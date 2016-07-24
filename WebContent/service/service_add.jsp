@@ -23,6 +23,7 @@
   		</c:if> --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <script type="text/javascript" src="../js/jquery-1.12.4"></script>
        	<script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -41,12 +42,23 @@
             function searchAccounts(txtObj) {
                 //document.getElementById("a1").innerHTML = txtObj.value;
             }
-            
-            function selIdNumber() {
-				//var idNumber = document.getElementById('idNumber');
-				//alert(idNumber);
-				window.location.href = "../ServiceShowAction?id="document.getElementById('idNumber').value;
-			}
+            $(function(){
+            	$("#showId").click(function(){
+            		var id = $("idNumber").val();
+            		if(""==id){
+            			
+            		}else{
+            			$.ajax({
+            				url:'../ServiceShowAction',
+            				date:{"idNumber": id},
+            				success:function(result){
+            					$("#adminId").val(result)           		
+            				}
+            			})
+            		}
+            	})
+            });
+           
         </script>
     </head>
     <body>
@@ -72,13 +84,13 @@
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
                     <input type="text" class="width180" id="idNumber"/>
-                    <input type="submit"  class="btn_search_large" value= "查询账务账号" onclick="selIdNumber(); return false;"/>
+                    <input type="button"  id="showId" class="btn_search_large" value= "查询账务账号" />
                     <span class="required">*</span>
                     <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
                 </div>
                 <div class="text_info clearfix"><span>账务账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="zhangsan1" onkeyup="searchAccounts(this);" />
+                    <input type="text" id = "adminId" onkeyup="searchAccounts(this);" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">没有此账务账号，请重新录入。</div>
                 </div>

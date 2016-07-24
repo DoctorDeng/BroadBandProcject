@@ -24,7 +24,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public List<BussinessViewBean> findAll() {
 		// TODO Auto-generated method stub 
 		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
-		String sql = " SELECT bussiness.bussinessId, admininfor.adminId,customer.idNumber,customer.customerName,os.osAccount,bussiness.`status`,os.serverIp,tariff.tariffId "
+		String sql = " SELECT bussiness.bussinessId, admininfor.adminId,customer.idNumber,customer.customerName,os.osAccount,bussiness.status,os.serverIp,tariff.tariffId "
 				+ " FROM  "
 				+ " bussiness,"
 				+ " admininfor,"
