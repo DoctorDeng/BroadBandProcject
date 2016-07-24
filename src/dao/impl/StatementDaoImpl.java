@@ -73,4 +73,25 @@ public class StatementDaoImpl {
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
 		return list;
 	}
+	/**
+	 * 获取报表信息总数量
+	 * @return
+	 */
+	public int getStatementCount() {
+		String sql = "select bussinessId,count(*) as count "
+				+"FROM bussiness as bu "
+				+"INNER JOIN customer as cu "
+				+"ON cu.customerId = bu.customerId";
+
+		List<Map<String,Object>> list = DBHelper.find(sql, null);
+		
+		if (list.size()<1) {
+			return 0;
+		}
+		return Integer.parseInt(list.get(0).get("count").toString());
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new StatementDaoImpl().getStatementCount());
+	}
 }

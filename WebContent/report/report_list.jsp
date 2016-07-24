@@ -104,81 +104,8 @@
   								<td><c:out value="${statement.timeLong}"/></td>
   							<tr>
   						</c:forEach>     
-                                         
-                        <!-- <tr>
-                            <td>1</td>
-                            <td>mary</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>13987654345</td>
-                            <td>2013年1月</td>
-                            <td>16小时32分</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>mary</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>13987654345</td>
-                            <td>2013年2月</td>
-                            <td>16小时32分</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>mary</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>13987654345</td>
-                            <td>2013年3月</td>
-                            <td>16小时32分</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>tony</td>
-                            <td>真真</td>
-                            <td>220222020202020202</td>
-                            <td>13987654345</td>
-                            <td>2013年1月</td>
-                            <td>16小时32分</td>
-                        </tr>
                     </table>
-                    <table id="datalist1" style="display:none;">
-                        <tr>                            
-                            <th class="width300">Unix 服务器IP</th>
-                            <th>账务帐号</th>
-                            <th>客户名称</th>
-                            <th class="width200">身份证号码</th>
-                            <th class="width150">累积时长</th>
-                        </tr>                      
-                        <tr>
-                            <td>192.168.0.20</td>
-                            <td>mary</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>106小时32分</td>
-                        </tr>
-                        <tr>
-                            <td>192.168.0.20</td>
-                            <td>tony</td>
-                            <td>米奇</td>
-                            <td>220222020202020202</td>
-                            <td>96小时32分</td>
-                        </tr><tr>
-                            <td>192.168.0.20</td>
-                            <td>jecy</td>
-                            <td>米妮</td>
-                            <td>220222020202020202</td>
-                            <td>16小时32分</td>
-                        </tr>
-                        <tr>
-                            <td>192.168.0.23</td>
-                            <td>mary</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>16小时32分</td>
-                        </tr>
-                    </table>
-                    <table id="datalist2" style="display:none;">
+                    <!-- <table id="datalist2" style="display:none;">
                         <tr>                            
                             <th class="width300">Unix 服务器IP</th>
                             <th>包月</th>
@@ -197,19 +124,22 @@
                             <td>221</td>
                             <td>314</td>
                         </tr>   -->                      
-                    </table>
+                    </table> -->
                 </div>
                 <!--分页-->
                 <div id="pages">
-                    <a href="#">首页</a>
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                    <a href="#">末页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
+                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    	<c:if test="${i == requestScope.page.currentPage}">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
+                    	</c:if>
+                    	<c:if test="${i != requestScope.page.currentPage}">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
+                    	</c:if>
+                    </c:forEach>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
                 </div>
 
             </div>

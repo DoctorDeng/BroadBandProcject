@@ -106,7 +106,7 @@ public class BillDaoImpl implements BillDao{
 					+"INNER JOIN bussiness as ad On bi.customerId = ad.customerId ";
 		
 		List<Map<String,Object>> list = DBHelper.find(sql, null);	
-		if (list.size()<0) {
+		if (list.size()<1) {
 			return 0;
 		}
 		return Integer.parseInt(list.get(0).get("count").toString());

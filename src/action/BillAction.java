@@ -55,7 +55,7 @@ public class BillAction extends HttpServlet {
 	 		int endPage     = pageNum;
 	 		
 	 		String currentPageStr = request.getParameter("currentPage");
-			if (null !=currentPageStr) {
+			if (null !=currentPageStr | "".equals(currentPageStr)){
 				currentPage = Integer.parseInt(currentPageStr);
 			}
 					
