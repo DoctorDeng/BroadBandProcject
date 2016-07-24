@@ -123,72 +123,6 @@
   								<td><a href="/lanqiao/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
-                   <!--  <tr>
-                        <td>1</td>
-                        <td>张三</td>
-                        <td>230102197902137862</td>
-                        <td>admin1</td>
-                        <td>543.45</td>
-                        <td>2012年8月</td>
-                        <td></td>
-                        <td>未支付</td>                            
-                        <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>李四</td>
-                        <td>230102197901111111</td>
-                        <td>admin2</td>
-                        <td>843.00</td>
-                        <td>2012年9月</td>
-                        <td>现金</td>
-                        <td>已支付</td>                            
-                        <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>王五</td>
-                        <td>230111111111111111</td>
-                        <td>admin3</td>
-                        <td>12.00</td>
-                        <td>2012年10月</td>
-                        <td></td>
-                        <td>未支付</td>                            
-                        <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>张三</td>
-                        <td>230102197902137862</td>
-                        <td>admin1</td>
-                        <td>543.45</td>
-                        <td>2012年8月</td>
-                        <td></td>
-                        <td>未支付</td>                            
-                        <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>李四</td>
-                        <td>230102197901111111</td>
-                        <td>admin2</td>
-                        <td>843.00</td>
-                        <td>2012年9月</td>
-                        <td>现金</td>
-                        <td>已支付</td>                            
-                        <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>王五</td>
-                        <td>230111111111111111</td>
-                        <td>admin3</td>
-                        <td>12.00</td>
-                        <td>2012年10月</td>
-                        <td></td>
-                        <td>未支付</td>                            
-                        <td><a href="bill_item.jsp" title="账单明细">明细</a></td>
-                    </tr> -->
                 </table>
                 
                 <p>业务说明：<br />
@@ -199,15 +133,40 @@
                 </div>                    
                 <!--分页-->
                 <div id="pages">
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.indexPage}">首页</a>
-        	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.upPage}">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.nextPage}">下一页</a>
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScopt.endPage}">末页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
+                    
+                   <%--  <c:set var="pageList" value="${requestScope.page.endPage-requestScope.page.currentPage}" />
+                    <c:if test="${pageList>0}" >
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">
+                    	${requestScope.page.currentPage}
+                    </a>
+                    	<c:forEach var="i" begin="1" end="${pageList}" step="1">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
+                    			<c:out value="${requestScope.page.currentPage + i}" />
+                    		</a>
+                   	    </c:forEach>
+                    </c:if>
+                    <c:if test="${pageList<=0}" >
+                    	<c:forEach var="i" begin="0" end="${pageList}" step="1">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
+                    			<c:out value="${requestScope.page.currentPage + i}" />
+                    		</a>
+                   	    </c:forEach>
+                   	     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">
+                    		${requestScope.page.currentPage}
+                    	</a>
+                    </c:if> --%>
+                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    	<c:if test="${i == requestScope.page.currentPage}">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
+                    	</c:if>
+                    	<c:if test="${i != requestScope.page.currentPage}">
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
+                    	</c:if>
+                    </c:forEach>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
                 </div>                    
             </form>
         </div>

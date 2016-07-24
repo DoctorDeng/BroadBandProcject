@@ -22,7 +22,17 @@ public class Page<T> {
 	 * 下一页
 	 */
 	private int nextPage;
+	/**
+	 * 当前页
+	 */
+	private int currentPage;
 	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 	public int getIndexPage() {
 		return indexPage;
 	}
