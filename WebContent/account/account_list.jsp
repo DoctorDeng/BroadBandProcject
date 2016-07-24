@@ -66,16 +66,16 @@
             <form action="" method="" id="form">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>身份证：<input type="text" value="不验证" class="text_search" /></div>                            
-                    <div>姓名：<input type="text" class="width70 text_search" value="不验证" /></div>
+                    <div>身份证：<input type="text" name="idNumber" value="不验证" class="text_search" /></div>                            
+                    <div>姓名：<input type="text" name="name" class="width70 text_search" value="不验证" /></div>
                     <div>登录名：<input type="text"  value="不验证" class="text_search"/></div>
                     <div>
                         状态：
                         <select class="select_search">
-                            <option>全部</option>
-                            <option>开通</option>
-                            <option>暂停</option>
-                            <option>删除</option>
+                            <option value="">全部</option>
+                            <option value="1">开通</option>
+                            <option value="0">暂停</option>
+                            <option value="">删除</option>
                         </select>
                     </div>
                     <div><input type="button" value="搜索" class="btn_search" onclick="sub()"/></div>

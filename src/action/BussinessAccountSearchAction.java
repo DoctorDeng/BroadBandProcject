@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.viewBean.AccountViewBean;
+import service.AccountService;
 
 /**
  * Servlet implementation class BussinessAccountSearchAction
@@ -27,14 +28,22 @@ public class BussinessAccountSearchAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		int currentPage = 0;
+		if(request.getParameter("currentPage")!=null&&"".equals(request.getParameter("currentPage"))){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}else{
+			currentPage = 1;
+		}
 		String idNumber = request.getParameter("idNumber");
 		String name = request.getParameter("name");
+		String loginAccount = request.getParameter("loginAccount");
 		String status = request.getParameter("status");
 		AccountViewBean a = new AccountViewBean();
 		a.setBussinessName(name);
 		a.setIdNumber(idNumber);
 		a.setStatus(status);
+		a.setLoginAccount(loginAccount);
+		new AccountService().searchAccountViewBean(a, currentPage);
 	}
 
 	/**
