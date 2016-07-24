@@ -224,9 +224,76 @@ public class BillService {
 	public int getBillFormSize() {
 		return billDao.getBillFormSize();
 	}
+	/**
+	 * 通过客户身份证号、账务账号、客户姓名来查找客户的
+	 * @param idNumber       客户身份证号
+	 * @param loginAccount   客户账务账号
+	 * @param customerName   客户姓名
+	 * @return               账单表单Bean（包含用户账单信息）集合
+	 */
+	public List<BillFormBean> getBillFormByCondition(String idNumber, String loginAccount, String customerName) {
+		String idNumberTemp 	= "%";
+		String loginAccountTemp = "%";
+		String customerNameTemp = "%";
+		
+		if (null != idNumber && !"".equals(idNumber)) {
+			idNumberTemp = idNumber.trim();
+		}
+		if (null != loginAccount && !"".equals(loginAccount)) {
+			loginAccountTemp = loginAccount.trim();
+		}
+		if (null != customerName && !"".equals(customerName)) {
+			customerNameTemp = customerName.trim();
+		}
+		
+		String sqlCondition = " WHERE cu.idNumber like '%" +idNumberTemp+ "%' AND "
+				+ " cu.customerName like '%" +customerNameTemp+ "%' AND "
+				+ " loginAccount like '%" +loginAccountTemp+ "%'";
+		
+		return toBillFormBean(billDao.findBillFormBycondition(sqlCondition));
+	}
+	/**
+	 * 将含有客户账单信息的List<Map<String,Object>>转化为用于前台显示的List<BillFormBean>
+	 * @param billFormList
+	 * @return
+	 */
+	public List<BillFormBean> toBillFormBean(List<Map<String,Object>> billForms) {
+		List<BillFormBean> billFormList  = new ArrayList<>();
+		
+		for (int i=0; i<billForms.size(); i++) {
+			Map<String,Object> map = billForms.get(i);
+			
+			int billId 			= Integer.parseInt(map.get("billId").toString());
+			String customerName = map.get("customerName").toString();
+			String idNumber     = map.get("idNumber").toString();
+			String loginAccount = map.get("loginAccount").toString();
+			String totalTime    = map.get("totalTime").toString();
+			String payWay       = map.get("payWay").toString();
+			String payStatus    = map.get("payStatus").toString();
+			
+			int times = 0;
+			if (!"".equals(totalTime)) {
+				times = Integer.parseInt(totalTime);
+			}
+			
+			/**
+			 * 获取总的时长 时/分/秒
+			 */
+			int h = times/3600;
+			int m = (times%3600)/60;
+			int s = (times%3600)%60;
+			String timeLong    = h + "时" + m + "分" + s +"秒";
+			
+			
+			BillFormBean billForm = new BillFormBean(billId, customerName, idNumber, loginAccount, timeLong, payWay, payStatus);
+			billFormList.add(billForm);
+		}
+		return billFormList;
+	}
 	
 	public static void main(String[] args) {
 		BillService bill = new BillService();
+		System.out.println(bill.getBillFormByCondition("", "", "").size());
 		/*List<BillDetailFormBean> list = bill.getBillDetailForm(2);
 		for (BillDetailFormBean billForm : list) {
 			System.out.println("总时长:" + billForm.getTimeLong());

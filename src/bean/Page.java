@@ -57,37 +57,6 @@ public class Page {
 	public void setNextPage(int nextPage) {
 		this.nextPage = nextPage;
 	}
-	
-	public Page getPage(int recordNum,String currentPageStr) {
-		Page page       = new Page();
-		int pageSize    = 4;
-  		int currentPage = 1;
-  		int indexPage   = 1;
-		int nextPage    = 1;
- 		int upPage      = 1;	 		
- 		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
- 		int endPage     = pageNum;
- 		
-		if (null !=currentPageStr | "".equals(currentPageStr)) {
-			currentPage = Integer.parseInt(currentPageStr);
-		}
-				
-		if (currentPage!=1 && pageNum > 1) {
-  			upPage = currentPage - 1; 
-  		}
-  		if (currentPage<pageNum && pageNum>2) {
-  			nextPage = currentPage +1;
-  		}
-  		if (currentPage== pageNum) {
-  			nextPage = pageNum;
-  		}
-  		page.setIndexPage(indexPage);
-  		page.setEndPage(endPage);
-  		page.setNextPage(nextPage);
-  		page.setUpPage(upPage);
-  		page.setCurrentPage(currentPage);
-  		return page;
-	}
 /*	private List<T> list; //对象记录结果集
 	private int total = 0; // 总记录数
 	private int limit = 20; // 每页显示记录数

@@ -50,6 +50,14 @@
                     monthObj.options[i] = opObj;
                 }
             } */
+            function search() {
+            	var idNumber = document.getElementById("idNumber").value;
+            	var loginAccount = document.getElementById("loginAccount").value;
+            	var customerName = document.getElementById("customerName").value;
+            	
+            	window.location.href="/lanqiao/BillAction?operation=condition"+
+            			"&idNumber="+idNumber+"&loginAccount="+ loginAccount+"&customerName="+customerName;
+            }
         </script>
     </head>
     <body onload="initialYearAndMonth();">
@@ -68,12 +76,12 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="/lanqiao/BillAction?operation" method="post">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>身份证：<input type="text"  value="230101111111111111" class="text_search" /></div>
-                    <div>账务账号：<input type="text" value="admin1" class="width100 text_search" /></div>                            
-                    <div>姓名：<input type="text" value="张三" class="width70 text_search" /></div>
+                    <div>身份证：<input type="text" id="idNumber"       class="text_search" /></div>
+                    <div>账务账号：<input type="text"  id="loginAccount" class="width100 text_search" /></div>                            
+                    <div>姓名：<input type="text"     id="customerName" class="width70 text_search" /></div>
            <!--          <div>
                         <select class="select_search" id="selYears">
                         </select>
@@ -82,7 +90,7 @@
                         </select>
                         月
                     </div> -->
-                    <div><input type="button" value="搜索" class="btn_search" /></div>
+                    <div><input type="button" value="搜索" class="btn_search" onclick="search()" /></div>
                 </div>  
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -133,7 +141,8 @@
                 </div>                    
                 <!--分页-->
                 <div id="pages">
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
+                	<c:if test="${not empty requestScope.page}">
+                		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
         	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
                     
                    <%--  <c:set var="pageList" value="${requestScope.page.endPage-requestScope.page.currentPage}" />
@@ -167,6 +176,7 @@
                     </c:forEach>
                     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
                     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
+                	</c:if>
                 </div>                    
             </form>
         </div>

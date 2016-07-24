@@ -11,19 +11,16 @@ public class BillDaoImpl implements BillDao{
 
 	@Override
 	public List<Bill> findAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Bill findOne(int billId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean add(Bill bill) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -63,15 +60,29 @@ public class BillDaoImpl implements BillDao{
 		String sql = "SELECT bi.billId,cu.customerName, cu.idNumber, loginAccount,"
 				+" (SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM billdetail WHERE billId = bi.billId)) as totalTime,"
 				+" bi.payWay,bi.payStatus "
-								+"FROM bill as bi "
-								+"INNER JOIN customer as cu ON bi.customerId = cu.customerId "
-								+"INNER JOIN bussiness as ad On bi.customerId = ad.customerId "
-								+ "LIMIT " + index+ "," +pageSize;
+				+" FROM bill as bi "
+				+" INNER JOIN customer as cu ON bi.customerId = cu.customerId "
+				+" INNER JOIN bussiness as ad On bi.customerId = ad.customerId "
+				+" LIMIT " + index+ "," +pageSize;
 				List<Map<String,Object>> list = DBHelper.find(sql, null);
 			
 				return list;
 	}
-	
+	/**
+	 * 通过条件来查找用户账单表单数据
+	 * @param sqlCondition    查询的条件
+	 * @return                用户账单表单信息集合
+	 */
+	public List<Map<String,Object>> findBillFormBycondition(String sqlCondition) {
+		String sql = "SELECT bi.billId,cu.customerName, cu.idNumber, loginAccount,"
+				+" (SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM billdetail WHERE billId = bi.billId)) as totalTime,"
+				+" bi.payWay,bi.payStatus "
+				+" FROM bill as bi "
+				+" INNER JOIN customer as cu ON bi.customerId = cu.customerId "
+				+" INNER JOIN bussiness as ad On bi.customerId = ad.customerId " + sqlCondition;
+				List<Map<String,Object>> list = DBHelper.find(sql, null);
+				return list;
+	}
 	/**
 	 * 多表操作，查找客户（Customer）每个账号的账单记录
 	 * @param billId   		     客户账单ID
