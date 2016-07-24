@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import service.BillService;
 /**
  * Servlet implementation class BillAction
  */
+@WebServlet(name="BillAction",urlPatterns="/BillAction")
 public class BillAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private BillService billService;
@@ -55,7 +57,7 @@ public class BillAction extends HttpServlet {
 	 		int endPage     = pageNum;
 	 		
 	 		String currentPageStr = request.getParameter("currentPage");
-			if (null !=currentPageStr | "".equals(currentPageStr)){
+			if (null !=currentPageStr && !"".equals(currentPageStr)){
 				currentPage = Integer.parseInt(currentPageStr);
 			}
 					

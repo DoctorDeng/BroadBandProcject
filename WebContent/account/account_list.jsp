@@ -45,6 +45,25 @@
             function sub(){
             	document.getElementById("form").submit();
             }
+            $(document).ready(function() {
+				$("#btnsub").click(function() {
+					var name = $("#name").val();
+					var idNumber = $("#idNumber").val();
+					var loginAccount = $("#loginAccount").val();
+					var status = $("#status").val();
+					$.ajax({
+						url:'',
+						data:{"idNumber":idNumber,"name":name,"loginAccount":loginAccount,"status":status},
+						success:function(result){
+							
+						}
+					})
+				})
+			})
+         	function initTable(){
+            	$("#datalist tr:not(:first)").remove();
+            	
+            }
         </script>
     </head>
     <body>
@@ -66,19 +85,19 @@
             <form action="" method="" id="form">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>身份证：<input type="text" value="不验证" class="text_search" /></div>                            
-                    <div>姓名：<input type="text" class="width70 text_search" value="不验证" /></div>
-                    <div>登录名：<input type="text"  value="不验证" class="text_search"/></div>
+                    <div>身份证：<input type="text" id="idNumber" name="idNumber" value="不验证" class="text_search" /></div>                            
+                    <div>姓名：<input type="text" id="name" name="name" class="text_search" value="不验证" /></div>
+                    <div>登录名：<input type="text" name="loginAccount" value="不验证" id="loginAccount" class="text_search"/></div>
                     <div>
                         状态：
-                        <select class="select_search">
-                            <option>全部</option>
-                            <option>开通</option>
-                            <option>暂停</option>
-                            <option>删除</option>
+                        <select id="status" class="select_search">
+                            <option value="">全部</option>
+                            <option value="1">开通</option>
+                            <option value="0">暂停</option>
+                            <option value="">删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" onclick="sub()"/></div>
+                    <div><input type="button" value="搜索" class="btn_search" id="btnsub"/></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='account_add.jsp';" />
                 </div>  
                 <!--删除等的操作提示-->

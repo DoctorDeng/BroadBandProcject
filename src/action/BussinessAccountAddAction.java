@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import service.AccountService;
 /**
  * Servlet implementation class BussinessAccountAddAction
  */
+@WebServlet(name="BussinessAccountAddAction",urlPatterns="/BussinessAccountAddAction")
 public class BussinessAccountAddAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     /**

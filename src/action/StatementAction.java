@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import service.StatementService;
 /**
  * Servlet implementation class StatementAction
  */
+@WebServlet(urlPatterns="/StatementAction")
 public class StatementAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private StatementService statementService;
@@ -46,7 +48,6 @@ public class StatementAction extends HttpServlet {
 		int nextPage    = 1;
  		int upPage      = 1;	 		
  		int recordNum   = statementService.getStatementCount();
- 		System.out.println(recordNum);
  		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
  		int endPage     = pageNum;
  		
@@ -77,6 +78,8 @@ public class StatementAction extends HttpServlet {
 		case "default":
 			List<StatementFormBean> statementList = statementService.getStatementPage(currentPage,pageSize);
 			request.setAttribute("statementForm", statementList);
+			request.setAttribute("page", page);
+			request.setAttribute("operation", "default");
 			request.getRequestDispatcher("/report/report_list.jsp").forward(request, response);
 			break;
 		/**
@@ -85,6 +88,8 @@ public class StatementAction extends HttpServlet {
 		case "orderByDesc":
 			List<StatementFormBean> statementListDesc = statementService.getStatementPageByDesc(currentPage,pageSize);
 			request.setAttribute("statementForm", statementListDesc);
+			request.setAttribute("page", page);
+			request.setAttribute("operation", "orderByDesc");
 			request.getRequestDispatcher("/report/report_list.jsp").forward(request, response);
 			break;
 		}
