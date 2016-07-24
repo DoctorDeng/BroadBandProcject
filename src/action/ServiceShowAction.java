@@ -32,9 +32,9 @@ public class ServiceShowAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		ServiceAddViewBean savb =new ServiceAddViewBean();
-		String id = request.getParameter("id");
-		savb.setIdNumber(id);
-		System.out.println(request.getParameter("idNumber"));
+		String idNumber = request.getParameter("id");
+		savb.setIdNumber(idNumber);
+		System.out.println(idNumber);
 		BussinessViewBeanDaoImpl bvbdi = new BussinessViewBeanDaoImpl();
 		bvbdi.find(savb);}
 

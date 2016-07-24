@@ -25,32 +25,16 @@
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <script type="text/javascript" src="../js/jquery.js"></script>
        	<script language="javascript" type="text/javascript">
-            //保存成功的提示信息
-            function showResult() {
-                showResultDiv(true);
-                window.setTimeout("showResultDiv(false);", 3000);
-            }
-            function showResultDiv(flag) {
-                var divResult = document.getElementById("save_result_info");
-                if (flag)
-                    divResult.style.display = "block";
-                else
-                    divResult.style.display = "none";
-            }
-
-            //自动查询账务账号
-            function searchAccounts(txtObj) {
-                //document.getElementById("a1").innerHTML = txtObj.value;
-            }
             $(function(){
             	$("#showId").click(function(){
-            		var id = $("idNumber").val();
+            		var id = $("#idNumber").val();
+            		alert(id);
             		if(""==id){
             			
             		}else{
             			$.ajax({
             				url:'../ServiceShowAction',
-            				date:{"id": id},
+            				data:{"id": id},
             				success:function(result){
             					$("#adminId").val(result)           		
             				}
@@ -81,19 +65,20 @@
             <div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过 OS 账号 “mary”。</div>
             <form action="" method="post" class="main_form">
                 <!--内容项-->
-                <div class="text_info clearfix"><span>身份证：</span></div>
-                <div class="input_info">
-                    <input type="text" class="width180" id="idNumber"/>
-                    <input type="button"  id="showId" class="btn_search_large" value= "查询账务账号" />
+               	 <div class="text_info clearfix"><span>身份证：</span></div>   
+                 <div class="input_info">       
+                    <input type="text" id="idNumber" class="width180"/>
+                    <input type="button" id="showId" value="查询账务账号" class="btn_search_large" />
                     <span class="required">*</span>
                     <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
                 </div>
                 <div class="text_info clearfix"><span>账务账号：</span></div>
                 <div class="input_info">
-                    <input type="text" id = "adminId" onkeyup="searchAccounts(this);" />
+                    <input type="text" id="adminId" onkeyup="searchAccounts(this);" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">没有此账务账号，请重新录入。</div>
                 </div>
+
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info">
                     <select name = "traiffName">
