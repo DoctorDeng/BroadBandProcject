@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Os;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 
@@ -31,12 +33,16 @@ public class ServiceShowAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
-		ServiceAddViewBean savb =new ServiceAddViewBean();
-		String idNumber = request.getParameter("id");
-		savb.setIdNumber(idNumber);
-		System.out.println(idNumber);
-		BussinessViewBeanDaoImpl bvbdi = new BussinessViewBeanDaoImpl();
-		bvbdi.find(savb);}
+		PrintWriter out = response.getWriter();
+		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();		
+		serviceAddViewBean.setIdNumber( request.getParameter("id"));
+		List<ServiceAddViewBean> lsa = new BussinessViewBeanDaoImpl().find(serviceAddViewBean);
+		ServiceAddViewBean sa = new ServiceAddViewBean();
+		for(ServiceAddViewBean sav : lsa){
+			out.println(sav.getAdminId());
+		}
+		out.close();
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

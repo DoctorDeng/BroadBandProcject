@@ -82,7 +82,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public List<ServiceAddViewBean> find(ServiceAddViewBean serviceAddViewBean) {
 		// TODO Auto-generated method stub
 		List<ServiceAddViewBean> siew = new ArrayList<ServiceAddViewBean>();
-		ServiceAddViewBean sab = new ServiceAddViewBean();
+		System.out.println(serviceAddViewBean.getIdNumber());
 		String sql = "SELECT a.adminId, c.customerId FROM customer AS c , admininfor AS a "
 				+ " WHERE "
 				+ " c.idNumber = ? AND "
@@ -90,13 +90,16 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		//System.out.println(sql);
 		try{
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, sab.getIdNumber());
+			ps.setString(1, serviceAddViewBean.getIdNumber());
 			rs = ps.executeQuery();
+			System.out.println(sql);
 			while(rs.next()){
 				ServiceAddViewBean svb = new ServiceAddViewBean();
 				svb.setAdminId(rs.getInt(1));
 				svb.setCustomerId(rs.getInt(2));
 				siew.add(svb);
+				System.out.println(rs.getInt(1));
+				System.out.println(rs.getInt(2));
 			}
 			return siew;
 		}catch(SQLException se){
