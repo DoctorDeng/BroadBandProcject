@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,11 +31,11 @@ public class ServiceShowAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ServiceAddViewBean savb =new ServiceAddViewBean();
-		String idNumber = request.getParameter("idNumber");
+		String idNumber = request.getParameter("id");
 		savb.setIdNumber(idNumber);
+		System.out.println(request.getParameter("idNumber"));
 		BussinessViewBeanDaoImpl bvbdi = new BussinessViewBeanDaoImpl();
-		bvbdi.find(savb);
-	}
+		bvbdi.find(savb);}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

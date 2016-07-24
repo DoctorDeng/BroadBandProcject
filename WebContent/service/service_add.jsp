@@ -43,8 +43,9 @@
             }
             
             function selIdNumber() {
-				var idNumber = document.getElementById('idNumber').value;
-				window.location.href = "../ServiceShowAction?idNumer="+idNumber;
+				//var idNumber = document.getElementById('idNumber');
+				//alert(idNumber);
+				window.location.href = "../ServiceShowAction?id="document.getElementById('idNumber').value;
 			}
         </script>
     </head>
@@ -70,8 +71,8 @@
                 <!--内容项-->
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width180" id= "idNumber"/>
-                    <input type="button"  class="btn_search_large" onclick="selIdNumber()"/>
+                    <input type="text" class="width180" id="idNumber"/>
+                    <input type="submit"  class="btn_search_large" value= "查询账务账号" onclick="selIdNumber(); return false;"/>
                     <span class="required">*</span>
                     <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
                 </div>
