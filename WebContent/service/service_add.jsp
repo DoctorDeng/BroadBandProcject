@@ -97,7 +97,7 @@
                 </div>                   
                 <div class="text_info clearfix"><span>登录 OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="创建即启用，状态为开通" name="osAccount" />
+                    <input type="text" name="osAccount" />
                     <span class="required">*</span>
                     <div class="validate_msg_long">8长度以内的字母、数字和下划线的组合</div>
                 </div>

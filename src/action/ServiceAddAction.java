@@ -36,14 +36,15 @@ public class ServiceAddAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session =request.getSession();
 		Customer customer = (Customer) session.getAttribute("customer");
-		ServiceAddViewBean  sab = new ServiceAddViewBean();
-		sab.setCustomerId(customer.getCustomerId());
-		sab.setOsAccount(request.getParameter("osAccount"));
-		sab.setOsPassword(request.getParameter("osPassword"));
+		ServiceAddViewBean  serviceAddViewBean = new ServiceAddViewBean();
+		serviceAddViewBean.setCustomerId(customer.getCustomerId());
+		serviceAddViewBean.setOsAccount(request.getParameter("osAccount"));
+		serviceAddViewBean.setOsPassword(request.getParameter("osPassword"));
 		String traiffId = request.getParameter("traiffId");
-		sab.setTariffId(Integer.parseInt(traiffId));
-		sab.setServerId(request.getParameter("serverIp"));
-		boolean succiess = new ProfessionServiceImpl().addService(sab);
+		serviceAddViewBean.setTariffId(Integer.parseInt(traiffId));
+		serviceAddViewBean.setServerId(request.getParameter("serverIp"));
+		boolean succiess = new ProfessionServiceImpl().addService(serviceAddViewBean);
+		System.out.println(succiess);
 		if(succiess){
 			response.sendRedirect("ServiceMainAction");
 		}

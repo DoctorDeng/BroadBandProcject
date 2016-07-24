@@ -39,7 +39,7 @@ public class ServiceModiAction extends HttpServlet {
 		bussinessViewBean.setTariffId(Integer.parseInt(tariffId));
 		boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);
 		if(b){
-			response.sendRedirect("service/service_list.jsp");
+			response.sendRedirect("ServiceMainAction");
 		}
 	}
 
