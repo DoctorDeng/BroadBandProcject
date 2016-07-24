@@ -90,19 +90,7 @@
             <form action="" method="">
                 <!--查询-->             
                 <div class="search_add">
-                    <div>
-                        模块：
-                        <select id="selModules" class="select_search">
-                            <option>全部</option>
-                            <option>角色管理</option>
-                            <option>管理员管理</option>
-                            <option>资费管理</option>
-                            <option>账务账号</option>
-                            <option>业务账号</option>
-                            <option>账单管理</option>
-                            <option>报表</option>
-                        </select>
-                    </div>
+                   
                     <div>角色：<input type="text" value="" class="text_search width200" /></div>
                     <div><input type="button" value="搜索" class="btn_search"/></div>
                     <input type="button" name="reset" id="reset" value="密码重置" class="btn_add" onclick="resetPwd();" />
@@ -155,7 +143,7 @@
                            				资费管理员
                             			</c:when>
                             			<c:when test="${power == '4'}">
-                           				账务账号管理员
+                           				账务账号管理员<br/>
                             			</c:when>
                             			<c:when test="${power == '5'}">
                            				业务账号管理员
@@ -172,7 +160,7 @@
                             </td>                       
                             <td class="td_modi">
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=<c:out value="${adminInfor.adminId}" />';" />
-                                <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/DelAdminAction?adminId=<c:out value="${adminInfor.adminId}" />';"/>
+                                <input type="button" value="删除" class="btn_delete" onclick="location.href='../DelAdminAction?adminId=<c:out value="${adminInfor.adminId}" />';"/>
                             </td>
                         </tr>
                         </c:forEach>
