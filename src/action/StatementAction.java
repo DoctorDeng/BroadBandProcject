@@ -41,6 +41,7 @@ public class StatementAction extends HttpServlet {
 			response.sendRedirect("/lanqiao/login.jsp");
 			return;
 		}
+		System.out.println(statementService.getStatementCount()+"dd");
 		Page page       = new Page();
 		int pageSize    = 4;
   		int currentPage = 1;

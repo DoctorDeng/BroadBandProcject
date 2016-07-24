@@ -99,14 +99,17 @@ public class AdminDaoImpl implements AdminDao{
 	 * @return 返回包含所有管理员信息的集合
 	 */
 	public List<Map<String,Object>> findAllAdminInfor() {
-		String sql = "SELECT ad.adminId,ai.adminName,ad.adminAccount,ai.phone,ai.email,ai.createTime "
-				+ "FROM admin as ad "
-				+ "INNER JOIN adminInfor as ai "
-				+ "ON ad.adminId = ai.adminId";
+		String sql = "SELECT ad.adminId,ai.adminName,ad.adminAccount,ai.phone,ai.email,ai.createTime,"
+				+"(select GROUP_CONCAT(adminpower.powerId separator ',') FROM adminpower "
+				+"INNER JOIN admin "
+				+"ON admin.adminId = adminpower.adminId WHERE admin.adminId = ad.adminId) as powerList "
+				+"FROM admin as ad "
+				+"INNER JOIN adminInfor as ai "
+				+"ON ad.adminId = ai.adminId";
 		
 		List<Map<String,Object>> list = DBHelper.find(sql, null);
 		
-		return list;
+		return list; 
 	}
 	/**
 	 * 通过管理员ID来更新管理员密码
@@ -180,6 +183,7 @@ public class AdminDaoImpl implements AdminDao{
 	
 	public static void main(String[] args) {
 		AdminDaoImpl adminDao = new AdminDaoImpl();
+		System.out.println(adminDao.findAllAdminInfor().get(0).get("powerList"));
 /*		Admin admin = new Admin(1,"222","555");*/
 		//System.out.println(adminDao.verifyAdminByAccount("dingcong", "123456").getAdminId());
 		/*System.out.println(adminDao.addAdmin("555", "333"));*/

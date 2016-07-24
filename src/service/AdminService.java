@@ -91,4 +91,6 @@ public class AdminService {
 	public boolean updateInfor(AdminInfor adminInfor) {
 		return adminInforDao.updateAdminInfor(adminInfor);
 	}
+	
+	public List<Map>
 }
