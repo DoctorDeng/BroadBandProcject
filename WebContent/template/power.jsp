@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	      <li><a href="/lanqiao/index.jsp" class="index_on"></a></li>
+	      <li><a href="index.jsp" class="index_on"></a></li>
             <!-- 获取管理员拥有的权限 -->
             <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   				<c:set var="power">${adminPower.power}</c:set>
@@ -8,7 +8,7 @@
   				<!-- 当管理员的权限中有2权限时显示对应权限菜单 -->
   				<c:choose>
   					<c:when test="${power==2}">
-                		 <li><a href="/lanqiao/admin/admin_list.jsp" class="admin_off"></a></li>
+                		 <li><a href="/lanqiao/ShowAdminAction" class="admin_off"></a></li>
   					</c:when>
   				</c:choose>
   				

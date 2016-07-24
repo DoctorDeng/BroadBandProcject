@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="dao.impl.AdminInforDaoImpl"%>
+<%@page import="dao.impl.AdminDaoImpl"%>
 <%@page import="java.util.*,bean.AdminInfor,bean.Admin"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,10 +19,10 @@
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
   		</c:if>
+  		<%
+  		   session.getAttribute("admininforList");
+  		%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -37,6 +37,8 @@
             }
             //重置密码
             function resetPwd() {
+            	
+            	var checks = document.ge
                 alert("请至少选择一条数据！");
                 //document.getElementById("operate_result_info").style.display = "block";
             }
@@ -57,6 +59,8 @@
         </script>       
     </head>
     <body>
+    
+       
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
@@ -73,7 +77,7 @@
         <!--主要区域开始-->
         <div id="main">
             <form action="" method="">
-                <!--查询-->
+                <!--查询-->             
                 <div class="search_add">
                     <div>
                         模块：
@@ -90,7 +94,7 @@
                     </div>
                     <div>角色：<input type="text" value="" class="text_search width200" /></div>
                     <div><input type="button" value="搜索" class="btn_search"/></div>
-                    <input type="button" value="密码重置" class="btn_add" onclick="resetPwd();" />
+                    <input type="button" id="reset" value="密码重置" class="btn_add" onclick="resetPwd();" />
                     <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />
                 </div>
                 
@@ -103,55 +107,64 @@
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">             
-                        <tr>
+                   <tr>
                             <th class="th_select_all">
-                                <input type="checkbox" onclick="selectAdmins(this);" />
+                                <input type="checkbox" name="check" value="" onclick="selectAdmins(this);" />
                                 <span>全选</span>
                             </th>
                             <th>管理员ID</th>
                             <th>姓名</th>
+                            <th>登录名</th>
                             <th>电话</th>
                             <th>电子邮件</th>
                             <th>授权日期</th>
-                            <!-- <th class="width100">拥有角色</th> -->
+                            <th class="width100">拥有角色</th>
                             <th></th>
-                        </tr>  
-                        <%                
-                       /*  int currentPage = 0;
-                        String c = request.getParameter("currentPage");
-                        if(c!=""&&c!=null){
-                        	currentPage = Integer.parseInt(c);
-                        } else{
-                        	currentPage = 1;
-                        }  */
-                        
-                        AdminInforDaoImpl adminInfor = new AdminInforDaoImpl();
-                        List<Map<String, Object>> admininforList = adminInfor.findAll(); 
-                        session.setAttribute("admininforList", admininforList);
-                        for(Map infor:admininforList){              	
-                        %>
-                              
+                        </tr>                           
+                        <c:forEach items="${sessionScope.admininforList}" var="adminInfor" >                      	
+                                    
                          <tr>
-                            <td><input type="checkbox" name="choose"/></td>              
-                            <td><%=infor.get("adminId").toString()%></td>
-                            <td><%=infor.get("adminName").toString()%></td>
-                            <td><%=infor.get("phone").toString()%></td>
-                            <td><%=infor.get("email").toString()%></td>                 
-                            <td><%=infor.get("createTime").toString()%></td> 
-                            
-                            <!-- <td>
-                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员...</a>
-                                浮动的详细信息
+                            <td><input type="checkbox" name="choose"/></td>  
+                            <td><c:out value="${adminInfor.adminId}" /></td>           
+                            <td><c:out value="${adminInfor.adminName}" /></td>
+                            <td><c:out value="${adminInfor.adminAccount}" /></td>
+                            <td><c:out value="${adminInfor.phone}" /></td>
+                            <td><c:out value="${adminInfor.email}" /></td>                 
+                            <td><c:out value="${adminInfor.createTime}" /></td>
+       
+                            <td> 
+                               <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员..</a>                           
                                 <div class="detail_info">
-                                    超级管理员，角色管理员，账单管理员，报表管理员，业务账号管理员，账务账号管理员，aa，bb
-                                </div>
-                            </td> -->
+                        	    <c:forEach items="${adminInfor.powerList}" var="power">                            	
+                            		<c:choose>
+                            			<c:when test="${power == '2'}">
+                           				超级管理员
+                            			</c:when>
+                            			<c:when test="${power == '3'}">
+                           				资费管理员
+                            			</c:when>
+                            			<c:when test="${power == '4'}">
+                           				账务账号管理员
+                            			</c:when>
+                            			<c:when test="${power == '5'}">
+                           				业务账号管理员
+                            			</c:when>
+                            			<c:when test="${power == '6'}">
+                           				账单管理员
+                            			</c:when>
+                            			<c:when test="${power == '7'}">
+                           				报表管理员
+                            			</c:when>
+                            		</c:choose>
+                            	</c:forEach>  
+                            </div>              
+                            </td>                       
                             <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=<%=infor.get("adminId").toString()%>';" />
-                                <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/DelAdminAction?adminId=<%=infor.get("adminId").toString()%>';"/>
+                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=';" />
+                                <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/DelAdminAction?adminId=';"/>
                             </td>
                         </tr>
-                       <%} %>
+                        </c:forEach>
          
                     </table>
                 </div>

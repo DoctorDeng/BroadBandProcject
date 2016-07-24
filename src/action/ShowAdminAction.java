@@ -1,11 +1,17 @@
 package action;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.impl.AdminDaoImpl;
 
 /**
  * Servlet implementation class ShowAdminMess
@@ -23,8 +29,11 @@ public class ShowAdminAction extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      
-	
+		HttpSession session = request.getSession();
+		AdminDaoImpl adminInfor = new AdminDaoImpl();
+        List<Map<String, Object>> admininforList = adminInfor.findAllAdminInfor(); 
+        session.setAttribute("admininforList", admininforList);  
+	    response.sendRedirect("admin/admin_list.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
