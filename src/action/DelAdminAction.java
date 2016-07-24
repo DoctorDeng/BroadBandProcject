@@ -5,18 +5,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.TariffService;
+
+import service.AdminService;
 
 /**
- * Servlet implementation class TariffOpenAction
+ * Servlet implementation class DelAdminAction
  */
-public class TariffOpenAction extends HttpServlet {
+public class DelAdminAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TariffOpenAction() {
+    public DelAdminAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,21 +26,17 @@ public class TariffOpenAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		TariffService tt = new TariffService();
-		String mm = request.getParameter("tariffId");
-		int tariffId = 0;
-		if (null != mm && !"".equals(mm)) {
-			tariffId = Integer.parseInt(mm);
-		}
-		boolean isOpen = tt.openTariff(tariffId);
-		request.getRequestDispatcher("/fee/fee_list.jsp").forward(request,response );
+	   int adminId = Integer.parseInt(request.getParameter("adminId")); 
+	   AdminService delAdmin = new AdminService();
+	   boolean delresult = delAdmin.delAdmin(adminId);
+	   if(delresult==true){
+		   response.sendRedirect("admin/admin_list.jsp");
+	   }
+	   else{
+		   response.sendRedirect("error.jsp");
+	   }
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

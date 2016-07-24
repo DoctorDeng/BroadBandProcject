@@ -64,7 +64,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="../TariffOpenAction" method="post">
+            <form action="" method="">
                 <!--排序-->
                 <div class="search_add">
                     <div>
@@ -108,9 +108,9 @@
                             <td><%=sv.getOpenTime() %></td>
                             <td><%=sv.getStatus() %></td>
                             <td>                                
-                                <input type="submit" value="启用" name="openTariff" class="btn_start" onclick="startFee();" />
+                                <input type="submit" value="启用" class="btn_start" onclick="location.href='/lanqiao/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="deleteFee();" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="location.href='/lanqiao/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             </td>
                         </tr>
                         <%} %>

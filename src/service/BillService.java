@@ -54,9 +54,45 @@ public class BillService {
 		}
 		return billFormList;
 	}
-	
 	/**
-	 * 获取账号登陆表单信息
+	 * 通过分页，获取指定页的账单信息
+	 * @return  表单Bean信息集合
+	 */
+	public List<BillFormBean> getBillFormByPage(int index, int pageSize) {
+		List<BillFormBean> billFormList  = new ArrayList<>();
+		List<Map<String,Object>> listMap =billDao.findBillFormPage(index, pageSize);
+		
+		for (int i=0; i<listMap.size(); i++) {
+			Map<String,Object> map = listMap.get(i);
+			
+			int billId 			= Integer.parseInt(map.get("billId").toString());
+			String customerName = map.get("customerName").toString();
+			String idNumber     = map.get("idNumber").toString();
+			String loginAccount = map.get("loginAccount").toString();
+			String totalTime    = map.get("totalTime").toString();
+			String payWay       = map.get("payWay").toString();
+			String payStatus    = map.get("payStatus").toString();
+			
+			int times = 0;
+			if (!"".equals(totalTime)) {
+				times = Integer.parseInt(totalTime);
+			}
+			
+			/**
+			 * 获取总的时长 时/分/秒
+			 */
+			int h = times/3600;
+			int m = (times%3600)/60;
+			int s = (times%3600)%60;
+			String timeLong    = h + "时" + m + "分" + s +"秒";
+			
+			BillFormBean billForm = new BillFormBean(billId, customerName, idNumber, loginAccount, timeLong, payWay, payStatus);
+			billFormList.add(billForm);
+		}
+		return billFormList;
+	}
+	/**
+	 * 获取客户Os账号登陆表单信息
 	 * @param osId   账号Id
 	 * @return
 	 */
@@ -106,7 +142,7 @@ public class BillService {
 		return loginList;
 	}
 	/**
-	 * 获取用户详单信息
+	 * 获取客户详单信息
 	 * @param billId  账单Id
 	 * @return  返回详单表单Bean的集合
 	 */
@@ -180,6 +216,13 @@ public class BillService {
 			list.add(billDetailForm);
 		}
 		return list;
+	}
+	/**
+	 * 获取客户账单信息长度
+	 * @return    账单信息长度
+	 */
+	public int getBillFormSize() {
+		return billDao.getBillFormSize();
 	}
 	
 	public static void main(String[] args) {

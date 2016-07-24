@@ -258,4 +258,34 @@
     <servlet-name>BussinessAccountSearchAction</servlet-name>
     <url-pattern>/BussinessAccountSearchAction</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DelAdminAction</display-name>
+    <servlet-name>DelAdminAction</servlet-name>
+    <servlet-class>action.DelAdminAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelAdminAction</servlet-name>
+    <url-pattern>/DelAdminAction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateAdminInfor</display-name>
+    <servlet-name>UpdateAdminInfor</servlet-name>
+    <servlet-class>action.UpdateAdminInfor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateAdminInfor</servlet-name>
+    <url-pattern>/UpdateAdminInfor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffDelAction</display-name>
+    <servlet-name>TariffDelAction</servlet-name>
+    <servlet-class>action.TariffDelAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffDelAction</servlet-name>
+    <url-pattern>/TariffDelAction</url-pattern>
+  </servlet-mapping>
 </web-app>

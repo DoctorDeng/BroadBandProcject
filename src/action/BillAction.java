@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Page;
 import bean.viewBean.BillDetailFormBean;
 import bean.viewBean.BillFormBean;
 import bean.viewBean.OsLoginFormBean;
@@ -40,11 +41,41 @@ public class BillAction extends HttpServlet {
 		}
 		switch (operation) {
 		/**
-		 * 显示账单信息
+		 * 通过分页显示账单信息
 		 */
 		case "showBill":
-			List<BillFormBean> billList = billService.getBill();
-			request.setAttribute("billForm", billList);
+			Page page       = new Page();
+			int pageSize    = 4;
+	  		int currentPage = 1;
+	  		int indexPage   = 1;
+			int nextPage    = 1;
+	 		int upPage      = 1;	 		
+	 		int recordNum   = billService.getBillFormSize();
+	 		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
+	 		int endPage     = pageNum;
+	 		
+	 		String currentPageStr = request.getParameter("currentPage");
+			if (null !=currentPageStr) {
+				currentPage = Integer.parseInt(currentPageStr);
+			}
+					
+			if (currentPage!=1 && pageNum > 1) {
+	  			upPage = currentPage - 1; 
+	  		}
+	  		if (currentPage<pageNum && pageNum>2) {
+	  			nextPage = currentPage +1;
+	  		}
+	  		if (currentPage== pageNum) {
+	  			nextPage = pageNum;
+	  		}
+	  		page.setIndexPage(indexPage);
+	  		page.setEndPage(endPage);
+	  		page.setNextPage(nextPage);
+	  		page.setUpPage(upPage);
+	  		
+	  		List<BillFormBean> billFormList = billService.getBillFormByPage((currentPage-1)*pageSize, pageSize);
+	  		request.setAttribute("billForm", billFormList);
+	  		request.setAttribute("page", page);
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
 			break;
 		/**
@@ -74,6 +105,7 @@ public class BillAction extends HttpServlet {
 			request.getRequestDispatcher("/bill/bill_service_detail.jsp").forward(request, response);
 			break;
 		}
+		
 	}
 
 	/**

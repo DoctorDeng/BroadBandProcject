@@ -6,8 +6,48 @@ import java.util.List;
  * @author 莫取网名
  */
 public class Page<T> {
-
-	private List<T> list; //对象记录结果集
+	/**
+	 * 首页
+	 */
+	private int indexPage;
+	/**
+	 * 尾页
+	 */
+	private int endPage;
+	/**
+	 * 上一页
+	 */
+	private int upPage;
+	/**
+	 * 下一页
+	 */
+	private int nextPage;
+	
+	public int getIndexPage() {
+		return indexPage;
+	}
+	public void setIndexPage(int indexPage) {
+		this.indexPage = indexPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	public int getUpPage() {
+		return upPage;
+	}
+	public void setUpPage(int upPage) {
+		this.upPage = upPage;
+	}
+	public int getNextPage() {
+		return nextPage;
+	}
+	public void setNextPage(int nextPage) {
+		this.nextPage = nextPage;
+	}
+/*	private List<T> list; //对象记录结果集
 	private int total = 0; // 总记录数
 	private int limit = 20; // 每页显示记录数
 	private int pages = 1; // 总页数
@@ -51,9 +91,9 @@ public class Page<T> {
 		judgePageBoudary();
 	}
 	
-	/**
+	*//**
 	 * 计算导航页
-	 */
+	 *//*
 	private void calcNavigatePageNumbers(){
 		//当总页数小于或等于导航页码数时
 		if(pages<=navigatePages){
@@ -87,9 +127,9 @@ public class Page<T> {
 		}
 	}
 
-	/**
+	*//**
 	 * 判定页面边界
-	 */
+	 *//*
 	private void judgePageBoudary(){
 		isFirstPage = pageNumber == 1;
 		isLastPage = pageNumber == pages && pageNumber!=1;
@@ -102,51 +142,51 @@ public class Page<T> {
 		this.list = list;
 	}
 
-	/**
+	*//**
 	 * 得到当前页的内容
 	 * @return {List}
-	 */
+	 *//*
 	public List<T> getList() {
 		return list;
 	}
 
-	/**
+	*//**
 	 * 得到记录总数
 	 * @return {int}
-	 */
+	 *//*
 	public int getTotal() {
 		return total;
 	}
 
-	/**
+	*//**
 	 * 得到每页显示多少条记录
 	 * @return {int}
-	 */
+	 *//*
 	public int getLimit() {
 		return limit;
 	}
 
-	/**
+	*//**
 	 * 得到页面总数
 	 * @return {int}
-	 */
+	 *//*
 	public int getPages() {
 		return pages;
 	}
 
-	/**
+	*//**
 	 * 得到当前页号
 	 * @return {int}
-	 */
+	 *//*
 	public int getPageNumber() {
 		return pageNumber;
 	}
 
 
-	/**
+	*//**
 	 * 得到所有导航页号 
 	 * @return {int[]}
-	 */
+	 *//*
 	public int[] getNavigatePageNumbers() {
 		return navigatePageNumbers;
 	}
@@ -187,5 +227,5 @@ public class Page<T> {
 		sb.append(",list.size="+list.size());
 		sb.append("]");
 		return sb.toString();
-	}
+	}*/
 }

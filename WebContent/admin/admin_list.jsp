@@ -148,7 +148,7 @@
                             </td> -->
                             <td class="td_modi">
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=<%=infor.get("adminId").toString()%>';" />
-                                <input type="button" value="删除" class="btn_delete" onclick="deleteAdmin();" />
+                                <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/DelAdminAction?adminId=<%=infor.get("adminId").toString()%>';"/>
                             </td>
                         </tr>
                        <%} %>
