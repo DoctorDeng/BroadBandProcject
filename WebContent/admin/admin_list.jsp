@@ -36,6 +36,17 @@
                     detailDiv.style.display = "none";
             }
             //重置密码
+            $(function(){
+            	$("#reset").click(function(){
+            		 var checks = []; // 定义一个空数组
+            	        var txt = $('#box').find(':text'); // 获取所有文本框
+            	        for (var i = 0; i < txt.length; i++) {
+            	            numArr.push(txt.eq(i).val()); // 将文本框的值添加到数组中
+            	        }
+            	        console.info(numArr);
+            		
+            	});
+            });
             function resetPwd() {
             	
             	var checks = document.ge
@@ -94,7 +105,7 @@
                     </div>
                     <div>角色：<input type="text" value="" class="text_search width200" /></div>
                     <div><input type="button" value="搜索" class="btn_search"/></div>
-                    <input type="button" id="reset" value="密码重置" class="btn_add" onclick="resetPwd();" />
+                    <input type="button" name="reset" id="reset" value="密码重置" class="btn_add" onclick="resetPwd();" />
                     <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />
                 </div>
                 
@@ -109,7 +120,7 @@
                     <table id="datalist">             
                    <tr>
                             <th class="th_select_all">
-                                <input type="checkbox" name="check" value="" onclick="selectAdmins(this);" />
+                                <input type="checkbox" id="check" value="" onclick="selectAdmins(this);" />
                                 <span>全选</span>
                             </th>
                             <th>管理员ID</th>
@@ -160,8 +171,8 @@
                             </div>              
                             </td>                       
                             <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=';" />
-                                <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/DelAdminAction?adminId=';"/>
+                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=<c:out value="${adminInfor.adminId}" />';" />
+                                <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/DelAdminAction?adminId=<c:out value="${adminInfor.adminId}" />';"/>
                             </td>
                         </tr>
                         </c:forEach>
