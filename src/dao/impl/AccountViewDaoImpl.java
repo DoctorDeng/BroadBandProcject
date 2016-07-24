@@ -41,12 +41,22 @@ public class AccountViewDaoImpl {
 	
 	public List<AccountViewBean> searchAccountViewBean(AccountViewBean ac,int currentPage,int pageSize){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
-		String sql = "select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
-				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId"
-				+ " limit "+(currentPage-1)*pageSize+","+pageSize;
-		System.out.println(sql);
+		StringBuffer sql = new StringBuffer("select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
+				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId");
+		if(!(ac.getIdNumber()==null||"".equals(ac.getIdNumber())||"不验证".equals(ac.getIdNumber()))){
+			sql.append(" and c.idNumber="+ac.getIdNumber());
+		}
+		if(!(ac.getBussinessName()==null||"".equals(ac.getBussinessName())||"不验证".equals(ac.getBussinessName()))){
+			sql.append(" and c.customerName="+ac.getBussinessName());
+		}
+		if(!(ac.getLoginAccount()==null||!"".equals(ac.getLoginAccount())||"不验证".equals(ac.getLoginAccount()))){
+			sql.append(" and c.customerName="+ac.getBussinessName());
+		}
+		//		+ " limit "+(currentPage-1)*pageSize+","+pageSize;
+		sql.append(" limit "+(currentPage-1)*pageSize+","+pageSize);
+		System.out.println(sql.toString());
 		String[] fields = null;
-		List<Map<String,Object>> list = DBHelper.find(sql, fields);
+		List<Map<String,Object>> list = DBHelper.find(sql.toString(), fields);
 		for(Map<String,Object> m:list){
 			AccountViewBean a = new AccountViewBean();
 			a.setBussinessId(Integer.parseInt(m.get("bussinessId").toString()));
