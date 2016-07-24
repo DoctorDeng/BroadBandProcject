@@ -46,6 +46,7 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		a.setStatus(status);
 		a.setLoginAccount(loginAccount);
 		new AccountService().searchAccountViewBean(a, currentPage);
+		response.sendRedirect("");
 	}
 
 	/**
