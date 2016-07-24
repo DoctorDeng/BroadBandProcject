@@ -24,17 +24,18 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	public List<BussinessViewBean> findAll() {
 		// TODO Auto-generated method stub 
 		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
-		String sql = " SELECT bussiness.bussinessId, admininfor.adminId,customer.idNumber,customer.customerName,os.osAccount,bussiness.status,os.serverIp,tariff.tariffId "
+		String sql = " SELECT bussiness.bussinessId, admininfor.adminId, customer.idNumber, customer.customerName, os.osAccount,bussiness.`status`, os.serverIp, tariff.tariffName "
 				+ " FROM  "
 				+ " bussiness,"
 				+ " admininfor,"
 				+ " customer,"
 				+ " os,tariff "
 				+ " WHERE "
+				+" bussiness.customerId = customer.customerId AND "
 				+" admininfor.idNumber = customer.idNumber AND "
-				+" os.customerId = customer.customerId AND "
 				+" os.tariffId = tariff.tariffId AND "
-				+" os.customerId = bussiness.customerId ";
+				+" bussiness.`status` = tariff.`status` AND "
+				+" os.customerId = customer.customerId ";				;
 		//System.out.println(sql);
 		try {
 			ps = conn.prepareStatement(sql);
@@ -46,8 +47,9 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				viewbean.setIdNumber(rs.getString(3));
 				viewbean.setCustomerName(rs.getString(4));
 				viewbean.setOsAccount(rs.getString(5));
-				viewbean.setTraiffName(rs.getString(6));
+				viewbean.setStatus(rs.getString(6));
 				viewbean.setServerId(rs.getString(7));
+				viewbean.setTraiffName(rs.getString(8));
 				view.add(viewbean);
 			}
 			return view;

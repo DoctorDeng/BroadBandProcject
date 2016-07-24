@@ -113,10 +113,10 @@
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
                         <td><%=sv.getOsAccount() %></td>
-                        <td><%=sv.getStatus() %></td>
+                        <td><%=sv.getStatus()%></td>
                         <td><%=sv.getServerId()%></td>
                         <td>
-                            <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);"><%=sv.getTariffId() %></a>
+                            <a class="summary" ><%=sv.getTraiffName()%></a>
                             <!--浮动的详细信息-->
                             <div class="detail_info">
                                 20小时，24.5 元，超出部分 0.03元/分钟
