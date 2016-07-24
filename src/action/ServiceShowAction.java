@@ -8,10 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
+import bean.Customer;
 import bean.Os;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
+import service.CustomerService;
 
 /**
  * Servlet implementation class ServiceShowAction
@@ -40,6 +43,9 @@ public class ServiceShowAction extends HttpServlet {
 		ServiceAddViewBean sa = new ServiceAddViewBean();
 		for(ServiceAddViewBean sav : lsa){
 			out.println(sav.getAdminId());
+			Customer customer = new Customer();
+			customer.setCustomerId(sav.getCustomerId());
+			
 		}
 		out.close();
 	}

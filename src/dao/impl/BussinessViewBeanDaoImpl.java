@@ -59,9 +59,8 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 	}
 	@Override
 	public boolean add(ServiceAddViewBean serviceAddViewBean) {
-		// TODO Auto-generated method stub
-			CustomerService customerM = new CustomerService();
-			Customer customer = new Customer();
+			CustomerService customerService = new CustomerService();
+			
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
@@ -98,8 +97,8 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				svb.setAdminId(rs.getInt(1));
 				svb.setCustomerId(rs.getInt(2));
 				siew.add(svb);
-				System.out.println(rs.getInt(1));
-				System.out.println(rs.getInt(2));
+				//System.out.println(rs.getInt(1));
+				//System.out.println(rs.getInt(2));
 			}
 			return siew;
 		}catch(SQLException se){

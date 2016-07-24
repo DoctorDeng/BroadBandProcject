@@ -36,7 +36,8 @@
             				url:'../ServiceShowAction',
             				data:{"id": id},
             				success:function(result){
-            					$("#adminId").val(result)           		
+            					$("#adminId").val(result)
+            					
             				}
             			})
             		}
@@ -73,6 +74,7 @@
                     <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
                 </div>
                 <div class="text_info clearfix"><span>账务账号：</span></div>
+                <input type="hidden" id="customerId"/>
                 <div class="input_info">
                     <input type="text" id="adminId" onkeyup="searchAccounts(this);" />
                     <span class="required">*</span>
