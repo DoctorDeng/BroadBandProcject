@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="dao.*"%>
 <%@page import="dao.impl.*" %>
-<%@page import="bean.viewBean.BussinessViewBean" %>
+<%@page import="bean.viewBean.*" %>
 <%@page import="java.util.*" %>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@page import="service.impl.*" %>
@@ -84,8 +84,11 @@
                         <th class="width200"></th>
                     </tr>
 			<%
-			List<BussinessViewBean> lsb = (ArrayList<BussinessViewBean>)session.getAttribute("lsa");
-			for(BussinessViewBean sv : lsb){
+			List<ServiceAddViewBean> lsb = (ArrayList<ServiceAddViewBean>)session.getAttribute("lsa");
+			for(ServiceAddViewBean sv : lsb){
+				System.out.println(sv.getAdminId());
+				System.out.println(sv.getBussinessId());
+				System.out.println(sv.getCustomerName());
 			%>
                     <tr>
                         <td><a href="service_detail.jsp" title="查看明细"><%=sv.getBussinessId()%></a></td>

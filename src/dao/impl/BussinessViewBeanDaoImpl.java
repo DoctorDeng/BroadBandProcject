@@ -243,11 +243,15 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				 sql.append( " AND os.serverIp = '" + serverIp+"'");
 			}	
 			ps = conn.prepareStatement(sql.toString());
+			System.out.println(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
 				ServiceAddViewBean viewbean = new ServiceAddViewBean();
 				viewbean.setBussinessId(Integer.parseInt(rs.getString(1)));
+				//System.out.println(rs.getString(1));
 				viewbean.setAdminId(Integer.parseInt(rs.getString(2)));
+				//System.out.println(rs.getString(2));
+				//System.out.println(rs.getString(3));
 				viewbean.setIdNumber(rs.getString(3));
 				viewbean.setCustomerName(rs.getString(4));
 				viewbean.setOsAccount(rs.getString(5));

@@ -44,8 +44,13 @@ public class ServiceSearchAction extends HttpServlet {
 		serviceAddViewBean.setStatus(status);
 		List<ServiceAddViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
 		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
+		for(ServiceAddViewBean sa :lsa){
+			/*System.out.println(sa.getAdminId());
+			System.out.println(sa.getBussinessId());
+			System.out.println(sa.getCustomerName());*/
+		}
 		session.setAttribute("lsa", lsa);
-		response.sendRedirect("service/service_search.jsp");
+		response.sendRedirect("http://localhost:8080/lanqiao/service/service_search.jsp");
 	}
 
 	/**
