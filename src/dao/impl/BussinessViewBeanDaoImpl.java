@@ -162,24 +162,17 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		try {
 			if( !("#".equals(osAccount))){
 				sql.append( " AND os.osAccount = '" + osAccount +"'");
-				ps = conn.prepareStatement(sql.toString());
-				System.out.println(sql);
 			}
 			if( !("#".equals(idNumber))){
 				sql.append( " AND customer.idNumber = '" + idNumber +"'");
-				ps = conn.prepareStatement(sql.toString());
-				System.out.println(sql);
 			}
-			if( !("#".equals(status))){
+			if( !("0".equals(status))){
 				sql.append( " AND bussiness.`status` = " + status );
-				ps = conn.prepareStatement(sql.toString());
-				System.out.println(sql);
 			}
 			 if( !("#".equals(serverIp))){
 				 sql.append( " AND os.serverIp = '" + serverIp+"'");
-				ps = conn.prepareStatement(sql.toString());
-				System.out.println(sql);
 			}	
+			ps = conn.prepareStatement(sql.toString());
 			rs = ps.executeQuery();
 			System.out.println(sql);
 			while(rs.next()){
