@@ -35,25 +35,23 @@
                 else
                     detailDiv.style.display = "none";
             }
-            //重置密码
-            $(function(){
-            	$("#reset").click(function(){
-            		 var checks = []; // 定义一个空数组
-            	        var txt = $('#box').find(':text'); // 获取所有文本框
-            	        for (var i = 0; i < txt.length; i++) {
-            	            numArr.push(txt.eq(i).val()); // 将文本框的值添加到数组中
-            	        }
-            	        console.info(numArr);
-            		
-            	});
-            });
+          //查询管理员信息  
+            function SerchAdminInfor(){
+            		var adminId = document.getElementById("serchAdmin").value;        	
+            		window.location.href="/lanqiao/ShowAdminAction?operation=serch&adminId="+adminId;
+              }
+            /* //重置密码
             function resetPwd() {
-            	
-            	var checks = document.ge
-                alert("请至少选择一条数据！");
-                //document.getElementById("operate_result_info").style.display = "block";
-            }
-            //删除
+            	var checks= document.getElementsByName("choose");
+            	var adminIds[];
+            	for(var i=0;i<checks.lenth;i++){
+            	if(checks[i].checked){
+            		adminIds[i].push(checks[i].value);
+                   }
+                }
+            	window.location.href="/lanqiao/ShowAdminAction?operation=reset&adminIds="+adminIds;
+            } */
+           //删除
             function deleteAdmin() {
                 var r = window.confirm("确定要删除此管理员吗？");
                 document.getElementById("operate_result_info").style.display = "block";
@@ -70,8 +68,13 @@
         </script>       
     </head>
     <body>
-    
-       
+        <%!
+	        int pageSize = 7;      //设置每页的行数
+	 	    int pageCount;         //声明总的页数
+	 	    int currentPage = 1;   //声明当前页为第一页
+	 	    int totleRow ;         //总数据行数
+	 	    String pageIndex;      //当前页的索引  	 	   
+        %>
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
@@ -91,9 +94,9 @@
                 <!--查询-->             
                 <div class="search_add">
                    
-                    <div>角色：<input type="text" value="" class="text_search width200" /></div>
-                    <div><input type="button" value="搜索" class="btn_search"/></div>
-                    <input type="button" name="reset" id="reset" value="密码重置" class="btn_add" onclick="resetPwd();" />
+                    <div>姓名：<input type="text" id="serchAdmin" class="text_search width200" /></div>
+                    <div><input type="button"  value="搜索" class="btn_search" onclick="SerchAdminInfor()" /></div>
+                    <input type="button" name="reset" id="reset" value="密码重置" class="btn_add" onclick="location.href='/lanqiao/ShowAdminAction?operation=reset';" />
                     <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />
                 </div>
                 
@@ -102,13 +105,26 @@
                     <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
                     <span>删除失败！数据并发错误。</span><!--密码重置失败！数据并发错误。-->
                 </div> 
-                
+               <%--  <%
+                List<Map<String,Object>> adminInforList =(List<Map<String,Object>>)session.getAttribute("admininforList");
+                totleRow = adminInforList.size();
+                pageIndex = request.getParameter("currentPage"); //获取当前页码
+        	    if(pageIndex==null){
+        	    pageIndex = "1";
+        	    }
+        	    currentPage = Integer.parseInt(pageIndex);    
+        	    pageCount = (totleRow%pageSize==0)?(totleRow/pageSize):(totleRow/pageSize+1);  //算出总页数
+     		    if(currentPage>=pageCount) 
+     		    currentPage = pageCount;  
+     	       boolean firstRow = rs.absolute((currentPage-1)*pageSize+1);  //获 取每页的第一行  
+        	    int count = 0; 
+                %> --%>
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">             
                    <tr>
                             <th class="th_select_all">
-                                <input type="checkbox" id="check" value="" onclick="selectAdmins(this);" />
+                                <input type="checkbox"   onclick="selectAdmins(this);" />                  
                                 <span>全选</span>
                             </th>
                             <th>管理员ID</th>
@@ -120,10 +136,9 @@
                             <th class="width100">拥有角色</th>
                             <th></th>
                         </tr>                           
-                        <c:forEach items="${sessionScope.admininforList}" var="adminInfor" >                      	
-                                    
+                        <c:forEach items="${sessionScope.admininforList}" var="adminInfor" >                      	                                  
                          <tr>
-                            <td><input type="checkbox" name="choose"/></td>  
+                            <td><input type="checkbox" name="choose" value="<c:out value="${adminInfor.adminId}" />"/></td>  
                             <td><c:out value="${adminInfor.adminId}" /></td>           
                             <td><c:out value="${adminInfor.adminName}" /></td>
                             <td><c:out value="${adminInfor.adminAccount}" /></td>
@@ -166,17 +181,23 @@
                         </c:forEach>
          
                     </table>
+                     <% 
+				      if(currentPage>1){   //当当前页码小于等于1时只显示下一页和末页
+				      %>
+					   <a href="myPaging.jsp?currentPage=1">首页</a>&nbsp;
+					   <a href="myPaging.jsp?currentPage=<%=currentPage - 1 %>">上一页</a>&nbsp;
+				      <%
+				       }
+				       if(currentPage<pageCount){
+				       %>
+					   <a href="myPaging.jsp?currentPage=<%=currentPage + 1 %>">下一页</a>&nbsp;
+					   <a href="myPaging.jsp?currentPage=<%=pageCount %>">末页</a><br/>
+				       <%
+					   }
+				       %>     
                 </div>
                 <!--分页-->
-                <div id="pages">
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                </div>                    
+                               
             </form>
         </div>
         <!--主要区域结束-->

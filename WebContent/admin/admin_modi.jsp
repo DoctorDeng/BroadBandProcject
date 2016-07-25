@@ -54,22 +54,18 @@
         </div>
         <!--导航区域结束-->
         <c:set var="adminID" value="${param.adminId}" />
-        <c:forEach items="${sessionScope.admininforList}" var="adminInfor">   
-        <c:set var="adminId" value="${adminInfor.adminId}" />
-        <c:if test="${adminId==adminID}">
-           <c:set var="adminName" value="${adminInfor.adminName}" />
-           <c:set var="phone" value="${adminInfor.phone}" />
-           <c:set var="email" value="${adminInfor.email}" />
-        </c:if>
-        </c:forEach>
-       
+    
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="../UpdateAdminInfor?adminId=<c:out value="${adminId}"/>" method="post" class="main_form">
-                    <div class="text_info clearfix"><span>姓名：</span></div>
+     
+        <form action="../UpdateAdminInfor?adminId=<c:out value="${param.adminId}"/>" method="post" class="main_form">
+        <c:forEach items="${sessionScope.admininforList}" var="adminInfor">   
+        <c:set var="adminId" value="${adminInfor.adminId}" />
+        <c:if test="${adminId==adminID}">
+            <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                        <input type="text" name="adminName" value="<c:out value="${adminName}"/>" />
+                        <input type="text" name="adminName" value="<c:out value="${adminInfor.adminName}"/>" />
                         <span class="required">*</span>
                         <div class="validate_msg_long error_msg">20长度以内的汉字、字母、数字的组合</div>
                     </div>
@@ -77,16 +73,19 @@
                     <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="<c:out value="${sessionScope.admin.adminAccount}"/>" name="adminAccount" /></div>
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
-                        <input type="text" value="<c:out value="${phone}"/>" name="phone" />
+                        <input type="text" value="<c:out value="${adminInfor.phone}"/>" name="phone" />
                         <span class="required">*</span>
                         <div class="validate_msg_long error_msg">正确的电话号码格式：手机或固话</div>
                     </div>
                     <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">
-                        <input type="text" class="width200" value="<c:out value="${email}" />" name="email"/>
+                        <input type="text" class="width200" value="<c:out value="${adminInfor.email}" />" name="email"/>
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg">50长度以内，正确的 email 格式</div>
                     </div>
+        </c:if>
+        </c:forEach>
+                   
                     <div class="text_info clearfix"><span>角色：</span></div>
                     <div class="input_info_high">
                         <div class="input_info_scroll">

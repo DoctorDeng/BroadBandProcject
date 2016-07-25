@@ -8,7 +8,7 @@
   				<!-- 当管理员的权限中有2权限时显示对应权限菜单 -->
   				<c:choose>
   					<c:when test="${power==2}">
-                		 <li><a href="/lanqiao/ShowAdminAction" class="admin_off"></a></li>
+                		 <li><a href="/lanqiao/ShowAdminAction?operation=init" class="admin_off"></a></li>
   					</c:when>
   				</c:choose>
   				
