@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -79,6 +80,7 @@ public class BillAction extends HttpServlet {
 	  		List<BillFormBean> billFormList = billService.getBillFormByPage((currentPage-1)*pageSize, pageSize);
 	  		request.setAttribute("billForm", billFormList);
 	  		request.setAttribute("page", page);
+	  		request.setAttribute("isPage", "yes");
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
 			break;
 		/**
@@ -108,14 +110,23 @@ public class BillAction extends HttpServlet {
 			request.getRequestDispatcher("/bill/bill_service_detail.jsp").forward(request, response);
 			break;
 		case "condition":
-			String idNumber = request.getParameter("idNumber");
+			/*String idNumber = request.getParameter("idNumber");
 			String loginAccount = request.getParameter("loginAccount");
 			String customerName = java.net.URLDecoder.decode(request.getParameter("customerName"), "UTF-8");
-			System.out.println(request.getParameter("customerName"));
 			List<BillFormBean> billFormListTemp = billService.getBillFormByCondition(idNumber, loginAccount, customerName);
+			if(billFormListTemp.size() >7) {
+				List<BillFormBean> manyBillFrom = new ArrayList<>();
+				for (int i=0; i<7;i ++) {
+					manyBillFrom.add(billFormListTemp.get(i));
+				}
+				request.setAttribute("billForm", billFormListTemp);
+				request.setAttribute("isPage", "no");
+				request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
+			}
+			request.setAttribute("isPage", "no");
 			request.setAttribute("billForm", billFormListTemp);
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
-			break;
+			break;*/
 		}
 	}
 

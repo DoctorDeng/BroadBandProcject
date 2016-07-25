@@ -38,6 +38,8 @@
 				var idNumber = $("#idNumber").val();
             	var loginAccount = $("#loginAccount").val();
             	var customerName = $("#customerName").val();
+            	$("#pages").hide();
+            	$("#point").show();
             	
 				$.post("/lanqiao/BillTest", {
 					'idNumber' 	   : idNumber,
@@ -49,6 +51,10 @@
 					$("#datalist").append($menuId);
 					$("#datalist").append(data);
 				});
+			}
+			
+			function  show() {
+				window.location.href="/lanqiao/BillAction?operation=showBill";
 			}
 		</script>
     </head>
@@ -75,6 +81,7 @@
                     <div>账务账号：<input type="text"  id="loginAccount" class="width100 text_search" /></div>                            
                     <div>姓名：<input type="text"     id="customerName" class="width70 text_search" /></div>
                     <div><input type="button" value="搜索" class="btn_search" onclick="search()" /></div>
+                    <div><input type="button" value="显示所有" class="btn_search" onclick="show()" /></div>
                 </div>  
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -116,52 +123,29 @@
   							<tr>
   						</c:forEach>
                 </table>
-                
-                <p>业务说明：<br />
-                1、设计支付方式和支付状态，为用户自服务中的支付功能预留；<br />
-                2、只查询近 3 年的账单，即当前年和前两年，如2013/2012/2011；<br />
-                3、年和月的数据由 js 代码自动生成；<br />
-                4、由数据库中的ｊｏｂ每月的月底定时计算账单数据。</p>
+                <br/>
+                <p id="point" style="display:none;color:red">1、搜索最多显示7条数据</p>
                 </div>                    
                 <!--分页-->
                 <div id="pages">
                 	<c:if test="${not empty requestScope.page}">
-                		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
+                		<c:if test="${requestScope.isPage == 'yes'}" >
+                			<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
                     
-                   <%--  <c:set var="pageList" value="${requestScope.page.endPage-requestScope.page.currentPage}" />
-                    <c:if test="${pageList>0}" >
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">
-                    	${requestScope.page.currentPage}
-                    </a>
-                    	<c:forEach var="i" begin="1" end="${pageList}" step="1">
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
-                    			<c:out value="${requestScope.page.currentPage + i}" />
-                    		</a>
-                   	    </c:forEach>
-                    </c:if>
-                    <c:if test="${pageList<=0}" >
-                    	<c:forEach var="i" begin="0" end="${pageList}" step="1">
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage + i}">
-                    			<c:out value="${requestScope.page.currentPage + i}" />
-                    		</a>
-                   	    </c:forEach>
-                   	     <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.currentPage}" class="current_page">
-                    		${requestScope.page.currentPage}
-                    	</a>
-                    </c:if> --%>
-                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
-                    	<c:if test="${i == requestScope.page.currentPage}">
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
-                    	</c:if>
-                    	<c:if test="${i != requestScope.page.currentPage}">
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
-                    	</c:if>
-                    </c:forEach>
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    <a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
+                    		<c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    			<c:if test="${i == requestScope.page.currentPage}">
+                    				<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
+                    			</c:if>
+                    			<c:if test="${i != requestScope.page.currentPage}">
+                    				<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
+                    			</c:if>
+                    		</c:forEach>
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
+                		</c:if>
                 	</c:if>
-                </div>                    
+                </div>   
             </form>
         </div>
         <!--主要区域结束-->
