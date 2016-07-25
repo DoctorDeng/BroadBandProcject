@@ -54,18 +54,7 @@
                 	window.alert("请至少选择一条记录!");
                 }
             }
-          /* //重置密码
-            function resetPwd() {
-            	var checks= document.getElementsByName("choose");
-            	var adminIds[];
-            	for(var i=0;i<checks.lenth;i++){
-            	if(checks[i].checked){
-            		adminIds[i].push(checks[i].value);
-                   }
-                }
-            	window.location.href="/c?operation=reset&adminIds="+adminIds;
-            } */
-            //全选
+         
             function selectAdmins(inputObj) {
                 var inputArray = document.getElementById("datalist").getElementsByTagName("input");
                 for (var i = 1; i < inputArray.length; i++) {

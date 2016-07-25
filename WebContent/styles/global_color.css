@@ -147,7 +147,7 @@ span.required
 div.error_msg
 {
     /* color:Red; */
-    background-image:url("../images/wrong.gif") ;
+    /* background-image:url("../images/wrong.gif") ; */
     background-repeat:no-repeat;
     background-position:left center;
    /*  border:1px solid red; */
