@@ -5,6 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 		<c:set var="admin" value="${not empty sessionScope.admin}" />
+  		<c:if test="${not admin}">
+  			<script type="text/javascript">
+  				window.location.href="/lanqiao/login.jsp";
+  			</script>
+  		</c:if>
 <title>Insert title here</title>
  <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" /> 

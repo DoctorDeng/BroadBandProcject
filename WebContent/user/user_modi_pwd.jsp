@@ -34,7 +34,7 @@
         <div id="main">      
             <!--保存操作后的提示信息：成功或者失败-->      
             <div id="save_result_info" class="save_success">保存成功！</div><!--保存失败，旧密码错误！-->
-            <form action="../ChangePasswordAction" method="post" class="main_form">
+            <form action="/lanqiao/ChangePasswordAction" method="post" class="main_form">
                 <div class="text_info clearfix"><span>旧密码：</span></div>
                 <div class="input_info">
                     <input type="password" class="width200" name="oldPassword" /><span class="required">*</span>

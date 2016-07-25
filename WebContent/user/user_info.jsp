@@ -18,8 +18,8 @@
             //保存成功的提示信息
             function showResult() {
                 showResultDiv(true);
-                window.setTimeout("showResultDiv(false);", 3000);
-                document.getElementById("infor").submit();
+                window.setTimeout("showResultDiv(false)",1000);
+                window.setTimeout("document.getElementById('infor').submit()", 3000);
             }
             function showResultDiv(flag) {
                 var divResult = document.getElementById("save_result_info");

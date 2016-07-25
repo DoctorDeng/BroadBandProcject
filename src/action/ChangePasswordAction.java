@@ -58,9 +58,9 @@ public class ChangePasswordAction extends HttpServlet {
 			String newPassword = request.getParameter("newPassword");
 			
 			if (accountManage.changePassword(admin.getAdminId(), newPassword)) {
-				System.out.println("更改成功..");
 				request.getSession().setAttribute("admin", null);
-				request.getRequestDispatcher("login.jsp").forward(request, response);	
+				response.sendRedirect("/lanqiao/success.jsp");
+				return;
 			} 
 		}
 	}

@@ -35,11 +35,16 @@ public class LoginAction extends HttpServlet {
 		AccountManage accountManage = new AccountManage();
 		if (null != adminAccount && null != password) {
 			Admin  admin = accountManage.login(adminAccount, password);
-			request.getSession().setAttribute("admin", admin);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-			return;
+			if (null == admin) {
+				response.sendRedirect("loginFail.jsp");
+				return;
+			} else {
+				request.getSession().setAttribute("admin", admin);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+				return;
+			}
 		} else {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.sendRedirect("login.jsp");
 			return;
 		}
 	}
