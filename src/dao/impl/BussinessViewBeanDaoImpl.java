@@ -39,7 +39,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				+" os.customerId = customer.customerId ";
 		//System.out.println(sql);
 		try {
-			conn = db.getConnection();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
@@ -85,7 +84,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
-				conn = db.getConnection();
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, serviceAddViewBean.getCustomerId());
 				ps.setInt(2,serviceAddViewBean.getTariffId());
@@ -128,7 +126,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				+ " c.idNumber = a.idNumber" ;
 		//System.out.println(sql);
 		try{
-			conn = db.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, serviceAddViewBean.getIdNumber());
 			rs = ps.executeQuery();
@@ -245,7 +242,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			 if( !("#".equals(serverIp))){
 				 sql.append( " AND os.serverIp = '" + serverIp+"'");
 			}	
-			conn = db.getConnection();
 			ps = conn.prepareStatement(sql.toString());
 			rs = ps.executeQuery();
 			while(rs.next()){
@@ -290,12 +286,11 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		// TODO Auto-generated method stub
 		List<ServiceAddViewBean> view = new ArrayList<ServiceAddViewBean>();
 		System.out.println(serviceAddViewBean.getBussinessId());
-		String sql = "SELECT  customer.customerName, customer.idNumber, os.serverIp, os.osAccount, "
-				+"  bussiness.`status`, tariff.openTime, tariff.tariffId, tariff.tariffName, tariff.tariffExplain "
+		String sql = "SELECT bussiness.bussinessId, customer.customerName, customer.idNumber, os.serverIp, os.osAccount, "
+				+"  bussiness.`status`, tariff.openTime, tariff.tariffId, tariff.tariffName, tariff.tariffExplain  "
 				+"  FROM customer , os , bussiness , tariff , admininfor WHERE "
 				+"  customer.idNumber = admininfor.idNumber AND "
 				+"  os.customerId = customer.customerId AND "
-				+"  tariff.tariffId = tariff.tariffId AND "
 				+"  os.tariffId = tariff.tariffId AND "
 				+ " os.customerId = bussiness.customerId "
 				+ " AND bussiness.bussinessId = ?  ";
@@ -305,17 +300,16 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			rs = ps.executeQuery();
 			while(rs.next()){
 				ServiceAddViewBean viewbean = new ServiceAddViewBean();
-				viewbean.setCustomerName(rs.getString(1));
-				System.out.println(rs.getString(2));
-				System.out.println(rs.getString(9));
-				viewbean.setIdNumber(rs.getString(2));
-				viewbean.setServerId(rs.getString(3));
-				viewbean.setOsAccount(rs.getString(4));
-				viewbean.setStatus(rs.getString(5));
-				viewbean.setOpenTime(rs.getString(6));
-				viewbean.setTariffId(rs.getInt(7));
-				viewbean.setTraiffName(rs.getString(8));
-				viewbean.setTariffExplain(rs.getString(9));
+				viewbean.setBussinessId(rs.getInt(1));
+				viewbean.setCustomerName(rs.getString(2));		
+				viewbean.setIdNumber(rs.getString(3));
+				viewbean.setServerId(rs.getString(4));
+				viewbean.setOsAccount(rs.getString(5));
+				viewbean.setStatus(rs.getString(6));
+				viewbean.setOpenTime(rs.getString(7));
+				viewbean.setTariffId(rs.getInt(8));
+				viewbean.setTraiffName(rs.getString(9));
+				viewbean.setTariffExplain(rs.getString(10));
 				view.add(viewbean);
 			}
 			return view;
