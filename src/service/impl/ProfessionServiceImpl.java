@@ -1,7 +1,6 @@
 package service.impl;
 import java.util.List;
 
-import bean.viewBean.BussinessViewBean;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 import service.ProfessionService;
@@ -16,8 +15,14 @@ public class ProfessionServiceImpl implements ProfessionService {
 	}
 
 	@Override
-	public List<BussinessViewBean> selService(ServiceAddViewBean serviceAddViewBean) {
+	public List<ServiceAddViewBean> selService(ServiceAddViewBean serviceAddViewBean) {
 		return new BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
+	}
+
+	@Override
+	public List<ServiceAddViewBean> toShowService(ServiceAddViewBean serviceAddViewBean) {
+		// TODO Auto-generated method stub
+		return new BussinessViewBeanDaoImpl().toShow(serviceAddViewBean);
 	}
 
 }

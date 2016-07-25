@@ -1,8 +1,6 @@
 package service;
 
 import java.util.List;
-
-import bean.viewBean.BussinessViewBean;
 import bean.viewBean.ServiceAddViewBean;
 
 public interface ProfessionService {
@@ -15,5 +13,9 @@ public interface ProfessionService {
 	/**
 	 * 根据特定条件查询结果
 	 */
-	public List<BussinessViewBean> selService(ServiceAddViewBean serviceAddViewBean);
+	public List<ServiceAddViewBean> selService(ServiceAddViewBean serviceAddViewBean);
+	/**
+	 * 将详细信息传递到servlet
+	 */
+	public List<ServiceAddViewBean> toShowService(ServiceAddViewBean serviceAddViewBean);
 }

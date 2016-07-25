@@ -213,9 +213,9 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		return false;
 	}
 	@Override
-	public List<BussinessViewBean> findOne(ServiceAddViewBean serviceAddViewBean) {	
+	public List<ServiceAddViewBean> findOne(ServiceAddViewBean serviceAddViewBean) {	
 		// TODO Auto-generated method stub
-		List<BussinessViewBean> view = new ArrayList<BussinessViewBean>();
+		List<ServiceAddViewBean> view = new ArrayList<ServiceAddViewBean>();
 		String osAccount = serviceAddViewBean.getOsAccount();
 		String idNumber  = serviceAddViewBean.getIdNumber();
 		String status    = serviceAddViewBean.getStatus();
@@ -245,11 +245,11 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			 if( !("#".equals(serverIp))){
 				 sql.append( " AND os.serverIp = '" + serverIp+"'");
 			}	
-			 conn = db.getConnection();
+			conn = db.getConnection();
 			ps = conn.prepareStatement(sql.toString());
 			rs = ps.executeQuery();
 			while(rs.next()){
-				BussinessViewBean viewbean = new BussinessViewBean();
+				ServiceAddViewBean viewbean = new ServiceAddViewBean();
 				viewbean.setBussinessId(Integer.parseInt(rs.getString(1)));
 				viewbean.setAdminId(Integer.parseInt(rs.getString(2)));
 				viewbean.setIdNumber(rs.getString(3));

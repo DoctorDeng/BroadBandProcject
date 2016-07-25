@@ -13,18 +13,19 @@ import javax.servlet.http.HttpSession;
 import bean.viewBean.BussinessViewBean;
 import bean.viewBean.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
+import service.impl.ProfessionServiceImpl;
 
 /**
- * Servlet implementation class ServiceSearchAction
+ * Servlet implementation class ServiceDetailAction
  */
-@WebServlet(urlPatterns="/ServiceSearchAction")
-public class ServiceSearchAction extends HttpServlet {
+@WebServlet(urlPatterns="/ServiceDetailAction")
+public class ServiceDetailAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServiceSearchAction() {
+    public ServiceDetailAction() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,21 +35,13 @@ public class ServiceSearchAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session =request.getSession();
-		String idNumber = request.getParameter("id").trim();
-		String osAccount  = request.getParameter("osc").trim();
-		String serviceIp = request.getParameter("sIp").trim();
-		String status   =  request.getParameter("status").trim();
-		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();
-		serviceAddViewBean.setIdNumber(idNumber);
-		serviceAddViewBean.setOsAccount(osAccount);
-		serviceAddViewBean.setServerId(serviceIp);
-		serviceAddViewBean.setStatus(status);
-		List<ServiceAddViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
-		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
-		session.setAttribute("lsa", lsa);
-		response.sendRedirect("service/service_search.jsp");
-		
+		String bussinessId = request.getParameter("bussinessId");
+		ServiceAddViewBean serviceAddViewBean = new ServiceAddViewBean();
+		serviceAddViewBean.setBussinessId(Integer.parseInt(bussinessId));
+		List<ServiceAddViewBean>  lsit = new ProfessionServiceImpl().toShowService(serviceAddViewBean);
+		HttpSession  session = request.getSession();
+		session.setAttribute("lsit", lsit);
+		response.sendRedirect("service/service_detail.jsp");
 	}
 
 	/**
