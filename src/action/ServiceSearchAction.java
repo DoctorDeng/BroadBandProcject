@@ -30,11 +30,13 @@ public class ServiceSearchAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		//HttpSession session =request.getSession();
 		String idNumber = request.getParameter("id");
-		String osCount  = request.getParameter("osC");
+		String osCount  = request.getParameter("osc");
 		String serviceIp = request.getParameter("sIp");
+		String status   =  request.getParameter("status");
 		System.out.println(idNumber);
 		System.out.println(osCount);
 		System.out.println(serviceIp);
+		System.out.println(status);
 	}
 
 	/**

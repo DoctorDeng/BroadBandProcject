@@ -28,6 +28,7 @@
             $(function(){
             	$("#showId").click(function(){
             		var id = $("#idNumber").val();
+            		alert(id);
             		if(""==id){	
             		}else{
             			$.ajax({

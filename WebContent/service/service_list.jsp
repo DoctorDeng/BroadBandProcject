@@ -26,7 +26,8 @@
   		%>
   		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <script type="text/javascript" src="../js/jquery.js"></script> 
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
             function showDetail(flag, a) {
@@ -47,6 +48,31 @@
                 var r = window.confirm("确定要开通此业务账号吗？");
                 document.getElementById("operate_result_info").style.display = "block";
             }
+            $(function(){
+            	$("#search").click(function(){
+            		var id  = -1;
+            		if($("#idCard").val() !==""){
+            			id = $("#idCard").val();
+            		}           		
+            		var sIp = -1;
+            		if($("#sIp").val() !== ""){
+            			sIp = $("#sIp").val();
+            		}
+            		var osC = "-1";
+            		if( $("#osC").val() !== ""){
+            		 osC = $("#osC").val();
+            		 }
+            		var status =$("#choose").val();
+            		$.ajax({
+            			url:'../ServiceSearchAction',
+            			data:{  "id" : id ,
+            					"osc": osC,
+            					"sIp": sIp,
+            					"status" : status,
+            				},            		
+            		})
+            	})
+            }); 
         </script>
     </head>
     <body>
@@ -68,19 +94,19 @@
             <form action="" method="post">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>OS 账号：<input type="text" value="" class="width100 text_search" /></div>                            
-                    <div>服务器 IP：<input type="text" value="" class="width100 text_search" /></div>
-                    <div>身份证：<input type="text"  value="" class="text_search" /></div>
+                    <div>OS 账号：<input type="text" id="osC" class="width100 text_search" /></div>                            
+                    <div>服务器 IP：<input type="text" id="sIp" class="width100 text_search" /></div>
+                    <div>身份证：<input type="text"  id="idCard" class="text_search" /></div>
                     <div>状态：
-                        <select class="select_search">
-                            <option>全部</option>
-                            <option>开通</option>
-                            <option>暂停</option>
-                            <option>删除</option>
+                        <select class="select_search" id="choose">
+                            <option value="0">全部</option>
+                            <option value="1">开通</option>
+                            <option value="2">暂停</option>
+                            <option value="3">删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" /></div>
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='service_add.jsp';" />
+                    <div><input type="button" value="搜索" class="btn_search"  id="search"/></div>
+                    <input type="button" value="增加"  class="btn_add" onclick="location.href='service_add.jsp';" />
                 </div>  
                 <!--删除的操作提示-->
                 <div id="operate_result_info" class="operate_success">

@@ -2,14 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@page import="dao.*"%>
 <%@page import="dao.impl.*" %>
-    <%@page import="bean.viewBean.BussinessViewBean" %>
-    <%@page import="java.util.*" %>
- <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@page import="bean.viewBean.BussinessViewBean" %>
+<%@page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
+        <script type="text/javascript" src="../js/jquery.js"></script>
       	 <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
@@ -28,49 +29,6 @@
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
-            //显示角色详细信息
-            function showDetail(flag, a) {
-                var detailDiv = a.parentNode.getElementsByTagName("div")[0];
-                if (flag) {
-                    detailDiv.style.display = "block";
-                }
-                else
-                    detailDiv.style.display = "none";
-            }
-            //删除
-            function deleteAccount() {
-                var r = window.confirm("确定要删除此业务账号吗？删除后将不能恢复。");
-                document.getElementById("operate_result_info").style.display = "block";
-            }
-            //开通或暂停
-            function setState() {
-                var r = window.confirm("确定要开通此业务账号吗？");
-                document.getElementById("operate_result_info").style.display = "block";
-            }
-            $(function(){
-            	$("#search").click(function(){
-            		var id  = -1;
-            		if($("#idCard").val() !==""){
-            			id = $("#idCard").val();
-            		}
-            		var sIp = -1;
-            		if($("#sIp").val() !== ""){
-            			sIP = $("#sIp").val();
-            		}
-            		var osC = "*";
-            		if( $("#osC").val() !== ""){
-            		 osC = $("#osC").val();
-            		 }
-            		var show =$("#show").val();
-            		$.ajax({
-            			url:'../ServiceSearchAction',
-            			data:{  "id" : id ,
-            					"osc": osC,
-            					"sIp": sIP
-            				},            		
-            		})
-            	})
-            });
         </script>
     </head>
     <body>
@@ -105,7 +63,7 @@
                     </div>
                     <div><input type="button" value="搜索" class="btn_search" id="search" /></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='service_add.jsp';" />
-                </div>  
+                	</div>  
                 <!--删除的操作提示-->
                 <div id="operate_result_info" class="operate_success">
                     <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
@@ -125,12 +83,12 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-		<%
-		BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
-		List<BussinessViewBean> lv = bv.findAll();
-		session.setAttribute("lv", lv);
-		for(BussinessViewBean sv:lv){
-		%>
+			<%
+			BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
+			List<BussinessViewBean> lv = bv.findAll();
+				session.setAttribute("lv", lv);
+			for(BussinessViewBean sv:lv){
+			%>
                     <tr>
                         <td><a href="service_detail.jsp" title="查看明细"><%=sv.getBussinessId()%></a></td>
                         <td><%=sv.getAdminId() %></td>
@@ -178,7 +136,6 @@
         </div>
         <!--主要区域结束-->
         <div id="footer">
-          
         </div>
     </body>
 </html>
