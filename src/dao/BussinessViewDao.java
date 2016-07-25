@@ -31,6 +31,12 @@ public interface BussinessViewDao {
 	/**
 	 * 通过特定条件去查询业务信息 
 	 */
-	public List<BussinessViewBean> findOne(ServiceAddViewBean serviceAddViewBean); 
+	public List<BussinessViewBean> findOne(ServiceAddViewBean serviceAddViewBean);
+	/**
+	 * 显示详细信息表
+	 * @param serviceAddViewBean
+	 * @return
+	 */
+	public List<ServiceAddViewBean> toShow(ServiceAddViewBean serviceAddViewBean); 
 }
 

@@ -285,5 +285,45 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		}		
 		return view;
 	}
+	@Override
+	public List<ServiceAddViewBean> toShow(ServiceAddViewBean serviceAddViewBean) {
+		// TODO Auto-generated method stub
+		List<ServiceAddViewBean> view = new ArrayList<ServiceAddViewBean>();
+		System.out.println(serviceAddViewBean.getBussinessId());
+		String sql = "SELECT  customer.customerName, customer.idNumber, os.serverIp, os.osAccount, "
+				+"  bussiness.`status`, tariff.openTime, tariff.tariffId, tariff.tariffName, tariff.tariffExplain "
+				+"  FROM customer , os , bussiness , tariff , admininfor WHERE "
+				+"  customer.idNumber = admininfor.idNumber AND "
+				+"  os.customerId = customer.customerId AND "
+				+"  tariff.tariffId = tariff.tariffId AND "
+				+"  os.tariffId = tariff.tariffId AND "
+				+ " os.customerId = bussiness.customerId "
+				+ " AND bussiness.bussinessId = ?  ";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, serviceAddViewBean.getBussinessId());
+			rs = ps.executeQuery();
+			while(rs.next()){
+				ServiceAddViewBean viewbean = new ServiceAddViewBean();
+				viewbean.setCustomerName(rs.getString(1));
+				System.out.println(rs.getString(2));
+				System.out.println(rs.getString(9));
+				viewbean.setIdNumber(rs.getString(2));
+				viewbean.setServerId(rs.getString(3));
+				viewbean.setOsAccount(rs.getString(4));
+				viewbean.setStatus(rs.getString(5));
+				viewbean.setOpenTime(rs.getString(6));
+				viewbean.setTariffId(rs.getInt(7));
+				viewbean.setTraiffName(rs.getString(8));
+				viewbean.setTariffExplain(rs.getString(9));
+				view.add(viewbean);
+			}
+			return view;
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}			
+		return view;
+	}
 
 }
