@@ -128,7 +128,7 @@
                         <td><%=a.getCreateTime() %></td>
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
+                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=a.getBussinessId() %>&status=<%=a.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=a.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
                         </td>
@@ -152,7 +152,7 @@
                         <td><%=ac.getCreateTime() %></td>
                         <td><%=ac.getLastLoginTime() %></td>                           
                         <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='account_modi.j sp?id=<%=ac.getBussinessId() %>';" />
+                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=ac.getBussinessId() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=ac.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=ac.getBussinessId() %>';" />
                         </td>

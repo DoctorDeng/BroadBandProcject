@@ -81,6 +81,23 @@ public class BussinessDaoImpl implements BussinessDao{
 		}
 		return false;
 	}
+	
+	public boolean updateStatus(Bussiness bussiness){
+		String status = bussiness.getStatus();
+		if(status.trim().equals("0")||status==null||status.equals("")){
+			status = "1";
+		}else if("1".equals(status.trim())){
+			status = "0";
+		}
+		String sql= "update bussiness set status="+status+
+				" where bussinessId="+bussiness.getBussinessId();
+		String[] fields = null;
+		int rs = DBHelper.update(sql, fields);
+		if(rs>0){
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public List<Bussiness> findAll() {
