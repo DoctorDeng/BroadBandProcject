@@ -36,7 +36,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				+" admininfor.idNumber = customer.idNumber AND "
 				+" os.tariffId = tariff.tariffId AND "
 				+" bussiness.`status` = tariff.`status` AND "
-				+" os.customerId = customer.customerId ";				;
+				+" os.customerId = customer.customerId ";
 		//System.out.println(sql);
 		try {
 			conn = db.getConnection();
