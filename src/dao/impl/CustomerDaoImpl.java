@@ -35,6 +35,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		String sql  = "INSERT into customer(customerName,idNumber,phone)VALUES(?,?,?)";
 		int i = 0;
 		try{
+			conn = db.getConnection(); 
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, customer.getCustomerName().trim());
 			ps.setString(2, customer.getIdNumber().trim());
@@ -45,7 +46,21 @@ public class CustomerDaoImpl implements CustomerDao {
 			i = ps.executeUpdate();		
 		}catch(SQLException se){
 			se.printStackTrace();
-		}
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+					ps = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("关闭连接出错");
+			}
+		}	
 		if(i == 0) return false;
 		else return true;
 	}

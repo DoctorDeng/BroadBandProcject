@@ -39,6 +39,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				+" os.customerId = customer.customerId ";				;
 		//System.out.println(sql);
 		try {
+			conn = db.getConnection();
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
@@ -57,7 +58,25 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}			
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+					rs = null;
+				}
+				if (ps != null) {
+					ps.close();
+					ps = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("关闭连接出错");
+			}
+		}	
 		return view;
 	}
 	@Override
@@ -66,6 +85,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			String sql  = "INSERT into os(customerId,tariffId,osAccount,osPassword,serverIp)VALUES(?,?,?,?,?)";
 			int i = 0;
 			try{
+				conn = db.getConnection();
 				ps = conn.prepareStatement(sql);
 				ps.setInt(1, serviceAddViewBean.getCustomerId());
 				ps.setInt(2,serviceAddViewBean.getTariffId());
@@ -76,7 +96,26 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				return i;
 			}catch(SQLException se){
 				se.printStackTrace();
+			} finally {
+				try {
+					if (rs != null) {
+						rs.close();
+						rs = null;
+					}
+					if (ps != null) {
+						ps.close();
+						ps = null;
+					}
+					if (conn != null) {
+						conn.close();
+						conn = null;
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+					System.out.println("关闭连接出错");
+				}
 			}
+			
 			return i;
 	}
 	@Override
@@ -89,6 +128,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				+ " c.idNumber = a.idNumber" ;
 		//System.out.println(sql);
 		try{
+			conn = db.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, serviceAddViewBean.getIdNumber());
 			rs = ps.executeQuery();
@@ -100,10 +140,28 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				siew.add(svb);
 				//System.out.println(rs.getInt(1));
 				//System.out.println(rs.getInt(2));
-			}
+			} 
 			return siew;
 		}catch(SQLException se){
 			se.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+					rs = null;
+				}
+				if (ps != null) {
+					ps.close();
+					ps = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("关闭连接出错");
+			}
 		}
 		return siew;
 	}
@@ -115,12 +173,31 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		String sql = "UPDATE os SET tariffId = ? WHERE osAccount = ?";
 		int i = 0 ;
 		try{
+			conn = db.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, bussinessViewBean.getTariffId());
 			ps.setString(2, bussinessViewBean.getOsAccount());
 			i=ps.executeUpdate();
 		}catch(SQLException se){
 			se.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+					rs = null;
+				}
+				if (ps != null) {
+					ps.close();
+					ps = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("关闭连接出错");
+			}
 		}
 		if(i == 0) return false;
 		else return true;
@@ -168,6 +245,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			 if( !("#".equals(serverIp))){
 				 sql.append( " AND os.serverIp = '" + serverIp+"'");
 			}	
+			 conn = db.getConnection();
 			ps = conn.prepareStatement(sql.toString());
 			rs = ps.executeQuery();
 			while(rs.next()){
@@ -186,7 +264,25 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}			
+		}	finally {
+			try {
+				if (rs != null) {
+					rs.close();
+					rs = null;
+				}
+				if (ps != null) {
+					ps.close();
+					ps = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("关闭连接出错");
+			}
+		}		
 		return view;
 	}
 
