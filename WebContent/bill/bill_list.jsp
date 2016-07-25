@@ -6,9 +6,9 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <link href="/lanqiao/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <script src="/lanqiao/js/jquery-1.12.4.js"></script>
-        <script src="/lanqiao/bootstrap/js/bootstrap.min.js"></script>
+        <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+        <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
         <c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
@@ -27,14 +27,14 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   		<script type="text/javascript">
-  				window.location.href="/lanqiao/nopowr.jsp";
+  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
   			</script>
   		</c:if>
   		
   	
-        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
-		<link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" />
-		<script src="js/jquery-1.12.4.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+		<link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
+		<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
 		<script type="text/javascript">
 			function search() {
 				
@@ -61,7 +61,7 @@
 			
 			function  show() {
 				$("#datalist").hide("slow",function(){
-					window.location.href="/lanqiao/BillAction?operation=showBill";
+					window.location.href="<%=request.getContextPath()%>/BillAction?operation=showBill";
 				});
 			}
 		</script>
@@ -70,7 +70,7 @@
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
         <div id="header">
-            <img src="/lanqiao/images/logo.png" alt="logo" class="left"/>
+            <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
             <a href="# ">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -83,7 +83,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="/lanqiao/BillAction?operation" method="post">
+            <form action="<%=request.getContextPath()%>/BillAction?operation" method="post">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>身份证：<input type="text" id="idNumber"       class="text_search" /></div>
@@ -128,7 +128,7 @@
   								<td><c:out value="${bill.timeLong}"/></td>
   								<td><c:out value="${bill.payWay}"/></td>
   								<td><c:out value="${bill.payStatus=='0'?'未支付':'支付'}"/></td>
-  								<td><a href="/lanqiao/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
+  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
                 </table>
@@ -139,19 +139,19 @@
                 <div id="pages">
                 	<c:if test="${not empty requestScope.page}">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
-                			<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}" class="btn btn-success">首页</a>
-        	        		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}" class="btn btn-danger" >上一页</a>
+                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}" class="btn btn-success">首页</a>
+        	        		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}" class="btn btn-danger" >上一页</a>
                     
                     		<c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
                     			<c:if test="${i == requestScope.page.currentPage}">
-                    				<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
+                    				<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
                     			</c:if>
                     			<c:if test="${i != requestScope.page.currentPage}">
-                    				<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
+                    				<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${i}">${i}</a>
                     			</c:if>
                     		</c:forEach>
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}"class="btn btn-danger" >下一页</a>
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}" class="btn btn-success">末页</a>
+                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}"class="btn btn-danger" >下一页</a>
+                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}" class="btn btn-success">末页</a>
                 		</c:if>
                 	</c:if>
                 </div>   

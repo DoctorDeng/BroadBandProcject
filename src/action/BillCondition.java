@@ -54,7 +54,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getTimeLong()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
 				out.println("<td>" +(billForm.getPayStatus()=="1"?"已支付":"未支付")+"</td>");
-				out.println("<td><a href=\"/lanqiao/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
+				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
 				out.print("</tr>");
 			}
 			out.flush();
@@ -83,7 +83,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getTimeLong()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
 				out.println("<td>" +(billForm.getPayStatus()=="1"?"已支付":"未支付")+"</td>");
-				out.println("<td><a href=\"/lanqiao/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
+				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
 				out.print("</tr>");
 			}
 			out.flush();
