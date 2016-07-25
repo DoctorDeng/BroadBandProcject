@@ -48,12 +48,12 @@
                 var r = window.confirm("确定要开通此业务账号吗？");
                 document.getElementById("operate_result_info").style.display = "block";
             }
-            $(function(){
+           /*  $(function(){
             	$("#search").click(function(){
             		var id  = "#";
             		if($("#idCard").val() !==""){
             			id = $("#idCard").val();
-            		}           		
+            		}  
             		var sIp = "#";
             		if($("#sIp").val() !== ""){
             			sIp = $("#sIp").val();
@@ -64,7 +64,7 @@
             		 }
             		var status =$("#choose").val();
             		$.ajax({
-            			url:'../ServiceSearchAction',
+            			url:'/lanqiao/ServiceSearchAction',
             			data:{  "id" : id ,
             					"osc": osC,
             					"sIp": sIp,
@@ -72,7 +72,7 @@
             				},            		
             		})
             	})
-            }); 
+            });  */
         </script>
     </head>
     <body>
@@ -91,12 +91,12 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="post">
+            <form action="/lanqiao/ServiceSearchAction" method="post">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>OS 账号：<input type="text" id="osC" class="width100 text_search" /></div>                            
-                    <div>服务器 IP：<input type="text" id="sIp" class="width100 text_search" /></div>
-                    <div>身份证：<input type="text"  id="idCard" class="text_search" /></div>
+                    <div>OS 账号：<input type="text" id="osC" name="osC" class="width100 text_search" /></div>                            
+                    <div>服务器 IP：<input type="text" name="sIp" class="width100 text_search" /></div>
+                    <div>身份证：<input type="text"  name="idCard" class="text_search" /></div>
                     <div>状态：
                         <select class="select_search" id="choose" name="status">
                             <option value="0">全部</option>
@@ -105,7 +105,7 @@
                             <option value="3">删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search"  id="search"/></div>
+                    <div><input type="submit" value="搜索" class="btn_search"  id="search"/></div>
                     <input type="button" value="增加"  class="btn_add" onclick="location.href='service_add.jsp';" />
                 </div>  
                 <!--删除的操作提示-->

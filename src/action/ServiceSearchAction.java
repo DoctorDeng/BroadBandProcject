@@ -33,10 +33,21 @@ public class ServiceSearchAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session =request.getSession();
-		String idNumber = request.getParameter("id").trim();
-		String osAccount  = request.getParameter("osc").trim();
-		String serviceIp = request.getParameter("sIp").trim();
-		String status   =  request.getParameter("status").trim();
+		String idNumber = "#";
+		 if(!(request.getParameter("idCard") == "")){
+			 idNumber = request.getParameter("idCard");
+		 }
+		 System.out.println(idNumber);
+		String osAccount  = "#";
+		 if(!(request.getParameter("osC") == "")){
+			 osAccount = request.getParameter("osC");
+		 }
+		 System.out.println(osAccount);
+		String serviceIp =  "#" ;
+		if(!(request.getParameter("sIp") == "")){
+			serviceIp = request.getParameter("sIp");
+		}
+		String status   =  request.getParameter("status");
 		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();
 		serviceAddViewBean.setIdNumber(idNumber);
 		serviceAddViewBean.setOsAccount(osAccount);

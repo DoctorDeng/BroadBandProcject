@@ -114,7 +114,7 @@
                 <div class="input_info"><input type="text" class="readonly" readonly value="12345678" /></div>                
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="button" value="返回" class="btn_save" onclick="location.href='account_list.html';" />
+                    <input type="button" value="返回" class="btn_save" onclick="location.href='account_list.jsp';" />
                 </div>
             </form>  
         </div>
