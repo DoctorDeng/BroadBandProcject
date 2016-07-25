@@ -34,7 +34,7 @@ public class ServiceSearchAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//HttpSession session =request.getSession();
+		HttpSession session =request.getSession();
 		String idNumber = request.getParameter("id").trim();
 		String osAccount  = request.getParameter("osc").trim();
 		String serviceIp = request.getParameter("sIp").trim();
@@ -49,7 +49,8 @@ public class ServiceSearchAction extends HttpServlet {
 		serviceAddViewBean.setServerId(serviceIp);
 		serviceAddViewBean.setStatus(status);
 		List<BussinessViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
-		
+		session.setAttribute("lsa", lsa);
+		response.sendRedirect("service/service_search.jsp");
 	}
 
 	/**

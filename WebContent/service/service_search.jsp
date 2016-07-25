@@ -85,9 +85,8 @@
                     </tr>
 			<%
 			BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
-			List<BussinessViewBean> lv = bv.findAll();
-				session.setAttribute("lv", lv);
-			for(BussinessViewBean sv:lv){
+			List<BussinessViewBean> lsa =(List<BussinessViewBean>)session.getAttribute("lsa");
+			for(BussinessViewBean sv:lsa){
 			%>
                     <tr>
                         <td><a href="service_detail.jsp" title="查看明细"><%=sv.getBussinessId()%></a></td>
