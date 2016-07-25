@@ -46,7 +46,6 @@ public class ServiceSearchAction extends HttpServlet {
 		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
 		session.setAttribute("lsa", lsa);
 		response.sendRedirect("service/service_search.jsp");
-		
 	}
 
 	/**

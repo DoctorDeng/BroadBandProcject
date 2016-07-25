@@ -47,8 +47,7 @@
                 <%
                 List<ServiceAddViewBean>  lsit = (ArrayList<ServiceAddViewBean>)session.getAttribute("lsit");
                 for(ServiceAddViewBean sv : lsit){
-
-                %>>
+                %>
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getBussinessId()%>" /></div>
                 <div class="text_info clearfix"><span>账务账号ID：</span></div>
