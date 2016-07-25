@@ -45,21 +45,7 @@
             function sub(){
             	document.getElementById("form").submit();
             }
-            $(document).ready(function() {
-				$("#btnsub").click(function() {
-					var name = $("#name").val();
-					var idNumber = $("#idNumber").val();
-					var loginAccount = $("#loginAccount").val();
-					var status = $("#status").val();
-					$.ajax({
-						url:'',
-						data:{"idNumber":idNumber,"name":name,"loginAccount":loginAccount,"status":status},
-						success:function(result){
-							
-						}
-					})
-				})
-			})
+            
          	function initTable(){
             	$("#datalist tr:not(:first)").remove();            	
             }
