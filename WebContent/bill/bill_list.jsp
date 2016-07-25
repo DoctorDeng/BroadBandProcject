@@ -30,35 +30,27 @@
   		
   	
         <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
-        <script language="javascript" type="text/javascript">
-            //写入下拉框中的年份和月份
-       /*      function initialYearAndMonth() {
-                //写入最近3年
-                var yearObj = document.getElementById("selYears");
-                var year = (new Date()).getFullYear();
-                for (var i = 0; i <= 2; i++) {
-                    var opObj = new Option(year - i, year - i);
-                    yearObj.options[i] = opObj;
-                }
-                //写入 12 月
-                var monthObj = document.getElementById("selMonths");
-                var opObj = new Option("全部", "全部");
-                monthObj.options[0] = opObj;
-                for (var i = 1; i <= 12; i++) {
-                    var opObj = new Option(i, i);
-                    monthObj.options[i] = opObj;
-                }
-            } */
-            function search() {
-            	var idNumber = document.getElementById("idNumber").value;
-            	var loginAccount = document.getElementById("loginAccount").value;
-            	var customerName = document.getElementById("customerName").value;
+		<link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" />
+		<script src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript">
+			function search() {
+				
+				var idNumber = $("#idNumber").val();
+            	var loginAccount = $("#loginAccount").val();
+            	var customerName = $("#customerName").val();
             	
-            	window.location.href="/lanqiao/BillAction?operation=condition"+
-            			"&idNumber="+idNumber+"&loginAccount="+ loginAccount+"&customerName="+customerName;
-            }
-        </script>
+				$.post("/lanqiao/BillTest", {
+					'idNumber' 	   : idNumber,
+					'loginAccount' : loginAccount,
+					'customerName' : customerName
+				}, function(data) {
+					var $menuId = $("#menuId");
+					$("#datalist").empty();
+					$("#datalist").append($menuId);
+					$("#datalist").append(data);
+				});
+			}
+		</script>
     </head>
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
@@ -82,20 +74,12 @@
                     <div>身份证：<input type="text" id="idNumber"       class="text_search" /></div>
                     <div>账务账号：<input type="text"  id="loginAccount" class="width100 text_search" /></div>                            
                     <div>姓名：<input type="text"     id="customerName" class="width70 text_search" /></div>
-           <!--          <div>
-                        <select class="select_search" id="selYears">
-                        </select>
-                        年
-                        <select class="select_search" id="selMonths">
-                        </select>
-                        月
-                    </div> -->
                     <div><input type="button" value="搜索" class="btn_search" onclick="search()" /></div>
                 </div>  
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
-                    <tr>
+                    <tr id="menuId">
                         <th class="width50">账单ID</th>
                         <th class="width70">姓名</th>
                         <th class="width150">身份证</th>

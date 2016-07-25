@@ -49,7 +49,8 @@ public class DBHelper {
 		try {
 			/*Context ctx = new InitialContext();
 			DataSource ds = (DataSource)ctx.lookup("java:comp/env/mysql/kuandai");*/
-			 DriverManager.getConnection(URL);
+			
+			DriverManager.getConnection(URL);
 			conn =  DriverManager.getConnection(URL);
 		} /*catch (NamingException e) {
 			System.out.println("数据源不存在");
@@ -192,6 +193,8 @@ public class DBHelper {
 		} catch (SQLException e) {
 			// e.printStackTrace();
 			throw new RuntimeException("查询总数据条数失败！");
+		} finally {
+			closeAll();
 		}
 		return row;
 	}
@@ -255,12 +258,15 @@ public class DBHelper {
 		try {
 			if (rs != null) {
 				rs.close();
+				rs = null;
 			}
 			if (ps != null) {
 				ps.close();
+				ps = null;
 			}
 			if (conn != null) {
 				conn.close();
+				conn = null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -111,15 +111,12 @@ public class BillAction extends HttpServlet {
 			String idNumber = request.getParameter("idNumber");
 			String loginAccount = request.getParameter("loginAccount");
 			String customerName = java.net.URLDecoder.decode(request.getParameter("customerName"), "UTF-8");
-			
-			System.out.println(customerName);
-			
+			System.out.println(request.getParameter("customerName"));
 			List<BillFormBean> billFormListTemp = billService.getBillFormByCondition(idNumber, loginAccount, customerName);
 			request.setAttribute("billForm", billFormListTemp);
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
 			break;
 		}
-		
 	}
 
 	/**
