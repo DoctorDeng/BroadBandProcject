@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="dao.impl.AdminDaoImpl"%>
-<%@page import="java.util.*,bean.AdminInfor,bean.Admin"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
@@ -23,8 +22,8 @@
   		<%
   		   session.getAttribute("admininforList");
   		%>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
             function showDetail(flag, a) {
@@ -38,7 +37,7 @@
           //查询管理员信息  
             function SerchAdminInfor(){
             		var adminId = document.getElementById("serchAdmin").value;        	
-            		window.location.href="/lanqiao/ShowAdminAction?operation=serch&adminId="+adminId;
+            		window.location.href="/lanqiao/ShowAdminAction?operation=search&adminId="+adminId;
               }
             /* //重置密码
             function resetPwd() {
@@ -135,7 +134,19 @@
                             <th>授权日期</th>
                             <th class="width100">拥有角色</th>
                             <th></th>
-                        </tr>                           
+                        </tr>    
+                        <c:if test="${sessionScope.admininforList== null || fn:length(sessionScope.admininforList) == 0}">
+                        	<tr>
+                        	    <td><input type="checkbox" name="choose" /></td>  
+                        		<td>没有搜索到信息!</td>
+                        		<td>没有搜索到信息!</td>
+                        		<td>没有搜索到信息!</td>
+                        		<td>没有搜索到信息!</td>
+                        		<td>没有搜索到信息!</td>
+                        		<td>没有搜索到信息!</td>
+                        		<td>没有搜索到信息!</td>
+                        	</tr>
+                        </c:if>
                         <c:forEach items="${sessionScope.admininforList}" var="adminInfor" >                      	                                  
                          <tr>
                             <td><input type="checkbox" name="choose" value="<c:out value="${adminInfor.adminId}" />"/></td>  
@@ -145,7 +156,6 @@
                             <td><c:out value="${adminInfor.phone}" /></td>
                             <td><c:out value="${adminInfor.email}" /></td>                 
                             <td><c:out value="${adminInfor.createTime}" /></td>
-       
                             <td> 
                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员..</a>                           
                                 <div class="detail_info">

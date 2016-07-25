@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Page;
-import bean.viewBean.BillFormBean;
+import bean.AdminInfor;
 import dao.impl.AdminDaoImpl;
-import sun.rmi.server.Dispatcher;
 
 /**
  * Servlet implementation class ShowAdminMess
@@ -81,24 +80,37 @@ public class ShowAdminAction extends HttpServlet{
 		case "init" :		
 			session.setAttribute("admininforList", admininforList);  
 		    response.sendRedirect("admin/admin_list.jsp");
-		    break;
-		case "serch":
+		    return;
+		  
+		case "search":
 			 String adminId = request.getParameter("adminId");
-			 
-			 for(Map adminInfor:admininforList){
-				 if(adminId.equals(adminInfor.get("adminId"))){
-					 session.setAttribute("adminInfor", adminInfor); 
-					 System.out.println("shtr");
-					 request.getRequestDispatcher("admin/admin_list.jsp").forward(request, response); 	 
-					 
-				 }	
+			 if(null==adminId||"".equals(adminId)){
+				 session.setAttribute("admininforList", admininforList);  
+				 response.sendRedirect("admin/admin_list.jsp");
+				 return;
+			 } 
+			 else{	 
+			   for(int i=0;i<admininforList.size(); i++) {	
+				 Map<String, Object> adminInfor = admininforList.get(i);
+				  if(adminId.equals(adminInfor.get("adminId").toString().trim())){
+				    List<Map<String, Object>> inforList =new ArrayList<>();
+				    inforList.add(adminInfor);
+				    session.setAttribute("admininforList", "");
+				    session.setAttribute("admininforList", inforList);
+				    response.sendRedirect("admin/admin_list.jsp");
+				    return;
+				  }
+				}
+			   List<Map<String, Object>> inforList1 =new ArrayList<>();
+			   session.setAttribute("admininforList", inforList1);
+			   response.sendRedirect("admin/admin_list.jsp");
+			   return;
 			 }
-			 break;
-			 
-		case "reset" :
+		/*case "reset" :
 			String[] adminIds = request.getParameterValues("choose");
 			System.out.println(adminIds.length);
-		}
+		}*/
+	   }
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
