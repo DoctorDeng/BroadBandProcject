@@ -61,8 +61,10 @@
 				})
 			})
          	function initTable(){
-            	$("#datalist tr:not(:first)").remove();
-            	
+            	$("#datalist tr:not(:first)").remove();            	
+            }
+            function sub(){
+            	document.getElementById("form").submit();
             }
         </script>
     </head>
@@ -82,7 +84,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="" id="form">
+            <form action="http://localhost:8080/lanqiao/BussinessAccountSearchAction" method="post" id="form">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>身份证：<input type="text" id="idNumber" name="idNumber" value="不验证" class="text_search" /></div>                            
@@ -91,13 +93,13 @@
                     <div>
                         状态：
                         <select id="status" class="select_search">
-                            <option value="">全部</option>
+                            <option value="-1">全部</option>
                             <option value="1">开通</option>
                             <option value="0">暂停</option>
-                            <option value="">删除</option>
+                            <option value="-1">删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" id="btnsub"/></div>
+                    <div><input type="button" value="搜索" class="btn_search" id="btnsub" onclick="sub()" /></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='account_add.jsp';" />
                 </div>  
                 <!--删除等的操作提示-->
@@ -125,10 +127,11 @@
                     	currentPage = Integer.parseInt(c);
                     } else{
                     	currentPage = 1;
-                    }                           
-                    List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
-					session.setAttribute("l", l);
-                    for(AccountViewBean a:l){
+                    }
+                    if(request.getParameter("type")==null||"".equals(request.getParameter("type"))){	                                               
+	                    List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
+						session.setAttribute("l", l);
+	                    for(AccountViewBean a:l){
                     %>
                     <tr>
                         <td><%=a.getBussinessId() %></td>
@@ -144,7 +147,33 @@
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
                         </td>
                     </tr> 
-                    <%} %>             
+                    <%}
+                    }
+                    else if("search".equals(request.getParameter("type"))){
+                    	AccountViewBean a = new AccountViewBean();
+                    	a.setIdNumber(request.getParameter("idNumber"));
+                    	a.setBussinessName(request.getParameter("bussinessName"));
+                    	a.setLoginAccount(request.getParameter("loginAccount"));
+                    	List<AccountViewBean> ls = (List<AccountViewBean>)session.getAttribute("ls");
+	                    for(AccountViewBean ac:ls){
+                    %> 
+                    	<tr>
+                        <td><%=ac.getBussinessId() %></td>
+                        <td><a href="account_detail.jsp"><%=ac.getBussinessName() %></a></td>
+                        <td><%=ac.getIdNumber() %></td>
+                        <td><%=ac.getLoginAccount() %></td>
+                        <td><%=ac.getStatus() %></td>
+                        <td><%=ac.getCreateTime() %></td>
+                        <td><%=ac.getLastLoginTime() %></td>                           
+                        <td class="td_modi">
+                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=ac.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=ac.getBussinessId() %>';" />
+                        </td>
+                    </tr> 
+                    <%
+                    }
+                    }%>            
                 </table>
                 <p>业务说明：<br />
                 1、创建则开通，记载创建时间；<br />

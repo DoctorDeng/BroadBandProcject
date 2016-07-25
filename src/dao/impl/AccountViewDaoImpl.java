@@ -47,12 +47,15 @@ public class AccountViewDaoImpl {
 			sql.append(" and c.idNumber="+ac.getIdNumber());
 		}
 		if(!(ac.getBussinessName()==null||"".equals(ac.getBussinessName())||"不验证".equals(ac.getBussinessName()))){
-			sql.append(" and c.customerName="+ac.getBussinessName());
+			sql.append(" and c.customerName='"+ac.getBussinessName()+"'");
 		}
 		if(!(ac.getLoginAccount()==null||!"".equals(ac.getLoginAccount())||"不验证".equals(ac.getLoginAccount()))){
-			sql.append(" and c.customerName="+ac.getBussinessName());
+			sql.append(" and a.loginAccount="+ac.getLoginAccount());
 		}
-		//		+ " limit "+(currentPage-1)*pageSize+","+pageSize;
+		String status = ac.getStatus();
+		if(status!=null&&"-1".equals(status)){
+			sql.append(" and a.status="+ac.getStatus());
+		}
 		sql.append(" limit "+(currentPage-1)*pageSize+","+pageSize);
 		System.out.println(sql.toString());
 		String[] fields = null;
