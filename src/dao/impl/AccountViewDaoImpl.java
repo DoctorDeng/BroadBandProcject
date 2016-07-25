@@ -44,13 +44,13 @@ public class AccountViewDaoImpl {
 		StringBuffer sql = new StringBuffer("select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
 				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId");
 		if(!(ac.getIdNumber()==null||"".equals(ac.getIdNumber())||"不验证".equals(ac.getIdNumber()))){
-			sql.append(" and c.idNumber="+ac.getIdNumber());
+			sql.append(" and c.idNumber like '"+ac.getIdNumber()+"'");
 		}
 		if(!(ac.getBussinessName()==null||"".equals(ac.getBussinessName())||"不验证".equals(ac.getBussinessName()))){
-			sql.append(" and c.customerName='"+ac.getBussinessName()+"'");
+			sql.append(" and c.customerName like'%"+ac.getBussinessName()+"%'");
 		}
 		if(!(ac.getLoginAccount()==null||!"".equals(ac.getLoginAccount())||"不验证".equals(ac.getLoginAccount()))){
-			sql.append(" and a.loginAccount="+ac.getLoginAccount());
+			sql.append(" and a.loginAccount like '%"+ac.getLoginAccount()+"%'");
 		}
 		String status = ac.getStatus();
 		if(status!=null&&"-1".equals(status)){
