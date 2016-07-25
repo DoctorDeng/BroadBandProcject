@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
         <script type="text/javascript" src="../js/jquery.js"></script>
-      	 <%-- <c:set var="hasPower">false</c:set>
+      	<c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -25,7 +25,7 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if>  --%>
+  		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
