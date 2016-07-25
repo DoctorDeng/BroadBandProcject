@@ -21,8 +21,9 @@ public class DBHelper {
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DATABASE_NAME = "kuandai";
 	private static final String USER = "root";
-	private static final String PWD = "denghuajie123";
-	private static final String URL = "jdbc:mysql://119.29.223.16:3306/"+ DATABASE_NAME + 
+	/*private static final String PWD = "denghuajie123";*/
+	private static final String PWD = "123456";
+	private static final String URL = "jdbc:mysql://10.246.0.8:3306/"+ DATABASE_NAME + 
 			"?user=" + USER +
 			"&password=" + PWD +
 			"&useUnicode=true" + 
