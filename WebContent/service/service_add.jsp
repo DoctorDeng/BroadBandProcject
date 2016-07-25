@@ -28,21 +28,18 @@
             $(function(){
             	$("#showId").click(function(){
             		var id = $("#idNumber").val();
-            		if(""==id){
-            			
+            		if(""==id){	
             		}else{
             			$.ajax({
             				url:'../ServiceShowAction',
             				data:{"id": id},
             				success:function(result){
             					$("#adminId").val(result)
-            					
             				}
             			})
             		}
             	})
-            });
-           
+            }); 
         </script>
     </head>
     <body>
