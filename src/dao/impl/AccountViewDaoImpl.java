@@ -22,7 +22,7 @@ public class AccountViewDaoImpl {
 		String sql = "select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
 				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId"
 				+ " limit "+(currentPage-1)*pageSize+","+pageSize;
-		System.out.println(sql);
+		//System.out.println(sql);
 		String[] fields = null;
 		List<Map<String,Object>> list = DBHelper.find(sql, fields);
 		for(Map<String,Object> m:list){
@@ -58,7 +58,7 @@ public class AccountViewDaoImpl {
 		}
 		
 		sql.append(" limit "+(currentPage-1)*pageSize+","+pageSize);
-		System.out.println(sql.toString());
+		//System.out.println(sql.toString());
 		String[] fields = null;
 		List<Map<String,Object>> list = DBHelper.find(sql.toString(), fields);
 		for(Map<String,Object> m:list){
@@ -73,6 +73,28 @@ public class AccountViewDaoImpl {
 			l.add(a);
 		}	
 		return l;
+	}
+	
+	public AccountViewBean getOneAccountViewBean(int bussinessId){
+		AccountViewBean a = new AccountViewBean();
+		String sql = "select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
+				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId"
+				+ " and bussinessId="+bussinessId;
+		System.out.println(sql);
+		String[] fields = null;
+		List<Map<String,Object>> list = DBHelper.find(sql, fields);
+		for(Map<String,Object> m:list){
+			
+			a.setBussinessId(Integer.parseInt(m.get("bussinessId").toString()));
+			a.setBussinessName(m.get("customerName").toString());
+			a.setIdNumber(m.get("idNumber").toString());
+			a.setLoginAccount(m.get("loginAccount").toString());
+			a.setStatus(m.get("status").toString());
+			a.setCreateTime(m.get("createTime").toString());
+			a.setLastLoginTime(m.get("lastLoginTime").toString());
+
+		}	
+		return a;
 	}
 	
 }

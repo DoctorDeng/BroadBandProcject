@@ -121,10 +121,10 @@
                     %>
                     <tr>
                         <td><%=a.getBussinessId() %></td>
-                        <td><a href="account_detail.jsp"><%=a.getBussinessName() %></a></td>
+                        <td><a href="http://localhost:8080/lanqiao/BussinessAccountDetailAction?id=<%=a.getBussinessId() %>"><%=a.getBussinessName() %></a></td>
                         <td><%=a.getIdNumber() %></td>
                         <td><%=a.getLoginAccount() %></td>
-                        <td><%=a.getStatus() %></td>
+                        <td><%=!a.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=a.getCreateTime() %></td>
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
@@ -145,10 +145,10 @@
                     %> 
                     	<tr>
                         <td><%=ac.getBussinessId() %></td>
-                        <td><a href="account_detail.jsp"><%=ac.getBussinessName() %></a></td>
+                        <td><a href="http://localhost:8080/lanqiao/BussinessAccountDetailAction?id=<%=ac.getBussinessId() %>"><%=ac.getBussinessName() %></a></td>
                         <td><%=ac.getIdNumber() %></td>
                         <td><%=ac.getLoginAccount() %></td>
-                        <td><%=ac.getStatus() %></td>
+                        <td><%=!ac.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=ac.getCreateTime() %></td>
                         <td><%=ac.getLastLoginTime() %></td>                           
                         <td class="td_modi">
