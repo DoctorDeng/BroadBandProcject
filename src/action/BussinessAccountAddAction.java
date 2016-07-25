@@ -35,9 +35,8 @@ public class BussinessAccountAddAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("text/html;charset=UTF-8");
 		AccountViewBean b = new AccountViewBean();
-		String name = new String(request.getParameter("name").getBytes("ISO-8859-1"),"UTF-8");
+		String name = request.getParameter("name");
 		b.setBussinessName(name);
 		b.setIdNumber(request.getParameter("idNumber"));
 		b.setPassword(request.getParameter("password"));
@@ -47,6 +46,7 @@ public class BussinessAccountAddAction extends HttpServlet {
 		b.setStatus("1");
 		b.setLastLoginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 		new AccountService().addBussinessAccount(b);
+		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp");
 	}
 
 	/**

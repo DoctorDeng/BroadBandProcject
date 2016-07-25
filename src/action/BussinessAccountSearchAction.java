@@ -44,15 +44,13 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		String name = request.getParameter("name");
 		String loginAccount = request.getParameter("loginAccount");
 		String status = request.getParameter("status");
+		System.out.println("当前状态是："+status);
 		AccountViewBean a = new AccountViewBean();                                                                     
 		a.setBussinessName(name);
 		a.setIdNumber(idNumber);
 		a.setStatus(status);
 		a.setLoginAccount(loginAccount);
 		List<AccountViewBean> l = new AccountService().searchAccountViewBean(a, currentPage);
-		for(AccountViewBean ac:l){
-			System.out.println(ac.getBussinessName());
-		}
 		HttpSession session = request.getSession();
 		session.setAttribute("ls", l);
 		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp?type=search&currentPage=1");

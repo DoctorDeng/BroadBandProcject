@@ -78,7 +78,7 @@
                     <div>登录名：<input type="text" name="loginAccount" value="不验证" id="loginAccount" class="text_search"/></div>
                     <div>
                         状态：
-                        <select id="status" class="select_search">
+                        <select name="status" class="select_search">
                             <option value="-1">全部</option>
                             <option value="1">开通</option>
                             <option value="0">暂停</option>
@@ -128,7 +128,7 @@
                         <td><%=a.getCreateTime() %></td>
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=a.getBussinessId() %>&status=<%=a.getStatus() %>';" />
+                            <input type="button" value="<%=a.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=a.getBussinessId() %>&status=<%=a.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=a.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
                         </td>
@@ -152,7 +152,7 @@
                         <td><%=ac.getCreateTime() %></td>
                         <td><%=ac.getLastLoginTime() %></td>                           
                         <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=ac.getBussinessId() %>';" />
+                            <input type="button" value="<%=ac.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=ac.getBussinessId() %>&status=<%=a.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=ac.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=ac.getBussinessId() %>';" />
                         </td>

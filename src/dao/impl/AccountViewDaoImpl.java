@@ -49,13 +49,14 @@ public class AccountViewDaoImpl {
 		if(!(ac.getBussinessName()==null||"".equals(ac.getBussinessName())||"不验证".equals(ac.getBussinessName()))){
 			sql.append(" and c.customerName like'%"+ac.getBussinessName()+"%'");
 		}
-		if(!(ac.getLoginAccount()==null||!"".equals(ac.getLoginAccount())||"不验证".equals(ac.getLoginAccount()))){
+		if(!(ac.getLoginAccount()==null||"".equals(ac.getLoginAccount())||"不验证".equals(ac.getLoginAccount()))){
 			sql.append(" and a.loginAccount like '%"+ac.getLoginAccount()+"%'");
 		}
 		String status = ac.getStatus();
-		if(status!=null&&"-1".equals(status)){
+		if(status!=null&&!"-1".equals(status)){
 			sql.append(" and a.status="+ac.getStatus());
 		}
+		
 		sql.append(" limit "+(currentPage-1)*pageSize+","+pageSize);
 		System.out.println(sql.toString());
 		String[] fields = null;
