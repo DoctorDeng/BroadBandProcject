@@ -50,15 +50,15 @@
             }
             $(function(){
             	$("#search").click(function(){
-            		var id  = -1;
+            		var id  = "#";
             		if($("#idCard").val() !==""){
             			id = $("#idCard").val();
             		}           		
-            		var sIp = -1;
+            		var sIp = "#";
             		if($("#sIp").val() !== ""){
             			sIp = $("#sIp").val();
             		}
-            		var osC = "-1";
+            		var osC = "#";
             		if( $("#osC").val() !== ""){
             		 osC = $("#osC").val();
             		 }
