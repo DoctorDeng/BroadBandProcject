@@ -98,7 +98,7 @@
                     <div>服务器 IP：<input type="text" id="sIp" class="width100 text_search" /></div>
                     <div>身份证：<input type="text"  id="idCard" class="text_search" /></div>
                     <div>状态：
-                        <select class="select_search" id="choose">
+                        <select class="select_search" id="choose" name="status">
                             <option value="0">全部</option>
                             <option value="1">开通</option>
                             <option value="2">暂停</option>
@@ -149,7 +149,7 @@
                             </div>
                         </td>                            
                         <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=sv.getBussinessId() %>';" />
+                            <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/ServiceOpenAction?id=<%=sv.getBussinessId() %>&status=<%=sv.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
