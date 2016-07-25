@@ -83,12 +83,12 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-			<%
-			List<ServiceAddViewBean> lsb = (ArrayList<ServiceAddViewBean>)session.getAttribute("lsa");
+			<% List<ServiceAddViewBean> lsb = (ArrayList<ServiceAddViewBean>)session.getAttribute("lsa");
 			for(ServiceAddViewBean sv : lsb){
 				System.out.println(sv.getAdminId());
 				System.out.println(sv.getBussinessId());
 				System.out.println(sv.getCustomerName());
+				System.out.println(sv.getTraiffName());
 			%>
                     <tr>
                         <td><a href="service_detail.jsp" title="查看明细"><%=sv.getBussinessId()%></a></td>
