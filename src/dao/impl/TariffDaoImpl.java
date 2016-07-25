@@ -88,6 +88,7 @@ public class TariffDaoImpl implements TariffDao {
 		String[] fields = {String.valueOf(tariffId)};
 		int result = DBHelper.update(sql, fields);
 		System.out.println(sql);
+		System.out.println(tariffId);
 		if (result==0) {
 			return false;
 		}

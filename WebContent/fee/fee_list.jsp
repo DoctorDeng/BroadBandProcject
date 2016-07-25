@@ -45,6 +45,8 @@
                 var r = window.confirm("确定要删除此资费吗？");
                 document.getElementById("operate_result_info").style.display = "block";
             }
+            
+            
         </script>        
     </head>
     <body>
@@ -108,9 +110,9 @@
                             <td><%=sv.getOpenTime() %></td>
                             <td><%=sv.getStatus() %></td>
                             <td>                                
-                                <input type="submit" value="启用" class="btn_start" onclick="location.href='/lanqiao/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="location.href='/lanqiao/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
+                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='/lanqiao/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='/lanqiao/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             </td>
                         </tr>
                         <%} %>
