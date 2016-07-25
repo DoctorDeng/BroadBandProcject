@@ -47,7 +47,7 @@ public class ServiceSearchAction extends HttpServlet {
 		List<BussinessViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
 		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
 		session.setAttribute("lsa", lsa);
-		request.getRequestDispatcher("service/search.jsp");
+		response.sendRedirect("service/service_search.jsp");
 		
 	}
 

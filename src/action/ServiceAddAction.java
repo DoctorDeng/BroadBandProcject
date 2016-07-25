@@ -44,9 +44,10 @@ public class ServiceAddAction extends HttpServlet {
 		serviceAddViewBean.setTariffId(Integer.parseInt(traiffId));
 		serviceAddViewBean.setServerId(request.getParameter("serverIp"));
 		boolean succiess = new ProfessionServiceImpl().addService(serviceAddViewBean);
-		System.out.println(succiess);
 		if(succiess){
 			response.sendRedirect("ServiceMainAction");
+		}else{
+			
 		}
 	}
 

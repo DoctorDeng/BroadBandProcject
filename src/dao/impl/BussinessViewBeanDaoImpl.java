@@ -143,10 +143,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		String idNumber  = serviceAddViewBean.getIdNumber();
 		String status    = serviceAddViewBean.getStatus();
 		String serverIp  = serviceAddViewBean.getServerId();
-		System.out.println(osAccount);
-		System.out.println(idNumber);
-		System.out.println(status);
-		System.out.println(serverIp);
 		StringBuffer sql = new StringBuffer( " SELECT bussiness.bussinessId, admininfor.adminId, customer.idNumber, customer.customerName, os.osAccount,bussiness.`status`, os.serverIp, tariff.tariffName "
 				+ " FROM  "
 				+ " bussiness,"
@@ -174,7 +170,6 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 			}	
 			ps = conn.prepareStatement(sql.toString());
 			rs = ps.executeQuery();
-			System.out.println(sql);
 			while(rs.next()){
 				BussinessViewBean viewbean = new BussinessViewBean();
 				viewbean.setBussinessId(Integer.parseInt(rs.getString(1)));
