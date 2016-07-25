@@ -39,18 +39,17 @@ public class ServiceSearchAction extends HttpServlet {
 		String osAccount  = request.getParameter("osc").trim();
 		String serviceIp = request.getParameter("sIp").trim();
 		String status   =  request.getParameter("status").trim();
-		System.out.println(idNumber);
-		System.out.println(osAccount);
-		System.out.println(serviceIp);
-		System.out.println(status);
 		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();
 		serviceAddViewBean.setIdNumber(idNumber);
 		serviceAddViewBean.setOsAccount(osAccount);
 		serviceAddViewBean.setServerId(serviceIp);
 		serviceAddViewBean.setStatus(status);
 		List<BussinessViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
+		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
 		session.setAttribute("lsa", lsa);
+		System.out.println("aaaa");
 		response.sendRedirect("service/service_search.jsp");
+		System.out.println("aaaa");
 	}
 
 	/**
