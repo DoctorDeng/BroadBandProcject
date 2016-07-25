@@ -142,7 +142,7 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 		String idNumber  = serviceAddViewBean.getIdNumber();
 		String status    = serviceAddViewBean.getStatus();
 		String serverIp  = serviceAddViewBean.getServerId();
-		String sql = " SELECT bussiness.bussinessId, admininfor.adminId, customer.idNumber, customer.customerName, os.osAccount,bussiness.`status`, os.serverIp, tariff.tariffName "
+		StringBuffer sql = new StringBuffer( " SELECT bussiness.bussinessId, admininfor.adminId, customer.idNumber, customer.customerName, os.osAccount,bussiness.`status`, os.serverIp, tariff.tariffName "
 				+ " FROM  "
 				+ " bussiness,"
 				+ " admininfor,"
@@ -153,21 +153,25 @@ public class BussinessViewBeanDaoImpl implements BussinessViewDao {
 				+" admininfor.idNumber = customer.idNumber AND "
 				+" os.tariffId = tariff.tariffId AND "
 				+" bussiness.`status` = tariff.`status` AND "
-				+" os.customerId = customer.customerId ";				;
+				+" os.customerId = customer.customerId ");				;
 		try {
 			if( !"-1".equals(osAccount)){
-				
+				sql.append( " and os.osAccount = " + osAccount);
+				ps = conn.prepareStatement(sql.toString());
 			}
-			if( !"-1".equals(osAccount)){
-				
+			if( !"-1".equals(idNumber)){
+				sql.append( " and customer.idNumber = " + idNumber);
+				ps = conn.prepareStatement(sql.toString());
 			}
-			if( !"-1".equals(osAccount)){
-				
+			if( !"-1".equals(status)){
+				sql.append( " and bussiness.`status` = " + status);
+				ps = conn.prepareStatement(sql.toString());
 			}
-			 if( !"-1".equals(osAccount)){
-				
-			}
-			ps = conn.prepareStatement(sql);
+			 if( !"-1".equals(serverIp)){
+				 sql.append( " and os.serverIp = " + serverIp);
+				ps = conn.prepareStatement(sql.toString());
+			}	
+			ps = conn.prepareStatement(sql.toString());
 			rs = ps.executeQuery();
 			System.out.println(sql);
 			while(rs.next()){
