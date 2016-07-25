@@ -39,7 +39,7 @@
             	var loginAccount = $("#loginAccount").val();
             	var customerName = $("#customerName").val();
             	$("#pages").hide();
-            	$("#point").show();
+            	$("#datalist").hide("fast");
             	
 				$.post("/lanqiao/BillTest", {
 					'idNumber' 	   : idNumber,
@@ -50,11 +50,16 @@
 					$("#datalist").empty();
 					$("#datalist").append($menuId);
 					$("#datalist").append(data);
+					$("#datalist").show("slow",function(){
+						$("#point").show();
+					});
 				});
 			}
 			
 			function  show() {
-				window.location.href="/lanqiao/BillAction?operation=showBill";
+				$("#datalist").hide("slow",function(){
+					window.location.href="/lanqiao/BillAction?operation=showBill";
+				});
 			}
 		</script>
     </head>
