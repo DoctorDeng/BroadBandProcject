@@ -33,22 +33,17 @@ public class BussinessAccountModiAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
 		AccountViewBean b = new AccountViewBean();
-		//String name = new String(request.getParameter("name").getBytes("UTF-8"),"UTF-8");
 		b.setBussinessId(Integer.parseInt(request.getParameter("bussinessId")));
 		b.setBussinessName(request.getParameter("name"));
 		b.setIdNumber(request.getParameter("idNumber"));
-		if(request.getParameter("password")!=null&&request.getParameter("password")!="")
-		b.setPassword(request.getParameter("password"));
-		b.setPhone(request.getParameter("phone"));
-		//b.setCreateTime(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+		if(request.getParameter("password")!=null&&request.getParameter("password")!=""){
+			b.setPassword(request.getParameter("password"));
+		}		
 		b.setLoginAccount(request.getParameter("loginAccount"));
 		b.setPhone(request.getParameter("phone"));
-		//b.setLastLoginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 		new AccountService().updateBussinessAccount(b);
+		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp");
 	}
 
 	/**
