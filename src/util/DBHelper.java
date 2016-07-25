@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 
 public class DBHelper {
 	
+	private static DBCPUtil dbcp = new DBCPUtil();
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	private static final String DATABASE_NAME = "kuandai";
 	private static final String USER = "root";
@@ -49,13 +50,14 @@ public class DBHelper {
 		try {
 			/*Context ctx = new InitialContext();
 			DataSource ds = (DataSource)ctx.lookup("java:comp/env/mysql/kuandai");*/
-			
+			/*
 			DriverManager.getConnection(URL);
-			conn =  DriverManager.getConnection(URL);
+			conn =  DriverManager.getConnection(URL);*/
+			conn = dbcp.getConn();
 		} /*catch (NamingException e) {
 			System.out.println("数据源不存在");
 			e.printStackTrace();
-		} */catch (SQLException e) {
+		} */catch (Exception e) {
 			System.out.println("数据源获取连接出错");
 			e.printStackTrace();
 		}
