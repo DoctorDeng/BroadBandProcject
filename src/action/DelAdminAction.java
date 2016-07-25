@@ -32,7 +32,7 @@ public class DelAdminAction extends HttpServlet {
 	   AdminService delAdmin = new AdminService();
 	   boolean delresult = delAdmin.delAdmin(adminId);
 	   if(delresult==true){
-		   response.sendRedirect("admin/admin_list.jsp");
+		   response.sendRedirect("/lanqiao/ShowAdminAction?operation=init");
 	   }
 	   else{
 		   response.sendRedirect("error.jsp");

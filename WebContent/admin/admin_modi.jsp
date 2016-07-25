@@ -28,14 +28,21 @@
             //保存成功的提示消息
             function showResult() {
                 showResultDiv(true);
-                window.setTimeout("showResultDiv(false);", 3000);
+                window.setTimeout("showResultDiv(false)", 1000);
+                
+            }
+            
+            function submitForm() {
+            	document.getElementById("save").submit();
             }
             function showResultDiv(flag) {
                 var divResult = document.getElementById("save_result_info");
                 if (flag)
                     divResult.style.display = "block";
-                else
+                else{
                     divResult.style.display = "none";
+               		submitForm();
+                }
             }
         </script>
     </head>
@@ -59,7 +66,7 @@
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
      
-        <form action="../UpdateAdminInfor?adminId=<c:out value="${param.adminId}"/>" method="post" class="main_form">
+        <form action="../UpdateAdminInfor?adminId=<c:out value="${param.adminId}"/>" method="post" class="main_form" id="save">
         <c:forEach items="${sessionScope.admininforList}" var="adminInfor">   
         <c:set var="adminId" value="${adminInfor.adminId}" />
         <c:if test="${adminId==adminID}">
@@ -103,7 +110,7 @@
                         <div class="validate_msg_tiny error_msg">至少选择一个</div>
                     </div>
                     <div class="button_info clearfix">
-                        <input type="submit" value="保存" class="btn_save" />
+                        <input type="button" value="保存" class="btn_save" onclick="showResult()"/>
                         <input type="reset" value="取消" class="btn_save" />
                     </div>
                 </form>  

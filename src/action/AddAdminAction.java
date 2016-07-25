@@ -63,7 +63,7 @@ public class AddAdminAction extends HttpServlet {
 			boolean isAdd = adminManage.addAdmin(admin, adminInfor, powerList);
 			
 			if(isAdd==true){
-				response.sendRedirect("admin/admin_list.jsp");
+				response.sendRedirect("/lanqiao/ShowAdminAction?operation=init");
 			}else{
 			   response.sendRedirect("login.jsp");	
 			}

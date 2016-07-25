@@ -103,7 +103,7 @@
                 <!--查询-->             
                 <div class="search_add">
                    
-                    <div>姓名：<input type="text" id="serchAdmin" class="text_search width200" /></div>
+                    <div>管理员ID:<input type="text" id="serchAdmin" class="text_search width200" /></div>
                     <div><input type="button"  value="搜索" class="btn_search" onclick="SerchAdminInfor()" /></div>
                     <input type="button" name="reset" id="reset" value="密码重置" class="btn_add"  onclick="resetPwd()"/>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />

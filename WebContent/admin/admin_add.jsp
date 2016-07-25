@@ -26,9 +26,12 @@
         <script type="text/javascript" src="js/addAdmin.js"></script>
         <script language="javascript" type="text/javascript">
             //保存成功的提示消息
-            function showResult() {
+             function showResult() {
                 showResultDiv(true);
-                window.setTimeout("showResultDiv(false);", 3000);
+                window.setTimeout("showResultDiv(false)", 2000);
+            }
+            function submitForm() {
+            	document.getElementById("save").submit();
             }
             function showResultDiv(flag) {
                 var divResult = document.getElementById("save_result_info");
@@ -36,6 +39,7 @@
                     divResult.style.display = "block";
                 else
                     divResult.style.display = "none";
+               		submitForm();
             }
         </script>
     </head>
@@ -56,7 +60,7 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="../AddAdminAction" method="post" class="main_form" onsubmit="return checkAdmin()">
+            <form action="../AddAdminAction" method="post" class="main_form" onsubmit="return checkAdmin()" id="save">
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
                         <input type="text" name="adminName" id="admin"/>
@@ -115,7 +119,7 @@
                         <div class="validate_msg_tiny error_msg" id="powerError">至少选择一个</div>
                     </div>
                     <div class="button_info clearfix">
-                        <input type="submit" value="保存" class="btn_save" /> <!-- onclick="showResult();" --> 
+                        <input type="button" value="保存" class="btn_save"  onclick="showResult()"/> <!-- onclick="showResult();" --> 
                         <input type="reset" value="取消" class="btn_save" />
                     </div>
                 </form>  
