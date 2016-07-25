@@ -33,9 +33,10 @@ public class BussinessAccountModiAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String name = request.getParameter("name");
 		AccountViewBean b = new AccountViewBean();
 		b.setBussinessId(Integer.parseInt(request.getParameter("bussinessId")));
-		b.setBussinessName(request.getParameter("name"));
+		b.setBussinessName(name);
 		b.setIdNumber(request.getParameter("idNumber"));
 		if(request.getParameter("password")!=null&&request.getParameter("password")!=""){
 			b.setPassword(request.getParameter("password"));

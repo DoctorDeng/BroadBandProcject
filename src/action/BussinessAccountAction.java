@@ -51,7 +51,7 @@ public class BussinessAccountAction extends HttpServlet {
 		if(b){
 			response.sendRedirect("account_list.jsp");
 		}
-		
+		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp");
 		
 	}
 
