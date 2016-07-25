@@ -74,7 +74,7 @@
                         <input type="button" value="基费" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="时长" class="sort_asc" onclick="sort(this);" />
                     </div> -->
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='fee_add.jsp';" />
+                    <input type="button" value="增加" class="btn_add" onclick="window.location.href='fee_add.jsp';" />
                 </div> 
                 <!--启用操作的操作提示-->
                 <div id="operate_result_info" class="operate_success">

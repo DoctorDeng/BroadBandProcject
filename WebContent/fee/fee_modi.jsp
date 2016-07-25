@@ -39,34 +39,30 @@
 
             //切换资费类型
             function feeTypeChange(type) {
-                var inputArray = document.getElementById("main").getElementsByTagName("input");
-                if (type == 1) {
-                    inputArray[5].readonly = true;
-                    inputArray[5].value = "";
-                    inputArray[5].className += " readonly";
-                    inputArray[6].readonly = false;
-                    inputArray[6].className = "width100";
-                    inputArray[7].readonly = true;
-                    inputArray[7].className += " readonly";
-                    inputArray[7].value = "";
+               
+                if (type == 1) {              	
+                    document.getElementById("tariff").disabled =  false;
+                    document.getElementById("timeTariff").disabled = true;
+                    document.getElementById("timeLong").disabled = true;
+                    document.getElementById("tariff").readonly =  false;
+                    document.getElementById("timeTariff").readonly = true;
+                    document.getElementById("timeLong").readonly = true;
                 }
                 else if (type == 2) {
-                    inputArray[5].readonly = false;
-                    inputArray[5].className = "width100";
-                    inputArray[6].readonly = false;
-                    inputArray[6].className = "width100";
-                    inputArray[7].readonly = false;
-                    inputArray[7].className = "width100";
+                	document.getElementById("tariff").readonly = false;
+                    document.getElementById("timeTariff").readonly =  false;
+                    document.getElementById("timeLong").readonly =  false;
+                    document.getElementById("tariff").disabled =  false;
+                    document.getElementById("timeTariff").disabled =  false;
+                    document.getElementById("timeLong").disabled =  false;
                 }
                 else if (type == 3) {
-                    inputArray[5].readonly = true;
-                    inputArray[5].value = "";
-                    inputArray[5].className += " readonly";
-                    inputArray[6].readonly = true;
-                    inputArray[6].value = "";
-                    inputArray[6].className += " readonly";
-                    inputArray[7].readonly = false;
-                    inputArray[7].className = "width100";
+                	document.getElementById("tariff").readonly = true;
+                    document.getElementById("timeTariff").readonly =  false;
+                    document.getElementById("timeLong").readonly = true;
+                    document.getElementById("tariff").disabled = true;
+                    document.getElementById("timeTariff").disabled =  false;
+                    document.getElementById("timeLong").disabled = true;
                 }
             }
         </script>
@@ -108,21 +104,21 @@
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" name="timeLong" value="" class="width100" />
+                    <input type="text" name="timeLong" id="timeLong" value="" class="width100" />
                     <span class="info">小时</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long">1-600之间的整数</div>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">
-                    <input type="text" name="tariff" value="" class="width100" />
+                    <input type="text" name="tariff" id="tariff" value="" class="width100" />
                     <span class="info">元</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long">0-99999.99之间的数值</div>
                 </div>
                 <div class="text_info clearfix"><span>单位费用：</span></div>
                 <div class="input_info">
-                    <input type="text" name="timeTariff" value="" class="width100" />
+                    <input type="text" name="timeTariff" id="timeTariff" value="" class="width100" />
                     <span class="info">元/小时</span>
                     <span class="required">*</span>
                     <div class="validate_msg_long">0-99999.99之间的数值</div>
