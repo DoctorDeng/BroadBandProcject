@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.AdminInfor;
 import dao.impl.AdminDaoImpl;
+import service.AccountManage;
 
 /**
  * Servlet implementation class ShowAdminMess
@@ -106,12 +107,21 @@ public class ShowAdminAction extends HttpServlet{
 			   response.sendRedirect("admin/admin_list.jsp");
 			   return;
 			 }
-		/*case "reset" :
-			String[] adminIds = request.getParameterValues("choose");
-			System.out.println(adminIds.length);
-		}*/
-	   }
-	}
+	     case "reset" :
+	    	 String[] arrays = request.getParameterValues("choose");
+	         int[] adminIds =new int[arrays.length]; 
+	         
+	         for(int i=0;i<adminIds.length;i++){
+	        	 adminIds[i]=Integer.parseInt(arrays[i]);
+	        	 System.out.println(adminIds[0]);
+	         }	   
+	         boolean resetResult = new AccountManage().resetPassword(adminIds);
+	         if(resetResult){
+	        	 response.sendRedirect("/lanqiao/ShowAdminAction?operation=search");
+	         }
+		}
+	 }
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

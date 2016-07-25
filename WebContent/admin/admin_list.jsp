@@ -39,7 +39,22 @@
             		var adminId = document.getElementById("serchAdmin").value;        	
             		window.location.href="/lanqiao/ShowAdminAction?operation=search&adminId="+adminId;
               }
-            /* //重置密码
+            
+            function resetPwd(){  
+            	var a=0;
+                var choose=document.getElementsByName("choose");
+                for(var i=0;i<choose.length;i++){
+                   if(choose[i].checked){
+                	   a +=1;
+                   }
+                }
+                if (a>0) {
+                 	   document.getElementById("resetForm").submit();
+                } else {
+                	window.alert("请至少选择一条记录!");
+                }
+            }
+          /* //重置密码
             function resetPwd() {
             	var checks= document.getElementsByName("choose");
             	var adminIds[];
@@ -48,13 +63,8 @@
             		adminIds[i].push(checks[i].value);
                    }
                 }
-            	window.location.href="/lanqiao/ShowAdminAction?operation=reset&adminIds="+adminIds;
+            	window.location.href="/c?operation=reset&adminIds="+adminIds;
             } */
-           //删除
-            function deleteAdmin() {
-                var r = window.confirm("确定要删除此管理员吗？");
-                document.getElementById("operate_result_info").style.display = "block";
-            }
             //全选
             function selectAdmins(inputObj) {
                 var inputArray = document.getElementById("datalist").getElementsByTagName("input");
@@ -89,13 +99,13 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="/lanqiao/ShowAdminAction?operation=reset" method="post" id="resetForm">
                 <!--查询-->             
                 <div class="search_add">
                    
                     <div>姓名：<input type="text" id="serchAdmin" class="text_search width200" /></div>
                     <div><input type="button"  value="搜索" class="btn_search" onclick="SerchAdminInfor()" /></div>
-                    <input type="button" name="reset" id="reset" value="密码重置" class="btn_add" onclick="location.href='/lanqiao/ShowAdminAction?operation=reset';" />
+                    <input type="button" name="reset" id="reset" value="密码重置" class="btn_add"  onclick="resetPwd()"/>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />
                 </div>
                 
@@ -104,20 +114,6 @@
                     <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
                     <span>删除失败！数据并发错误。</span><!--密码重置失败！数据并发错误。-->
                 </div> 
-               <%--  <%
-                List<Map<String,Object>> adminInforList =(List<Map<String,Object>>)session.getAttribute("admininforList");
-                totleRow = adminInforList.size();
-                pageIndex = request.getParameter("currentPage"); //获取当前页码
-        	    if(pageIndex==null){
-        	    pageIndex = "1";
-        	    }
-        	    currentPage = Integer.parseInt(pageIndex);    
-        	    pageCount = (totleRow%pageSize==0)?(totleRow/pageSize):(totleRow/pageSize+1);  //算出总页数
-     		    if(currentPage>=pageCount) 
-     		    currentPage = pageCount;  
-     	       boolean firstRow = rs.absolute((currentPage-1)*pageSize+1);  //获 取每页的第一行  
-        	    int count = 0; 
-                %> --%>
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">             
@@ -149,7 +145,7 @@
                         </c:if>
                         <c:forEach items="${sessionScope.admininforList}" var="adminInfor" >                      	                                  
                          <tr>
-                            <td><input type="checkbox" name="choose" value="<c:out value="${adminInfor.adminId}" />"/></td>  
+                            <td><input type="checkbox" name="choose" value="<c:out value="${adminInfor.adminId}" />"/></td>
                             <td><c:out value="${adminInfor.adminId}" /></td>           
                             <td><c:out value="${adminInfor.adminName}" /></td>
                             <td><c:out value="${adminInfor.adminAccount}" /></td>
@@ -157,7 +153,7 @@
                             <td><c:out value="${adminInfor.email}" /></td>                 
                             <td><c:out value="${adminInfor.createTime}" /></td>
                             <td> 
-                               <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">超级管理员..</a>                           
+                               <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">查看权限</a>                           
                                 <div class="detail_info">
                         	    <c:forEach items="${adminInfor.powerList}" var="power">                            	
                             		<c:choose>
@@ -191,20 +187,6 @@
                         </c:forEach>
          
                     </table>
-                     <% 
-				      if(currentPage>1){   //当当前页码小于等于1时只显示下一页和末页
-				      %>
-					   <a href="myPaging.jsp?currentPage=1">首页</a>&nbsp;
-					   <a href="myPaging.jsp?currentPage=<%=currentPage - 1 %>">上一页</a>&nbsp;
-				      <%
-				       }
-				       if(currentPage<pageCount){
-				       %>
-					   <a href="myPaging.jsp?currentPage=<%=currentPage + 1 %>">下一页</a>&nbsp;
-					   <a href="myPaging.jsp?currentPage=<%=pageCount %>">末页</a><br/>
-				       <%
-					   }
-				       %>     
                 </div>
                 <!--分页-->
                                
