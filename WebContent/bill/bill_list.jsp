@@ -6,6 +6,9 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
+        <link href="/lanqiao/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/lanqiao/js/jquery-1.12.4.js"></script>
+        <script src="/lanqiao/bootstrap/js/bootstrap.min.js"></script>
         <c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
@@ -62,6 +65,7 @@
 				});
 			}
 		</script>
+		
     </head>
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
@@ -135,8 +139,8 @@
                 <div id="pages">
                 	<c:if test="${not empty requestScope.page}">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
-                			<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}">上一页</a>
+                			<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}" class="btn btn-success">首页</a>
+        	        		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}" class="btn btn-danger" >上一页</a>
                     
                     		<c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
                     			<c:if test="${i == requestScope.page.currentPage}">
@@ -146,8 +150,8 @@
                     				<a href="/lanqiao/BillAction?operation=showBill&currentPage=${i}">${i}</a>
                     			</c:if>
                     		</c:forEach>
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}">末页</a>
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}"class="btn btn-danger" >下一页</a>
+                    		<a href="/lanqiao/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}" class="btn btn-success">末页</a>
                 		</c:if>
                 	</c:if>
                 </div>   
