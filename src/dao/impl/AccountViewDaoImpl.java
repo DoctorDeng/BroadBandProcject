@@ -18,6 +18,14 @@ public class AccountViewDaoImpl {
 	 * @return
 	 */
 	public List<AccountViewBean> getAccountViewBean(int currentPage,int pageSize){
+		
+		String s = "select count(*) from bussiness a,customer c where a.customerId=c.customerId";
+		int count = -1;
+		List<Map<String,Object>> li = DBHelper.find(s, null);
+		for(Map<String,Object> m:li){
+			count = Integer.parseInt(m.get("count(*)").toString());
+		}
+		
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
 		String sql = "select a.bussinessId,a.loginAccount,a.createTime,a.status,a.lastLoginTime,"
 				+ "c.idNumber,c.customerName from bussiness a,customer c where a.customerId=c.customerId"
@@ -34,6 +42,7 @@ public class AccountViewDaoImpl {
 			a.setStatus(m.get("status").toString());
 			a.setCreateTime(m.get("createTime").toString());
 			a.setLastLoginTime(m.get("lastLoginTime").toString());
+			a.setCountPage(count);
 			l.add(a);
 		}	
 		return l;

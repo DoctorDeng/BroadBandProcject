@@ -114,6 +114,7 @@
                     } else{
                     	currentPage = 1;
                     }
+                    int totalPage = -1;
                     if(request.getParameter("type")==null||"".equals(request.getParameter("type"))){	                                               
 	                    List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
 						session.setAttribute("l", l);
@@ -133,7 +134,9 @@
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
                         </td>
                     </tr> 
-                    <%}
+                    <%
+                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5);
+	                    }
                     }
                     else if("search".equals(request.getParameter("type"))){
                     	AccountViewBean a = new AccountViewBean();
@@ -158,6 +161,7 @@
                         </td>
                     </tr> 
                     <%
+                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5);
                     }
                     }%>            
                 </table>
@@ -175,11 +179,19 @@
                 if(request.getParameter("type")==null||"".equals(request.getParameter("type"))){
                 %>
                 <div id="pages">
-                    <a href="#">首页</a>
+                <%
+                		if(currentPage>1){
+                %>
+                    <a href="account_list.jsp?currentPage=1">首页</a>
         	        <a href="account_list.jsp?currentPage=<%=currentPage-1 %>">上一页</a>
-                    <a href="#" class="current_page"><%=currentPage %></a>                 
+        	        <%} %>
+                    <a href="#" class="current_page"><%=currentPage %></a>  
+                <%
+                		if(currentPage<totalPage){
+                %>       
                     <a href="account_list.jsp?currentPage=<%=currentPage+1 %>">下一页</a>
-                    <a href="#">末页</a>
+                    <a href="account_list.jsp?currentPage=<%=totalPage %>">末页</a>
+                <%} %>
                 </div>
                 <%}
                 else if("search".equals(request.getParameter("type"))){%> 

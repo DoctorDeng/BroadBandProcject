@@ -11,7 +11,16 @@ public class AccountViewBean {
 	private String lastLoginTime;		//上次登录时间
 	private String status;				//状态
 	private String password;			//账务账号密码
+	public int getCountPage() {
+		return countPage;
+	}
+	public void setCountPage(int countPage) {
+		this.countPage = countPage;
+	}
 	private String phone;				//业务账号对应的电话号码
+	private int countPage;				//分页总数
+		
+	
 	
 	public String getPhone() {
 		return phone;
