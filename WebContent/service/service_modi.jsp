@@ -83,9 +83,11 @@
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
                     <select name = "traiffId" class="width150" value = "<%=bv.getTraiffName()%>">
-                        <option value= "1">包月</option>
-                        <option value= "2">套餐</option>
-                        <option value= "3">计时</option>
+                        <option value= "1">包50小时</option>
+                        <option value= "2">包时8888</option>
+                        <option value= "3">包月</option>
+						<option value= "4">季卡</option>
+						<option value= "5">年卡</option>
                     </select> 
                     <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>                      
                 </div>

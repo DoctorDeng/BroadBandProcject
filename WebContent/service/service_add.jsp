@@ -80,11 +80,11 @@
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info">
                     <select name = "traiffId">
-                        <option value= "1">包月</option>
-                        <option value= "2">套餐</option>
-                        <option value= "3">计时</option>
-
-                    </select>                        
+                        <option value= "1">包50小时</option>
+                        <option value= "2">包时8888</option>
+                        <option value= "3">包月</option>
+						<option value= "4">季卡</option>
+						<option value= "5">年卡</option>
                 </div> 
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
