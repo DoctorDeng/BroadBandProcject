@@ -28,5 +28,9 @@ public interface BussinessViewDao {
 	 * 业务界面的删除业务信息
 	 */
 	public boolean del(BussinessViewBean bussinessViewBean);
+	/**
+	 * 通过特定条件去查询业务信息 
+	 */
+	public List<BussinessViewBean> findOne(ServiceAddViewBean serviceAddViewBean); 
 }
 

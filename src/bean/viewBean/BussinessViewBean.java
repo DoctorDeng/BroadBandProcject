@@ -10,9 +10,6 @@ public class BussinessViewBean {
 	private String serverId;      //服务器ip地址
 	private String status;     //资费状态（开通或暂停）
 	private int tariffId; //资费ID
-	
-	
-	
 	public int getBussinessId() {
 		return bussinessId;
 	}

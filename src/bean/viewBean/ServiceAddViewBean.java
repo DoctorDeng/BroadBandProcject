@@ -10,6 +10,7 @@ public class ServiceAddViewBean {
 	private int customerId;   //客户ID
 	private String osAccount;     //宽带账号
 	private int tariffId;    //资费ID
+	private String status;	//状态
 	public String getIdNumber() {
 		return idNumber;
 	}
@@ -63,6 +64,12 @@ public class ServiceAddViewBean {
 	}
 	public void setTariffId(int tariffId) {
 		this.tariffId = tariffId;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
