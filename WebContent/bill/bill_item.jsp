@@ -49,12 +49,9 @@
         <div id="main">
             <form action="#" method="">
                 <!--查询-->
-                <div class="search_add">                        
-                    <div>账务账号：<span class="readonly width70">admin1</span></div>                            
-                    <div>身份证：<span class="readonly width150">230101111111111111</span></div>
-                    <div>姓名：<span class="readonly width70">张三</span></div>
-                    <div>计费时间：<span class="readonly width70">2013年8月</span></div>
-                    <div>总费用：<span class="readonly width70">34.78</span></div>
+                <div class="search_add">    
+                	<div style="width:360px">&nbsp;&nbsp;</div>                        
+                    <div style="font-size:20px">用户账单明细</div>                      
                     <input type="button" value="返回" class="btn_add" 
                     onclick="location.href='/lanqiao/BillAction?operation=showBill';" />
                 </div>  

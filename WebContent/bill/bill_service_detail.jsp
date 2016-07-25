@@ -47,12 +47,9 @@
         <div id="main">
             <form action="" method="">
                 <!--查询-->
-                <div class="search_add">                        
-                    <div>账务账号：<span class="readonly width70">admin1</span></div>                            
-                    <div>OS 账号：<span class="readonly width100">openlab1</span></div>
-                    <div>服务器 IP：<span class="readonly width100">192.168.0.20</span></div>
-                    <div>计费时间：<span class="readonly width70">2013年8月</span></div>
-                    <div>费用：<span class="readonly width70">34.78</span></div>
+                <div class="search_add">
+                    <div style="width:340px">&nbsp;&nbsp;</div>                        
+                    <div style="font-size:20px">用户Os账号登陆明细</div>                            
                     <input type="button" value="返回" class="btn_add" 
                     onclick="location.href='/lanqiao/BillAction?operation=showBill';" />
                 </div>  
