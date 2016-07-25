@@ -69,11 +69,11 @@
             <form action="" method="">
                 <!--排序-->
                 <div class="search_add">
-                    <div>
+                    <!-- <div>
                         <input type="button" value="月租" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="基费" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="时长" class="sort_asc" onclick="sort(this);" />
-                    </div>
+                    </div> -->
                     <input type="button" value="增加" class="btn_add" onclick="location.href='fee_add.jsp';" />
                 </div> 
                 <!--启用操作的操作提示-->
@@ -125,7 +125,7 @@
                     </p>
                 </div>
                 <!--分页-->
-                <div id="pages">
+                <!-- <div id="pages">
         	        <a href="#">上一页</a>
                     <a href="#" class="current_page">1</a>
                     <a href="#">2</a>
@@ -133,7 +133,7 @@
                     <a href="#">4</a>
                     <a href="#">5</a>
                     <a href="#">下一页</a>
-                </div>
+                </div> -->
             </form>
         </div>
         <!--主要区域结束-->
