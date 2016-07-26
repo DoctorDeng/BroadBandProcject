@@ -21,8 +21,8 @@
   			response.sendRedirect("../nopower.jsp");
   		%>
   		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -72,7 +72,7 @@
         <div id="main">       
             <!--保存成功或者失败的提示消息-->     
             <div id="save_result_info" class="save_fail">保存失败，该身份证已经开通过账务账号！</div>
-            <form action="http://localhost:8080/lanqiao/BussinessAccountAddAction" method="post" class="main_form"  id="form" onsubmit="return showResult();">
+            <form action="<%=request.getContextPath()%>/BussinessAccountAddAction" method="post" class="main_form"  id="form" onsubmit="return showResult();">
                 <!--必填项-->
                 <div class="text_info clearfix"><span>姓名：</span></div>
                 <div class="input_info">

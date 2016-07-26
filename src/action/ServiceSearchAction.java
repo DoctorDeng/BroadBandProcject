@@ -61,7 +61,7 @@ public class ServiceSearchAction extends HttpServlet {
 			System.out.println(sa.getCustomerName());*/
 		}
 		session.setAttribute("lsa", lsa);
-		response.sendRedirect("http://localhost:8080/lanqiao/service/service_search.jsp");
+		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");
 	}
 
 	/**

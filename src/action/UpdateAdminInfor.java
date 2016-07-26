@@ -54,7 +54,7 @@ public class UpdateAdminInfor extends HttpServlet {
 		boolean isAdd = adminManage.updateAdmin(adminId, adminInfor, powerList);
 		
 		if(isAdd==true){
-			response.sendRedirect("/lanqiao/ShowAdminAction?operation=init");
+			response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 		}else{
 		   response.sendRedirect("login.jsp");	
 		}

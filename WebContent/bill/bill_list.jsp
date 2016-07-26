@@ -12,7 +12,7 @@
         <c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
-  				window.location.href="/lanqiao/login.jsp";
+  				window.location.href="<%=request.getContextPath()%>/login.jsp";
   			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>

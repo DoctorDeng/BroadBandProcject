@@ -19,11 +19,11 @@
   			</c:choose>
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<%-- <c:if test="${hasPower==false}">
+  		<c:if test="${hasPower==false}">
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> --%>
+  		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
@@ -110,9 +110,9 @@
                             <td><%=sv.getOpenTime() %></td>
                             <td><%=sv.getStatus() %></td>
                             <td>                                
-                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='/lanqiao/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
+                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
                                 <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='/lanqiao/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             </td>
                         </tr>
                         <%} %>

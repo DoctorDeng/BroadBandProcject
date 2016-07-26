@@ -37,13 +37,13 @@ public class AdminInforAction extends HttpServlet {
 		String operation = request.getParameter("operation");
 		
 		if (null == operation | "".equals(operation)) {
-			response.sendRedirect("/lanqiao/login.jsp");
+			response.sendRedirect(request.getContextPath()+"/lanqiao/login.jsp");
 			return;
 		}
 		Object objAdmin = request.getSession().getAttribute("admin");
 		
 		if (null == objAdmin) {
-			response.sendRedirect("/lanqiao/login.jsp");
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
 		Admin admin  = (Admin)objAdmin;
@@ -57,7 +57,7 @@ public class AdminInforAction extends HttpServlet {
 				if (adminService.initAdminInfor(admin.getAdminId())) {
 					adminInfor = adminService.getAdminInforById(admin.getAdminId());
 				} else {
-					response.sendRedirect("/lanqiao/nopower.jsp");
+					response.sendRedirect(request.getContextPath()+"/nopower.jsp");
 					return;
 				}
 			}

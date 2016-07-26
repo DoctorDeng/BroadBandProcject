@@ -42,7 +42,7 @@ public class BussinessAccountDetailAction extends HttpServlet {
 		System.out.println("当前状态时："+a.getStatus());
 		HttpSession session = request.getSession();
 		session.setAttribute("acc", a);
-		response.sendRedirect("http://localhost:8080/lanqiao/account/account_detail.jsp");
+		response.sendRedirect(request.getContextPath()+"/account/account_detail.jsp");
 	}
 
 	/**

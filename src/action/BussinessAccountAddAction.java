@@ -46,7 +46,7 @@ public class BussinessAccountAddAction extends HttpServlet {
 		b.setStatus("1");
 		b.setLastLoginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 		new AccountService().addBussinessAccount(b);
-		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp");
+		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
 	}
 
 	/**

@@ -22,7 +22,7 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> --%>
+  		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
     </head>

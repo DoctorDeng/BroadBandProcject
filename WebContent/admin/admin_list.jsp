@@ -22,8 +22,8 @@
   		<%
   		   session.getAttribute("admininforList");
   		%>
-        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
             function showDetail(flag, a) {
@@ -37,7 +37,7 @@
           //查询管理员信息  
             function SerchAdminInfor(){
             		var adminId = document.getElementById("serchAdmin").value;        	
-            		window.location.href="/lanqiao/ShowAdminAction?operation=search&adminId="+adminId;
+            		window.location.href="<%=request.getContextPath()%>/ShowAdminAction?operation=search&adminId="+adminId;
               }
             
             function resetPwd(){  
@@ -88,7 +88,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="/lanqiao/ShowAdminAction?operation=reset" method="post" id="resetForm">
+            <form action="<%=request.getContextPath()%>/ShowAdminAction?operation=reset" method="post" id="resetForm">
                 <!--查询-->             
                 <div class="search_add">
                    

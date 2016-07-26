@@ -41,7 +41,7 @@ public class BussinessAccountOpenAction extends HttpServlet {
 		b.setBussinessId(bussinessId);
 		b.setStatus(status);
 		new BussinessDaoImpl().updateStatus(b);
-		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp");
+		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
 	}
 
 	/**

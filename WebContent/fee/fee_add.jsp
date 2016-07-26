@@ -16,11 +16,11 @@
   			</c:choose>
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<%-- <c:if test="${hasPower==false}">
+  		<c:if test="${hasPower==false}">
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> --%>
+  		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <script language="javascript" type="text/javascript">
@@ -84,7 +84,7 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_fail">保存失败，资费名称重复！</div>
-            <form action="http://localhost:8080/lanqiao/TariffAddAction" method="post" class="main_form">
+            <form action="<%=request.getContextPath()%>/TariffAddAction" method="post" class="main_form">
                 <div class="text_info clearfix"><span>资费名称：</span></div>
                 <div class="input_info">
                     <input type="text" class="width300" name="tariffName"  />
