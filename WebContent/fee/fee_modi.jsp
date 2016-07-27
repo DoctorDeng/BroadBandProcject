@@ -84,7 +84,7 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="http://localhost:8080/lanqiao/TariffUpdateAction" method="post" class="main_form">
+            <form action="<%=request.getContextPath()%>/TariffUpdateAction" method="post" class="main_form">
                 <div class="text_info clearfix"><span>资费ID：</span></div>
                 <div class="input_info"><input type="text" name="tariffId" class="readonly" readonly value="<%=request.getParameter("id") %>" /></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
