@@ -40,7 +40,7 @@ public class ServiceOpenAction extends HttpServlet {
 		b.setBussinessId(bussinessId);
 		b.setStatus(status);
 		new BussinessDaoImpl().updateStatus(b);
-		response.sendRedirect("http://localhost:8080/lanqiao/service/service_list.jsp");
+		response.sendRedirect(request.getContextPath()+"/service/service_list.jsp");
 	}
 
 	/**

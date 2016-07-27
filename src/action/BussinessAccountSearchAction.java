@@ -53,7 +53,7 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		List<AccountViewBean> l = new AccountService().searchAccountViewBean(a, currentPage);
 		HttpSession session = request.getSession();
 		session.setAttribute("ls", l);
-		response.sendRedirect("http://localhost:8080/lanqiao/account/account_list.jsp?type=search&currentPage=1");
+		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?type=search&currentPage=1");
 		//request.getRequestDispatcher("/account/account_list.jsp?type=search&currentPage=1").forward(request, response);
 	}
 

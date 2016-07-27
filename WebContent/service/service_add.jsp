@@ -6,7 +6,7 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <%-- <c:set var="hasPower">false</c:set>
+        <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -20,7 +20,7 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> --%>
+  		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <script type="text/javascript" src="../js/jquery.js"></script>
@@ -85,6 +85,7 @@
                         <option value= "3">包月</option>
 						<option value= "4">季卡</option>
 						<option value= "5">年卡</option>
+					</select>
                 </div> 
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">

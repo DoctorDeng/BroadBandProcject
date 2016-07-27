@@ -117,7 +117,7 @@ public class ShowAdminAction extends HttpServlet{
 	         }	   
 	         boolean resetResult = new AccountManage().resetPassword(adminIds);
 	         if(resetResult){
-	        	 response.sendRedirect("/lanqiao/ShowAdminAction?operation=search");
+	        	 response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=search");
 	         }
 		}
 	 }

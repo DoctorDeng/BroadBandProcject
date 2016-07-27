@@ -9,7 +9,7 @@
         <c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
-  				window.location.href="/lanqiao/login.jsp";
+  				window.location.href="<%=request.getContextPath()%>/login.jsp";
   			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>
@@ -24,11 +24,11 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   		<script type="text/javascript">
-  				window.location.href="/lanqiao/nopowr.jsp";
+  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
   			</script>
   		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="/lanqiao/styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
             function changeTab(e,ulObj) {                
                 var obj = e.srcElement || e.target;
@@ -49,7 +49,7 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="/lanqiao/images/logo.png" alt="logo" class="left"/>
+            <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -64,8 +64,8 @@
         <div id="report_main">
         	<div class="tabs">
     	        <ul onclick="changeTab(event,this);">
-        	        <li><a href="/lanqiao/StatementAction?operation=default" class="tab_on" title="每位客户每月的累计时长">客户使用时长</a></li>
-                    <li><a href="/lanqiao/StatementAction?operation=orderByDesc" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
+        	        <li><a href="<%=request.getContextPath()%>/StatementAction?operation=default" class="tab_on" title="每位客户每月的累计时长">客户使用时长</a></li>
+                    <li><a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
                 </ul>
             </div>            
             <div class="report_box">
@@ -131,35 +131,35 @@
                 	<c:when test="${operation == 'default'}">
                 		 
                 <div id="pages">
-                    <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
+                    <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
                     <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
                     	<c:if test="${i == requestScope.page.currentPage}">
-                    		<a href="/lanqiao/StatementAction?operation=default&currentPage=${i}" class="current_page" >${i}</a>
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${i}" class="current_page" >${i}</a>
                     	</c:if>
                     	<c:if test="${i != requestScope.page.currentPage}">
-                    		<a href="/lanqiao/StatementAction?operation=default&currentPage=${i}">${i}</a>
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${i}">${i}</a>
                     	</c:if>
                     </c:forEach>
-                    <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.endPage}">末页</a>
+                    <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.endPage}">末页</a>
                 </div>
                 	</c:when>
                 	<c:when test="${operation == 'orderByDesc'}">
                 		 
                 <div id="pages">
-                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.upPage}">上一页</a>
+                    <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.upPage}">上一页</a>
                     <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
                     	<c:if test="${i == requestScope.page.currentPage}">
-                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
                     	</c:if>
                     	<c:if test="${i != requestScope.page.currentPage}">
-                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
                     	</c:if>
                     </c:forEach>
-                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
+                    <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
                 </div>
                 	</c:when>
                 </c:choose>

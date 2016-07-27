@@ -70,7 +70,7 @@
         <div id="main">  
             <!--保存成功或者失败的提示消息-->          
             <div id="save_result_info" class="save_fail">保存失败，旧密码错误！</div>
-            <form action="http://localhost:8080/lanqiao/BussinessAccountModiAction" method="post" class="main_form" id="form">
+            <form action="<%=request.getContextPath()%>/BussinessAccountModiAction" method="post" class="main_form" id="form">
                     <!--必填项-->
                     <%
                     AccountViewBean a = null;

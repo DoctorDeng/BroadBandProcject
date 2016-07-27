@@ -39,7 +39,7 @@ public class BillAction extends HttpServlet {
 		String operation = request.getParameter("operation");
 		
 		if (null == operation | "".equals(operation)) {
-			response.sendRedirect("/lanqiao/login.jsp");
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
 		switch (operation) {

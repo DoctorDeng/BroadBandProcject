@@ -70,7 +70,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="http://localhost:8080/lanqiao/BussinessAccountSearchAction" method="post" id="form">
+            <form action="<%=request.getContextPath()%>/BussinessAccountSearchAction" method="post" id="form">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>身份证：<input type="text" id="idNumber" name="idNumber" value="不验证" class="text_search" /></div>                            
@@ -122,16 +122,16 @@
                     %>
                     <tr>
                         <td><%=a.getBussinessId() %></td>
-                        <td><a href="http://localhost:8080/lanqiao/BussinessAccountDetailAction?id=<%=a.getBussinessId() %>"><%=a.getBussinessName() %></a></td>
+                        <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=<%=a.getBussinessId() %>"><%=a.getBussinessName() %></a></td>
                         <td><%=a.getIdNumber() %></td>
                         <td><%=a.getLoginAccount() %></td>
                         <td><%=!a.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=a.getCreateTime() %></td>
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
-                            <input type="button" value="<%=a.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=a.getBussinessId() %>&status=<%=a.getStatus() %>';" />
+                            <input type="button" value="<%=a.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=<%=a.getBussinessId() %>&status=<%=a.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=a.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
                         </td>
                     </tr> 
                     <%
@@ -148,16 +148,16 @@
                     %> 
                     	<tr>
                         <td><%=ac.getBussinessId() %></td>
-                        <td><a href="http://localhost:8080/lanqiao/BussinessAccountDetailAction?id=<%=ac.getBussinessId() %>"><%=ac.getBussinessName() %></a></td>
+                        <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=<%=ac.getBussinessId() %>"><%=ac.getBussinessName() %></a></td>
                         <td><%=ac.getIdNumber() %></td>
                         <td><%=ac.getLoginAccount() %></td>
                         <td><%=!ac.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=ac.getCreateTime() %></td>
                         <td><%=ac.getLastLoginTime() %></td>                           
                         <td class="td_modi">
-                            <input type="button" value="<%=ac.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountOpenAction?id=<%=ac.getBussinessId() %>&status=<%=a.getStatus() %>';" />
+                            <input type="button" value="<%=ac.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountOpenAction?id=<%=ac.getBussinessId() %>&status=<%=a.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=ac.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/BussinessAccountAction?id=<%=ac.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountAction?id=<%=ac.getBussinessId() %>';" />
                         </td>
                     </tr> 
                     <%

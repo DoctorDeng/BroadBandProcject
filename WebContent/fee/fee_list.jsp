@@ -110,9 +110,9 @@
                             <td><%=sv.getOpenTime() %></td>
                             <td><%=sv.getStatus() %></td>
                             <td>                                
-                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='/lanqiao/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
+                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
                                 <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='/lanqiao/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             </td>
                         </tr>
                         <%} %>

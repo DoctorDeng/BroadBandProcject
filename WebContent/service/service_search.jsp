@@ -91,7 +91,7 @@
 				System.out.println(sv.getTraiffName());
 			%>
                     <tr>
-                        <td><a href="service_detail.jsp" title="查看明细"><%=sv.getBussinessId()%></a></td>
+                        <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
                         <td><%=sv.getAdminId() %></td>
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
@@ -108,7 +108,7 @@
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='http://localhost:8080/lanqiao/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
                     <%} %>                                                              
@@ -122,7 +122,7 @@
                 6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
                 </div>                    
                 <!--分页-->
-                <div id="pages">
+                <!-- <div id="pages">
                     <a href="#">首页</a>
         	        <a href="#">上一页</a>
                     <a href="#" class="current_page">1</a>
@@ -132,7 +132,7 @@
                     <a href="#">5</a>
                     <a href="#">下一页</a>
                     <a href="#">末页</a>
-                </div>                    
+                </div>       -->              
             </form>
         </div>
         <!--主要区域结束-->

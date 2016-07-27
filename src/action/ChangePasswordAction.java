@@ -59,7 +59,7 @@ public class ChangePasswordAction extends HttpServlet {
 			
 			if (accountManage.changePassword(admin.getAdminId(), newPassword)) {
 				request.getSession().setAttribute("admin", null);
-				response.sendRedirect("/lanqiao/success.jsp");
+				response.sendRedirect(request.getContextPath()+"/success.jsp");
 				return;
 			} 
 		}
