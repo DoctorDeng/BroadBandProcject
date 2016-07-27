@@ -33,7 +33,6 @@ public class UpdateAdminInfor extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String adminName    = request.getParameter("adminName");
 		int adminId         = Integer.parseInt(request.getParameter("adminId"));
-		System.out.println(adminId);
 		String phone        = request.getParameter("phone");
 		String email        = request.getParameter("email");
 		String[] powerStr   = request.getParameterValues("power");
@@ -51,12 +50,12 @@ public class UpdateAdminInfor extends HttpServlet {
 		}
 	
 		AdminService adminManage = new AdminService();
-		boolean isAdd = adminManage.updateAdmin(adminId, adminInfor, powerList);
+		boolean isupdate = adminManage.updateAdmin(adminId, adminInfor, powerList);
 		
-		if(isAdd==true){
+		if(isupdate==true){
 			response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 		}else{
-		   response.sendRedirect("login.jsp");	
+		   response.sendRedirect("admin/admin_modi.jsp");	
 		}
 	}
 

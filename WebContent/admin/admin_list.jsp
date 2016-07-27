@@ -178,7 +178,16 @@
                     </table>
                 </div>
                 <!--分页-->
-                               
+                 <div id="pages">
+                	<c:if test="${not empty requestScope.page}">
+                		<c:if test="${requestScope.isPage == 'yes'}" >
+                			<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.indexPage}" >首页</a>
+        	        		<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.upPage}"  >上一页</a>
+                        	<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    		<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.endPage}" >末页</a>
+                		</c:if>
+                	</c:if>
+                </div>                  
             </form>
         </div>
         <!--主要区域结束-->

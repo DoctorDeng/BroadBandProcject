@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.AdminInfor;
+import bean.Page;
 import dao.impl.AdminDaoImpl;
 import service.AccountManage;
 
@@ -22,24 +23,31 @@ import service.AccountManage;
 @WebServlet(urlPatterns="/ShowAdminAction")
 public class ShowAdminAction extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-       
+	private AdminDaoImpl admim;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ShowAdminAction() {
         super();
+        admim = new AdminDaoImpl();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		String operation = request.getParameter("operation");
+		if (null == operation | "".equals(operation)) {
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
+			return;
+		}
+		
 		/*Page page       = new Page();
-		int pageSize    = 4;
+		int pageSize    = 8;
   		int currentPage = 1;
   		int indexPage   = 1;
 		int nextPage    = 1;
  		int upPage      = 1;	 		
- 		int recordNum   = billService.getBillFormSize();
+ 		int recordNum   = admim.findAllAdminInfor().size();
  		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
  		int endPage     = pageNum;
  		
@@ -62,24 +70,14 @@ public class ShowAdminAction extends HttpServlet{
   		page.setNextPage(nextPage);
   		page.setUpPage(upPage);
   		page.setCurrentPage(currentPage);
-  		
-  		List<BillFormBean> billFormList = billService.getBillFormByPage((currentPage-1)*pageSize, pageSize);
-  		request.setAttribute("billForm", billFormList);
-  		request.setAttribute("page", page);
-		request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
-		break;
-		*/
-		AdminDaoImpl admim = new AdminDaoImpl();
-		List<Map<String, Object>> admininforList = admim.findAllAdminInfor(); 
-        String operation = request.getParameter("operation");
-		
-		if (null == operation | "".equals(operation)) {
-			response.sendRedirect("/lanqiao/login.jsp");
-			return;
-		}
+  		*/
+  		List<Map<String, Object>> admininforList = admim.findAllAdminInfor(); 
+  	
 		switch (operation) {
 		case "init" :		
-			session.setAttribute("admininforList", admininforList);  
+			session.setAttribute("admininforList", admininforList);
+			/*request.setAttribute("page", page);
+			request.setAttribute("isPage", "yes");*/
 		    response.sendRedirect("admin/admin_list.jsp");
 		    return;
 		  

@@ -64,7 +64,7 @@ public class AddAdminAction extends HttpServlet {
 			if(isAdd==true){
 				response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 			}else{
-			   response.sendRedirect("login.jsp");	
+			   response.sendRedirect("admin/admin_add.jsp");	
 			}
 	}
 	/**
