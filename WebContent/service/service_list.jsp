@@ -91,7 +91,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="/lanqiao/ServiceSearchAction" method="post">
+            <form action="<%=request.getContextPath() %>/ServiceSearchAction" method="post">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>OS 账号：<input type="text" id="osC" name="osC" class="width100 text_search" /></div>                            
@@ -165,7 +165,7 @@
                 6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
                 </div>                    
                 <!--分页-->
-                <div id="pages">
+              <!--   <div id="pages">
                     <a href="#">首页</a>
         	        <a href="#">上一页</a>
                     <a href="#" class="current_page">1</a>
@@ -175,7 +175,7 @@
                     <a href="#">5</a>
                     <a href="#">下一页</a>
                     <a href="#">末页</a>
-                </div>                    
+                </div>  -->                   
             </form>
         </div>
         <!--主要区域结束-->

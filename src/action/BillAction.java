@@ -54,9 +54,8 @@ public class BillAction extends HttpServlet {
 			int nextPage    = 1;
 	 		int upPage      = 1;	 		
 	 		int recordNum   = billService.getBillFormSize();
-	 		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
+	 		int pageNum     = (int) Math.ceil(recordNum/pageSize);
 	 		int endPage     = pageNum;
-	 		
 	 		String currentPageStr = request.getParameter("currentPage");
 			if (null !=currentPageStr && !"".equals(currentPageStr)){
 				currentPage = Integer.parseInt(currentPageStr);
@@ -76,7 +75,6 @@ public class BillAction extends HttpServlet {
 	  		page.setNextPage(nextPage);
 	  		page.setUpPage(upPage);
 	  		page.setCurrentPage(currentPage);
-	  		
 	  		List<BillFormBean> billFormList = billService.getBillFormByPage((currentPage-1)*pageSize, pageSize);
 	  		request.setAttribute("billForm", billFormList);
 	  		request.setAttribute("page", page);
