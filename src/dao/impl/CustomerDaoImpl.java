@@ -9,7 +9,7 @@ import java.sql.Connection;
 import com.mysql.jdbc.SQLError;
 
 import bean.Customer;
-import bean.viewBean.AccountViewBean;
+import bean.vo.AccountViewBean;
 import dao.CustomerDao;
 import util.DBHelper;
 

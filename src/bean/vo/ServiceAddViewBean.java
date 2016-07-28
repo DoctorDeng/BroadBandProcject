@@ -1,4 +1,4 @@
-package bean.viewBean;
+package bean.vo;
 
 public class ServiceAddViewBean {
 	private String idNumber;   //客户的身份证号码

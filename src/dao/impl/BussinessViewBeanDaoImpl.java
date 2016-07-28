@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Customer;
-import bean.viewBean.BussinessViewBean;
-import bean.viewBean.ServiceAddViewBean;
+import bean.vo.BussinessViewBean;
+import bean.vo.ServiceAddViewBean;
 import dao.BussinessViewDao;
 import service.CustomerService;
 import util.DBHelper;

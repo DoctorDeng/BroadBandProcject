@@ -1,4 +1,4 @@
-package bean.viewBean;
+package bean.vo;
 
 public class BussinessViewBean {
 	private int bussinessId;     //业务ID

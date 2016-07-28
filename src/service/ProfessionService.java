@@ -1,7 +1,8 @@
 package service;
 
 import java.util.List;
-import bean.viewBean.ServiceAddViewBean;
+
+import bean.vo.ServiceAddViewBean;
 
 public interface ProfessionService {
 

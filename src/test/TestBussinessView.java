@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bean.viewBean.BussinessViewBean;
+import bean.vo.BussinessViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 
 public class TestBussinessView {

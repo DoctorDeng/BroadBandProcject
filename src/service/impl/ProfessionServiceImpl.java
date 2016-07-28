@@ -1,7 +1,7 @@
 package service.impl;
 import java.util.List;
 
-import bean.viewBean.ServiceAddViewBean;
+import bean.vo.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 import service.ProfessionService;
 

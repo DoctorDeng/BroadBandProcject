@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
 import bean.AdminInfor;
-import bean.viewBean.BillDetailFormBean;
-import bean.viewBean.BillFormBean;
+import bean.vo.BillDetailFormBean;
+import bean.vo.BillFormBean;
 import service.AdminService;
 
 /**

@@ -2,8 +2,8 @@ package dao;
 
 import java.util.List;
 
-import bean.viewBean.BussinessViewBean;
-import bean.viewBean.ServiceAddViewBean;
+import bean.vo.BussinessViewBean;
+import bean.vo.ServiceAddViewBean;
 
 public interface BussinessViewDao {
 	/**

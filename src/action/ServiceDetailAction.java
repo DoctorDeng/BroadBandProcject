@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.viewBean.BussinessViewBean;
-import bean.viewBean.ServiceAddViewBean;
+import bean.vo.BussinessViewBean;
+import bean.vo.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 import service.impl.ProfessionServiceImpl;
 

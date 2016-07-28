@@ -1,4 +1,4 @@
-package bean.viewBean;
+package bean.vo;
 /**
  * 宽带账号登陆详细信息的表单Bean
  * @author Doctor邓

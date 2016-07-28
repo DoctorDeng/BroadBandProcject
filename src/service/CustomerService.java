@@ -1,7 +1,7 @@
 package service;
 
 import bean.Customer;
-import bean.viewBean.ServiceAddViewBean;
+import bean.vo.ServiceAddViewBean;
 
 public class CustomerService {
 	/**

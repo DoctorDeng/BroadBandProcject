@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Page;
-import bean.viewBean.BillDetailFormBean;
-import bean.viewBean.BillFormBean;
-import bean.viewBean.OsLoginFormBean;
-import bean.viewBean.StatementFormBean;
+import bean.vo.BillDetailFormBean;
+import bean.vo.BillFormBean;
+import bean.vo.OsLoginFormBean;
+import bean.vo.StatementFormBean;
 import service.StatementService;
 
 /**

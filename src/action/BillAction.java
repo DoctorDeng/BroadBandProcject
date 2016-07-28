@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Page;
-import bean.viewBean.BillDetailFormBean;
-import bean.viewBean.BillFormBean;
-import bean.viewBean.OsLoginFormBean;
+import bean.vo.BillDetailFormBean;
+import bean.vo.BillFormBean;
+import bean.vo.OsLoginFormBean;
 import service.BillService;
 
 /**

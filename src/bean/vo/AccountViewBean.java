@@ -1,4 +1,4 @@
-package bean.viewBean;
+package bean.vo;
 
 public class AccountViewBean {
 	//account_list页面表格数据封装

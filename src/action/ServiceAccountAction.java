@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
 import bean.Customer;
-import bean.viewBean.BussinessViewBean;
+import bean.vo.BussinessViewBean;
 import dao.impl.BussinessDaoImpl;
 import dao.impl.BussinessViewBeanDaoImpl;
 import dao.impl.CustomerDaoImpl;

@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import bean.viewBean.BillDetailFormBean;
-import bean.viewBean.BillFormBean;
-import bean.viewBean.OsLoginFormBean;
+import bean.vo.BillDetailFormBean;
+import bean.vo.BillFormBean;
+import bean.vo.OsLoginFormBean;
 import dao.impl.BillDaoImpl;
 import dao.impl.OsLoginDaoImpl;
 

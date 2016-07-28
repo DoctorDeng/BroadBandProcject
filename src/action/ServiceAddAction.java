@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import bean.Customer;
-import bean.viewBean.ServiceAddViewBean;
+import bean.vo.ServiceAddViewBean;
 import dao.impl.BussinessViewBeanDaoImpl;
 import service.impl.ProfessionServiceImpl;
 

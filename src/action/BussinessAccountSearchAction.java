@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
-import bean.viewBean.AccountViewBean;
+import bean.vo.AccountViewBean;
 import service.AccountService;
 
 /**

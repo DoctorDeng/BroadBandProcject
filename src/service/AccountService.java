@@ -5,7 +5,7 @@ import java.util.List;
 
 import bean.Bussiness;
 import bean.Customer;
-import bean.viewBean.AccountViewBean;
+import bean.vo.AccountViewBean;
 import dao.impl.AccountViewDaoImpl;
 import dao.impl.BussinessDaoImpl;
 import dao.impl.CustomerDaoImpl;
