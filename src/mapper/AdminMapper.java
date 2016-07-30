@@ -28,4 +28,5 @@ public interface AdminMapper {
 	public int updateAdminPassword(Admin admin);
 	
 	
+	
 }
