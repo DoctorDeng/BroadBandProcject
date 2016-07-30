@@ -17,7 +17,16 @@
 		<result     property="osPassword"   column="osPassword"/>
 		<result     property="serverIp"     column="serverIp"/>
 	</resultMap>
+	<!-- 查询一条信息，如需使用请注意修改 resultMap-->
 	<select id="selOneOsByOsid" parameterType="Os" resultMap="OstestMap">
-	select * from os where osId=#{osId}
+		select * from os where osId=#{osId}
 	</select>
+	<!-- 通过业务账号去修改信息 -->
+	<update id="upOneOsByBussinessId" >
+		update os set tariffId=#{tariffId} where bussinessId = #{bussinessId}
+	</update>
+	<!-- 通过业务账号去删除信息 -->
+	<delete id="delOneOsByBussinessId">
+		delete from os where bussiness.bussinessId = os.bussinessId where osId=#{osId}
+	</delete>
 </mapper>

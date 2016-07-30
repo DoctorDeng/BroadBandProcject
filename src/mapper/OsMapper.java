@@ -17,4 +17,16 @@ public interface OsMapper {
 	 * @param osId
 	 */
 	public Os selOneOsByOsid(int osId);
+	
+	/**
+	 * 业务账号通过业务Id来修改Os表里面的资费类型
+	 * @param bussinessId
+	 */
+	public void upOneOsByBussinessId(int bussinessId);
+	
+	/**
+	 * 业务账号通过业务ID来删除Os表中的一条信息
+	 * @param bussinessId
+	 */
+	public void delOneOsByBussinessId(int bussinessId);
 }
