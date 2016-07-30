@@ -26,7 +26,7 @@
 		update os set tariffId=#{tariffId} where bussinessId = #{bussinessId}
 	</update>
 	<!-- 通过业务账号去删除信息 -->
-	<delete id="delOneOsByBussinessId">
-		delete from os where bussinessId = #{bussinessId}
+	<delete id="delOneOsByOsId">
+		delete from os where osId = #{osId}
 	</delete>
 </mapper>

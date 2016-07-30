@@ -28,5 +28,6 @@ public interface OsMapper {
 	 * 业务账号通过业务ID来删除Os表中的一条信息
 	 * @param bussinessId
 	 */
-	public void delOneOsBybussinessId(int bussinessId);
+	public void delOneOsByOsId(int OsId);
+	
 }
