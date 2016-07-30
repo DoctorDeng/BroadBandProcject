@@ -56,6 +56,4 @@ public class OsLogin {
 		return "OsLogin [osLoginId=" + osLoginId + ", LoginIp=" + LoginIp + ", loginInTime=" + loginInTime
 				+ ", loginOutTime=" + loginOutTime + ", timeLong=" + timeLong + ", os=" + os + "]";
 	}
-	
-	
 }
