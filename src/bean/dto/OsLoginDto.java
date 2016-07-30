@@ -20,6 +20,8 @@ public class OsLoginDto {
 	//登陆时长
 	private int    timeLogin;
 	
+	public OsLoginDto(){}
+	
 	public String getLoginIp() {
 		return loginIp;
 	}

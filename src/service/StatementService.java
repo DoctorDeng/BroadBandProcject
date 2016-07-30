@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import bean.vo.StatementFormBean;
+import bean.vo.StatementVo;
 import mapper.impl.StatementDaoImpl;
 
 /**
@@ -23,8 +23,8 @@ public class StatementService {
 	 * 获取所有报表信息
 	 * @return   返回报表Bean的集合
 	 */
-	public List<StatementFormBean> getAllStatement() {
-		List<StatementFormBean> statementList = new ArrayList<>();
+	public List<StatementVo> getAllStatement() {
+		List<StatementVo> statementList = new ArrayList<>();
 		
 		List<Map<String,Object>> mapList = statementDao.findAllStatement();
 		
@@ -49,7 +49,7 @@ public class StatementService {
 			int s = (times%3600)%60;
 			String timeLong    = h + "时" + m + "分" + s +"秒";
 			
-			StatementFormBean statement = new StatementFormBean(bussinessId, loginAccount, customerName, idNumber, phone, timeLong);
+			StatementVo statement = new StatementVo(bussinessId, loginAccount, customerName, idNumber, phone, timeLong);
 			statementList.add(statement);
 		}
 		
@@ -59,8 +59,8 @@ public class StatementService {
 	 /* 获取所有通过时长降序的报表信息
 	 * @return   返回报表Bean的集合
 	 */
-	public List<StatementFormBean> getAllStatementByDesc() {
-		List<StatementFormBean> statementList = new ArrayList<>();
+	public List<StatementVo> getAllStatementByDesc() {
+		List<StatementVo> statementList = new ArrayList<>();
 		
 		List<Map<String,Object>> mapList = statementDao.findAllStatementByDesc();
 		
@@ -85,7 +85,7 @@ public class StatementService {
 			int s = (times%3600)%60;
 			String timeLong    = h + "时" + m + "分" + s +"秒";
 			
-			StatementFormBean statement = new StatementFormBean(bussinessId, loginAccount, customerName, idNumber, phone, timeLong);
+			StatementVo statement = new StatementVo(bussinessId, loginAccount, customerName, idNumber, phone, timeLong);
 			statementList.add(statement);
 		}
 		
@@ -96,8 +96,8 @@ public class StatementService {
 	 * 获取指定页的报表信息
 	 * @return   返回报表Bean的集合
 	 */
-	public List<StatementFormBean> getStatementPage(int currentPage, int pageSize) {
-		List<StatementFormBean> statementList = new ArrayList<>();
+	public List<StatementVo> getStatementPage(int currentPage, int pageSize) {
+		List<StatementVo> statementList = new ArrayList<>();
 		
 		List<Map<String,Object>> mapList = statementDao.findStatementPage((currentPage-1)*pageSize,pageSize);
 		
@@ -122,7 +122,7 @@ public class StatementService {
 			int s = (times%3600)%60;
 			String timeLong    = h + "时" + m + "分" + s +"秒";
 			
-			StatementFormBean statement = new StatementFormBean(bussinessId, loginAccount, customerName, idNumber, phone, timeLong);
+			StatementVo statement = new StatementVo(bussinessId, loginAccount, customerName, idNumber, phone, timeLong);
 			statementList.add(statement);
 		}
 		
@@ -132,8 +132,8 @@ public class StatementService {
 	 /* 获取所有通过时长降序的报表信息
 	  * @return   返回报表Bean的集合
 	  */
-	public List<StatementFormBean> getStatementPageByDesc(int currentPage, int pageSize) {
-		List<StatementFormBean> statementList = new ArrayList<>();
+	public List<StatementVo> getStatementPageByDesc(int currentPage, int pageSize) {
+		List<StatementVo> statementList = new ArrayList<>();
 
 		List<Map<String, Object>> mapList = statementDao.findStatementPageByDesc((currentPage - 1) * pageSize,
 				pageSize);
@@ -159,7 +159,7 @@ public class StatementService {
 			int s = (times % 3600) % 60;
 			String timeLong = h + "时" + m + "分" + s + "秒";
 
-			StatementFormBean statement = new StatementFormBean(bussinessId, loginAccount, customerName, idNumber,
+			StatementVo statement = new StatementVo(bussinessId, loginAccount, customerName, idNumber,
 					phone, timeLong);
 			statementList.add(statement);
 		}

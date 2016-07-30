@@ -8,12 +8,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import mapper.BillMapper;
-import mapper.OsLoginMapper;
 import util.SqlSessionUtil;
 
 public class TestBill {
 	private SqlSession sqlSession;
-	private OsLoginMapper osLoginMapper;
+	private BillMapper billMapper;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -25,7 +24,7 @@ public class TestBill {
 	@Before
 	public void setUp() throws Exception {
 		sqlSession = SqlSessionUtil.getSqlSession();
-		osLoginMapper = sqlSession.getMapper(OsLoginMapper.class);
+		billMapper = sqlSession.getMapper(BillMapper.class);
 	}
 
 	@After
@@ -34,7 +33,8 @@ public class TestBill {
 
 	@Test
 	public void test() {
-		System.out.println(osLoginMapper.selOneOsLoginByOsLoginId(1).size());
+		/*System.out.println(billMapper.selectBillDetailDtoByBillId(1).size());*/
+		System.out.println(billMapper.selectAllBill().size());
 	}
 
 }

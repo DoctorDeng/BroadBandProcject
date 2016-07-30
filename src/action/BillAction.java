@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Page;
+import bean.dto.PageDto;
 import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 import bean.vo.OsLoginFormBean;
@@ -47,7 +47,7 @@ public class BillAction extends HttpServlet {
 		 * 通过分页显示账单信息
 		 */
 		case "showBill":
-			Page page       = new Page();
+			PageDto page       = new PageDto();
 			int pageSize    = 4;
 	  		int currentPage = 1;
 	  		int indexPage   = 1;
