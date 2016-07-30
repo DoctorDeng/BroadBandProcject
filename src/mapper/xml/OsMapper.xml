@@ -13,8 +13,6 @@
 	<!-- 测试OS方法的map -->
 	<resultMap type="Os" id="OstestMap">
 		<id         property="osId"         column="osId"/>
-		<result     property="customerId"   column="customerId"/>
-		<result     property="tariffId"     column="tariffId"/>
 		<result     property="osAccount"    column="osAccount"/>
 		<result     property="osPassword"   column="osPassword"/>
 		<result     property="serverIp"     column="serverIp"/>

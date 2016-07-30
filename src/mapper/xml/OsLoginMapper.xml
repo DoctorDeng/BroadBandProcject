@@ -10,4 +10,16 @@
 		<result     property="timeLong"           column="timeLong"/>
 		<collection property="Os"                 column="OsId"  select=""/>
 	</resultMap>
+	<!--  测试-->
+	<resultMap type="OsLogin" id="GetMapper">
+		<id         property="osLoginId"          column="osLoginId"/>
+		<result     property="LoginIp"        	  column="LoginIp"/>
+		<result     property="loginInTime"        column="loginInTime"/>
+		<result     property="loginOutTime"       column="loginOutTime"/>
+		<result     property="timeLong"           column="timeLong"/>
+	</resultMap>
+	
+	<select id="selOneOsLoginByOsLoginId" resultMap="GetMapper">
+		select * from OsLogin where osLoginId =#{osLoginId}
+	</select>
 </mapper>

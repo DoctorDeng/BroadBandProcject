@@ -12,8 +12,8 @@ import mapper.OsMapper;
 import util.SqlSessionUtil;
 
 public class TestOS {
-	static SqlSession sqlSession;
-	static OsMapper osMapper;
+	private SqlSession sqlSession;
+	private OsMapper osMapper;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -21,12 +21,13 @@ public class TestOS {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-	sqlSession = SqlSessionUtil.getSqlSession();
-	osMapper = sqlSession.getMapper(OsMapper.class);
+	
 	}
 
 	@Before
 	public void setUp() throws Exception {
+	sqlSession = SqlSessionUtil.getSqlSession();
+	osMapper = sqlSession.getMapper(OsMapper.class);
 	}
 
 	@After

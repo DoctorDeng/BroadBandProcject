@@ -67,5 +67,11 @@ public class Os {
 	public void setServerIp(String serverIp) {
 		this.serverIp = serverIp;
 	}
+
+	@Override
+	public String toString() {
+		return "Os [osId=" + osId + ", osAccount=" + osAccount + ", osPassword=" + osPassword + ", serverIp=" + serverIp
+				+ "]";
+	}
 	
 }
