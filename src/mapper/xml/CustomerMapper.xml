@@ -47,4 +47,7 @@
 			customerId=#{customerId}
 		</where>
 	</select>
+	<select id="selectCustomerByIdNumber" parameterType="String" resultType="Customer">
+		select * from customer where idNumber=#{idNumber}
+	</select>
 </mapper>
