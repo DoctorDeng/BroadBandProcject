@@ -2,15 +2,18 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
+import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import service.CustomerService;
+import util.SqlSessionUtil;
 
-public class JUcustomer {
+public class TestSqlSession {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -29,9 +32,12 @@ public class JUcustomer {
 	}
 
 	@Test
-	public void testCustomerIdUtil() {
-		CustomerService ci =new CustomerService();
-		
+	public void test() {
+		try {
+			System.out.println(SqlSessionUtil.getSqlSession());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -28,7 +28,7 @@ public class SqlSessionUtil {
 		 * 路径从src的根路径下开始算起
 		 */
 		if (inputStream == null) {
-			inputStream = Resources.getResourceAsStream("com/doctor/config/mybatis-config.xml");
+			inputStream = Resources.getResourceAsStream("config/mybatis-config.xml");
 		}
 		if (sqlSessionFactory == null) {
 			/**
