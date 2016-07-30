@@ -2,7 +2,6 @@ package bean;
 
 public class OsLogin {
 	private  int osLoginId; 
-	private  int osId;
 	private  String LoginIp;
 	private  String loginInTime;
 	private  String loginOutTime;
@@ -21,12 +20,6 @@ public class OsLogin {
 		this.osLoginId = osLoginId;
 	}
 
-	public int getOsId() {
-		return osId;
-	}
-	public void setOsId(int osId) {
-		this.osId = osId;
-	}
 	public String getLoginIp() {
 		return LoginIp;
 	}
