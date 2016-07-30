@@ -68,13 +68,13 @@
                tariff AS t
               <where>
               <if test="true">
-               AND b.osId = o.osId
+                b.osId = o.osId AND
               </if>
               <if test="true">
-               AND o.customerId = c.customerId
+                o.customerId = c.customerId AND
               </if>
               <if test="true">
-               AND t.tariffId = o.tariffId
+                t.tariffId = o.tariffId
               </if>
               <if test="osAccount!=null and osAccount!=''">
                AND osAccount=#{osAccount}
