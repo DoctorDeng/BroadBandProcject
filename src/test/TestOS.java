@@ -46,8 +46,8 @@ public class TestOS {
 	 * 测试Os表的删除功能
 	 */
 	@Test
-	public void delOneOsByBussinessId(){
-	 osMapper.delOneOsByBussinessId(3);
+	public void delOneOsBybussinessId(){
+	 osMapper.delOneOsBybussinessId(3);
 	}
 
 }
