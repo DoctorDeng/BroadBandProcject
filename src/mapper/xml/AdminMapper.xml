@@ -1,1 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="mapper.AdminMapper">
+		
+		
+		
+		<!-- <resultMap type="Student" id="StudentResultMapTest">
+			<id property="stuId" column="stuId"/>
+			<result property="stuName" column="stuName"/>
+			<result property="stuAge" column="stuAge"/>
+			<association property="grade" javaType="Grade">
+				<id property="gradeId" column="gradeId"/> 
+    			<result property="gradeName" column="gradeName"/>
+			</association>
+		</resultMap> 
+		
+		<resultMap type="Student" id="StudentResultMap">
+			<id property="stuId" column="stuId" javaType="int" jdbcType="NUMERIC"/>
+			<result property="stuName" column="stuName" javaType="String" jdbcType="VARCHAR" />
+			<result property="stuAge" column="stuAge" javaType="int" jdbcType="NUMERIC"/>
+			<association property="grade" column="gradeId" select="com.doctor.mapper.GradeMapper.selectGradeById" />
+		</resultMap> -->
+		
+		<!-- <select id="selectStu" parameterType="int" resultType="Student">
+			select * from Student where stuId = #{stuId}
+		</select>
+		
+	<insert id="addStu"  useGeneratedKeys="true" keyProperty="stuId">
+		 insert into student(stuName,stuAge) values(#{stuName},#{stuAge})
+		</insert>
+		
+		<update id="updateStu" parameterType="Student" >
+			UPDATE student SET stuName= #{stuName}, stuAge= #{stuAge} WHERE stuId = #{stuId}
+		</update>
+		
+		<delete id="delStu" parameterType="int">
+			DELETE FROM student WHERE stuId = #{stuId}
+		</delete>
+		-->
+	<!-- 	<select id="selectAllStu" resultType="Student">
+			SELECT stuId,stuName, stuAge FROM Student
+		</select> 
+		
+		<select id="selectAllStuWithTest" resultMap="StudentResultMapTest">
+			SELECT stuId,stuName,stuAge, grade.gradeId,gradeName FROM student INNER JOIN grade WHERE student.gradeId = grade.gradeId;
+		</select> 
+		
+		<select id="selectAllStuWithGrade"  resultMap="StudentResultMap">
+			select * from Student 
+		</select>
+		
+		
+		<select id="selectStudentsByGradeId" parameterType="int" resultType="Student">
+			select * from Student  where gradeId = #{gradeId}
+		</select>
+		
+		<select id="selectStudentsByCondition" parameterType="Student" resultType="Student">
+			select * from student 
+		<where>
+			<if test="stuId != null and stuId != '' ">
+				 AND stuId = #{stuId}
+			</if>
+			<if test="stuName != null and stuName != '' ">
+			 	AND stuName like  CONCAT(CONCAT('%',#{stuName}),'%') 
+			</if> 
+			<if test="stuAge != null and stuAge != '' ">
+				 AND stuAge = #{stuAge}
+			</if>
+		</where>
+		</select>
+		
+		<update id="updateStudent" parameterType="Student" >
+			update student
+    	 <set>
+     		 <if test="stuName != null and stuName != ''">stuName=#{stuName},</if>
+      		 <if test="stuAge != null">stuAge=#{stuAge},</if>
+   		 </set>
+ 		 where stuId=#{stuId}
+		</update>
+		
+		<select id="selectStudentByIds" resultType="Student">
+  			SELECT *  FROM student  WHERE stuId in
+ 			 <foreach item="stuId" index="index" collection="list"
+      				open="(" separator="," close=")">
+       			 #{stuId}
+ 			 </foreach>
+		</select>
+		
+		<select id="selectStudentByChoose" parameterType="Map"  resultType="Student">
+  			SELECT *  FROM student  
+ 		    <where>
+ 		    	<choose>
+					<when test="searchWay == 'stuName' ">
+						and stuName like  CONCAT(CONCAT('%',#{stuName}),'%')
+					</when>
+					<when test="searchWay == 'stuAge' ">
+						and stuAge = #{stuAge}
+					</when>
+ 		    	</choose>
+ 		    </where>	 
+		</select> -->
+		
+		<select id="selectAdminById">
+		</select>
+	</mapper>
