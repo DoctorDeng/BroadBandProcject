@@ -2,26 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.CustomerMapper">
-<insert id="insertBussiness" parameterType="Bussiness">
-		insert into bussiness values(null,#{osId})
+	<insert id="insertCustomer" parameterType="Customer">
+		insert into customer values(null,#{customerName},#{idNumber},#{phone},#{customerAccount},#{password},#{createTime},#{status},#{lastLoginTime})
 	</insert>
-	<delete id="deleteBussiness" parameterType="int">
-		delete from bussiness where bussinessId=#{id}
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer where customerId=#{id}
 	</delete>
-	<update id="updateBussiness" parameterType="Bussiness">
-		update bussiness
+	<update id="updateCustomer" parameterType="Customer">
+		update customer
 		<set>
-			osId=#{osId}
+			<if test="customerName!=null and customerName!=''">
+				customerName=#{customerName},
+			</if>
+			<if test="idNumber!=null and idNumber!=''">
+				idNumber=#{idNumber},
+			</if>
+			<if test="phone!=null and phone!=''">
+				phone=#{phone},
+			</if>
+			<if test="customerAccount!=null and customerAccount!=''">
+				customerAccount=#{customerAccount},
+			</if>
+			<if test="password!=null and password!=''">
+				password=#{password},
+			</if>
+			<if test="createTime!=null and createTime!=''">
+				createTime=#{createTime},
+			</if>
+			<if test="status!=null and status!=''">
+				status=#{status},
+			</if>
+			<if test="lastLoginTime!=null and lastLoginTime!=''">
+				lastLoginTime=#{lastLoginTime},
+			</if>
 		</set>
-		where bussinessId=#{bussinessId}
+		where customerId=#{customerId}
 	</update>
-	<select id="selectAllBussiness" resultType="Bussiness">
-		select * from bussiness
+	<select id="selectAllCustomer" resultType="Customer">
+		select * from Customer
 	</select>
-	<select id="selectBussinessById" parameterType="int" resultType="Bussiness">
-		select * from bussiness 
+	<select id="selectCustomerById" parameterType="int" resultType="Customer">
+		select * from Customer 
 		<where>
-			bussinessId=#{bussinessId}
+			customerId=#{customerId}
 		</where>
 	</select>
 </mapper>

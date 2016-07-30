@@ -14,9 +14,28 @@ public class Customer {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", idNumber=" + idNumber
+				+ ", phone=" + phone + ", customerAccount=" + customerAccount + ", password=" + password
+				+ ", createTime=" + createTime + ", status=" + status + ", lastLoginTime=" + lastLoginTime + "]";
+	}
 	public Customer(String customerName, String idNumber, String phone, String customerAccount, String password,
 			String createTime, String status, String lastLoginTime) {
 		super();
+		this.customerName = customerName;
+		this.idNumber = idNumber;
+		this.phone = phone;
+		this.customerAccount = customerAccount;
+		this.password = password;
+		this.createTime = createTime;
+		this.status = status;
+		this.lastLoginTime = lastLoginTime;
+	}
+	public Customer(int customerId, String customerName, String idNumber, String phone, String customerAccount,
+			String password, String createTime, String status, String lastLoginTime) {
+		super();
+		this.customerId = customerId;
 		this.customerName = customerName;
 		this.idNumber = idNumber;
 		this.phone = phone;
