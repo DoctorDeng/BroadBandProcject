@@ -38,4 +38,9 @@ public interface OsMapper {
 	 * @return
 	 */
 	public List<OsDto> selServiceShow();
+	
+	/**
+	 * 业务界面添加
+	 */
+	public void addOsInfo();
 }

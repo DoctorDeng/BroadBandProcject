@@ -44,4 +44,6 @@
                t.tariffId = o.tariffId
 		
 	</select>
+	<!-- 通过查询身份证进行对Os表的添加功能 -->
+	<insert id=""></insert>
 </mapper>

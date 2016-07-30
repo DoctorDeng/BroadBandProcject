@@ -10,9 +10,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import bean.Bussiness;
+import bean.Customer;
 import bean.Os;
 import bean.dto.OsDto;
 import mapper.BussinessMapper;
+import mapper.CustomerMapper;
 import mapper.OsMapper;
 import util.SqlSessionUtil;
 
@@ -20,6 +22,7 @@ public class TestOS {
 	private SqlSession sqlSession;
 	private OsMapper osMapper;
 	private BussinessMapper bussinessMapper;
+	private CustomerMapper customerMapper;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -35,13 +38,12 @@ public class TestOS {
 	sqlSession = SqlSessionUtil.getSqlSession();
 	osMapper = sqlSession.getMapper(OsMapper.class);
 	bussinessMapper = sqlSession.getMapper(BussinessMapper.class);
+	customerMapper = sqlSession.getMapper(CustomerMapper.class);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	sqlSession.commit();
-	sqlSession.commit();
-	sqlSession.close();
 	sqlSession.close();
 	}
 	/**
@@ -70,6 +72,8 @@ public class TestOS {
 	 */
 	@Test
 	public void test(){
+		String idNumber = "6222011996410153015";
+		Customer customer = customerMapper.selectCustomerByIdNumber(idNumber);
 		
 	}
 	/**
