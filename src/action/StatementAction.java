@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Page;
+import bean.dto.PageDto;
 import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 import bean.vo.OsLoginFormBean;
-import bean.vo.StatementFormBean;
+import bean.vo.StatementVo;
 import service.StatementService;
 
 /**
@@ -41,7 +41,7 @@ public class StatementAction extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
-		Page page       = new Page();
+		PageDto page       = new PageDto();
 		int pageSize    = 4;
   		int currentPage = 1;
   		int indexPage   = 1;
@@ -76,7 +76,7 @@ public class StatementAction extends HttpServlet {
 		 * 显示默认报表信息
 		 */
 		case "default":
-			List<StatementFormBean> statementList = statementService.getStatementPage(currentPage,pageSize);
+			List<StatementVo> statementList = statementService.getStatementPage(currentPage,pageSize);
 			request.setAttribute("statementForm", statementList);
 			request.setAttribute("page", page);
 			request.setAttribute("operation", "default");
@@ -86,7 +86,7 @@ public class StatementAction extends HttpServlet {
 		 * 通过时长降序显示报表信息
 		 */
 		case "orderByDesc":
-			List<StatementFormBean> statementListDesc = statementService.getStatementPageByDesc(currentPage,pageSize);
+			List<StatementVo> statementListDesc = statementService.getStatementPageByDesc(currentPage,pageSize);
 			request.setAttribute("statementForm", statementListDesc);
 			request.setAttribute("page", page);
 			request.setAttribute("operation", "orderByDesc");

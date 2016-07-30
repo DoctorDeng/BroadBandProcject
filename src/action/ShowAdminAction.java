@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.AdminInfor;
-import bean.Page;
+import bean.dto.PageDto;
 import mapper.impl.AdminDaoImpl;
 import service.AccountManage;
 
