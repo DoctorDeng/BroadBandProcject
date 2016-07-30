@@ -14,10 +14,8 @@ public interface AdminMapper {
 	
 	public int updateAdmin(Admin admin);
 	
-	public int resetAdminsPassword(List<Integer> admindIds);
+	public int resetAdminsPassword(List<Integer> adminIds);
 	
 	public int deleteAdminById(int adminId);
-	
-	public int deleteAdminPower(int adminId);
 	
 }
