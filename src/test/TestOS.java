@@ -36,6 +36,8 @@ public class TestOS {
 
 	@After
 	public void tearDown() throws Exception {
+	sqlSession.commit();
+	sqlSession.close();
 	}
 	/**
 	 * 测试Os表的一次查询
@@ -52,7 +54,12 @@ public class TestOS {
 	@Test
 	public void delOneOsByOsId(){
 	 Bussiness bussiness = bussinessMapper.selectBussinessById(3);
+	 System.out.println(bussiness.getOsId());
+	 bussinessMapper.deleteBussiness(3);
 	 osMapper.delOneOsByOsId(bussiness.getOsId());
 	}
-
+	@Test
+	public void test(){
+		
+	}
 }
