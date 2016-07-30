@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.vo.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import mapper.impl.BussinessViewBeanDaoImpl;
 
 /**
  * Servlet implementation class ServiceSearchAction

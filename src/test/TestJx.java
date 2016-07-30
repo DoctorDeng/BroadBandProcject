@@ -9,10 +9,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import bean.AdminInfor;
-import dao.impl.AdminDaoImpl;
-import dao.impl.AdminInforDaoImpl;
-import dao.impl.CustomerDaoImpl;
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import mapper.impl.AdminDaoImpl;
+import mapper.impl.AdminInforDaoImpl;
+import mapper.impl.CustomerDaoImpl;
 
 public class TestJx {
 	CustomerDaoImpl customerDao = new CustomerDaoImpl();

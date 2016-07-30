@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.AdminInfor;
 import bean.Page;
-import dao.impl.AdminDaoImpl;
+import mapper.impl.AdminDaoImpl;
 import service.AccountManage;
 
 /**

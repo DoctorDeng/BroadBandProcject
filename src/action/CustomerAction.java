@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
 import bean.Customer;
-import dao.impl.CustomerDaoImpl;
+import mapper.impl.CustomerDaoImpl;
 
 /**
  * Servlet implementation class CustomerAction

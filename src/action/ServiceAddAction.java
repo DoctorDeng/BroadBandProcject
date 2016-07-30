@@ -11,7 +11,7 @@ import javax.websocket.Session;
 
 import bean.Customer;
 import bean.vo.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import mapper.impl.BussinessViewBeanDaoImpl;
 import service.impl.ProfessionServiceImpl;
 
 /**

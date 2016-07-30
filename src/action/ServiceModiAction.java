@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.vo.BussinessViewBean;
 import bean.vo.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import mapper.impl.BussinessViewBeanDaoImpl;
 
 /**
  * Servlet implementation class ServiceModiAction

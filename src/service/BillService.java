@@ -6,8 +6,8 @@ import java.util.Map;
 import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 import bean.vo.OsLoginFormBean;
-import dao.impl.BillDaoImpl;
-import dao.impl.OsLoginDaoImpl;
+import mapper.impl.BillDaoImpl;
+import mapper.impl.OsLoginDaoImpl;
 
 public class BillService {
 	private OsLoginDaoImpl  osLoginDao;

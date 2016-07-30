@@ -2,7 +2,7 @@ package service.impl;
 import java.util.List;
 
 import bean.vo.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import mapper.impl.BussinessViewBeanDaoImpl;
 import service.ProfessionService;
 
 public class ProfessionServiceImpl implements ProfessionService {

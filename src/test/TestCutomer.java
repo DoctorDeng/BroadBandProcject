@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import bean.Customer;
-import dao.impl.CustomerDaoImpl;
+import mapper.impl.CustomerDaoImpl;
 
 public class TestCutomer {
 	CustomerDaoImpl ctd = new CustomerDaoImpl();

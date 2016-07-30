@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.impl.AdminDaoImpl;
+import mapper.impl.AdminDaoImpl;
 
 /**
  * Servlet implementation class ResetPasswords

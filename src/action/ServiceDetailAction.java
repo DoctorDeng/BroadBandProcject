@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.vo.BussinessViewBean;
 import bean.vo.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import mapper.impl.BussinessViewBeanDaoImpl;
 import service.impl.ProfessionServiceImpl;
 
 /**

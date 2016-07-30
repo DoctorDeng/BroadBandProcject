@@ -7,9 +7,9 @@ import java.util.Map;
 import bean.Admin;
 import bean.AdminInfor;
 import bean.Power;
-import dao.impl.AdminDaoImpl;
-import dao.impl.AdminInforDaoImpl;
-import dao.impl.AdminPowerDaoImpl;
+import mapper.impl.AdminDaoImpl;
+import mapper.impl.AdminInforDaoImpl;
+import mapper.impl.AdminPowerDaoImpl;
 
 public class AdminService {
 	

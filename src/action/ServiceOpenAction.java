@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
-import dao.impl.BussinessDaoImpl;
+import mapper.impl.BussinessDaoImpl;
 
 /**
  * Servlet implementation class ServiceOpenAction

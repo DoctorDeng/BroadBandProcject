@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
 import bean.Customer;
-import dao.impl.BussinessDaoImpl;
-import dao.impl.CustomerDaoImpl;
+import mapper.impl.BussinessDaoImpl;
+import mapper.impl.CustomerDaoImpl;
 
 /**
  * Servlet implementation class BussinessAccountAction

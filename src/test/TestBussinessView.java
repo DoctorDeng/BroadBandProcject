@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import bean.vo.BussinessViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import mapper.impl.BussinessViewBeanDaoImpl;
 
 public class TestBussinessView {
 	BussinessViewBeanDaoImpl bvbd = new BussinessViewBeanDaoImpl();

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.vo.AccountViewBean;
-import dao.impl.AccountViewDaoImpl;
+import mapper.impl.AccountViewDaoImpl;
 
 /**
  * Servlet implementation class BussinessAccountDetailAction

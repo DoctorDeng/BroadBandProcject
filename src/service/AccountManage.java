@@ -1,8 +1,8 @@
 package service;
 
 import bean.Admin;
-import dao.impl.AdminDaoImpl;
-import dao.impl.AdminPowerDaoImpl;
+import mapper.impl.AdminDaoImpl;
+import mapper.impl.AdminPowerDaoImpl;
 
 public class AccountManage {
 	private AdminDaoImpl  adminDao;

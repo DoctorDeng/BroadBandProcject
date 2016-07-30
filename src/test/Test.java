@@ -7,7 +7,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import dao.impl.TariffDaoImpl;
+import mapper.impl.TariffDaoImpl;
 
 public class Test {
 	TariffDaoImpl tariffDao = new TariffDaoImpl();

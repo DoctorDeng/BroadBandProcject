@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.impl.TariffDaoImpl;
+import mapper.impl.TariffDaoImpl;
 import service.TariffService;
 
 /**

@@ -3,7 +3,7 @@ package service;
 import java.util.List;
 
 import bean.Tariff;
-import dao.impl.TariffDaoImpl;
+import mapper.impl.TariffDaoImpl;
 
 public class TariffService {
 	private TariffDaoImpl tariffDao;

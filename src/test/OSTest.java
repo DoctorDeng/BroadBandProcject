@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import dao.impl.OsLoginDaoImpl;
+import mapper.impl.OsLoginDaoImpl;
 
 public class OSTest {
     OsLoginDaoImpl osdi = new OsLoginDaoImpl();
