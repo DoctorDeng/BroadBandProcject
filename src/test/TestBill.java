@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import bean.Page;
 import mapper.BillMapper;
 import util.SqlSessionUtil;
 
@@ -34,7 +35,7 @@ public class TestBill {
 	@Test
 	public void test() {
 		/*System.out.println(billMapper.selectBillDetailDtoByBillId(1).size());*/
-		System.out.println(billMapper.selectAllBill().size());
+		System.out.println(billMapper.selectAllBill(new Page(1,5)).size());
 	}
 
 }

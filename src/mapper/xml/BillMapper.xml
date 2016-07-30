@@ -16,11 +16,14 @@
 			WHERE bi.billId = #{billId}
 		</select>
 		
-		<select id="selectAllBill" resultType="BillDto">
+		<select id="selectAllBill" parameterType="Page" resultType="BillDto">
 			SELECT bi.billId,cu.customerName, cu.idNumber, cu.customerAccount,
 			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as totalTime,
 		 	bi.payWay,bi.payStatus 
 			FROM bill as bi 
 			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
+			LIMIT #{index},#{size}
 		</select>
+		
+		
 	</mapper>

@@ -2,6 +2,7 @@ package mapper;
 
 import java.util.List;
 
+import bean.Page;
 import bean.dto.BillDetailDto;
 import bean.dto.BillDto;
 
@@ -16,6 +17,6 @@ public interface BillMapper {
 	 * 获取所有的账单信息
 	 * @return List<BillDto>
 	 */
-	public List<BillDto> selectAllBill();
+	public List<BillDto> selectAllBill(Page page);
 	
 }
