@@ -50,6 +50,12 @@ public class OsLogin {
 	public void setOs(Os os) {
 		this.os = os;
 	}
+
+	@Override
+	public String toString() {
+		return "OsLogin [osLoginId=" + osLoginId + ", LoginIp=" + LoginIp + ", loginInTime=" + loginInTime
+				+ ", loginOutTime=" + loginOutTime + ", timeLong=" + timeLong + ", os=" + os + "]";
+	}
 	
 	
 }
