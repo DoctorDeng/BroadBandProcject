@@ -19,4 +19,6 @@ public interface BillMapper {
 	 */
 	public List<BillDto> selectAllBill(Page page);
 	
+	public List<BillDto> selectBillByCondition();
+	
 }
