@@ -51,8 +51,7 @@ public class TestOS {
 	 */
 	@Test
 	public void delOneOsByOsId(){
-	 Bussiness bussiness = bussinessMapper.selectBussinessById(5);
-	 bussiness.getOsId();
+	 Bussiness bussiness = bussinessMapper.selectBussinessById(3);
 	 osMapper.delOneOsByOsId(bussiness.getOsId());
 	}
 
