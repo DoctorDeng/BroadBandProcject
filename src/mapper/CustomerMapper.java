@@ -1,8 +1,8 @@
 package mapper;
 
 import java.util.List;
+import java.util.Map;
 
-import bean.Bussiness;
 import bean.Customer;
 
 public interface CustomerMapper {
@@ -34,8 +34,13 @@ public interface CustomerMapper {
 	public void updateCustomer(Customer customer);
 	
 	/**
-	 * 根据身份证号码查询bussiness
+	 * 根据身份证号码查询customer
 	 */
 	public Customer selectCustomerByIdNumber(String idNumber);
+	
+	/**
+	 * 根据输入的条件搜索customer
+	 */
+	public List<Customer> selectCustomerByCondition(Customer customer);
 	
 }

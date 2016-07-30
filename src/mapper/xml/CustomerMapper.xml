@@ -50,4 +50,21 @@
 	<select id="selectCustomerByIdNumber" parameterType="String" resultType="Customer">
 		select * from customer where idNumber=#{idNumber}
 	</select>
+	<select id="selectCustomerByCondition" parameterType="Customer" resultType="Customer">
+		select * from customer
+		<where>
+			<if test="idNumber!=null and idNumber!='' and idNumber!='不验证'">
+				and idNumber like '%' #{idNumber} '%'
+			</if>
+			<if test="customerName!=null and customerName!='' and customerName!='不验证'">
+				and customerName like '%' #{customerName} '%'
+			</if>
+			<if test="customerAccount!=null and customerAccount!='' and customerAccount!='不验证'">
+				and customerAccount like '%'#{customerAccount} '%'
+			</if>
+			<if test="status!=null and status!='' and status!='不验证'">
+				and status=#{status}
+			</if>
+		</where>
+	</select>
 </mapper>

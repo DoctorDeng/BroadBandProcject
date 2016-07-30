@@ -1,8 +1,5 @@
-<%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@page import="service.AccountService"%>
 <%@page import="bean.vo.AccountViewBean"%>
-<%@page import="dao.impl.AccountViewDaoImpl"%>
-<%@page import="dao.impl.AdminInforDaoImpl"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

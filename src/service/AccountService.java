@@ -1,11 +1,16 @@
 package service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 
 import bean.Bussiness;
 import bean.Customer;
 import bean.vo.AccountViewBean;
+import mapper.CustomerMapper;
+import util.SqlSessionUtil;
 
 public class AccountService {
 	//账务账号页面获取数据类
@@ -14,52 +19,120 @@ public class AccountService {
 	
 	public List<AccountViewBean> getAccountViewBean(int currentPage){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
-		l = new AccountViewDaoImpl().getAccountViewBean(currentPage, pageSize);
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			List<Customer> lc =  cm.selectAllCustomer();
+			for(Customer c:lc){
+				AccountViewBean a = new AccountViewBean();
+				a.setBussinessId(c.getCustomerId());
+				a.setBussinessName(c.getCustomerName());
+				a.setCreateTime(c.getCreateTime());
+				a.setIdNumber(c.getIdNumber());
+				a.setLastLoginTime(c.getLastLoginTime());
+				a.setLoginAccount(c.getCustomerAccount());
+				a.setPassword(c.getPassword());
+				a.setPhone(c.getPhone());
+				a.setStatus(c.getStatus());
+				l.add(a);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}
 		return l;
 	}
 	
 	public List<AccountViewBean> searchAccountViewBean(AccountViewBean a,int currentPage){
+		Customer customer = new Customer();
+		customer.setIdNumber(a.getIdNumber());
+		customer.setStatus(a.getStatus());
+		customer.setCustomerName(a.getBussinessName());
+		customer.setCustomerAccount(a.getLoginAccount());
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
-		l = new AccountViewDaoImpl().searchAccountViewBean(a,currentPage, pageSize);
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			List<Customer> lc =  cm.selectCustomerByCondition(customer);
+			for(Customer c:lc){
+				AccountViewBean a1 = new AccountViewBean();
+				a1.setBussinessId(c.getCustomerId());
+				a1.setBussinessName(c.getCustomerName());
+				a1.setCreateTime(c.getCreateTime());
+				a1.setIdNumber(c.getIdNumber());
+				a1.setLastLoginTime(c.getLastLoginTime());
+				a1.setLoginAccount(c.getCustomerAccount());
+				a1.setPassword(c.getPassword());
+				a1.setPhone(c.getPhone());
+				a1.setStatus(c.getStatus());
+				l.add(a1);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}
 		return l;
 	}
 	
 	public boolean addBussinessAccount(AccountViewBean a){
 		boolean b = true;
-		Customer customer = new Customer();
-		customer.setCustomerName(a.getBussinessName());
-		customer.setIdNumber(a.getIdNumber());
-		customer.setPhone(a.getPhone());
-		CustomerDaoImpl c = new CustomerDaoImpl();
-		b = b&&c.add(customer);
-		int customerId = c.findByIdNumber(a.getIdNumber()).getCustomerId();
-		Bussiness bussiness = new Bussiness();
-		bussiness.setCreateTime(a.getCreateTime());
-		bussiness.setCustomerId(customerId);
-		bussiness.setLastLoginTime(a.getLastLoginTime());
-		bussiness.setLoginAccount(a.getLoginAccount());
-		bussiness.setPassword(a.getPassword());
-		bussiness.setStatus(a.getStatus());
-		b = b&&new BussinessDaoImpl().add(bussiness);
+		Customer c = new Customer();
+		c.setCreateTime(a.getCreateTime());
+		c.setCustomerAccount(a.getLoginAccount());
+		c.setCustomerId(a.getBussinessId());
+		c.setCustomerName(a.getBussinessName());
+		c.setIdNumber(a.getIdNumber());
+		c.setLastLoginTime(a.getLastLoginTime());
+		c.setPassword(a.getPassword());
+		c.setPhone(a.getPhone());
+		c.setStatus(a.getStatus());
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			cm.insertCustomer(c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}
 		return b;
 	}
 	
 	public boolean updateBussinessAccount(AccountViewBean a){
 		boolean b = true;
-		Bussiness bussiness = new Bussiness();
-		bussiness.setBussinessId(a.getBussinessId());		
-		bussiness.setLoginAccount(a.getLoginAccount());
-		bussiness.setPassword(a.getPassword());
-		BussinessDaoImpl bu = new BussinessDaoImpl();
-		b = b&&bu.update(bussiness);
-		int customerId = bu.findOne(a.getBussinessId()).getCustomerId();
-		System.out.println("业务账号ID："+customerId);
-		Customer customer = new Customer();
-		customer.setCustomerId(customerId);
-		customer.setCustomerName(a.getBussinessName());
-		customer.setIdNumber(a.getIdNumber());
-		customer.setPhone(a.getPhone());
-		b = b&&new CustomerDaoImpl().update(customer);				
+		Customer c = new Customer();
+		c.setCreateTime(a.getCreateTime());
+		c.setCustomerAccount(a.getLoginAccount());
+		c.setCustomerId(a.getBussinessId());
+		c.setCustomerName(a.getBussinessName());
+		c.setIdNumber(a.getIdNumber());
+		c.setLastLoginTime(a.getLastLoginTime());
+		c.setPassword(a.getPassword());
+		c.setPhone(a.getPhone());
+		c.setStatus(a.getStatus());
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			cm.updateCustomer(c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}			
 		return b;
 	}
 	
