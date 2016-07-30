@@ -23,7 +23,16 @@
 	</select>
 	<!-- 通过业务账号去修改信息 -->
 	<update id="upOneOsByBussinessId" >
-		update os set tariffId=#{tariffId} where osId = #{osId}
+		update os 
+		<set>
+			<if test="tariffId!=null and tariffId!='' ">
+				tariffId=#{tariffId}
+			</if>
+			<if test="status!=null  and status!='' ">
+				status = #{status}
+			</if>
+		</set> 
+		where osId = #{osId}
 	</update>
 	<!-- 通过业务账号去删除信息 -->
 	<delete id="delOneOsByOsId">
@@ -48,4 +57,37 @@
 	<insert id="addOsInfo">
 		insert into os values(null,#{customerId},#{tariffId},#{osAccount},#{osPassword},#{serverIp},1)
 	</insert>
+	<!-- 通过条件查询 -->
+	<select id="selChooseInfo" resultType="OsDto">
+		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
+               c.`status`,o.serverIp,t.tariffName
+               FROM
+               bussiness AS b ,
+               customer AS c ,
+               os AS o ,
+               tariff AS t
+              <where>
+              <if test="true">
+                b.osId = o.osId AND
+              </if>
+              <if test="true">
+                o.customerId = c.customerId AND
+              </if>
+              <if test="true">
+                t.tariffId = o.tariffId
+              </if>
+              <if test="osAccount!=null and osAccount!=''">
+               AND osAccount=#{osAccount}
+              </if>
+              <if test="serverIp!=null  and serverIp!=''">
+               AND serverIp =#{serverIp}
+              </if>
+              <if test="idNumber!=null  and idNumber!=''">
+               AND idNumber=#{idNumber}
+              </if>
+              <if test="status!=null  and status!=''">
+               AND status=#{status}
+              </if>
+              </where>
+	</select>
 </mapper>

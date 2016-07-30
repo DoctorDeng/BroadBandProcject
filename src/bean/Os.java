@@ -8,8 +8,9 @@ public class Os {
     private Customer customer;   //客户对象
     private Tariff  tariff;     //资费对象
     private int   tariffId;     //资费对象
-  
-    /**
+    private String status;
+    
+	/**
      * 空的构造方法
      */
 	public Os() {
@@ -68,7 +69,14 @@ public class Os {
 	public void setTariffId(int tariffId) {
 		this.tariffId = tariffId;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "Os [osId=" + osId + ", osAccount=" + osAccount + ", osPassword=" + osPassword + ", serverIp=" + serverIp

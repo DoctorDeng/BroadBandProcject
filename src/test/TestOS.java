@@ -103,7 +103,19 @@ public class TestOS {
 		Bussiness bussiness = bussinessMapper.selectBussinessById(1);
 		Os os = new Os();
 		os.setOsId(bussiness.getOsId());
-		os.setTariffId(4);
+		os.setTariffId(2);
 		osMapper.upOneOsByBussinessId(os);
+	}
+	/**
+	 * 通过条件查询
+	 */
+	@Test
+	public void selChooseInfo(){
+		OsDto osD = new OsDto();
+		osD.setIdNumber("429005199608082512");
+		List<OsDto> listDto = osMapper.selChooseInfo(osD);
+		for(OsDto osDto:listDto){
+		System.out.println(osDto);
+		}
 	}
 }
