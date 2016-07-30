@@ -35,6 +35,7 @@ public class TestPower {
 
 	@Test
 	public void test() {
+		System.out.println(powerMapper.selectPowerByAdminId(1).size());
 	}
 
 }
