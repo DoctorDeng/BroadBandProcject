@@ -52,6 +52,6 @@
        where tariffId=#{tariffId}
    </update>
    <update id="updateStatus">
-       update tariff SET openTime=now(),status='1' WHERE tariffId=#{tariffId}
+       update tariff SET openTime=now(),status='1' WHERE tariffId=#{tariffId}   
    </update>
 </mapper>
