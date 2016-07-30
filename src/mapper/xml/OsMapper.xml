@@ -27,6 +27,7 @@
 	</update>
 	<!-- 通过业务账号去删除信息 -->
 	<delete id="delOneOsByBussinessId">
-		delete from os where bussiness.bussinessId = os.bussinessId where osId=#{osId}
+		delete from os where bussinessId=#{bussinessId}
 	</delete>
+	<!--  -->
 </mapper>
