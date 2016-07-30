@@ -23,12 +23,12 @@
 
 	<mappers>
 		<mapper resource="mapper/xml/AdminMapper.xml"/>
-		<mapper resource="mapper/xml/BillMapper.xml"/>
+		<mapper resource="mapper/xml/PowerMapper.xml"/>
+		<!-- <mapper resource="mapper/xml/BillMapper.xml"/>
 		<mapper resource="mapper/xml/BussinessMapper.xml"/>
 		<mapper resource="mapper/xml/CustomerMapper.xml"/>
 		<mapper resource="mapper/xml/OsMapper.xml"/>
 		<mapper resource="mapper/xml/OsLoginMapper.xml"/>
-		<mapper resource="mapper/xml/PowerMapper.xml"/>
-		<mapper resource="mapper/xml/TariffMapper.xml"/>
+		<mapper resource="mapper/xml/TariffMapper.xml"/> -->
 	</mappers>
 </configuration>

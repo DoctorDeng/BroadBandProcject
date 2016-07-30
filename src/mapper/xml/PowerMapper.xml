@@ -7,4 +7,8 @@
 		ON ap.powerId = p.powerId 
 		WHERE ap.adminId = #{adminId}
 	</select>
+	
+	<select id="selectAllPower" resultType="Power">
+		SELECT powerId,powerName,power FROM power 
+	</select>
 </mapper>
