@@ -5,6 +5,7 @@ import java.util.List;
 import bean.Page;
 import bean.dto.BillDetailDto;
 import bean.dto.BillDto;
+import bean.dto.BillSearchDto;
 
 public interface BillMapper {
 	/**
@@ -18,7 +19,16 @@ public interface BillMapper {
 	 * @return List<BillDto>
 	 */
 	public List<BillDto> selectAllBill(Page page);
-	
-	public List<BillDto> selectBillByCondition();
+	/**
+	 * 通过条件查询账单信息
+	 * @param billSearchDto  存储查询条件的Dto
+	 * @return   List<BillDto>
+	 */
+	public List<BillDto> selectBillByCondition(BillSearchDto billSearchDto);
+	/**
+	 * 获取所有账单(Bill)的总数据条数,即长度
+	 * @return int 账单数据数
+	 */
+	public int getBillNum();
 	
 }

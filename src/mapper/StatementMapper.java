@@ -18,4 +18,9 @@ public interface StatementMapper {
 	 * @return   List<StatementVo>
 	 */
 	public List<StatementVo> selectStatementByPaggingByDesc(Page page);
+	/**
+	 * 获取报表数据总条数
+	 * @return  int 
+	 */
+	public int getStatementNum();
 }

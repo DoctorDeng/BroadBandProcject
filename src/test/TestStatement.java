@@ -34,8 +34,9 @@ public class TestStatement {
 
 	@Test
 	public void test() {
-		Page page = new Page(0,5);
-		System.out.println(statementMapper.selectStatementByPagging(page).size());
+	/*	Page page = new Page(0,5);
+		System.out.println(statementMapper.selectStatementByPagging(page).size());*/
+		System.out.println(statementMapper.getStatementNum());
 	}
 
 }

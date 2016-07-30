@@ -25,5 +25,29 @@
 			LIMIT #{index},#{size}
 		</select>
 		
+		<select id="selectBillByCondition" parameterType="BillSearchDto" resultType="BillDto">
+			SELECT bi.billId,cu.customerName, cu.idNumber, cu.customerAccount,
+			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as totalTime,
+		 	bi.payWay,bi.payStatus 
+			FROM bill as bi 
+			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
+			<where>
+				<if test="idNumber != null and idNumber != '' ">
+					  idNumber like  CONCAT(CONCAT('%',#{idNumber}),'%') 
+				</if>
+				
+				<if test="customerAccount != null and customerAccount != '' ">
+			 		 AND customerAccount like  CONCAT(CONCAT('%',#{customerAccount}),'%') 
+				</if>
+				
+				<if test="customerName != null and customerName != '' ">
+					 AND customerName like  CONCAT(CONCAT('%',#{customerName}),'%') 
+				</if>
+			</where>
+		</select>
 		
+		<select id="getBillNum" resultType="int">
+			SELECT count(*) as count FROM bill as bi 
+			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
+		</select>
 	</mapper>

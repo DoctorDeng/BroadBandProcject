@@ -15,4 +15,9 @@
 		ORDER BY totalTime DESC 
 		LIMIT #{index},#{size}
 	</select>
+	
+	<select id="getStatementNum" resultType="int">
+		select count(*) as count 
+	    FROM customer 
+	</select>
 </mapper>
