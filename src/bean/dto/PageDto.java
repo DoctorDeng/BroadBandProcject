@@ -3,14 +3,18 @@ package bean.dto;
 import java.util.List;
 
 public class PageDto<T> {
-	//首页页码
-	private int indexPage;
+	//首页页码,默认为1
+	private int indexPage = 1;
 	//尾页页码
 	private int endPage;
+	//上一页
+	private int upPage;
+	//下一页
+	private int nextPage;
 	//当前页页码
-	private int currentPage;
-	//页面大小--一页包含数据条数
-	private int pageSize;
+	private int currentPage = 1;
+	//页面大小--一页包含数据条数,默认为4
+	private int pageSize = 4;
 	//总的页数
 	private int pageNum;
 	//数据总条数
@@ -20,18 +24,35 @@ public class PageDto<T> {
 
 	public PageDto(){}
 	
-	public PageDto(int indexPage, int endPage, int currentPage, int pageSize, int pageNum, int recordNum,
-			List<T> dataList) {
-		super();
-		this.indexPage = indexPage;
-		this.endPage = endPage;
-		this.currentPage = currentPage;
-		this.pageSize = pageSize;
-		this.pageNum = pageNum;
-		this.recordNum = recordNum;
-		this.dataList = dataList;
+	/**
+	 * 初始化PageDto数据的方法
+	 * @param recordNum   数据总条数
+	 * @param pageSize    页面数据条数
+	 * @param currentPage 当前页页码
+	 * @param dataList    页面需要的数据集合
+	 */
+	public void init(int recordNum,int pageSize,String currentPagestr,List<T> dataList){
+		this.pageSize    = pageSize;
+		this.recordNum   = recordNum;
+		this.pageNum     =  (int) Math.ceil((this.recordNum*1.0)/(this.pageSize*1.0));
+		this.endPage     = this.pageNum;
+		this.dataList    = dataList;
+		
+		if (null != currentPagestr && !"".equals(currentPagestr)){
+			this.currentPage = Integer.parseInt(currentPagestr);
+		}
+		
+		if (this.currentPage != 1 && this.pageNum > 1) {
+  			this.upPage   = this.currentPage - 1; 
+  		}
+  		if (this.currentPage < this.pageNum && this.pageNum > 2) {
+  			this.nextPage = this.currentPage + 1;
+  		}
+  		if (this.currentPage == this.pageNum) {
+  			this.nextPage = this.pageNum;
+  		}
 	}
-
+	
 
 	public int getIndexPage() {
 		return indexPage;
@@ -87,6 +108,22 @@ public class PageDto<T> {
 
 	public void setDataList(List<T> dataList) {
 		this.dataList = dataList;
+	}
+
+	public int getUpPage() {
+		return upPage;
+	}
+
+	public void setUpPage(int upPage) {
+		this.upPage = upPage;
+	}
+
+	public int getNextPage() {
+		return nextPage;
+	}
+
+	public void setNextPage(int nextPage) {
+		this.nextPage = nextPage;
 	}
 	
 	
