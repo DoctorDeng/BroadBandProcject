@@ -2,6 +2,7 @@ package mapper;
 
 import java.util.List;
 
+import bean.Bussiness;
 import bean.Customer;
 
 public interface CustomerMapper {
@@ -31,5 +32,10 @@ public interface CustomerMapper {
 	 * 修改记录（根据ID修改）
 	 */
 	public void updateCustomer(Customer customer);
+	
+	/**
+	 * 根据身份证号码查询bussiness
+	 */
+	public Customer selectCustomerByIdNumber(String idNumber);
 	
 }

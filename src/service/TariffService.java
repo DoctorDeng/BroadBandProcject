@@ -3,20 +3,19 @@ package service;
 import java.util.List;
 
 import bean.Tariff;
-import mapper.impl.TariffDaoImpl;
+import mapper.TariffMapper;
 
 public class TariffService {
-	private TariffDaoImpl tariffDao;
+	private TariffMapper tariffMapper;
 	
 	public TariffService() {
-		tariffDao = new TariffDaoImpl();
 	}
 	/**
 	 * 获取资费管理所需要的表格信息（后期可能需要封装到pageBean里面，暂时封装到Tariff）
 	 * @return
 	 */
 	public List<Tariff> getShowMessage(){
-		return tariffDao.findAll();
+		return tariffMapper.findAll();
 	}
 	
 	/**
@@ -25,15 +24,15 @@ public class TariffService {
 	 * @return
 	 */
 	public boolean addTariff(Tariff t){
-		return tariffDao.add(t);
+		return tariffMapper.add(t);
 	}
 	/**
 	 * 开启资费
 	 * @param tariffId  资费的ID
 	 * @return          开启成功返回true，失败返回false
 	 */
-	public boolean openTariff(int tariffId) {
-		return tariffDao.startUsingTariff(tariffId);
+	public boolean updateStatus(int tariffId) {
+		return tariffMapper.updateStatus(tariffId);
 	}
 	/**
 	 * 更新Tariff
@@ -41,6 +40,6 @@ public class TariffService {
 	 * @return
 	 */
 	public boolean updateTariff(Tariff tariff) {
-		return tariffDao.update(tariff);
+		return tariffMapper.update(tariff);
 	}
 }

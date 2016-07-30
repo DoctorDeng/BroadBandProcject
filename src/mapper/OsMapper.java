@@ -3,6 +3,7 @@ package mapper;
 import java.util.List;
 
 import bean.Os;
+import bean.dto.OsDto;
 import bean.dto.OsLoginDto;
 
 public interface OsMapper {
@@ -27,7 +28,19 @@ public interface OsMapper {
 	
 	/**
 	 * 业务账号通过业务ID来删除Os表中的一条信息
-	 * @param bussinessId
+	 * @param OsId
 	 */
 	public void delOneOsByOsId(int OsId);
+	
+	/**
+	 * 查询业务界面显示信息
+	 * @param osDto
+	 * @return
+	 */
+	public List<OsDto> selServiceShow();
+	
+	/**
+	 * 业务界面添加
+	 */
+	public void addOsInfo();
 }

@@ -16,5 +16,7 @@ public interface TariffMapper {
 	public boolean del(int tariffId);
 	
 	public boolean update(Tariff tariff);
+	
+	public boolean updateStatus(int tariffId);
 
 }

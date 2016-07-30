@@ -6,9 +6,6 @@ import java.util.List;
 import bean.Bussiness;
 import bean.Customer;
 import bean.vo.AccountViewBean;
-import mapper.impl.AccountViewDaoImpl;
-import mapper.impl.BussinessDaoImpl;
-import mapper.impl.CustomerDaoImpl;
 
 public class AccountService {
 	//账务账号页面获取数据类
