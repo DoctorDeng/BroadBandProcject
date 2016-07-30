@@ -14,7 +14,8 @@ import mapper.OsMapper;
 import util.SqlSessionUtil;
 
 public class TestOS {
-	private SqlSession sqlSession;
+	private SqlSession sqlSessiona;
+	private SqlSession sqlSessionb;
 	private OsMapper osMapper;
 	private BussinessMapper bussinessMapper;
 	
@@ -29,15 +30,18 @@ public class TestOS {
 
 	@Before
 	public void setUp() throws Exception {
-	sqlSession = SqlSessionUtil.getSqlSession();
-	osMapper = sqlSession.getMapper(OsMapper.class);
-	bussinessMapper = sqlSession.getMapper(BussinessMapper.class);
+	sqlSessiona = SqlSessionUtil.getSqlSession();
+	sqlSessionb = SqlSessionUtil.getSqlSession();
+	osMapper = sqlSessiona.getMapper(OsMapper.class);
+	bussinessMapper = sqlSessiona.getMapper(BussinessMapper.class);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	sqlSession.commit();
-	sqlSession.close();
+	sqlSessiona.commit();
+	sqlSessionb.commit();
+	sqlSessiona.close();
+	sqlSessionb.close();
 	}
 	/**
 	 * 测试Os表的一次查询
@@ -53,11 +57,16 @@ public class TestOS {
 	 */
 	@Test
 	public void delOneOsByOsId(){
-	 Bussiness bussiness = bussinessMapper.selectBussinessById(3);
-	 System.out.println(bussiness.getOsId());
-	 bussinessMapper.deleteBussiness(3);
-	 osMapper.delOneOsByOsId(bussiness.getOsId());
+		 Bussiness bussiness = bussinessMapper.selectBussinessById(1);
+		 System.out.println(bussiness.getOsId());
+		 bussinessMapper.deleteBussiness(1);
+		 System.out.println("1111");
+		 osMapper.delOneOsByOsId(bussiness.getOsId());
+		 System.out.println("2222");
 	}
+	/**
+	 * 测试业务表的添加功能
+	 */
 	@Test
 	public void test(){
 		
