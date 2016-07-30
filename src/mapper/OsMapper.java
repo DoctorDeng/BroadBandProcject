@@ -45,5 +45,10 @@ public interface OsMapper {
 	 * @param Os
 	 */
 	public void addOsInfo(OsAddDto osAddDto);
-
+	/**
+	 * 通过条件查询
+	 * @param osDto
+	 * @return
+	 */
+	public List<OsDto> selChooseInfo(OsDto osDto);
 }
