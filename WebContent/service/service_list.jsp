@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="dao.*"%>
 <%@page import="dao.impl.*" %>
-    <%@page import="bean.viewBean.BussinessViewBean" %>
+    <%@page import="bean.vo.BussinessViewBean" %>
     <%@page import="java.util.*" %>
  <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

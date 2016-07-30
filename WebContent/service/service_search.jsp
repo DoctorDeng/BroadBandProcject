@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="dao.*"%>
 <%@page import="dao.impl.*" %>
-<%@page import="bean.viewBean.*" %>
+<%@page import="bean.vo.*" %>
 <%@page import="java.util.*" %>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@page import="service.impl.*" %>
