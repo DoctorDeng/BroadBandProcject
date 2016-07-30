@@ -28,5 +28,10 @@ public interface AdminMapper {
 	public int updateAdminPassword(Admin admin);
 	
 	
+	/**
+	 * 登陆验证
+	 */
+	public Admin verifyAdmin(Admin admin);
+	
 	
 }

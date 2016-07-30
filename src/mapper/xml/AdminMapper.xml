@@ -150,4 +150,7 @@
 			UPDATE admin set password = #{password} 
 			WHERE adminId = #{adminId}
 		</update>
+		<select id="verifyAdmin" parameterType="Admin">
+			select * from Admin where adminAccount=#{adminAccount} and password=#{password}
+		</select>
 	</mapper>
