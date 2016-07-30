@@ -12,6 +12,7 @@ import org.junit.Test;
 import bean.Bussiness;
 import bean.Customer;
 import bean.Os;
+import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
@@ -71,10 +72,17 @@ public class TestOS {
 	 * 测试业务表的添加功能
 	 */
 	@Test
-	public void test(){
-		String idNumber = "6222011996410153015";
+	public void addOsInfo(){
+		String idNumber = "622201199410153014";
 		Customer customer = customerMapper.selectCustomerByIdNumber(idNumber);
-		
+		OsAddDto osAddDto = new OsAddDto();
+		osAddDto.setCustomerId(customer.getCustomerId());
+		osAddDto.setTariffId(1);
+		osAddDto.setOsAccount("yya");
+		osAddDto.setOsPassword("woshizhu");
+		osAddDto.setServerIp("184.123.123.123");
+		osAddDto.setStatus("1");
+		osMapper.addOsInfo(osAddDto);
 	}
 	/**
 	 * 测试业务表的界面显示信息功能

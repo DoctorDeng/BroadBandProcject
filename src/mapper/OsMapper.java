@@ -3,6 +3,7 @@ package mapper;
 import java.util.List;
 
 import bean.Os;
+import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import bean.dto.OsLoginDto;
 
@@ -41,6 +42,7 @@ public interface OsMapper {
 	
 	/**
 	 * 业务界面添加
+	 * @param Os
 	 */
-	public void addOsInfo();
+	public void addOsInfo(OsAddDto osAddDto);
 }

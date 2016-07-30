@@ -22,7 +22,6 @@ public class Os {
 		this.osPassword = osPassword;
 		this.setServerIp(serverIp);
 	}
-	
 
 	public int getOsId() {
 		return osId;

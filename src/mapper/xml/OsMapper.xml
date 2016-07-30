@@ -45,5 +45,7 @@
 		
 	</select>
 	<!-- 通过查询身份证进行对Os表的添加功能 -->
-	<insert id=""></insert>
+	<insert id="addOsInfo">
+		insert into os values(null,#{customerId},#{tariffId},#{osAccount},#{osPassword},#{serverIp},1)
+	</insert>
 </mapper>
