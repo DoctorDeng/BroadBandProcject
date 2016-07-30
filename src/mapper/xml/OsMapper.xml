@@ -3,11 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lanqiao.mapper.xml.OsMapper">
 	<resultMap type="Os" id="OsGetMapper">
-		<id property="osId" column="osId"/>
-		<result property="osAccount"  column="osAccount"/>
-		<result property="osPassword" column="osPassword"/>
-		<result property="serverIp"   column="serverIp"/>
-		<collection property="Customer" column="customerId" select=""/>
-		<collection property="Tariff" column="tariffId" select=""/>
+		<id         property="osId"       column="osId"/>
+		<result     property="osAccount"  column="osAccount"/>
+		<result     property="osPassword" column="osPassword"/>
+		<result     property="serverIp"   column="serverIp"/>
+		<collection property="Customer"   column="customerId" select=""/>
+		<collection property="Tariff"     column="tariffId"   select=""/>
 	</resultMap>
 </mapper>
