@@ -12,6 +12,7 @@ import org.junit.Test;
 import bean.Bussiness;
 import bean.Customer;
 import bean.Os;
+import bean.Tariff;
 import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import mapper.BussinessMapper;
@@ -93,5 +94,13 @@ public class TestOS {
 		for(OsDto osDto:listDto){
 		System.out.println(osDto);
 		}
+	}
+	/**
+	 * 通过业务账号通过业务Id来修改Os表里面的资费类型
+	 */
+	@Test
+	public void upOneOsByBussinessId(){
+		Bussiness bussiness = bussinessMapper.selectBussinessById(1);
+		osMapper.upOneOsByBussinessId(4,bussiness.getOsId());
 	}
 }

@@ -23,9 +23,9 @@ public interface OsMapper {
 	
 	/**
 	 * 业务账号通过业务Id来修改Os表里面的资费类型
-	 * @param bussinessId
+	 * @param osId
 	 */
-	public void upOneOsByBussinessId(int bussinessId);
+	public void upOneOsByBussinessId(Os os);
 	
 	/**
 	 * 业务账号通过业务ID来删除Os表中的一条信息
@@ -45,4 +45,6 @@ public interface OsMapper {
 	 * @param Os
 	 */
 	public void addOsInfo(OsAddDto osAddDto);
+
+	public void upOneOsByBussinessId( int tariffId,int osId);
 }

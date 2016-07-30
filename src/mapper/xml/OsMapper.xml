@@ -23,7 +23,7 @@
 	</select>
 	<!-- 通过业务账号去修改信息 -->
 	<update id="upOneOsByBussinessId" >
-		update os set tariffId=#{tariffId} where bussinessId = #{bussinessId}
+		update os set tariffId=#{tariffId} where osId = #{osId}
 	</update>
 	<!-- 通过业务账号去删除信息 -->
 	<delete id="delOneOsByOsId">
