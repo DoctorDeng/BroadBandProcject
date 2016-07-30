@@ -118,4 +118,36 @@
 			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
 			FROM admin 
 		</select>
+				
+		<insert id="insertAdmin" parameterType="Admin">
+			INSERT INTO admin (adminAccount,password,adminName,idNumber,phone,email,createTime)
+			VALUES (#{adminAccount},#{password},#{adminName},#{idNumber},#{phone},#{email},now())
+		</insert>
+		
+		<update id="updateAdminInfor" parameterType="Admin">
+			UPDATE admin	
+    	 <set>
+     		 <if test="adminName != null and adminName != '' ">adminName=#{adminName},</if>
+      		 <if test="phone != null and phone != '' ">phone=#{phone},</if>
+      		 <if test="email != null and email != '' ">email=#{email},</if>
+   		 </set>
+ 		 where adminId=#{adminId}	
+		</update>
+		
+		<update id="resetAdminsPassword">
+			UPDATE admin set password = '123456789' WHERE adminId in 
+			 <foreach item="item" index="index" collection="list"
+      			open="(" separator="," close=")">
+       			 #{item}
+ 			 </foreach>
+		</update>
+		
+		<delete id="deleteAdminById" parameterType="int">
+			DELETE FROM admin WHERE adminId = #{adminId}
+		</delete>
+		
+		<update id="updateAdminPassword">
+			UPDATE admin set password = #{password} 
+			WHERE adminId = #{adminId}
+		</update>
 	</mapper>

@@ -42,6 +42,30 @@ public class Admin {
 	
 	public Admin(){}
 
+	public Admin(String adminAccount, String password, String adminName, String idNumber, String phone, String email) {
+		super();
+		this.adminAccount = adminAccount;
+		this.password = password;
+		this.adminName = adminName;
+		this.idNumber = idNumber;
+		this.phone = phone;
+		this.email = email;
+	}
+	
+	public Admin(int adminId, String adminAccount, String password, String adminName, String idNumber, String phone,
+			String email, String createTime, List<Power> powers) {
+		super();
+		this.adminId = adminId;
+		this.adminAccount = adminAccount;
+		this.password = password;
+		this.adminName = adminName;
+		this.idNumber = idNumber;
+		this.phone = phone;
+		this.email = email;
+		this.createTime = createTime;
+		this.powers = powers;
+	}
+
 	public int getAdminId() {
 		return adminId;
 	}

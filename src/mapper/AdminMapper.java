@@ -12,10 +12,12 @@ public interface AdminMapper {
 	
 	public int insertAdmin(Admin admin);
 	
-	public int updateAdmin(Admin admin);
+	public int updateAdminInfor(Admin admin);
 	
 	public int resetAdminsPassword(List<Integer> adminIds);
 	
 	public int deleteAdminById(int adminId);
+	
+	public int updateAdminPassword(Admin admin);
 	
 }
