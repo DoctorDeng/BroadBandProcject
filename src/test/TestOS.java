@@ -101,6 +101,9 @@ public class TestOS {
 	@Test
 	public void upOneOsByBussinessId(){
 		Bussiness bussiness = bussinessMapper.selectBussinessById(1);
-		osMapper.upOneOsByBussinessId(4,bussiness.getOsId());
+		Os os = new Os();
+		os.setOsId(bussiness.getOsId());
+		os.setTariffId(4);
+		osMapper.upOneOsByBussinessId(os);
 	}
 }

@@ -46,5 +46,4 @@ public interface OsMapper {
 	 */
 	public void addOsInfo(OsAddDto osAddDto);
 
-	public void upOneOsByBussinessId( int tariffId,int osId);
 }

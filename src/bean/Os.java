@@ -15,17 +15,7 @@ public class Os {
 	public Os() {
 		super();
 	}
-	public Os(int   tariffId,int osId){
-		this.osId = osId;
-		this.tariffId = tariffId;
-	}
-	public Os(int osId,  String osAccount, String osPassword, String serverIp) {
-		this.osId = osId;
-		this.osAccount = osAccount;
-		this.osPassword = osPassword;
-		this.setServerIp(serverIp);
-	}
-
+	
 	public int getOsId() {
 		return osId;
 	}
