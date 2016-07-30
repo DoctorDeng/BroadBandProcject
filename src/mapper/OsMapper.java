@@ -3,6 +3,7 @@ package mapper;
 import java.util.List;
 
 import bean.Os;
+import bean.dto.OsLoginDto;
 
 public interface OsMapper {
 	/**
@@ -29,5 +30,11 @@ public interface OsMapper {
 	 * @param bussinessId
 	 */
 	public void delOneOsByOsId(int OsId);
-	
+	/**
+	 * 获取指定Os账号的登录信息
+	 * @param osId
+	 * @return
+	 */
+	public List<OsLoginDto> selectOsLoginDtoByOsId(int osId);
+
 }
