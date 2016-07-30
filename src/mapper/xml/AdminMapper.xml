@@ -113,4 +113,9 @@
 			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
 			FROM admin WHERE adminId = #{adminId}
 		</select> 
+		
+		<select id="selectAllAdmin" resultMap="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin 
+		</select>
 	</mapper>

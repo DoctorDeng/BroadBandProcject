@@ -32,8 +32,12 @@ public class TestAdmin {
 	}
 
 	@Test
-	public void test() {
+	public void testSelectAdminById() {
 		System.out.println(adminMapper.selectAdminById(5).getPowers().size());
+	}
+	@Test
+	public void testSelectAllAdmin() {
+		System.out.println(adminMapper.selectAllAdmin().size());
 	}
 
 }
