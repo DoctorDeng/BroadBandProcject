@@ -5,6 +5,7 @@
 	<resultMap type="Bussiness" id="BussinessResultMap">
 		<id property="bussinessId" column="bussinessId"/>
 		<result property="osId" column="osId"/>
+		<collection property="os" javaType="Os" column="osId" select="mapper.OsMapper.selOneOsByOsid" />
 	</resultMap>
 	<insert id="insertBussiness" parameterType="Bussiness">
 		insert into bussiness values(null,#{osId})
@@ -19,10 +20,10 @@
 		</set>
 		where bussinessId=#{bussinessId}
 	</update>
-	<select id="selectAllBussiness" resultType="Bussiness">
+	<select id="selectAllBussiness" resultMap="BussinessResultMap">
 		select * from bussiness
 	</select>
-	<select id="selectBussinessById" parameterType="int" resultType="Bussiness">
+	<select id="selectBussinessById" parameterType="int" resultMap="BussinessResultMap">
 		select * from bussiness 
 		<where>
 			bussinessId=#{bussinessId}
