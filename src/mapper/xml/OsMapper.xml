@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="lanqiao.mapper.OsMapper">
+<mapper namespace="mapper.OsMapper">
 	<resultMap type="Os" id="OsGetMapper">
 		<id         property="osId"       column="osId"/>
 		<result     property="osAccount"  column="osAccount"/>
@@ -10,4 +10,16 @@
 		<collection property="Customer"   column="customerId" select=""/>
 		<collection property="Tariff"     column="tariffId"   select=""/>
 	</resultMap>
+	<!-- 测试OS方法的map -->
+	<resultMap type="Os" id="OstestMap">
+		<id         property="osId"         column="osId"/>
+		<result     property="customerId"   column="customerId"/>
+		<result     property="tariffId"     column="tariffId"/>
+		<result     property="osAccount"    column="osAccount"/>
+		<result     property="osPassword"   column="osPassword"/>
+		<result     property="serverIp"     column="serverIp"/>
+	</resultMap>
+	<select id="selOneOsByOsid" parameterType="Os" resultMap="OstestMap">
+	select * from os where osId=#{osId}
+	</select>
 </mapper>

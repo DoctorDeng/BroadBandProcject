@@ -6,10 +6,15 @@ import bean.OsLogin;
 
 public interface OsLoginMapper {
 	/**
-	 * 通过某一个值来查询，此处的By后面值需要有需要的来填写
+	 * 通过osLoginId来查询osLogin表的所有信息
 	 * @param OsLogin
 	 * @return List<OsLogin>
 	 */
-	public List<OsLogin> selOsLoginBy(OsLogin OsLogin);
+	public List<OsLogin> selAllOsLoginByOsLginId(int osLoginId);
 	
+	/**通过osLoginId来查询osLogin表特定的一条信息
+	 * @param osLoginId
+	 * @return
+	 */
+	public OsLogin selOneOsLoginByOsLoginId(int osLoginId);
 }
