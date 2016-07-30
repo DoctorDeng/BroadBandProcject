@@ -80,5 +80,13 @@ public class TestTariff {
 		Tariff tff = new Tariff(60,"包时110",11.3,22,33,"1","我是包时110");
 		System.out.println(tariffMapper.update(tff));
 	}
+	/**
+	 * 修改状态信息
+	 */
+	@Test
+	public final void testUpdateStatus(){
+		System.out.println(tariffMapper.updateStatus(57));
+	}
+	
 
 }
