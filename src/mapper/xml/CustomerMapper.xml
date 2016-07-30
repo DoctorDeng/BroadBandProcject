@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 	<mapper namespace="mapper.CustomerMapper">
-	</mapper>
+<mapper namespace="mapper.CustomerMapper">
+<insert id="insertBussiness" parameterType="Bussiness">
+		insert into bussiness values(null,#{osId})
+	</insert>
+	<delete id="deleteBussiness" parameterType="int">
+		delete from bussiness where bussinessId=#{id}
+	</delete>
+	<update id="updateBussiness" parameterType="Bussiness">
+		update bussiness
+		<set>
+			osId=#{osId}
+		</set>
+		where bussinessId=#{bussinessId}
+	</update>
+	<select id="selectAllBussiness" resultType="Bussiness">
+		select * from bussiness
+	</select>
+	<select id="selectBussinessById" parameterType="int" resultType="Bussiness">
+		select * from bussiness 
+		<where>
+			bussinessId=#{bussinessId}
+		</where>
+	</select>
+</mapper>

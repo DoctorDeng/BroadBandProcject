@@ -41,5 +41,13 @@ public class TestOS {
 	 Os os =osMapper.selOneOsByOsid(1);
 	 System.out.println(os);
 	}
+	
+	/**
+	 * 测试Os表的删除功能
+	 */
+	@Test
+	public void delOneOsBybussinessId(){
+	 osMapper.delOneOsBybussinessId(3);
+	}
 
 }

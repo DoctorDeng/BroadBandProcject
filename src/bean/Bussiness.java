@@ -4,8 +4,19 @@ public class Bussiness {
 
 	private int bussinessId;
 	private int osId;
+	private Os os;
 
 	
+	public Os getOs() {
+		return os;
+	}
+
+
+	public void setOs(Os os) {
+		this.os = os;
+	}
+
+
 	public Bussiness() {
 		super();
 	}
@@ -16,7 +27,7 @@ public class Bussiness {
 	}
 	@Override
 	public String toString() {
-		return "Bussiness [bussinessId=" + bussinessId + ", osId=" + osId + "]";
+		return "Bussiness [bussinessId=" + bussinessId + ", osId=" + osId + ", os=" + os + "]";
 	}
 
 
