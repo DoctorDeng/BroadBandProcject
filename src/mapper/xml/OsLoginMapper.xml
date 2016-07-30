@@ -22,4 +22,15 @@
 	<select id="selOneOsLoginByOsLoginId" resultMap="GetMapper">
 		select * from OsLogin where osLoginId =#{osLoginId}
 	</select>
+		<select id="selectOsLoginDtoByOsId"  parameterType="int" resultType="OsLoginDto">
+			SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,
+				ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
+				TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeLogin 
+				FROM osLogin as ol 
+				INNER JOIN os 
+				ON ol.osId = os.osId 
+				INNER JOIN tariff as ta 
+				ON os.tariffId = ta.tariffId 
+				WHERE ol.osId = #{osId};
+	</select>
 </mapper>

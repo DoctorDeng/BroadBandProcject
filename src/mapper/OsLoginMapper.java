@@ -3,6 +3,7 @@ package mapper;
 import java.util.List;
 
 import bean.OsLogin;
+import bean.dto.OsLoginDto;
 
 public interface OsLoginMapper {
 	/**
@@ -17,4 +18,10 @@ public interface OsLoginMapper {
 	 * @return
 	 */
 	public OsLogin selOneOsLoginByOsLoginId(int osLoginId);
+	/**
+	 * 获取指定Os账号的登录信息
+	 * @param osId
+	 * @return
+	 */
+	public List<OsLoginDto> selectOsLoginDtoByOsId(int osId);
 }
