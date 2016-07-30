@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,13 +11,13 @@ import org.junit.Test;
 
 import bean.Bussiness;
 import bean.Os;
+import bean.dto.OsDto;
 import mapper.BussinessMapper;
 import mapper.OsMapper;
 import util.SqlSessionUtil;
 
 public class TestOS {
-	private SqlSession sqlSessiona;
-	private SqlSession sqlSessionb;
+	private SqlSession sqlSession;
 	private OsMapper osMapper;
 	private BussinessMapper bussinessMapper;
 	
@@ -30,18 +32,17 @@ public class TestOS {
 
 	@Before
 	public void setUp() throws Exception {
-	sqlSessiona = SqlSessionUtil.getSqlSession();
-	sqlSessionb = SqlSessionUtil.getSqlSession();
-	osMapper = sqlSessiona.getMapper(OsMapper.class);
-	bussinessMapper = sqlSessiona.getMapper(BussinessMapper.class);
+	sqlSession = SqlSessionUtil.getSqlSession();
+	osMapper = sqlSession.getMapper(OsMapper.class);
+	bussinessMapper = sqlSession.getMapper(BussinessMapper.class);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	sqlSessiona.commit();
-	sqlSessionb.commit();
-	sqlSessiona.close();
-	sqlSessionb.close();
+	sqlSession.commit();
+	sqlSession.commit();
+	sqlSession.close();
+	sqlSession.close();
 	}
 	/**
 	 * 测试Os表的一次查询
@@ -70,5 +71,15 @@ public class TestOS {
 	@Test
 	public void test(){
 		
+	}
+	/**
+	 * 测试业务表的界面显示信息功能
+	 */
+	@Test
+	public void selServiceShow(){
+		List<OsDto> listDto = osMapper.selServiceShow();
+		for(OsDto osDto:listDto){
+		System.out.println(osDto);
+		}
 	}
 }

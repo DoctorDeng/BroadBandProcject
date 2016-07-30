@@ -4,7 +4,7 @@ public class OsDto {
 	private int bussinessId;
 	private int customerId;
 	private String idNumber;
-	private String customerAccount;
+	private String customerName;
 	private String osAccount;     //宽带账号
 	private String status;
 	private String serverIp;      //服务器IP地址
@@ -27,11 +27,11 @@ public class OsDto {
 	public void setIdNumber(String idNumber) {
 		this.idNumber = idNumber;
 	}
-	public String getCustomerAccount() {
-		return customerAccount;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setCustomerAccount(String customerAccount) {
-		this.customerAccount = customerAccount;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	public String getOsAccount() {
 		return osAccount;
@@ -56,6 +56,12 @@ public class OsDto {
 	}
 	public void setTariffName(String tariffName) {
 		this.tariffName = tariffName;
+	}
+	@Override
+	public String toString() {
+		return "OsDto [bussinessId=" + bussinessId + ", customerId=" + customerId + ", idNumber=" + idNumber
+				+ ", customerName=" + customerName + ", osAccount=" + osAccount + ", status=" + status + ", serverIp="
+				+ serverIp + ", tariffName=" + tariffName + "]";
 	}
 	
 	

@@ -29,4 +29,19 @@
 	<delete id="delOneOsByOsId">
 		delete from os where osId = #{osId}
 	</delete>
+	<!-- 查询在业务界面所需要显示的信息 -->
+	<select id="selServiceShow" resultType="OsDto">
+		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
+               c.`status`,o.serverIp,t.tariffName
+               FROM
+               bussiness AS b ,
+               customer AS c ,
+               os AS o ,
+               tariff AS t
+               WHERE
+               b.osId = o.osId AND
+               o.customerId = c.customerId AND
+               t.tariffId = o.tariffId
+		
+	</select>
 </mapper>
