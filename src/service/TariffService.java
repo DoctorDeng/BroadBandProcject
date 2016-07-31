@@ -15,7 +15,7 @@ public class TariffService {
 	 * @return
 	 */
 	public List<Tariff> getShowMessage(){
-		return tariffMapper.findAll();
+		return tariffMapper.findAllTariff();
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class TariffService {
 	 * @return
 	 */
 	public boolean addTariff(Tariff t){
-		return tariffMapper.add(t);
+		return tariffMapper.addTariff(t);
 	}
 	/**
 	 * 开启资费
@@ -32,7 +32,7 @@ public class TariffService {
 	 * @return          开启成功返回true，失败返回false
 	 */
 	public boolean updateStatus(int tariffId) {
-		return tariffMapper.updateStatus(tariffId);
+		return tariffMapper.updateTariffStatus(tariffId);
 	}
 	/**
 	 * 更新Tariff
@@ -40,6 +40,6 @@ public class TariffService {
 	 * @return
 	 */
 	public boolean updateTariff(Tariff tariff) {
-		return tariffMapper.update(tariff);
+		return tariffMapper.updateTariff(tariff);
 	}
 }

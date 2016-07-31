@@ -7,16 +7,16 @@ import bean.Tariff;
 
 
 public interface TariffMapper {
-    public List<Tariff> findAll();
+    public List<Tariff> findAllTariff();
 	
-	public Tariff findOne(int tariffId);
+	public Tariff findOneTariff(int tariffId);
 	
-	public boolean add(Tariff tariff);
+	public boolean addTariff(Tariff tariff);
 	
-	public boolean del(int tariffId);
+	public boolean delTariff(int tariffId);
 	
-	public boolean update(Tariff tariff);
+	public boolean updateTariff(Tariff tariff);
 	
-	public boolean updateStatus(int tariffId);
+	public boolean updateTariffStatus(int tariffId);
 
 }

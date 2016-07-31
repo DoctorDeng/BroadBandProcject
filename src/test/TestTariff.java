@@ -43,7 +43,7 @@ public class TestTariff {
 	 */
 	@Test
 	public final void testFindAll() {
-		List<Tariff>ta = tariffMapper.findAll();
+		List<Tariff>ta = tariffMapper.findAllTariff();
 		for(Tariff t:ta){
 			System.out.println(t);
 		}
@@ -54,7 +54,7 @@ public class TestTariff {
 	 */
 	@Test
 	public final void testFindOne() {
-		System.out.println(tariffMapper.findOne(1));
+		System.out.println(tariffMapper.findOneTariff(1));
 	}
 	
 	/**
@@ -63,14 +63,14 @@ public class TestTariff {
 	@Test
 	public final void testAdd() {
 		Tariff tf = new Tariff("包时211",5.5,13,31,"2","我是包时211");
-		System.out.println(tariffMapper.add(tf));
+		System.out.println(tariffMapper.addTariff(tf));
 	}
 	/**
 	 * 删除一条信息
 	 */
 	@Test
 	public final void testDel() {
-		System.out.println(tariffMapper.del(56));
+		System.out.println(tariffMapper.delTariff(56));
 	}
 	/**
 	 * 修改一条信息
@@ -78,14 +78,14 @@ public class TestTariff {
 	@Test
 	public final void testUpdate() {
 		Tariff tff = new Tariff(60,"包时110",11.3,22,33,"1","我是包时110");
-		System.out.println(tariffMapper.update(tff));
+		System.out.println(tariffMapper.updateTariff(tff));
 	}
 	/**
 	 * 修改状态信息
 	 */
 	@Test
 	public final void testUpdateStatus(){
-		System.out.println(tariffMapper.updateStatus(57));
+		System.out.println(tariffMapper.updateTariffStatus(57));
 	}
 	
 
