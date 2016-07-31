@@ -1,4 +1,5 @@
 package service;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,9 +9,11 @@ import org.apache.ibatis.session.SqlSession;
 import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 import bean.vo.OsLoginFormBean;
+import mapper.AdminMapper;
 import mapper.BillMapper;
 import mapper.impl.BillDaoImpl;
 import mapper.impl.OsLoginDaoImpl;
+import util.SqlSessionUtil;
 
 public class BillService {
 	private SqlSession sqlSession;
@@ -18,9 +21,9 @@ public class BillService {
 	
 	public BillService() {
 	}
-	/**
+/*	*//**
 	 * 获取账单表格显示所需要的信息，涉及到多表查询
-	 */
+	 *//*
 	public List<BillFormBean> getBill(){
 		List<BillFormBean> billFormList  = new ArrayList<>();
 		List<Map<String,Object>> listMap = billDao.findBillForm();
@@ -41,9 +44,9 @@ public class BillService {
 				times = Integer.parseInt(totalTime);
 			}
 			
-			/**
+			*//**
 			 * 获取总的时长 时/分/秒
-			 */
+			 *//*
 			int h = times/3600;
 			int m = (times%3600)/60;
 			int s = (times%3600)%60;
@@ -54,7 +57,7 @@ public class BillService {
 			billFormList.add(billForm);
 		}
 		return billFormList;
-	}
+	}*/
 	/**
 	 * 通过分页，获取指定页的账单信息
 	 * @return  表单Bean信息集合
@@ -290,6 +293,23 @@ public class BillService {
 			billFormList.add(billForm);
 		}
 		return billFormList;
+	}
+	
+	/**
+	 * 初始化SqlSession和mapper
+	 */
+	public void init(){
+		try {
+			sqlSession = SqlSessionUtil.getSqlSession();
+			billMapper = sqlSession.getMapper(BillMapper.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//提交关闭SqlSession
+	public void close(){
+		sqlSession.commit();
+		sqlSession.close();
 	}
 	
 	public static void main(String[] args) {

@@ -50,7 +50,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getBillId()+"</td>");
 				out.println("<td>" +billForm.getCustomerName()+"</td>");
 				out.println("<td>" +billForm.getIdNumber()+"</td>");
-				out.println("<td>" +billForm.getLoginAccount()+"</td>");
+				out.println("<td>" +billForm.getCustomerAccount()+"</td>");
 				out.println("<td>" +billForm.getTimeLong()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
 				out.println("<td>" +(billForm.getPayStatus()=="1"?"已支付":"未支付")+"</td>");
@@ -79,7 +79,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getBillId()+"</td>");
 				out.println("<td>" +billForm.getCustomerName()+"</td>");
 				out.println("<td>" +billForm.getIdNumber()+"</td>");
-				out.println("<td>" +billForm.getLoginAccount()+"</td>");
+				out.println("<td>" +billForm.getCustomerAccount()+"</td>");
 				out.println("<td>" +billForm.getTimeLong()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
 				out.println("<td>" +(billForm.getPayStatus()=="1"?"已支付":"未支付")+"</td>");
