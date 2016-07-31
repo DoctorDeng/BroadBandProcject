@@ -79,7 +79,7 @@ public class AccountManage {
 		
 		int result = adminMapper.resetAdminsPassword(adminIds);
 		sqlSession.close();
-		if (result > 1) {
+		if (result > 0) {
 			return true;
 		}
 		return false;
