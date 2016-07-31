@@ -24,17 +24,17 @@ public class TariffUtil {
 			if (times < timeLong*3600) {
 				countTariff = tariff;
 			} else {
-				countTariff = ((times - timeLong*3600)/3600) * timeTariff + tariff;
+				countTariff = (((times - timeLong*3600)*1.0)/(3600*1.0)) * timeTariff + tariff;
 			}
 			break;
 		case "3":
-			countTariff = (times/3600)*timeTariff;
+			countTariff = ((1.0*times)/(1.0*3600))*timeTariff;
 			break;
 		}
 		return countTariff;
 	}
 	
-	public double countLoginTariff(int times,double tariff, int timeLong, int timeTariff, String tariffType){
+	public static double countLoginTariff(int times,double tariff, int timeLong, int timeTariff, String tariffType){
 		//包月时长的秒 数表示
 		int monthTimes = timeLong*3600;
 		//总资费默认为0
@@ -45,20 +45,20 @@ public class TariffUtil {
 		switch(tariffType) {
 		case "1":
 			if(times < monthTime) {
-				countTariff = ((times/monthTime)) * tariff;
+				countTariff = ((1.0*times)/(monthTime*1.0)) * tariff;
 			} else {
-				countTariff = tariff + ((times-monthTime)/monthTime)*tariff;
+				countTariff = tariff + (((times-monthTime)*1.0)/(monthTime*1.0))*tariff;
 			}
 			break;
 		case "2":
 			if (times < timeLong*3600) {
 				countTariff = tariff;
 			} else {
-				countTariff = ((times - timeLong*3600)/3600) * timeTariff + tariff;
+				countTariff = (((times - timeLong*3600)*1.0)/(3600*1.0)) * timeTariff + tariff;
 			}
 			break;
 		case "3":
-			countTariff = (times/3600)*timeTariff;
+			countTariff = ((1.0*times)/(1.0*3600))*timeTariff;
 			break;
 		}
 		return countTariff;

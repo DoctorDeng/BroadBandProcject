@@ -30,6 +30,25 @@ public class BillFormBean {
 	 */
 	private String payStatus;
 	
+	public BillFormBean(int billId, String customerName, String idNumber, String customerAccount, String timeLong,
+			String payWay, String payStatus) {
+		super();
+		this.billId = billId;
+		this.customerName = customerName;
+		this.idNumber = idNumber;
+		this.customerAccount = customerAccount;
+		this.timeLong = timeLong;
+		this.payWay = payWay;
+		this.payStatus = payStatus;
+	}
+	
+	@Override
+	public String toString() {
+		return "BillFormBean [billId=" + billId + ", customerName=" + customerName + ", idNumber=" + idNumber
+				+ ", customerAccount=" + customerAccount + ", timeLong=" + timeLong + ", payWay=" + payWay
+				+ ", payStatus=" + payStatus + "]";
+	}
+
 	public int getBillId() {
 		return billId;
 	}

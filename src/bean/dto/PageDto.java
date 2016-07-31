@@ -29,19 +29,20 @@ public class PageDto<T> {
 	 * @param recordNum   数据总条数
 	 * @param pageSize    页面数据条数
 	 * @param currentPage 当前页页码
-	 * @param dataList    页面需要的数据集合
 	 */
-	public void init(int recordNum,int pageSize,String currentPagestr,List<T> dataList){
+	public void init(int recordNum,int pageSize,String currentPagestr){
 		this.pageSize    = pageSize;
 		this.recordNum   = recordNum;
 		this.pageNum     =  (int) Math.ceil((this.recordNum*1.0)/(this.pageSize*1.0));
 		this.endPage     = this.pageNum;
-		this.dataList    = dataList;
 		
 		if (null != currentPagestr && !"".equals(currentPagestr)){
 			this.currentPage = Integer.parseInt(currentPagestr);
 		}
 		
+		if(this.currentPage > this.pageNum) {
+			this.currentPage = this.pageNum;
+		}
 		if (this.currentPage != 1 && this.pageNum > 1) {
   			this.upPage   = this.currentPage - 1; 
   		}
