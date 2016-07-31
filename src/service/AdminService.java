@@ -1,26 +1,27 @@
 package service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+
 import bean.Admin;
 import bean.AdminInfor;
 import bean.Power;
+import mapper.AdminMapper;
 import mapper.impl.AdminDaoImpl;
 import mapper.impl.AdminInforDaoImpl;
 import mapper.impl.AdminPowerDaoImpl;
+import util.SqlSessionUtil;
 
 public class AdminService {
 	
-	private AdminDaoImpl adminDao;
-	private AdminInforDaoImpl adminInforDao;
-	private AdminPowerDaoImpl adminPowerDao;
+	private SqlSession sqlSession = null;
+	private AdminMapper adminMapper = null;
 	
 	public AdminService() {
-		adminDao      = new AdminDaoImpl();
-		adminPowerDao = new AdminPowerDaoImpl();
-		adminInforDao = new AdminInforDaoImpl();
 	}
 	/**
 	 * 添加管理员 
@@ -106,6 +107,22 @@ public class AdminService {
 		return list;
 	}
 	
+	/**
+	 * 初始化SqlSession和mapper
+	 */
+	public void init(){
+		try {
+			sqlSession = SqlSessionUtil.getSqlSession();
+			adminMapper = sqlSession.getMapper(AdminMapper.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//提交关闭SqlSession
+	public void close(){
+		sqlSession.commit();
+		sqlSession.close();
+	}
 	public static void main(String[] args) {
 		AdminService adminService = new AdminService();
 		String[] str = (String[])adminService.getAllAdminInfor().get(0).get("powerList");

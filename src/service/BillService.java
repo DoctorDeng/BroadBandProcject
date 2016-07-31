@@ -3,21 +3,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+
 import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 import bean.vo.OsLoginFormBean;
+import mapper.BillMapper;
 import mapper.impl.BillDaoImpl;
 import mapper.impl.OsLoginDaoImpl;
 
 public class BillService {
-	private 
-	
-	private OsLoginDaoImpl  osLoginDao;
-	private BillDaoImpl   billDao;
+	private SqlSession sqlSession;
+	private BillMapper billMapper;
 	
 	public BillService() {
-		osLoginDao = new OsLoginDaoImpl();
-		billDao = new BillDaoImpl();
 	}
 	/**
 	 * 获取账单表格显示所需要的信息，涉及到多表查询
