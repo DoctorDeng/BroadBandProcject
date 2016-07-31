@@ -63,6 +63,7 @@ public class BillService {
 	 * @return  表单Bean信息集合
 	 */
 	public List<BillFormBean> getBillFormByPage(int index, int pageSize) {
+		
 		List<BillFormBean> billFormList  = new ArrayList<>();
 		List<Map<String,Object>> listMap =billDao.findBillFormPage(index, pageSize);
 		
