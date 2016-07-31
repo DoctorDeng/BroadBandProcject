@@ -21,7 +21,7 @@ public interface AdminMapper {
 	 * @param adminIds  需要重置密码的管理员id集合
 	 * @return
 	 */
-	public int resetAdminsPassword(List<Integer> adminIds);
+	public int resetAdminsPassword(int[] adminIds);
 	
 	public int deleteAdminById(int adminId);
 	

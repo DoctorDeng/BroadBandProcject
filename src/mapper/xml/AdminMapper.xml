@@ -136,7 +136,7 @@
 		
 		<update id="resetAdminsPassword">
 			UPDATE admin set password = '123456789' WHERE adminId in 
-			 <foreach item="item" index="index" collection="list"
+			 <foreach item="item" index="index" collection="array"
       			open="(" separator="," close=")">
        			 #{item}
  			 </foreach>
@@ -150,7 +150,8 @@
 			UPDATE admin set password = #{password} 
 			WHERE adminId = #{adminId}
 		</update>
-		<select id="verifyAdmin" parameterType="Admin">
-			select * from Admin where adminAccount=#{adminAccount} and password=#{password}
+		<select id="verifyAdmin" parameterType="Admin" resultMap="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin where adminAccount=#{adminAccount} and password=#{password}
 		</select>
 	</mapper>

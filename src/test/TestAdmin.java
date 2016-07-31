@@ -62,9 +62,7 @@ public class TestAdmin {
 	}
 	@Test
 	public void resetAdminsPassword() {
-		List<Integer> ids = new ArrayList<>();
-		ids.add(1);
-		ids.add(3);
+		int[] ids = {1,3};
 		System.out.println(adminMapper.resetAdminsPassword(ids));
 		sqlSession.commit();
 		sqlSession.close();

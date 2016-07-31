@@ -1,17 +1,18 @@
 package service;
 
-import bean.Admin;
-import mapper.impl.AdminDaoImpl;
-import mapper.impl.AdminPowerDaoImpl;
+import java.io.IOException;
 
+import org.apache.ibatis.session.SqlSession;
+
+import bean.Admin;
+import mapper.AdminMapper;
+import util.SqlSessionUtil;
 public class AccountManage {
-	private AdminDaoImpl  adminDao;
-	private AdminPowerDaoImpl adminPowerDao;
 	
-	public AccountManage () {
-		adminDao      = new AdminDaoImpl();
-		adminPowerDao = new AdminPowerDaoImpl();
-	}
+	private SqlSession sqlSession;
+	private AdminMapper adminMapper;
+	
+	public AccountManage () {}
 	/**
 	 * 登陆方法
 	 * @param adminAccount 管理员账号
@@ -19,14 +20,25 @@ public class AccountManage {
 	 * @return             用户名或密码错误返回null，正确返回一个Admin对象
 	 */
 	public Admin login(String adminAccount, String password) {
-		Admin admin = adminDao.verifyAdminByAccount(adminAccount, password);
+		try {
+			sqlSession = SqlSessionUtil.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		adminMapper = sqlSession.getMapper(AdminMapper.class);
 		
-		if (null == admin) {
+		Admin admin = new Admin();
+		admin.setAdminAccount(adminAccount);
+		admin.setPassword(password);
+		Admin admin1 = adminMapper.verifyAdmin(admin);
+		
+		sqlSession.close();
+		
+		if (null == admin1) {
 			return null;
 		} else {
-			admin.setPowerList(adminPowerDao.findPowersById(admin.getAdminId()));
+			return admin1;
 		}
-		return admin;
 	}
 	/**
 	 * 更改管理员账号密码 
@@ -35,7 +47,22 @@ public class AccountManage {
 	 * @return
 	 */
 	public boolean changePassword(int adminId,String newPassword) {
-		return adminDao.updateAdminPasswordByAdminId(adminId, newPassword);
+		try {
+			sqlSession = SqlSessionUtil.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		adminMapper = sqlSession.getMapper(AdminMapper.class);
+        Admin admin = new Admin();
+        admin.setAdminId(adminId);
+        admin.setPassword(newPassword);
+        
+		int result = adminMapper.updateAdminPassword(admin);
+		sqlSession.close();
+		if (result == 1) {
+			return true;
+		}
+		return false;
 	}
 	/**
 	 * 批量重置管理员密码
@@ -43,7 +70,19 @@ public class AccountManage {
 	 * @return
 	 */
 	public boolean resetPassword(int[] adminIds) {
-		return adminDao.resetAdminsPassword(adminIds);
+		try {
+			sqlSession = SqlSessionUtil.getSqlSession();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		int result = adminMapper.resetAdminsPassword(adminIds);
+		sqlSession.close();
+		if (result > 1) {
+			return true;
+		}
+		return false;
 	}
 	
 }
