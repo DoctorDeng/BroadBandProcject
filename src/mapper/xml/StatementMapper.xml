@@ -4,15 +4,16 @@
 <mapper namespace="mapper.StatementMapper">
 	<select id="selectStatementByPagging" parameterType="Page" resultType="StatementVo">
 		select cu.customerId, customerAccount,customerName,idNumber,phone, 
-		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as totalTime 
-		FROM customer as cu LIMIT #{index},#{size}
+		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as timeLong 
+		FROM customer as cu 
+		LIMIT #{index},#{size}
 	</select>
 	
 	<select id="selectStatementByPaggingByDesc" parameterType="Page" resultType="StatementVo">
 		select cu.customerId, customerAccount,customerName,idNumber,phone, 
-		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as totalTime 
+		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as timeLong 
 		FROM customer as cu 
-		ORDER BY totalTime DESC 
+		ORDER BY timeLong DESC 
 		LIMIT #{index},#{size}
 	</select>
 	

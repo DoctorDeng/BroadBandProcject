@@ -29,4 +29,41 @@ public class StatementVo {
 	 * 总时长
 	 */
 	private String timeLong;
+	
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	public String getCustomerAccount() {
+		return customerAccount;
+	}
+	public void setCustomerAccount(String customerAccount) {
+		this.customerAccount = customerAccount;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	public String getIdNumber() {
+		return idNumber;
+	}
+	public void setIdNumber(String idNumber) {
+		this.idNumber = idNumber;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getTimeLong() {
+		return timeLong;
+	}
+	public void setTimeLong(String timeLong) {
+		this.timeLong = timeLong;
+	}
 }

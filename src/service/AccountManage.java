@@ -84,5 +84,4 @@ public class AccountManage {
 		}
 		return false;
 	}
-	
 }
