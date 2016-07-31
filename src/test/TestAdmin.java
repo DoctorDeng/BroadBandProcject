@@ -37,7 +37,7 @@ public class TestAdmin {
 
 	@Test
 	public void testSelectAdminById() {
-		System.out.println(adminMapper.selectAdminById(5).getPowers().size());
+		System.out.println(adminMapper.selectAdminById(200));
 		sqlSession.close();
 	}
 	@Test
@@ -80,8 +80,10 @@ public class TestAdmin {
 		Admin admin = new Admin("doctordeng","123","杨幂","","13256235142","sd");
 		admin.setAdminId(1);
 		System.out.println(adminMapper.updateAdminPassword(admin));
-		sqlSession.commit();
-		sqlSession.close();
+		System.out.println(adminMapper.selectAdminById(1).getPassword());
+		/*sqlSession.commit();
+		sqlSession.close();*/
+		/*System.out.println(adminMapper.verifyAdminAccount(""));*/
+		/*System.out.println(adminMapper.selectAdminIdByAccount("doctor"));*/
 	}
-
 }

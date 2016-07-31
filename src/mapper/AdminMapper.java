@@ -30,6 +30,16 @@ public interface AdminMapper {
 	 * 登陆验证
 	 */
 	public Admin verifyAdmin(Admin admin);
-	
-	
+	/**
+	 * 验证是否有此管理员账号
+	 * @param adminAccount  待验证的管理员账号
+	 * @return              有管理员账号,原样返回管理员账号,没有返回空 null
+	 */
+	public String verifyAdminAccount(String adminAccount);
+	/**
+	 * 通过管理员账号获取管理员ID的字符串表示
+	 * @param adminAccount  管理员账号
+	 * @return              返回管理员账号对应的管理员ID的字符串表示,如果没有此管理员账号,返回空
+	 */
+	public String selectAdminIdByAccount(String adminAccount);
 }
