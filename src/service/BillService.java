@@ -10,6 +10,8 @@ import mapper.impl.BillDaoImpl;
 import mapper.impl.OsLoginDaoImpl;
 
 public class BillService {
+	private 
+	
 	private OsLoginDaoImpl  osLoginDao;
 	private BillDaoImpl   billDao;
 	
@@ -308,54 +310,4 @@ public class BillService {
 		}*/
 		
 	}
-	/**
-	 * 代码备份
-	 */
-/*	List<Map<String,Object>> list = osLoginDao.findLoginFormById(osId);
-	List<OsLoginFormBean> loginList = new ArrayList<>();
-	*//**
-	 * 总的费用
-	 *//*
-	double cost = 0;
-	*//**
-	 * 总时长
-	 *//*
-	int    times = 0;
-	*//**
-	 * 资费类型
-	 *//*
-	String tariffType = "";
-	double tariff = 0;
-	int    timeTariff = 0;
-	int    timeLong = 0;
-	
-	for (int i=0; i<list.size(); i++) {
-		Map<String,Object> map = list.get(i);
-		
-		
-		if (i==0) {
-			tariff     = Double.parseDouble(map.get("tariff").toString());
-			timeTariff = Integer.parseInt(map.get("timeTariff").toString());
-			timeLong   = Integer.parseInt(map.get("timeLong").toString());
-		}
-		tariffType = map.get("tariffType").toString();
-		times     += Integer.parseInt(map.get("timeLogin").toString());
-	}
-	if ("1".equals(tariffType)) {
-		cost = tariff;
-	} else if ("2".equals(tariffType)) {
-		*//**
-		 * 当总时长小于套餐时长
-		 *//*
-		if (times/3600 < timeLong) {
-			cost = tariff;
-		}
-		//当总时长大于套餐时长
-		else {
-			cost = tariff + (times/3600 - timeLong)*timeTariff;
-		}
-	} else if ("3".equals(tariffType)){
-		cost = (times/3600)*timeTariff;
-	}*/
-	
 }

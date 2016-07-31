@@ -26,8 +26,6 @@ public interface AdminMapper {
 	public int deleteAdminById(int adminId);
 	
 	public int updateAdminPassword(Admin admin);
-	
-	
 	/**
 	 * 登陆验证
 	 */
