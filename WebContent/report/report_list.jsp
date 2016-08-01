@@ -13,7 +13,7 @@
   			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
+        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
   				<c:when test="${power==7}">
@@ -96,8 +96,8 @@
   					
   						<c:forEach items="${requestScope.statementForm}" var="statement" >
   							<tr>
-  								<td><c:out value="${statement.bussinessId}"/></td>
-  								<td><c:out value="${statement.loginAccount}"/></td>
+  								<td><c:out value="${statement.customerId}"/></td>
+  								<td><c:out value="${statement.customerAccount}"/></td>
   								<td><c:out value="${statement.customerName}"/></td>
   								<td><c:out value="${statement.idNumber}"/></td>
   								<td><c:out value="${statement.phone}"/></td>

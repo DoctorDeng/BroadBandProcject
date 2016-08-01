@@ -171,7 +171,9 @@ public class StatementService {
 			e.printStackTrace();
 		}
 		statementMapper = sqlSession.getMapper(StatementMapper.class);
-		return statementMapper.getStatementNum();
+		int i = statementMapper.getStatementNum();
+		sqlSession.close();
+		return i;
 	}
 	
 	public static void main(String[] args) {

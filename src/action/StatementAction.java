@@ -48,13 +48,28 @@ public class StatementAction extends HttpServlet {
 		int nextPage    = 1;
  		int upPage      = 1;	 		
  		int recordNum   = statementService.getStatementCount();
- 		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
+ 		int pageNum     = (int) Math.ceil((recordNum*1.0)/(pageSize*1.0));
  		int endPage     = pageNum;
  		
  		String currentPageStr = request.getParameter("currentPage");
 		if (null !=currentPageStr && !"".equals(currentPageStr)) {
 			currentPage = Integer.parseInt(currentPageStr);
 		}
+		
+		if (currentPage!=1 && pageNum > 1) {
+  			upPage = currentPage - 1; 
+  		}
+  		if (currentPage<pageNum && pageNum>2) {
+  			nextPage = currentPage +1;
+  		}
+  		if (currentPage== pageNum) {
+  			nextPage = pageNum;
+  		}
+  		page.setIndexPage(indexPage);
+  		page.setEndPage(endPage);
+  		page.setNextPage(nextPage);
+  		page.setUpPage(upPage);
+  		page.setCurrentPage(currentPage);
 		
 		switch (operation) {
 		/**
