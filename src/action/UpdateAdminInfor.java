@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
-import bean.AdminInfor;
 import bean.Power;
 import service.AdminService;
 
@@ -37,10 +36,10 @@ public class UpdateAdminInfor extends HttpServlet {
 		String email        = request.getParameter("email");
 		String[] powerStr   = request.getParameterValues("power");
 		
-		AdminInfor adminInfor = new AdminInfor();
-		adminInfor.setAdminName(adminName);
-		adminInfor.setPhone(phone);
-		adminInfor.setEmail(email);
+		Admin admin = new Admin();
+		admin.setAdminName(adminName);
+		admin.setPhone(phone);
+		admin.setEmail(email);
 
 		List<Power> powerList = new ArrayList<>();
 		for (String str : powerStr) {
@@ -50,7 +49,7 @@ public class UpdateAdminInfor extends HttpServlet {
 		}
 	
 		AdminService adminManage = new AdminService();
-		boolean isupdate = adminManage.updateAdmin(adminId, adminInfor, powerList);
+		boolean isupdate = adminManage.updateAdmin(admin);
 		
 		if(isupdate==true){
 			response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");

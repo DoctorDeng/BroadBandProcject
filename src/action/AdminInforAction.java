@@ -36,7 +36,7 @@ public class AdminInforAction extends HttpServlet {
 		String operation = request.getParameter("operation");
 		
 		if (null == operation | "".equals(operation)) {
-			response.sendRedirect(request.getContextPath()+"/lanqiao/login.jsp");
+			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
 		Object objAdmin = request.getSession().getAttribute("admin");
@@ -51,7 +51,8 @@ public class AdminInforAction extends HttpServlet {
 		 * 初始化修改信息页面信息
 		 */
 		case "initInfor":
-			request.setAttribute("admin", admin);
+			Admin temp = adminService.getAdminById(admin.getAdminId());
+			request.setAttribute("admin", temp);
 			request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
 			break;
 		/**
@@ -61,12 +62,12 @@ public class AdminInforAction extends HttpServlet {
 			String adminName = request.getParameter("adminName");
 			String email     = request.getParameter("email");
 			String phone     = request.getParameter("phone");
-			AdminInfor newAdminInfor = new AdminInfor();
-			newAdminInfor.setAdminId(admin.getAdminId());
-			newAdminInfor.setAdminName(adminName);
-			newAdminInfor.setEmail(email);
-			newAdminInfor.setPhone(phone);
-			adminService.updateInfor(newAdminInfor);
+			Admin newAdmin = new Admin();
+			newAdmin.setAdminId(admin.getAdminId());
+			newAdmin.setAdminName(adminName);
+			newAdmin.setEmail(email);
+			newAdmin.setPhone(phone);
+			adminService.updateInfor(newAdmin);
 			request.getRequestDispatcher("/AdminInforAction?operation=initInfor").forward(request, response);
 			break;
 		}
