@@ -178,7 +178,7 @@ public class StatementService {
 		StatementService statementManage = new StatementService();
 		List<StatementVo> formList = statementManage.getStatementPageByDesc(1,5);
 		for (StatementVo form : formList) {
-			System.out.println("客户姓名："+form.getCustomerName() +" 时长： "+form.getTimeLong());
+			System.out.println(form.toString());
 		}
 		/*System.out.println(statementManage.getStatementCount());*/
 		/*System.out.println(statementManage.getStatementPageByDesc(1, 3).size());*/
