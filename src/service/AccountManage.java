@@ -63,6 +63,7 @@ public class AccountManage {
 			sqlSession.close();
 			return true;
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -85,6 +86,7 @@ public class AccountManage {
 			sqlSession.close();
 			return true;
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}

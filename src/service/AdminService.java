@@ -59,6 +59,7 @@ public class AdminService {
 				} 
 			}
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -91,6 +92,7 @@ public class AdminService {
 				return true;
 			}
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -107,6 +109,7 @@ public class AdminService {
 			close();
 			return true;
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -133,6 +136,7 @@ public class AdminService {
 			close();
 			return true;
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
