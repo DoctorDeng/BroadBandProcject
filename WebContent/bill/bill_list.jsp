@@ -27,7 +27,7 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   		<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
+  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
   			</script>
   		</c:if>
   		

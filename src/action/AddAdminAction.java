@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Admin;
 import bean.Power;
 import service.AdminService;
+import util.StringUtil;
 
 /**
  * Servlet implementation class AddAdminAction
@@ -41,7 +42,13 @@ public class AddAdminAction extends HttpServlet {
 			String idNumber     = request.getParameter("idNumber");
 			String email        = request.getParameter("email");
 			String[] powerStr   = request.getParameterValues("power");
-			
+			System.out.println(adminName);
+			System.out.println(adminAccount);
+			System.out.println(idNumber);
+			if (StringUtil.isNull(adminAccount) | StringUtil.isNull(adminName) | StringUtil.isNull(idNumber) | StringUtil.isNull(password)) {
+				response.sendRedirect("operationError.jsp");
+				return;
+			}
 			
 			Admin admin = new Admin();
 			admin.setAdminAccount(adminAccount);
@@ -57,7 +64,8 @@ public class AddAdminAction extends HttpServlet {
 				power.setPowerId(Integer.parseInt(str));
 				powerList.add(power);
 			}
-		
+			admin.setPowers(powerList);
+			
 			AdminService adminManage = new AdminService();
 			boolean isAdd = adminManage.addAdmin(admin);
 			if(isAdd==true){

@@ -97,7 +97,7 @@ public class ShowAdminAction extends HttpServlet{
 	    	 } else {
 	    		 Admin admin = adminService.getAdminById(Integer.parseInt(adminIdStr));
 	    		 request.setAttribute("modiAdmin", admin);
-	    		 request.getRequestDispatcher(request.getContextPath()+"/admin/admin_modi.jsp").forward(request, response);
+	    		 request.getRequestDispatcher("/admin/admin_modi.jsp").forward(request, response);
 	    	 }
 	    	 break;
 		}

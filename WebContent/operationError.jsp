@@ -37,7 +37,7 @@
     </head>
     <body class="error_page" onload="startTimes();">
         <h1 id="error">
-	        遇到错误，&nbsp;<span id="secondes">5</span>&nbsp;秒后将跳转到主页，立即跳转请点击&nbsp;
+	        输入或操作错误,&nbsp;<span id="secondes">5</span>&nbsp;秒后将跳转到主页，立即跳转请点击&nbsp;
             <a class="login.jsp" href="javascript:resetTimer();">返回</a>
         </h1>
     </body>

@@ -19,7 +19,7 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
+  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
   			</script>
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
@@ -137,24 +137,24 @@
                             <td> 
                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">查看权限</a>                           
                                 <div class="detail_info">
-                        	    <c:forEach items="${adminInfor.powers}" var="power">                            	
+                        	    <c:forEach items="${adminInfor.powers}" var="power">    
                             		<c:choose>
-                            			<c:when test="${power == '2'}">
+                            			<c:when test="${power.power == '2'}">
                            				超级管理员
                             			</c:when>
-                            			<c:when test="${power == '3'}">
+                            			<c:when test="${power.power == '3'}">
                            				资费管理员
                             			</c:when>
-                            			<c:when test="${power == '4'}">
+                            			<c:when test="${power.power == '4'}">
                            				账务账号管理员<br/>
                             			</c:when>
-                            			<c:when test="${power == '5'}">
+                            			<c:when test="${power.power == '5'}">
                            				业务账号管理员
                             			</c:when>
-                            			<c:when test="${power == '6'}">
+                            			<c:when test="${power.power == '6'}">
                            				账单管理员
                             			</c:when>
-                            			<c:when test="${power == '7'}">
+                            			<c:when test="${power.power == '7'}">
                            				报表管理员
                             			</c:when>
                             		</c:choose>

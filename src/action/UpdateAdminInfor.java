@@ -37,6 +37,7 @@ public class UpdateAdminInfor extends HttpServlet {
 		String[] powerStr   = request.getParameterValues("power");
 		
 		Admin admin = new Admin();
+		admin.setAdminId(adminId);
 		admin.setAdminName(adminName);
 		admin.setPhone(phone);
 		admin.setEmail(email);
@@ -47,7 +48,7 @@ public class UpdateAdminInfor extends HttpServlet {
 			power.setPowerId(Integer.parseInt(str));
 			powerList.add(power);
 		}
-	
+		admin.setPowers(powerList);
 		AdminService adminManage = new AdminService();
 		boolean isupdate = adminManage.updateAdmin(admin);
 		
