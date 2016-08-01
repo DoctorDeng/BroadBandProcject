@@ -135,13 +135,22 @@
                 <br/>
                 <p id="point" style="display:none;color:red">1、搜索最多显示7条数据</p>
                 </div>                    
-                <!--分页-->
+                <!--分页-->disabled
                 <div id="pages">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
-                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.indexPage}" class="btn btn-success">首页</a>
+                			
+                			<c:if test="${requestScope.billPage.currentPage == requestScope.billPage.indexPage}">
+	                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.indexPage}" class="btn btn-success disabled">首页</a>
+        	        		</c:if>
+                			<c:if test="${requestScope.billPage.currentPage != requestScope.billPage.indexPage}">
+	                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.indexPage}" class="btn btn-success">首页</a>
+        	        		</c:if>
         	        		
-        	        		<c:if test="${requestScope.billPage.currentPage != requestScope.billPage.upPage}">
+        	        		<c:if test="${requestScope.billPage.currentPage != 1}">
         	        			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.upPage}" class="btn btn-danger" >上一页</a>
+        	        		</c:if>
+        	        		<c:if test="${requestScope.billPage.currentPage == 1}">
+        	        			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.upPage}" class="btn btn-danger disabled" >上一页</a>
         	        		</c:if>
                     
                     		<c:forEach var="i" begin="${requestScope.billPage.indexPage}" end="${requestScope.billPage.endPage}">
@@ -156,7 +165,16 @@
                     		<c:if test="${requestScope.billPage.currentPage != requestScope.billPage.nextPage}">
                     			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.nextPage}"class="btn btn-danger" >下一页</a>
         	        		</c:if>
-                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.endPage}" class="btn btn-success">末页</a>
+        	        		<c:if test="${requestScope.billPage.currentPage == requestScope.billPage.nextPage}">
+                    			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.nextPage}"class="btn btn-danger disabled" >下一页</a>
+        	        		</c:if>
+        	        		
+        	        		<c:if test="${requestScope.billPage.currentPage != requestScope.billPage.endPage}">
+	                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.endPage}" class="btn btn-success">末页</a>
+        	        		</c:if>
+        	        		<c:if test="${requestScope.billPage.currentPage == requestScope.billPage.endPage}">
+	                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.endPage}" class="btn btn-success disabled">末页</a>
+        	        		</c:if>
                 		</c:if>
                 </div>   
             </form>
