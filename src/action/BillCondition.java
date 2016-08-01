@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Bill;
+import bean.dto.PageDto;
 import bean.vo.BillFormBean;
 import service.BillService;
 
@@ -39,7 +41,9 @@ public class BillCondition extends HttpServlet {
 		String customerName = request.getParameter("customerName");
 		
 		List<BillFormBean> manyBillFrom = new ArrayList<>();
-		List<BillFormBean> billList = billService.getBillFormByCondition(idNumber, loginAccount, customerName);
+		PageDto<BillFormBean> pageDto = billService.getBillFormByCondition(idNumber, loginAccount, customerName);
+		List<BillFormBean> billList = pageDto.getDataList();
+		
 		if(billList.size() >7) {
 			for (int i=0; i<7;i ++) {
 				manyBillFrom.add(billList.get(i));
@@ -53,7 +57,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getCustomerAccount()+"</td>");
 				out.println("<td>" +billForm.getTimeLong()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
-				out.println("<td>" +(billForm.getPayStatus()=="1"?"已支付":"未支付")+"</td>");
+				out.println("<td>" +billForm.getPayStatus()+"</td>");
 				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
 				out.print("</tr>");
 			}
@@ -82,7 +86,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getCustomerAccount()+"</td>");
 				out.println("<td>" +billForm.getTimeLong()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
-				out.println("<td>" +(billForm.getPayStatus()=="1"?"已支付":"未支付")+"</td>");
+				out.println("<td>" +billForm.getPayStatus()+"</td>");
 				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
 				out.print("</tr>");
 			}

@@ -16,7 +16,7 @@
   			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
+        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
   				<c:when test="${power==6}">
@@ -105,8 +105,8 @@
                         <th class="width100">支付状态</th>                                                        
                         <th class="width50"></th>
                     </tr>
-                    <c:set var="billForm" value="${not empty requestScope.billForm}" />
-  					<c:if test="${not billForm}">
+                    <c:set var="billPage" value="${not empty requestScope.billPage}" />
+  					<c:if test="${not billPage}">
   						<tr>
   							<td>没有信息</td>
   							<td>没有信息</td>
@@ -119,15 +119,15 @@
   						</tr>
   					</c:if>
   					
-  						<c:forEach items="${requestScope.billForm}" var="bill" >
+  						<c:forEach items="${requestScope.billPage.dataList}" var="bill" >
   							<tr>
   								<td><c:out value="${bill.billId}"/></td>
   								<td><c:out value="${bill.customerName}"/></td>
   								<td><c:out value="${bill.idNumber}"/></td>
-  								<td><c:out value="${bill.loginAccount}"/></td>
+  								<td><c:out value="${bill.customerAccount}"/></td>
   								<td><c:out value="${bill.timeLong}"/></td>
   								<td><c:out value="${bill.payWay}"/></td>
-  								<td><c:out value="${bill.payStatus=='0'?'未支付':'支付'}"/></td>
+  								<td><c:out value="${bill.payStatus}"/></td>
   								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
@@ -137,23 +137,27 @@
                 </div>                    
                 <!--分页-->
                 <div id="pages">
-                	<c:if test="${not empty requestScope.page}">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
-                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.indexPage}" class="btn btn-success">首页</a>
-        	        		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.upPage}" class="btn btn-danger" >上一页</a>
+                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.indexPage}" class="btn btn-success">首页</a>
+        	        		
+        	        		<c:if test="${requestScope.billPage.currentPage != requestScope.billPage.upPage}">
+        	        			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.upPage}" class="btn btn-danger" >上一页</a>
+        	        		</c:if>
                     
-                    		<c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
-                    			<c:if test="${i == requestScope.page.currentPage}">
+                    		<c:forEach var="i" begin="${requestScope.billPage.indexPage}" end="${requestScope.billPage.endPage}">
+                    			<c:if test="${i == requestScope.billPage.currentPage}">
                     				<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${i}" class="current_page" >${i}</a>
                     			</c:if>
-                    			<c:if test="${i != requestScope.page.currentPage}">
+                    			<c:if test="${i != requestScope.billPage.currentPage}">
                     				<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${i}">${i}</a>
                     			</c:if>
                     		</c:forEach>
-                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.nextPage}"class="btn btn-danger" >下一页</a>
-                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.page.endPage}" class="btn btn-success">末页</a>
+                    		
+                    		<c:if test="${requestScope.billPage.currentPage != requestScope.billPage.nextPage}">
+                    			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.nextPage}"class="btn btn-danger" >下一页</a>
+        	        		</c:if>
+                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.endPage}" class="btn btn-success">末页</a>
                 		</c:if>
-                	</c:if>
                 </div>   
             </form>
         </div>
