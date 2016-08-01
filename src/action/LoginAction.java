@@ -44,7 +44,7 @@ public class LoginAction extends HttpServlet {
 				return;
 			}
 		} else {
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("loginFail.jsp");
 			return;
 		}
 	}

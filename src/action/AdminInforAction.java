@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
-import bean.AdminInfor;
 import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 import service.AdminService;
@@ -52,16 +51,7 @@ public class AdminInforAction extends HttpServlet {
 		 * 初始化修改信息页面信息
 		 */
 		case "initInfor":
-			AdminInfor  adminInfor = adminService.getAdminInforById(admin.getAdminId());
-			if (adminInfor == null) {
-				if (adminService.initAdminInfor(admin.getAdminId())) {
-					adminInfor = adminService.getAdminInforById(admin.getAdminId());
-				} else {
-					response.sendRedirect(request.getContextPath()+"/nopower.jsp");
-					return;
-				}
-			}
-			request.setAttribute("adminInfor", adminInfor);
+			request.setAttribute("admin", admin);
 			request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
 			break;
 		/**

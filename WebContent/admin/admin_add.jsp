@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
         <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
+        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
   				<c:when test="${power==2}">
@@ -17,9 +17,9 @@
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
+  			<script type="text/javascript">
+  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
+  			</script>
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
@@ -60,7 +60,7 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="../AddAdminAction" method="post" class="main_form" onsubmit="return checkAdmin()" id="save">
+            <form action="<%=request.getContextPath() %>/AddAdminAction" method="post" class="main_form" onsubmit="return checkAdmin()" id="save">
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
                         <input type="text" name="adminName" id="admin"/>

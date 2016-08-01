@@ -8,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
          <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
+        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
   				<c:when test="${power==2}">
@@ -18,10 +18,10 @@
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
+  			<script type="text/javascript">
+  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
+  			</script>
   		</c:if>
-  		<%
-  		   session.getAttribute("admininforList");
-  		%>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -66,13 +66,6 @@
         </script>       
     </head>
     <body>
-        <%!
-	        int pageSize = 7;      //设置每页的行数
-	 	    int pageCount;         //声明总的页数
-	 	    int currentPage = 1;   //声明当前页为第一页
-	 	    int totleRow ;         //总数据行数
-	 	    String pageIndex;      //当前页的索引  	 	   
-        %>
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
@@ -144,7 +137,7 @@
                             <td> 
                                <a class="summary"  onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">查看权限</a>                           
                                 <div class="detail_info">
-                        	    <c:forEach items="${adminInfor.powerList}" var="power">                            	
+                        	    <c:forEach items="${adminInfor.powers}" var="power">                            	
                             		<c:choose>
                             			<c:when test="${power == '2'}">
                            				超级管理员
@@ -169,8 +162,8 @@
                             </div>              
                             </td>                       
                             <td class="td_modi">
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='admin_modi.jsp?adminId=<c:out value="${adminInfor.adminId}" />';" />
-                                <input type="button" value="删除" class="btn_delete" onclick="location.href='../DelAdminAction?adminId=<c:out value="${adminInfor.adminId}" />';"/>
+                                <input type="button" value="修改" class="btn_modify" onclick="location.href='<%=request.getContextPath() %>/ShowAdminAction?operation=initById&adminId=<c:out value="${adminInfor.adminId}" />';" />
+                                <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath() %>/DelAdminAction?adminId=<c:out value="${adminInfor.adminId}" />';"/>
                             </td>
                         </tr>
                         </c:forEach>
@@ -179,14 +172,14 @@
                 </div>
                 <!--分页-->
                  <div id="pages">
-                	<c:if test="${not empty requestScope.page}">
+                	<%-- <c:if test="${not empty requestScope.page}">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
                 			<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.indexPage}" >首页</a>
         	        		<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.upPage}"  >上一页</a>
                         	<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.nextPage}">下一页</a>
                     		<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${requestScope.page.endPage}" >末页</a>
                 		</c:if>
-                	</c:if>
+                	</c:if> --%>
                 </div>                  
             </form>
         </div>

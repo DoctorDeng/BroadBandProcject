@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
-import bean.AdminInfor;
 import bean.Power;
 import service.AdminService;
 
@@ -43,14 +42,14 @@ public class AddAdminAction extends HttpServlet {
 			String email        = request.getParameter("email");
 			String[] powerStr   = request.getParameterValues("power");
 			
+			
 			Admin admin = new Admin();
 			admin.setAdminAccount(adminAccount);
 			admin.setPassword(password);
-			AdminInfor adminInfor = new AdminInfor();
-			adminInfor.setAdminName(adminName);
-			adminInfor.setPhone(phone);
-			adminInfor.setIdNumber(idNumber);
-			adminInfor.setEmail(email);
+			admin.setAdminName(adminName);
+			admin.setPhone(phone);
+			admin.setIdNumber(idNumber);
+			admin.setEmail(email);
 
 			List<Power> powerList = new ArrayList<>();
 			for (String str : powerStr) {
@@ -60,7 +59,7 @@ public class AddAdminAction extends HttpServlet {
 			}
 		
 			AdminService adminManage = new AdminService();
-			boolean isAdd = adminManage.addAdmin(admin, adminInfor, powerList);
+			boolean isAdd = adminManage.addAdmin(admin);
 			if(isAdd==true){
 				response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 			}else{

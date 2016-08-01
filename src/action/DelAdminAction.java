@@ -35,7 +35,7 @@ public class DelAdminAction extends HttpServlet {
 		   response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 	   }
 	   else{
-		   response.sendRedirect("error.jsp");
+		   response.sendRedirect(request.getContextPath()+"/error.jsp");
 	   }
 	}
 
