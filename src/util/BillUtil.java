@@ -1,10 +1,13 @@
 package util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import bean.Bill;
+import bean.dto.BillDetailDto;
 import bean.dto.BillDto;
+import bean.vo.BillDetailFormBean;
 import bean.vo.BillFormBean;
 
 public class BillUtil {
@@ -24,5 +27,22 @@ public class BillUtil {
 			billForms.add(billForm);
 		}
 		return billForms;
+	}
+	
+	public static List<BillDetailFormBean> billDetailDtoToFormBean(List<BillDetailDto>  billDetailDtos) {
+		
+		List<BillDetailFormBean> billDetailForms = new ArrayList<>();
+		
+		for (BillDetailDto temp:billDetailDtos) {
+			String timeLong = TimeUtil.secondToString(temp.getTotalTime());
+			double cost     = TariffUtil.countAccountTariff(temp.getTotalTime(), temp.getTariff(), temp.getTimeLong(), temp.getTimeTariff(), temp.getTariffType());
+			//将double转换为两位小数
+			DecimalFormat df = new DecimalFormat("#.00"); 
+			BillDetailFormBean billDetailForm = new BillDetailFormBean(temp.getCustomerId(),temp.getOsAccount(),temp.getServerIp(),temp.getCustomerAccount(),
+					timeLong,df.format(cost),temp.getTariffName(),temp.getOsId());
+			billDetailForms.add(billDetailForm);
+		}
+		
+		return billDetailForms;
 	}
 }
