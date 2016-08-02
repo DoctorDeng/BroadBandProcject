@@ -1,4 +1,4 @@
-`<%@page import="service.impl.ProfessionServiceImpl"%>
+`<%@page import="service.ProfessionService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="bean.dto.*" %>
@@ -126,9 +126,11 @@
                         <th class="width100">服务器 IP</th>
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
-       <%--              </tr>
+                    </tr>
 		<%
-		for(OsDto sv:s){
+		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
+		for(OsDto sv:Listo){
+			System.out.println(sv.getBussinessId());
 		%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>" title="查看明细" ><%=sv.getBussinessId()%></a></td>
@@ -173,7 +175,7 @@
                     <a href="#">下一页</a>
                     <a href="#">末页</a>
                 </div>  -->                   
-            </form> --%>
+            </form>
         </div>
         <!--主要区域结束-->
         <div id="footer">

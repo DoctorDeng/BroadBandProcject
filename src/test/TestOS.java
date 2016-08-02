@@ -63,11 +63,8 @@ public class TestOS {
 	@Test
 	public void delOneOsByOsId(){
 		 Bussiness bussiness = bussinessMapper.selectBussinessById(1);
-		 System.out.println(bussiness.getOsId());
 		 bussinessMapper.deleteBussiness(1);
-		 System.out.println("1111");
 		 osMapper.delOneOsByOsId(bussiness.getOsId());
-		 System.out.println("2222");
 	}
 	/**
 	 * 测试业务表的添加功能

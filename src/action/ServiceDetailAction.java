@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.vo.BussinessViewBean;
 import bean.vo.ServiceAddViewBean;
-import service.ProfessionServiceImpl;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceDetailAction

@@ -11,7 +11,7 @@ import javax.websocket.Session;
 
 import bean.Customer;
 import bean.vo.ServiceAddViewBean;
-import service.ProfessionServiceImpl;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceAddAction
