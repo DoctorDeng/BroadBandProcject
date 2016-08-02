@@ -30,15 +30,7 @@ public class TariffAddAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		TariffService tariffManage = new TariffService();
-		/**
-		 * 获取操作的类型，注意在jsp页面中应定义相应的隐藏字段，来代表操作的类型，
-		 */
-		/**
-		 * 操作类型说明如下：  addTariff    添加资费信息
-		 *              openTariff   开启资费
-		 *              delTariff    删除资费
-		 *              updateTariff 更新资费信息
-		 */
+		
 			TariffService tar= new TariffService();
 			Tariff t = new Tariff();
 			String tariffName = request.getParameter("tariffName");
@@ -71,6 +63,11 @@ public class TariffAddAction extends HttpServlet {
 			}
 			t.setTimeLong(timeLong);
 			boolean isAdd = tar.addTariff(t);
+			if (isAdd) {
+				response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
+			} else {
+				response.sendRedirect(request.getContextPath()+"/operationError.jsp");
+			}
 		/*	
 			TariffManage tt = new TariffManage();
 			String tariffId = request.getParameter("tariffId");

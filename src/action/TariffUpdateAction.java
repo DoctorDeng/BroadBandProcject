@@ -69,6 +69,11 @@ public class TariffUpdateAction extends HttpServlet {
 		}
 		t.setTimeLong(timeLong);
 		boolean a = tar.updateTariff(t);
+		if (a) {
+			response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
+		} else {
+			response.sendRedirect(request.getContextPath()+"/operationError.jsp");
+		}
 	}
 
 	/**
