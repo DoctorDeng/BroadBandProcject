@@ -11,13 +11,12 @@ import mapper.CustomerMapper;
 import mapper.OsMapper;
 import util.SqlSessionUtil;
 
-public class ProfessionServiceImpl implements ProfessionService {
+public class ProfessionServiceImpl {
 	private SqlSession sqlSession;
 	private OsMapper osMapper;
 	private BussinessMapper bussinessMapper;
 	private CustomerMapper customerMapper;
 	
-	@Override
 	public List<OsDto> serviceListShow() {
 		try {
 			sqlSession = SqlSessionUtil.getSqlSession();
