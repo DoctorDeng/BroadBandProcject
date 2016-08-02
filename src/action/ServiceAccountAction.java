@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
 import bean.Customer;
+import bean.dto.OsDto;
 import bean.vo.BussinessViewBean;
+import service.ProfessionService;
 
 
 /**
@@ -36,10 +38,10 @@ public class ServiceAccountAction extends HttpServlet {
 		if(request.getParameter("id")!=null&&request.getParameter("id")!=""){
 			bussinessId = Integer.parseInt(request.getParameter("id"));
 		}
-		boolean b = true;
-		BussinessViewBean bussinessViewBean = new BussinessViewBean();
-		bussinessViewBean.setBussinessId(bussinessId);
-		//b = b&&new BussinessViewBeanDaoImpl().del(bussinessViewBean);
+		OsDto osDto = new OsDto();
+		osDto.setBussinessId(bussinessId);
+		ProfessionService pro = new ProfessionService();
+		boolean b = pro.delService(osDto);
 		if(b){
 			response.sendRedirect("service/service_list.jsp");
 		}

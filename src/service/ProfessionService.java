@@ -30,10 +30,10 @@ public class ProfessionService {
 		
 	}
 	
-	public boolean delService(Bussiness bussiness){
+	public boolean delService(OsDto osDto){
 		start();
-		Bussiness bus = bussinessMapper.selectBussinessById(bussiness.getBussinessId());
-		bussinessMapper.deleteBussiness(1);
+		Bussiness bus = bussinessMapper.selectBussinessById(osDto.getBussinessId());
+		bussinessMapper.deleteBussiness(bus.getBussinessId());
 		osMapper.delOneOsByOsId(bus.getOsId());
 		close();
 		return false;
