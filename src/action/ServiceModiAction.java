@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.vo.BussinessViewBean;
 import bean.vo.ServiceAddViewBean;
-import mapper.impl.BussinessViewBeanDaoImpl;
 
 /**
  * Servlet implementation class ServiceModiAction
@@ -37,10 +36,10 @@ public class ServiceModiAction extends HttpServlet {
 		System.out.println(request.getParameter("osAccount"));*/
 		bussinessViewBean.setOsAccount(request.getParameter("osAccount"));
 		bussinessViewBean.setTariffId(Integer.parseInt(tariffId));
-		boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);
-		if(b){
+		//boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);
+		/*if(b){
 			response.sendRedirect("ServiceMainAction");
-		}
+		}*/
 	}
 
 	/**

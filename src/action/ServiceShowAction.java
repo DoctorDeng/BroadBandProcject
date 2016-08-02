@@ -15,7 +15,6 @@ import javax.websocket.Session;
 import bean.Customer;
 import bean.Os;
 import bean.vo.ServiceAddViewBean;
-import mapper.impl.BussinessViewBeanDaoImpl;
 import service.CustomerService;
 
 /**
@@ -38,7 +37,7 @@ public class ServiceShowAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html;charset=utf-8");
+		/*response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();		
 		serviceAddViewBean.setIdNumber( request.getParameter("id"));
@@ -51,7 +50,7 @@ public class ServiceShowAction extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("customer", customer);
 		}
-		out.close();
+		out.close();*/
 	}
 
 	/**

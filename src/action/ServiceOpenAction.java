@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
-import mapper.impl.BussinessDaoImpl;
 
 /**
  * Servlet implementation class ServiceOpenAction
@@ -38,8 +37,8 @@ public class ServiceOpenAction extends HttpServlet {
 		String status = request.getParameter("status");
 		Bussiness b = new Bussiness();
 		b.setBussinessId(bussinessId);
-		b.setStatus(status);
-		new BussinessDaoImpl().updateStatus(b);
+		/*b.setStatus(status);
+		new BussinessDaoImpl().updateStatus(b);*/
 		response.sendRedirect(request.getContextPath()+"/service/service_list.jsp");
 	}
 

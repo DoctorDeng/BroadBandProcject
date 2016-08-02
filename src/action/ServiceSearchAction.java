@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.vo.ServiceAddViewBean;
-import mapper.impl.BussinessViewBeanDaoImpl;
 
 /**
  * Servlet implementation class ServiceSearchAction
@@ -54,15 +53,15 @@ public class ServiceSearchAction extends HttpServlet {
 		serviceAddViewBean.setOsAccount(osAccount);
 		serviceAddViewBean.setServerId(serviceIp);
 		serviceAddViewBean.setStatus(status);
-		List<ServiceAddViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
+		//List<ServiceAddViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
 		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
-		for(ServiceAddViewBean sa :lsa){
-			/*System.out.println(sa.getAdminId());
+		/*for(ServiceAddViewBean sa :lsa){
+			System.out.println(sa.getAdminId());
 			System.out.println(sa.getBussinessId());
-			System.out.println(sa.getCustomerName());*/
+			System.out.println(sa.getCustomerName());
 		}
 		session.setAttribute("lsa", lsa);
-		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");
+		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");*/
 	}
 
 	/**

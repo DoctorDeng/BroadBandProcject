@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.Bussiness;
 import bean.Customer;
 import bean.vo.BussinessViewBean;
-import mapper.impl.BussinessDaoImpl;
-import mapper.impl.BussinessViewBeanDaoImpl;
-import mapper.impl.CustomerDaoImpl;
+
 
 /**
  * Servlet implementation class ServiceAccountAction
@@ -41,7 +39,7 @@ public class ServiceAccountAction extends HttpServlet {
 		boolean b = true;
 		BussinessViewBean bussinessViewBean = new BussinessViewBean();
 		bussinessViewBean.setBussinessId(bussinessId);
-		b = b&&new BussinessViewBeanDaoImpl().del(bussinessViewBean);
+		//b = b&&new BussinessViewBeanDaoImpl().del(bussinessViewBean);
 		if(b){
 			response.sendRedirect("service/service_list.jsp");
 		}
