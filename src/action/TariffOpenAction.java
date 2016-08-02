@@ -35,7 +35,7 @@ public class TariffOpenAction extends HttpServlet {
 		if (null != mm && !"".equals(mm)) {
 			tariffId = Integer.parseInt(mm);
 		}
-		boolean isOpen = tt.openTariff(tariffId);
+		boolean isOpen = tt.updateStatus(tariffId);
 		request.getRequestDispatcher("/fee/fee_list.jsp").forward(request,response );
 	}
 
