@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Bussiness;
+import bean.dto.OsDto;
 import bean.vo.BussinessViewBean;
 import bean.vo.ServiceAddViewBean;
 import service.ProfessionService;
@@ -34,13 +36,13 @@ public class ServiceDetailAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*String bussinessId = request.getParameter("bussinessId");
-		ServiceAddViewBean serviceAddViewBean = new ServiceAddViewBean();
-		serviceAddViewBean.setBussinessId(Integer.parseInt(bussinessId));
-		List<ServiceAddViewBean>  lsit = new ProfessionServiceImpl().toShowService(serviceAddViewBean);
+		String bussinessId = request.getParameter("bussinessId");
+		Bussiness bussiness = new  Bussiness();
+		bussiness.setBussinessId(Integer.parseInt(bussinessId));
+		List<OsDto>  lsit = new ProfessionService().upServiceF(bussiness);
 		HttpSession  session = request.getSession();
 		session.setAttribute("lsit", lsit);
-		response.sendRedirect("service/service_detail.jsp");*/
+		response.sendRedirect("service/service_detail.jsp");
 	}
 
 	/**

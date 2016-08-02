@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Bussiness;
+import bean.Os;
 import bean.dto.OsDto;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
@@ -48,9 +49,31 @@ public class ProfessionService {
 	}
 	
 	
-	 
+	 /**
+	  * 修改用户信息,先查询出需要的信息
+	  * @return
+	  */
+	public List<OsDto> upServiceF(Bussiness bussiness){
+		start();
+		Bussiness bus = bussinessMapper.selectBussinessById(bussiness.getBussinessId());
+		Os os = new Os();
+		os.setOsId(bus.getOsId());
+		List<OsDto> listD = (List<OsDto>) osMapper.selOneOsByOsid(bus.getOsId());
+		close();
+		return  listD;
+
+	}
+	/**
+	 * 进行修改信息
+	 * @return
+	 */
+/*	public List<OsDto> upServiceT(OsDto osDto){
+ * }
+		return  OsDto;*/
+		
 	
 	/**
+	 * 
 	 * 构建环境
 	 */
 	public  void start(){

@@ -51,7 +51,8 @@
                b.osId = o.osId AND
                o.customerId = c.customerId AND
                t.tariffId = o.tariffId
-		
+			   ORDER BY
+               b.bussinessId ASC
 	</select>
 	<!-- 通过查询身份证进行对Os表的添加功能 -->
 	<insert id="addOsInfo">

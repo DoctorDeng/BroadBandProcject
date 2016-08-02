@@ -9,6 +9,7 @@ public class OsDto {
 	private String status;
 	private String serverIp;      //服务器IP地址
 	private String tariffName;     //资费名称
+	private int    tariffId;
 	public int getBussinessId() {
 		return bussinessId;
 	}
@@ -56,6 +57,12 @@ public class OsDto {
 	}
 	public void setTariffName(String tariffName) {
 		this.tariffName = tariffName;
+	}
+	public int getTariffId() {
+		return tariffId;
+	}
+	public void setTariffId(int tariffId) {
+		this.tariffId = tariffId;
 	}
 	@Override
 	public String toString() {
