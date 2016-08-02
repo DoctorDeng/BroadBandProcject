@@ -1,11 +1,16 @@
 package service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 
 import bean.Tariff;
 import mapper.TariffMapper;
+import util.SqlSessionUtil;
 
 public class TariffService {
+	private SqlSession sqlSession;
 	private TariffMapper tariffMapper;
 	
 	public TariffService() {
@@ -15,7 +20,10 @@ public class TariffService {
 	 * @return
 	 */
 	public List<Tariff> getShowMessage(){
-		return tariffMapper.findAll();
+		init();
+		List<Tariff>tariff=tariffMapper.findAllTariff();
+		close();
+		return tariff;
 	}
 	
 	/**
@@ -24,7 +32,21 @@ public class TariffService {
 	 * @return
 	 */
 	public boolean addTariff(Tariff t){
-		return tariffMapper.add(t);
+		init();
+		boolean s = tariffMapper.addTariff(t);
+		close();
+		return s;
+	}
+	/**
+	 * 删除资费
+	 * @param tariffId
+	 * @return
+	 */
+	public boolean delTariff(int tariffId){
+		init();
+		boolean d = tariffMapper.delTariff(tariffId);
+		close();
+		return d;
 	}
 	/**
 	 * 开启资费
@@ -32,7 +54,10 @@ public class TariffService {
 	 * @return          开启成功返回true，失败返回false
 	 */
 	public boolean updateStatus(int tariffId) {
-		return tariffMapper.updateStatus(tariffId);
+		init();
+		boolean b = tariffMapper.updateTariffStatus(tariffId);
+		close();
+		return b;
 	}
 	/**
 	 * 更新Tariff
@@ -40,6 +65,22 @@ public class TariffService {
 	 * @return
 	 */
 	public boolean updateTariff(Tariff tariff) {
-		return tariffMapper.update(tariff);
+		init();
+		boolean c = tariffMapper.updateTariff(tariff);
+		close();
+		return c;
+	}
+	public void init(){
+		try {
+			sqlSession = SqlSessionUtil.getSqlSession();
+			tariffMapper = sqlSession.getMapper(TariffMapper.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//提交关闭SqlSession
+	public void close(){
+		sqlSession.commit();
+		sqlSession.close();
 	}
 }

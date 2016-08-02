@@ -14,20 +14,20 @@
         <result property="tariffType" column="tariffType"/>
         <result property="tariffExplain" column="tariffExplain"/>
    </resultMap>
-   <select id="findAll" resultMap="TariffResultMap">
+   <select id="findAllTariff" resultMap="TariffResultMap">
        select * from tariff
    </select>
-   <select id="findOne" resultMap="TariffResultMap">
+   <select id="findOneTariff" resultMap="TariffResultMap">
        select * from tariff where tariffId=#{tariffId}
    </select>
-   <insert id="add">
+   <insert id="addTariff">
         insert into tariff(tariffName,tariff,timeLong,timeTariff,createTime,status,tariffType,tariffExplain)
 		values(#{tariffName},#{tariff},#{timeLong},#{timeTariff},now(),0,#{tariffType},#{tariffExplain})
    </insert>
-   <delete id="del" parameterType="int">
+   <delete id="delTariff" parameterType="int">
        delete from tariff where tariffId=#{tariffId}
    </delete>
-   <update id="update" parameterType="int">
+   <update id="updateTariff" parameterType="int">
        update tariff
        <set>
          <if test="tariffName!=null and tariffName!=''">
@@ -51,7 +51,7 @@
        </set>
        where tariffId=#{tariffId}
    </update>
-   <update id="updateStatus">
+   <update id="updateTariffStatus">
        update tariff SET openTime=now(),status='1' WHERE tariffId=#{tariffId}   
    </update>
 </mapper>
