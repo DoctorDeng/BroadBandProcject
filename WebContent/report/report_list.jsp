@@ -50,7 +50,7 @@
         <!--Logo区域开始-->
         <div id="header">
             <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
+            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
@@ -105,26 +105,6 @@
   							<tr>
   						</c:forEach>     
                     </table>
-                    <!-- <table id="datalist2" style="display:none;">
-                        <tr>                            
-                            <th class="width300">Unix 服务器IP</th>
-                            <th>包月</th>
-                            <th>套餐</th>
-                            <th>计时</th>
-                        </tr>                      
-                        <tr>
-                            <td>192.168.0.20</td>
-                            <td>345</td>
-                            <td>21</td>
-                            <td>34</td>
-                        </tr>
-                        <tr>
-                            <td>192.168.0.23</td>
-                            <td>32</td>
-                            <td>221</td>
-                            <td>314</td>
-                        </tr>   -->                      
-                    </table> -->
                 </div>
                 <!--分页-->
                 <c:choose>
@@ -163,21 +143,6 @@
                 </div>
                 	</c:when>
                 </c:choose>
-                
-                <%-- <div id="pages">
-                    <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        <a href="/lanqiao/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
-                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
-                    	<c:if test="${i == requestScope.page.currentPage}">
-                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
-                    	</c:if>
-                    	<c:if test="${i != requestScope.page.currentPage}">
-                    		<a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
-                    	</c:if>
-                    </c:forEach>
-                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    <a href="/lanqiao/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
-                </div> --%>
             </div>
         </div>
         <!--主要区域结束-->

@@ -53,8 +53,7 @@
         <!--Logo区域开始-->
         <div id="header">
             <img src="<%=request.getContextPath() %>/images/logo.png" alt="logo" class="left"/>
-			<span>当前账号：<b>scott</b></span>
-            <a href="#">[退出]</a>            
+            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>             
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->

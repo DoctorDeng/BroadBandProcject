@@ -71,7 +71,7 @@
         <!--Logo区域开始-->
         <div id="header">
             <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
-            <a href="# ">[退出]</a>            
+            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>              
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
@@ -135,7 +135,7 @@
                 <br/>
                 <p id="point" style="display:none;color:red">1、搜索最多显示7条数据</p>
                 </div>                    
-                <!--分页-->disabled
+                <!--分页-->
                 <div id="pages">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
                 			

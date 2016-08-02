@@ -15,7 +15,7 @@
       <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
     </taglib>
   </jsp-config>
- <filter>
+  <filter>
     <display-name>CharacterEncodingFilter</display-name>
     <filter-name>CharacterEncodingFilter</filter-name>
     <filter-class>filter.CharacterEncodingFilter</filter-class>
