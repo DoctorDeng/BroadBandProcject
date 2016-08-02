@@ -1,7 +1,9 @@
-`<%@ page language="java" contentType="text/html; charset=UTF-8"
+`<%@page import="service.impl.ProfessionServiceImpl"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="bean.vo.BussinessViewBean" %>
+    <%@page import="bean.dto.*" %>
     <%@page import="java.util.*" %>
+    <%@page import="mapper.*" %>
  <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -124,23 +126,20 @@
                         <th class="width100">服务器 IP</th>
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
-                    </tr>
-		<%-- <%
-		BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
-		List<BussinessViewBean> lv = bv.findAll();
-		session.setAttribute("lv", lv);
-		for(BussinessViewBean sv:lv){
+       <%--              </tr>
+		<%
+		for(OsDto sv:s){
 		%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>" title="查看明细" ><%=sv.getBussinessId()%></a></td>
-                        <td><%=sv.getAdminId() %></td>
+                        <td><%=sv.getBussinessId() %></td>
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
                         <td><%=sv.getOsAccount() %></td>
                         <td><%=sv.getStatus()%></td>
-                        <td><%=sv.getServerId()%></td>
+                        <td><%=sv.getServerIp()%></td>
                         <td>
-                            <a class="summary" ><%=sv.getTraiffName()%></a>
+                            <a class="summary" ><%=sv.getTariffName()%></a>
                             <!--浮动的详细信息-->
                             <div class="detail_info">
                                 20小时，24.5 元，超出部分 0.03元/分钟
@@ -152,7 +151,7 @@
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
-                      <%} %>             --%>                                                     
+                      <%} %>                                                                 
                 </table>
                 <p>业务说明：<br />
                 1、创建即开通，记载创建时间；<br />
@@ -174,7 +173,7 @@
                     <a href="#">下一页</a>
                     <a href="#">末页</a>
                 </div>  -->                   
-            </form>
+            </form> --%>
         </div>
         <!--主要区域结束-->
         <div id="footer">

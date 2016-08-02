@@ -1,4 +1,4 @@
-package service.impl;
+package service;
 import java.io.IOException;
 import java.util.List;
 
@@ -9,7 +9,6 @@ import bean.vo.ServiceAddViewBean;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
 import mapper.OsMapper;
-import service.ProfessionService;
 import util.SqlSessionUtil;
 
 public class ProfessionServiceImpl implements ProfessionService {
