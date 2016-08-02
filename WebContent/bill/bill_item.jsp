@@ -14,7 +14,7 @@
   			</script>
   		</c:if>
         <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
+        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
   				<c:when test="${power==6}">
@@ -25,7 +25,7 @@
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
   		<c:if test="${hasPower==false}">
   			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopowr.jsp";
+  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
   			</script>
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
@@ -85,10 +85,10 @@
   					
   						<c:forEach items="${requestScope.billDetailForm}" var="billDetail" >
   							<tr>
-  								<td><c:out value="${billDetail.billDetailId}"/></td>
+  								<td><c:out value="${billDetail.customerId}"/></td>
   								<td><c:out value="${billDetail.osAccount}"/></td>
   								<td><c:out value="${billDetail.serverIp}"/></td>
-  								<td><c:out value="${billDetail.loginAccount}"/></td>
+  								<td><c:out value="${billDetail.customerAccount}"/></td>
   								<td><c:out value="${billDetail.timeLong}"/></td>
   								<td><c:out value="${billDetail.cost}"/></td>
   								<td><c:out value="${billDetail.tariffName}"/></td>

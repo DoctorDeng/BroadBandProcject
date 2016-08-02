@@ -13,6 +13,15 @@ public class BillDetailDto {
 	private String tariffName;
 	//月资费
 	private double tariff;
+	//Os账号ID
+	private int    osId;
+	public int getOsId() {
+		return osId;
+	}
+
+	public void setOsId(int osId) {
+		this.osId = osId;
+	}
 	//单位时间资费
 	private int    timeTariff;
 	//资费时长

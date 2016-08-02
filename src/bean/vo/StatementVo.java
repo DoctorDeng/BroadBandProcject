@@ -66,4 +66,9 @@ public class StatementVo {
 	public void setTimeLong(String timeLong) {
 		this.timeLong = timeLong;
 	}
+	@Override
+	public String toString() {
+		return "StatementVo [customerId=" + customerId + ", customerAccount=" + customerAccount + ", customerName="
+				+ customerName + ", idNumber=" + idNumber + ", phone=" + phone + ", timeLong=" + timeLong + "]";
+	}
 }

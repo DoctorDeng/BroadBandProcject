@@ -47,37 +47,9 @@ public class BillAction extends HttpServlet {
 		 * 通过分页显示账单信息
 		 */
 		case "showBill":
-			PageDto page       = new PageDto();
-			int pageSize    = 4;
-	  		int currentPage = 1;
-	  		int indexPage   = 1;
-			int nextPage    = 1;
-	 		int upPage      = 1;	 		
-	 		int recordNum   = billService.getBillFormSize();
-	 		int pageNum     = (int) Math.ceil(recordNum/pageSize);
-	 		int endPage     = pageNum;
-	 		String currentPageStr = request.getParameter("currentPage");
-			if (null !=currentPageStr && !"".equals(currentPageStr)){
-				currentPage = Integer.parseInt(currentPageStr);
-			}
-					
-			if (currentPage!=1 && pageNum > 1) {
-	  			upPage = currentPage - 1; 
-	  		}
-	  		if (currentPage<pageNum && pageNum>2) {
-	  			nextPage = currentPage +1;
-	  		}
-	  		if (currentPage== pageNum) {
-	  			nextPage = pageNum;
-	  		}
-	  		page.setIndexPage(indexPage);
-	  		page.setEndPage(endPage);
-	  		page.setNextPage(nextPage);
-	  		page.setUpPage(upPage);
-	  		page.setCurrentPage(currentPage);
-	  		List<BillFormBean> billFormList = billService.getBillFormByPage((currentPage-1)*pageSize, pageSize);
-	  		request.setAttribute("billForm", billFormList);
-	  		request.setAttribute("page", page);
+			String currentPageStr = request.getParameter("currentPage");
+			PageDto pageDto = billService.getBillFormByPage(currentPageStr, 4);
+	  		request.setAttribute("billPage", pageDto);
 	  		request.setAttribute("isPage", "yes");
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
 			break;

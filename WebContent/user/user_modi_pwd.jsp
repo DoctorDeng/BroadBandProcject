@@ -5,13 +5,13 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />        
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />        
 </head>
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="<%=request.getContextPath() %>/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -25,7 +25,7 @@
         <div id="main">      
             <!--保存操作后的提示信息：成功或者失败-->      
             <div id="save_result_info" class="save_success">保存成功！</div><!--保存失败，旧密码错误！-->
-            <form action="/lanqiao/ChangePasswordAction" method="post" class="main_form">
+            <form action="<%=request.getContextPath() %>/ChangePasswordAction" method="post" class="main_form">
                 <div class="text_info clearfix"><span>旧密码：</span></div>
                 <div class="input_info">
                     <input type="password" class="width200" name="oldPassword" /><span class="required">*</span>

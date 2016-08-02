@@ -59,6 +59,7 @@ public class AdminService {
 				} 
 			}
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -91,6 +92,7 @@ public class AdminService {
 				return true;
 			}
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -107,6 +109,7 @@ public class AdminService {
 			close();
 			return true;
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -133,6 +136,7 @@ public class AdminService {
 			close();
 			return true;
 		}
+		sqlSession.rollback();
 		sqlSession.close();
 		return false;
 	}
@@ -165,6 +169,19 @@ public class AdminService {
 		sqlSession.close();
 	}
 	public static void main(String[] args) {
-		
+		AdminService adminService = new AdminService();
+		Admin admin = new Admin();
+		admin.setAdminAccount("testForadd");
+		admin.setAdminName("doctorTest");
+		admin.setEmail("22@#");
+		admin.setIdNumber("sdfsdf");
+		admin.setPhone("12546");
+		admin.setPassword("123456");
+		List<Power> powers = new ArrayList<>();
+		Power power = new Power();
+		power.setPowerId(1);
+		powers.add(power);
+		admin.setPowers(powers);
+		System.out.println(adminService.addAdmin(admin));
 	}
 }

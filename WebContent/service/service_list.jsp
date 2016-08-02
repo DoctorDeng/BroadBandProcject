@@ -1,7 +1,5 @@
 `<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="dao.*"%>
-<%@page import="dao.impl.*" %>
     <%@page import="bean.vo.BussinessViewBean" %>
     <%@page import="java.util.*" %>
  <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
@@ -127,7 +125,7 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-		<%
+		<%-- <%
 		BussinessViewBeanDaoImpl bv = new BussinessViewBeanDaoImpl();
 		List<BussinessViewBean> lv = bv.findAll();
 		session.setAttribute("lv", lv);
@@ -154,7 +152,7 @@
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
-                      <%} %>                                                                 
+                      <%} %>             --%>                                                     
                 </table>
                 <p>业务说明：<br />
                 1、创建即开通，记载创建时间；<br />

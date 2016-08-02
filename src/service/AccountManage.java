@@ -58,10 +58,13 @@ public class AccountManage {
         admin.setPassword(newPassword);
         
 		int result = adminMapper.updateAdminPassword(admin);
-		sqlSession.close();
 		if (result == 1) {
+			sqlSession.commit();
+			sqlSession.close();
 			return true;
 		}
+		sqlSession.rollback();
+		sqlSession.close();
 		return false;
 	}
 	/**
@@ -78,10 +81,13 @@ public class AccountManage {
 		adminMapper = sqlSession.getMapper(AdminMapper.class);
 		
 		int result = adminMapper.resetAdminsPassword(adminIds);
-		sqlSession.close();
 		if (result > 0) {
+			sqlSession.commit();
+			sqlSession.close();
 			return true;
 		}
+		sqlSession.rollback();
+		sqlSession.close();
 		return false;
 	}
 }

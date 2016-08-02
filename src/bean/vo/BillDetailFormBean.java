@@ -2,9 +2,9 @@ package bean.vo;
 
 public class BillDetailFormBean {
 	/**
-	 * 用户详单ID
+	 * 客户ID
 	 */
-	private int billDetailId;
+	private int customerId;
 	/**
 	 * OS 账号
 	 */
@@ -14,9 +14,9 @@ public class BillDetailFormBean {
 	 */
 	private String serverIp;
 	/**
-	 * 账务账号
+	 * 客户账务账号
 	 */
-	private String loginAccount;
+	private String customerAccount;
 	/**
 	 * 时长
 	 */
@@ -24,7 +24,7 @@ public class BillDetailFormBean {
 	/**
 	 * 费用
 	 */
-	private double cost;
+	private String cost;
 	/**
 	 * 资费名称
 	 */
@@ -34,85 +34,71 @@ public class BillDetailFormBean {
 	 */
 	private int    osId;
 	
-
-	public BillDetailFormBean(int billDetailId, String osAccount, String serverIp, String loginAccount, String timeLong,
-			double cost, String tariffName, int osId) {
+	public BillDetailFormBean(int customerId, String osAccount, String serverIp, String customerAccount,
+			String timeLong, String cost, String tariffName, int osId) {
 		super();
-		this.billDetailId = billDetailId;
+		this.customerId = customerId;
 		this.osAccount = osAccount;
 		this.serverIp = serverIp;
-		this.loginAccount = loginAccount;
+		this.customerAccount = customerAccount;
 		this.timeLong = timeLong;
 		this.cost = cost;
 		this.tariffName = tariffName;
 		this.osId = osId;
 	}
-
-	public int getOsId() {
-		return osId;
+	
+	public int getCustomerId() {
+		return customerId;
 	}
-
-	public void setOsId(int osId) {
-		this.osId = osId;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
-
-	public BillDetailFormBean(){
-		
-	}
-
-	public int getBillDetailId() {
-		return billDetailId;
-	}
-
-	public void setBillDetailId(int billDetailId) {
-		this.billDetailId = billDetailId;
-	}
-
 	public String getOsAccount() {
 		return osAccount;
 	}
-
 	public void setOsAccount(String osAccount) {
 		this.osAccount = osAccount;
 	}
-
 	public String getServerIp() {
 		return serverIp;
 	}
-
 	public void setServerIp(String serverIp) {
 		this.serverIp = serverIp;
 	}
-
-	public String getLoginAccount() {
-		return loginAccount;
+	public String getCustomerAccount() {
+		return customerAccount;
 	}
-
-	public void setLoginAccount(String loginAccount) {
-		this.loginAccount = loginAccount;
+	public void setCustomerAccount(String customerAccount) {
+		this.customerAccount = customerAccount;
 	}
-
-	public String getTariffName() {
-		return tariffName;
-	}
-
-	public void setTariffName(String tariffName) {
-		this.tariffName = tariffName;
-	}
-
 	public String getTimeLong() {
 		return timeLong;
 	}
-
 	public void setTimeLong(String timeLong) {
 		this.timeLong = timeLong;
 	}
-
-	public double getCost() {
+	public String getCost() {
 		return cost;
 	}
-
-	public void setCost(double cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
+	}
+	public String getTariffName() {
+		return tariffName;
+	}
+	public void setTariffName(String tariffName) {
+		this.tariffName = tariffName;
+	}
+	public int getOsId() {
+		return osId;
+	}
+	public void setOsId(int osId) {
+		this.osId = osId;
+	}
+	@Override
+	public String toString() {
+		return "BillDetailFormBean [customerId=" + customerId + ", osAccount=" + osAccount + ", serverIp=" + serverIp
+				+ ", customerAccount=" + customerAccount + ", timeLong=" + timeLong + ", cost=" + cost + ", tariffName="
+				+ tariffName + ", osId=" + osId + "]";
 	}
 }

@@ -37,7 +37,7 @@ public class TestAdmin {
 
 	@Test
 	public void testSelectAdminById() {
-		System.out.println(adminMapper.selectAdminById(200));
+		System.out.println(adminMapper.selectAdminById(1).getPowers().size());
 		sqlSession.close();
 	}
 	@Test

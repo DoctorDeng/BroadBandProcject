@@ -18,7 +18,7 @@ public interface BillMapper {
 	 * 获取所有的账单信息
 	 * @return List<BillDto>
 	 */
-	public List<BillDto> selectAllBill(Page page);
+	public List<BillDto> selectPageBill(Page page);
 	/**
 	 * 通过条件查询账单信息
 	 * @param billSearchDto  存储查询条件的Dto

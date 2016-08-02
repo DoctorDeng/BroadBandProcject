@@ -11,7 +11,7 @@ public class StringUtil {
 	 * @return     为空返回TRUE，不为空返回false
 	 */
 	public static boolean isNull(String str) {
-		if (null != str && !"".equals(str)) {
+		if (null == str || "".equals(str)) {
 			return true;
 		}
 		return false;

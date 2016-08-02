@@ -39,7 +39,7 @@ public class TestBill {
 	@Test
 	public void test() {
 		/*System.out.println(billMapper.selectBillDetailDtoByBillId(1).size());*/
-		System.out.println(billMapper.selectAllBill(new Page(1,5)).size());
+		System.out.println(billMapper.selectPageBill(new Page(1,5)).size());
 	}
 	
 	@Test

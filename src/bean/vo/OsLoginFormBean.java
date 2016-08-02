@@ -78,4 +78,10 @@ public class OsLoginFormBean {
 	public void setTariffName(String tariffName) {
 		this.tariffName = tariffName;
 	}
+
+	@Override
+	public String toString() {
+		return "OsLoginFormBean [loginIp=" + loginIp + ", loginInTime=" + loginInTime + ", loginOutTime=" + loginOutTime
+				+ ", timeLong=" + timeLong + ", cost=" + cost + ", tariffName=" + tariffName + "]";
+	}
 }
