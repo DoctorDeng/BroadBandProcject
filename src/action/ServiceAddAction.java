@@ -34,20 +34,10 @@ public class ServiceAddAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session =request.getSession();
-		Customer customer = (Customer) session.getAttribute("customer");
-		ServiceAddViewBean  serviceAddViewBean = new ServiceAddViewBean();
-		serviceAddViewBean.setCustomerId(customer.getCustomerId());
-		serviceAddViewBean.setOsAccount(request.getParameter("osAccount"));
-		serviceAddViewBean.setOsPassword(request.getParameter("osPassword"));
-		String traiffId = request.getParameter("traiffId");
-		serviceAddViewBean.setTariffId(Integer.parseInt(traiffId));
-		serviceAddViewBean.setServerId(request.getParameter("serverIp"));
-		boolean succiess = new ProfessionServiceImpl().addService(serviceAddViewBean);
-		if(succiess){
-			response.sendRedirect("ServiceMainAction");
-		}else{
-			
-		}
+		request.getParameter("osAccount");
+		request.getParameter("osPassword");
+		request.getParameter("traiffId");
+		request.getParameter("serverIp");
 	}
 
 	/**

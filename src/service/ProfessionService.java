@@ -2,21 +2,14 @@ package service;
 
 import java.util.List;
 
+import bean.dto.OsDto;
 import bean.vo.ServiceAddViewBean;
 
 public interface ProfessionService {
-
 	/**
-	 * 增加业务完成之后进行跳转
+	 * 通过查询的信息实现将吧信息传递到页面
+	 * @param osDto
+	 * @return
 	 */
-
-	public boolean addService(ServiceAddViewBean serviceAddViewBean);
-	/**
-	 * 根据特定条件查询结果
-	 */
-	public List<ServiceAddViewBean> selService(ServiceAddViewBean serviceAddViewBean);
-	/**
-	 * 将详细信息传递到servlet
-	 */
-	public List<ServiceAddViewBean> toShowService(ServiceAddViewBean serviceAddViewBean);
+	public List<OsDto>  serviceListShow();
 }

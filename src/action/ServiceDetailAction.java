@@ -34,13 +34,13 @@ public class ServiceDetailAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String bussinessId = request.getParameter("bussinessId");
+		/*String bussinessId = request.getParameter("bussinessId");
 		ServiceAddViewBean serviceAddViewBean = new ServiceAddViewBean();
 		serviceAddViewBean.setBussinessId(Integer.parseInt(bussinessId));
 		List<ServiceAddViewBean>  lsit = new ProfessionServiceImpl().toShowService(serviceAddViewBean);
 		HttpSession  session = request.getSession();
 		session.setAttribute("lsit", lsit);
-		response.sendRedirect("service/service_detail.jsp");
+		response.sendRedirect("service/service_detail.jsp");*/
 	}
 
 	/**
