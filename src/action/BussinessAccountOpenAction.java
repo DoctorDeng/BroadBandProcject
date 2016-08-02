@@ -1,14 +1,19 @@
 package action;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Bussiness;
-import mapper.impl.BussinessDaoImpl;
+import org.apache.ibatis.session.SqlSession;
+
+import bean.Customer;
+import mapper.CustomerMapper;
+import service.AccountService;
+import util.SqlSessionUtil;
 
 /**
  * Servlet implementation class BussinessAccountOpenAction
@@ -37,10 +42,25 @@ public class BussinessAccountOpenAction extends HttpServlet {
 			bussinessId = Integer.parseInt(strId);
 		}
 		String status = request.getParameter("status");
-		Bussiness b = new Bussiness();
-		b.setBussinessId(bussinessId);
-		b.setStatus(status);
-		new BussinessDaoImpl().updateStatus(b);
+		Customer c = new Customer();
+		c.setCustomerId(bussinessId);
+		if("1".equals(status)){
+			c.setStatus("0");
+		}else if("0".equals(status)){
+			c.setStatus("1");
+		}
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			cm.updateCustomer(c);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}
 		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
 	}
 

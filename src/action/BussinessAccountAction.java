@@ -1,16 +1,18 @@
 package action;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Bussiness;
+import org.apache.ibatis.session.SqlSession;
+
 import bean.Customer;
-import mapper.impl.BussinessDaoImpl;
-import mapper.impl.CustomerDaoImpl;
+import mapper.CustomerMapper;
+import util.SqlSessionUtil;
 
 /**
  * Servlet implementation class BussinessAccountAction
@@ -38,18 +40,20 @@ public class BussinessAccountAction extends HttpServlet {
 			String bus = request.getParameter("id");
 			bussinessId = Integer.parseInt(bus);
 		}
-		boolean b = true;
-		int customerId = new BussinessDaoImpl().findOne(bussinessId).getCustomerId();
-		System.out.println(customerId);
+		int customerId = bussinessId;
 		Customer customer = new Customer();
 		customer.setCustomerId(customerId);
-		b = b&&new CustomerDaoImpl().del(customer);
-		
-		Bussiness bussiness = new Bussiness();
-		bussiness.setBussinessId(bussinessId);
-		b = b&&new BussinessDaoImpl().del(bussiness);
-		if(b){
-			response.sendRedirect("account_list.jsp");
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			cm.deleteCustomer(customerId);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
 		}
 		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
 		
