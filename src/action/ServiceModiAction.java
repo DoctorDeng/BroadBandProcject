@@ -32,8 +32,6 @@ public class ServiceModiAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		BussinessViewBean bussinessViewBean  = new BussinessViewBean();
 		String tariffId = request.getParameter("traiffId");
-		/*System.out.println(request.getParameter("traiffId"));
-		System.out.println(request.getParameter("osAccount"));*/
 		bussinessViewBean.setOsAccount(request.getParameter("osAccount"));
 		bussinessViewBean.setTariffId(Integer.parseInt(tariffId));
 		//boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);

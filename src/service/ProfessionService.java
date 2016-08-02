@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Bussiness;
+import bean.Customer;
 import bean.Os;
 import bean.dto.OsDto;
+import bean.dto.OsShowDto;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
 import mapper.OsMapper;
@@ -53,15 +55,14 @@ public class ProfessionService {
 	  * 修改用户信息,先查询出需要的信息
 	  * @return
 	  */
-	public List<OsDto> upServiceF(Bussiness bussiness){
+	public List<OsShowDto> upServiceF(Bussiness bussiness){
 		start();
-		Bussiness bus = bussinessMapper.selectBussinessById(bussiness.getBussinessId());
-		Os os = new Os();
-		os.setOsId(bus.getOsId());
-		List<OsDto> listD = (List<OsDto>) osMapper.selOneOsByOsid(bus.getOsId());
+		OsShowDto osShowDto = new OsShowDto();
+		osShowDto.setBussinessId(bussiness.getBussinessId());
+		List<OsShowDto> list = osMapper.setManyInfo(osShowDto);
 		close();
-		return  listD;
-
+		return list;
+	
 	}
 	/**
 	 * 进行修改信息

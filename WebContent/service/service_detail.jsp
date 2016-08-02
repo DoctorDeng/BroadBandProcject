@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="bean.vo.*" %>
+<%@page import="bean.dto.*" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,19 +45,19 @@
             <form action="" method="" class="main_form">
                 <>!--必填项-->
                 <%
-                List<ServiceAddViewBean>  lsit = (ArrayList<ServiceAddViewBean>)session.getAttribute("lsit");
-                for(ServiceAddViewBean sv : lsit){
+                List<OsShowDto>  lsit = (ArrayList<OsShowDto>)session.getAttribute("lsit");
+                for(OsShowDto sv : lsit){
                 %>
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getBussinessId()%>" /></div>
                 <div class="text_info clearfix"><span>账务账号ID：</span></div>
-                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getAdminId() %>"/></div>
+                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getCustomerId() %>"/></div>
                 <div class="text_info clearfix"><span>客户姓名：</span></div>
                 <div class="input_info"><input type="text" readonly class="readonly"  value="<%=sv.getCustomerName() %>"/></div>
                 <div class="text_info clearfix"><span>身份证号码：</span></div>
                 <div class="input_info"><input type="text" readonly class="readonly"  value="<%=sv.getIdNumber() %>"/></div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
-                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getServerId() %>" /></div>
+                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getServerIp() %>" /></div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
                 <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getOsAccount() %>"/></div>
                 <div class="text_info clearfix"><span>状态：</span></div>
@@ -68,8 +68,6 @@
                         <option value="">删除</option>
                     </select>                        
                 </div>
-                <div class="text_info clearfix"><span>开通时间：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="<%=sv.getOpenTime() %>" /></div>
                 <div class="text_info clearfix"><span>资费 ID：</span></div>
                 <div class="input_info"><input type="text" class="readonly" readonly value="<%=sv.getTariffId() %>"/></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>

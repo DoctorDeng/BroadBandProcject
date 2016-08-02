@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Bussiness;
 import bean.dto.OsDto;
+import bean.dto.OsShowDto;
 import bean.vo.BussinessViewBean;
 import bean.vo.ServiceAddViewBean;
 import service.ProfessionService;
@@ -39,7 +40,7 @@ public class ServiceDetailAction extends HttpServlet {
 		String bussinessId = request.getParameter("bussinessId");
 		Bussiness bussiness = new  Bussiness();
 		bussiness.setBussinessId(Integer.parseInt(bussinessId));
-		List<OsDto>  lsit = new ProfessionService().upServiceF(bussiness);
+		List<OsShowDto>  lsit = new ProfessionService().upServiceF(bussiness);
 		HttpSession  session = request.getSession();
 		session.setAttribute("lsit", lsit);
 		response.sendRedirect("service/service_detail.jsp");

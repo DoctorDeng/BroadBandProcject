@@ -91,4 +91,34 @@
               </if>
               </where>
 	</select>
+	<select id="setManyInfo"  resultType="OsShowDto">
+				SELECT
+				bussiness.bussinessId,
+				customer.customerId,
+				customer.customerName,
+				customer.idNumber,
+				os.serverIp,
+				os.`status`,
+				os.tariffId,
+				tariff.tariffId,
+				tariff.tariffName,
+				tariff.tariffExplain,
+				tariff.tariffType
+				FROM
+				bussiness ,
+				customer ,
+				os ,
+				tariff
+			<where>
+				<if test="true">
+				bussiness.osId = os.osId AND
+				</if>
+				<if test="true">
+				customer.customerId = os.customerId AND
+				</if>
+				<if test="true">
+				os.tariffId = tariff.tariffId
+				</if>
+			</where>
+	</select>
 </mapper>

@@ -6,6 +6,7 @@ import bean.Os;
 import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import bean.dto.OsLoginDto;
+import bean.dto.OsShowDto;
 
 public interface OsMapper {
 	/**
@@ -53,4 +54,11 @@ public interface OsMapper {
 	 * @return
 	 */
 	public List<OsDto> selChooseInfo(OsDto osDto);
+	
+	/**
+	 * 查询详细信息所用
+	 * @param osDto
+	 * @return
+	 */
+	public List<OsShowDto> setManyInfo(OsShowDto osShowDto);
 }
