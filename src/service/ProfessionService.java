@@ -30,15 +30,25 @@ public class ProfessionService {
 		
 	}
 	
+	/**
+	 * 删除信息
+	 * @param osDto
+	 * @return
+	 */
 	public boolean delService(OsDto osDto){
 		start();
 		Bussiness bus = bussinessMapper.selectBussinessById(osDto.getBussinessId());
 		bussinessMapper.deleteBussiness(bus.getBussinessId());
-		osMapper.delOneOsByOsId(bus.getOsId());
+		boolean b = osMapper.delOneOsByOsId(bus.getOsId());
+		if(b){
+			return true;
+		}
 		close();
 		return false;
 	}
 	
+	
+	 
 	
 	/**
 	 * 构建环境

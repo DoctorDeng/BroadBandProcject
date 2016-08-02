@@ -30,8 +30,9 @@ public interface OsMapper {
 	/**
 	 * 业务账号通过业务ID来删除Os表中的一条信息
 	 * @param OsId
+	 * @return 
 	 */
-	public void delOneOsByOsId(int OsId);
+	public boolean delOneOsByOsId(int OsId);
 	
 	/**
 	 * 查询业务界面显示信息
