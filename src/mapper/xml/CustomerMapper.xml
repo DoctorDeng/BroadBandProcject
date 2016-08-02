@@ -57,12 +57,12 @@
 				and idNumber like '%' #{idNumber} '%'
 			</if>
 			<if test="customerName!=null and customerName!='' and customerName!='不验证'">
-				and customerName like '%' #{customerName} '%'
+				and customerName like concat(concat('%',#{customerName}),'%')
 			</if>
 			<if test="customerAccount!=null and customerAccount!='' and customerAccount!='不验证'">
-				and customerAccount like '%'#{customerAccount} '%'
+				and customerAccount like '%' #{customerAccount} '%'
 			</if>
-			<if test="status!=null and status!='' and status!='不验证'">
+			<if test="status!=null and status!='' and status!='-1'">
 				and status=#{status}
 			</if>
 		</where>

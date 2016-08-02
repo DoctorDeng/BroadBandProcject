@@ -44,7 +44,6 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		String name = request.getParameter("name");
 		String loginAccount = request.getParameter("loginAccount");
 		String status = request.getParameter("status");
-		System.out.println("当前状态是："+status);
 		AccountViewBean a = new AccountViewBean();                                                                     
 		a.setBussinessName(name);
 		a.setIdNumber(idNumber);

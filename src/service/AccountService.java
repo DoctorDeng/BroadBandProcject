@@ -49,11 +49,16 @@ public class AccountService {
 	
 	public List<AccountViewBean> searchAccountViewBean(AccountViewBean a,int currentPage){
 		Customer customer = new Customer();
-		customer.setIdNumber(a.getIdNumber());
+		if(!"不验证".equals(a.getIdNumber())){
+			customer.setIdNumber(a.getIdNumber());
+		}
 		customer.setStatus(a.getStatus());
-		customer.setCustomerName(a.getBussinessName());
+		if(!"不验证".equals(a.getBussinessName())){
+			customer.setCustomerName(a.getBussinessName());
+		}
 		customer.setCustomerAccount(a.getLoginAccount());
-		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
+		List<AccountViewBean> la = new ArrayList<AccountViewBean>();
+		System.out.println(customer);
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
@@ -70,7 +75,7 @@ public class AccountService {
 				a1.setPassword(c.getPassword());
 				a1.setPhone(c.getPhone());
 				a1.setStatus(c.getStatus());
-				l.add(a1);
+				la.add(a1);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +84,7 @@ public class AccountService {
 			ss.commit();
 			ss.close();
 		}
-		return l;
+		return la;
 	}
 	
 	public boolean addBussinessAccount(AccountViewBean a){
