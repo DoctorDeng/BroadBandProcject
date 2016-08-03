@@ -81,9 +81,10 @@ public class ProfessionService {
 	 * 进行修改信息
 	 * @return
 	 */
-/*	public List<OsDto> upServiceT(OsDto osDto){
- * }
-		return  OsDto;*/
+	public List<OsDto> upServiceT(OsDto osDto){
+		osDto.getBussinessId();
+		return  null;
+	}
 		
 	
 	/**
@@ -109,4 +110,6 @@ public class ProfessionService {
 		sqlSession.commit();
 		sqlSession.close();
 	}
+
+	
 }

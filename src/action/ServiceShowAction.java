@@ -14,8 +14,10 @@ import javax.websocket.Session;
 
 import bean.Customer;
 import bean.Os;
+import bean.dto.OsDto;
 import bean.vo.ServiceAddViewBean;
 import service.CustomerService;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceShowAction
@@ -37,20 +39,21 @@ public class ServiceShowAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();		
-		serviceAddViewBean.setIdNumber( request.getParameter("id"));
-		List<ServiceAddViewBean> lsa = new BussinessViewBeanDaoImpl().find(serviceAddViewBean);
-		ServiceAddViewBean sa = new ServiceAddViewBean();
-		for(ServiceAddViewBean sav : lsa){
-			out.println(sav.getAdminId());
+		OsDto 	osDto = new OsDto();
+		osDto.setIdNumber( request.getParameter("id"));
+		List<OsDto> lsa = new ProfessionService().upServiceT(osDto);
+		for(OsDto sav : lsa){
+			out.println(sav.getBussinessId());
 			Customer customer = new Customer();
 			customer.setCustomerId(sav.getCustomerId());
+			Os os = new Os();
+			os.setCustomer(customer);
 			HttpSession session = request.getSession();
-			session.setAttribute("customer", customer);
+			session.setAttribute("os", os);
 		}
-		out.close();*/
+		out.close();
 	}
 
 	/**
