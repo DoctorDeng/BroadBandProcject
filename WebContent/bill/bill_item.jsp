@@ -59,7 +59,7 @@
                 <div id="data">            
                     <table id="datalist">
                         <tr>
-                            <th class="width70">账单明细ID</th>
+                            <th class="width70">客户ID</th>
                             <th class="width150">OS 账号</th>
                             <th class="width150">服务器 IP</th>
                             <th class="width70">账务账号ID</th>
