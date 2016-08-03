@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Admin;
 import service.AccountManage;
@@ -16,8 +17,7 @@ import service.AccountManage;
  */
 @WebServlet(urlPatterns="/LoginAction")
 public class LoginAction extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+	private static final long serialVersionUID = 1L; 
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,13 +33,16 @@ public class LoginAction extends HttpServlet {
 		String adminAccount = request.getParameter("adminAccount");
 		String password = request.getParameter("password");
 		AccountManage accountManage = new AccountManage();
+		HttpSession session = request.getSession();
+		
 		if (null != adminAccount && null != password) {
 			Admin  admin = accountManage.login(adminAccount, password);
 			if (null == admin) {
 				response.sendRedirect("loginFail.jsp");
 				return;
 			} else {
-				request.getSession().setAttribute("admin", admin);
+				session.setAttribute("admin", admin);
+				//request.getSession().setAttribute("admin", admin);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 				return;
 			}

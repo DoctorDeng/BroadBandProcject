@@ -40,7 +40,7 @@ public class AdminInforAction extends HttpServlet {
 			return;
 		}
 		Object objAdmin = request.getSession().getAttribute("admin");
-		
+		//Object objAdmin = LoginAction.session;
 		if (null == objAdmin) {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
@@ -48,7 +48,7 @@ public class AdminInforAction extends HttpServlet {
 		Admin admin  = (Admin)objAdmin;
 		switch (operation) {
 		/**
-		 * 初始化修改信息页面信息
+		 * 鍒濆鍖栦慨鏀逛俊鎭〉闈俊鎭�
 		 */
 		case "initInfor":
 			Admin temp = adminService.getAdminById(admin.getAdminId());
@@ -56,7 +56,7 @@ public class AdminInforAction extends HttpServlet {
 			request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
 			break;
 		/**
-		 * 更改管理员信息
+		 * 鏇存敼绠＄悊鍛樹俊鎭�
 		 */
 		case "updateInfor":
 			String adminName = request.getParameter("adminName");

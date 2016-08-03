@@ -57,7 +57,7 @@
   					
   					
             <div id="save_result_info" class="save_success">保存成功！</div><!--保存失败，数据并发错误！-->
-            <form action="<%=request.getContextPath() %>/AdminInforAction?operation=updateInfor" method="post" class="main_form" id="infor">
+            <form action="<%=request.getContextPath() %>/LoginAction" method="post" class="main_form" id="infor">
                 <div class="text_info clearfix"><span>管理员账号：</span></div>
                 <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="${requestScope.admin.adminAccount}" /></div>
                 
