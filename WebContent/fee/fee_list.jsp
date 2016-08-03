@@ -110,7 +110,7 @@
                             <td><%=sv.getStatus() %></td>
                             <td>                                
                                 <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId()%>&tariffName=<%=sv.getTariffName()%>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff()%>&timeTariff=<%=sv.getTimeTariff()%>';" />
                                 <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             </td>
                         </tr>
