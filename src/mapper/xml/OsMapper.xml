@@ -91,12 +91,14 @@
               </if>
               </where>
 	</select>
+	<!-- 详细查询 -->
 	<select id="setManyInfo"  resultType="OsShowDto">
 				SELECT
 				bussiness.bussinessId,
 				customer.customerId,
 				customer.customerName,
 				customer.idNumber,
+				os.osAccount,
 				os.serverIp,
 				os.`status`,
 				os.tariffId,
@@ -117,7 +119,10 @@
 				customer.customerId = os.customerId AND
 				</if>
 				<if test="true">
-				os.tariffId = tariff.tariffId
+				os.tariffId = tariff.tariffId AND
+				</if>
+				<if test="true">
+				bussiness.bussinessId=#{id}
 				</if>
 			</where>
 	</select>

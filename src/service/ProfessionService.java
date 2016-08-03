@@ -52,17 +52,30 @@ public class ProfessionService {
 	
 	
 	 /**
-	  * 修改用户信息,先查询出需要的信息
+	  * 修改用户信息,先查询出需要的信息 F意思为第一步
 	  * @return
 	  */
 	public List<OsShowDto> upServiceF(Bussiness bussiness){
 		start();
 		OsShowDto osShowDto = new OsShowDto();
-		osShowDto.setBussinessId(bussiness.getBussinessId());
-		List<OsShowDto> list = osMapper.setManyInfo(osShowDto);
+		int id = bussiness.getBussinessId();
+		List<OsShowDto> list = osMapper.setManyInfo(id);
 		close();
 		return list;
 	
+	}
+	/**
+	 * 修改用户信息，根据bussinessID来修改 T 意思为第二步
+	 * @param bussiness
+	 * @return
+	 */
+	public List<OsShowDto> upServiceT(Bussiness bussiness){
+		start();
+		OsShowDto osShowDto = new OsShowDto();
+		int id = bussiness.getBussinessId();
+		List<OsShowDto> list = osMapper.setManyInfo(id);
+		close();
+		return list;
 	}
 	/**
 	 * 进行修改信息

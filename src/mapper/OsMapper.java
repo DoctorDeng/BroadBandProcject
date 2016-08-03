@@ -60,5 +60,5 @@ public interface OsMapper {
 	 * @param osDto
 	 * @return
 	 */
-	public List<OsShowDto> setManyInfo(OsShowDto osShowDto);
+	public List<OsShowDto> setManyInfo(int id);
 }
