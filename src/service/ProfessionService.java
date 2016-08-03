@@ -85,7 +85,15 @@ public class ProfessionService {
 		osDto.getBussinessId();
 		return  null;
 	}
+	
+	/**
+	 * 通过不同的条件分别查询信息
+	 * @return
+	 */
+	public List<OsDto> selForChoice(){
+		return null;
 		
+	}
 	
 	/**
 	 * 
