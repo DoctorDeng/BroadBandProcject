@@ -93,7 +93,6 @@ public class ProfessionService {
 	public List<OsDto> selForChoice(OsDto osDto){
 		start();
 		List<OsDto> listDto = osMapper.selChooseInfo(osDto);
-		System.out.println("123");
 		close();
 		return listDto;
 	}

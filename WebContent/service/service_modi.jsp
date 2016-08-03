@@ -1,7 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="bean.vo.BussinessViewBean" %>
+<%@page import="bean.dto.*" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -60,10 +61,11 @@
             <form action="../ServiceModiAction" method="post" class="main_form">
                 <!--必填项-->
                <%
-        		List<BussinessViewBean> list = (List<BussinessViewBean>)session.getAttribute("lv");
-       		    BussinessViewBean bv = null;
+                List<OsShowDto>  list = (ArrayList<OsShowDto>)session.getAttribute("lsit");
+               OsShowDto bv = null;
         		int id = Integer.parseInt(request.getParameter("id"));
-        		for(BussinessViewBean sa : list){
+        		System.out.println(id);
+        		for(OsShowDto sa : list){
         			if(sa.getBussinessId() == id)
         				bv = sa;
         		}
@@ -78,7 +80,7 @@
                 </div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input name = "serverId" type="text" value="<%=bv.getServerId() %>" readonly class="readonly" />
+                    <input name = "serverId" type="text" value="<%=bv.getServerIp() %>" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">

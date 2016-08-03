@@ -82,10 +82,6 @@
                     </tr>
 			<% List<OsDto> lsb = (ArrayList<OsDto>)session.getAttribute("lsa");
 			for(OsDto sv : lsb){
-				System.out.println(sv.getCustomerId());
-				System.out.println(sv.getBussinessId());
-				System.out.println(sv.getCustomerName());
-				System.out.println(sv.getTariffName());
 			%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
