@@ -60,8 +60,14 @@
 	</insert>
 	<!-- 通过条件查询 -->
 	<select id="selChooseInfo" resultType="OsDto">
-		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
-               c.`status`,o.serverIp,t.tariffName
+		SELECT b.bussinessId,
+			   c.customerId,
+			   c.idNumber,
+			   c.customerName,
+			   o.osAccount,
+               os.`status`,
+               o.serverIp,
+               t.tariffName
                FROM
                bussiness AS b ,
                customer AS c ,
@@ -77,16 +83,16 @@
               <if test="true">
                 t.tariffId = o.tariffId
               </if>
-              <if test="osAccount!=null and osAccount!=''">
+              <if test='osAccount!="#" '>
                AND osAccount=#{osAccount}
               </if>
-              <if test="serverIp!=null  and serverIp!=''">
+              <if test='serverIp!="#"'>
                AND serverIp =#{serverIp}
               </if>
-              <if test="idNumber!=null  and idNumber!=''">
+              <if test='idNumber!="#"'>
                AND idNumber=#{idNumber}
               </if>
-              <if test="status!=null  and status!=''">
+              <if test="true">
                AND status=#{status}
               </if>
               </where>

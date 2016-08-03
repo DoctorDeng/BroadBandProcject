@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.dto.OsDto;
 import bean.vo.ServiceAddViewBean;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceSearchAction
@@ -37,31 +39,24 @@ public class ServiceSearchAction extends HttpServlet {
 		 if(!(request.getParameter("idCard") == "")){
 			 idNumber = request.getParameter("idCard");
 		 }
-		 System.out.println(idNumber);
 		String osAccount  = "#";
 		 if(!(request.getParameter("osC") == "")){
 			 osAccount = request.getParameter("osC");
 		 }
-		 System.out.println(osAccount);
 		String serviceIp =  "#" ;
 		if(!(request.getParameter("sIp") == "")){
 			serviceIp = request.getParameter("sIp");
 		}
 		String status   =  request.getParameter("status");
-		ServiceAddViewBean serviceAddViewBean  =new ServiceAddViewBean();
-		serviceAddViewBean.setIdNumber(idNumber);
-		serviceAddViewBean.setOsAccount(osAccount);
-		serviceAddViewBean.setServerId(serviceIp);
-		serviceAddViewBean.setStatus(status);
-		//List<ServiceAddViewBean> lsa = new  BussinessViewBeanDaoImpl().findOne(serviceAddViewBean);
-		//BussinessViewBean bussinessViewBean = new BussinessViewBean();
-		/*for(ServiceAddViewBean sa :lsa){
-			System.out.println(sa.getAdminId());
-			System.out.println(sa.getBussinessId());
-			System.out.println(sa.getCustomerName());
-		}
+		OsDto osD = new OsDto();
+		osD.setIdNumber(idNumber);
+		osD.setOsAccount(osAccount);
+		osD.setServerIp(serviceIp);
+		osD.setStatus(status);
+		List<OsDto> lsa = new  ProfessionService().selForChoice(osD);
+		for(OsDto sa :lsa)
 		session.setAttribute("lsa", lsa);
-		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");*/
+		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");
 	}
 
 	/**

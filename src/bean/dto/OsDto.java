@@ -64,6 +64,13 @@ public class OsDto {
 	public void setTariffId(int tariffId) {
 		this.tariffId = tariffId;
 	}
+	
+	
+	public OsDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public String toString() {
 		return "OsDto [bussinessId=" + bussinessId + ", customerId=" + customerId + ", idNumber=" + idNumber

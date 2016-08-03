@@ -90,9 +90,12 @@ public class ProfessionService {
 	 * 通过不同的条件分别查询信息
 	 * @return
 	 */
-	public List<OsDto> selForChoice(){
-		return null;
-		
+	public List<OsDto> selForChoice(OsDto osDto){
+		start();
+		List<OsDto> listDto = osMapper.selChooseInfo(osDto);
+		System.out.println("123");
+		close();
+		return listDto;
 	}
 	
 	/**

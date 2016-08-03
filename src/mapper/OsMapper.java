@@ -48,6 +48,7 @@ public interface OsMapper {
 	 * @param Os
 	 */
 	public void addOsInfo(OsAddDto osAddDto);
+	
 	/**
 	 * 通过条件查询
 	 * @param osDto

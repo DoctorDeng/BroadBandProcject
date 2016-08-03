@@ -110,9 +110,9 @@ public class TestOS {
 	public void selChooseInfo(){
 		OsDto osD = new OsDto();
 		osD.setIdNumber("429005199608082512");
-		List<OsDto> listDto = osMapper.selChooseInfo(osD);
-		for(OsDto osDto:listDto){
-		System.out.println(osDto);
-		}
+		//List<OsDto> listDto = osMapper.selChooseInfo(osD);
+		//for(OsDto osDto:listDto){
+		//System.out.println(osDto);
+		//}
 	}
 }

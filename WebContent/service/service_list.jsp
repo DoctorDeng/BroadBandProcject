@@ -130,7 +130,6 @@
 		<%
 		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
 		for(OsDto sv:Listo){
-			System.out.println(sv.getBussinessId());
 		%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>" title="查看明细" ><%=sv.getBussinessId()%></a></td>

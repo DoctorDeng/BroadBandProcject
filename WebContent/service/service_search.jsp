@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="bean.vo.*" %>
+<%@page import="bean.dto.*" %>
 <%@page import="java.util.*" %>
 <%@taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -80,23 +80,23 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-			<% List<ServiceAddViewBean> lsb = (ArrayList<ServiceAddViewBean>)session.getAttribute("lsa");
-			for(ServiceAddViewBean sv : lsb){
-				System.out.println(sv.getAdminId());
+			<% List<OsDto> lsb = (ArrayList<OsDto>)session.getAttribute("lsa");
+			for(OsDto sv : lsb){
+				System.out.println(sv.getCustomerId());
 				System.out.println(sv.getBussinessId());
 				System.out.println(sv.getCustomerName());
-				System.out.println(sv.getTraiffName());
+				System.out.println(sv.getTariffName());
 			%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
-                        <td><%=sv.getAdminId() %></td>
+                        <td><%=sv.getCustomerId() %></td>
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
                         <td><%=sv.getOsAccount() %></td>
                         <td><%=sv.getStatus()%></td>
-                        <td><%=sv.getServerId()%></td>
+                        <td><%=sv.getServerIp()%></td>
                         <td>
-                            <a class="summary" ><%=sv.getTraiffName()%></a>
+                            <a class="summary" ><%=sv.getTariffName()%></a>
                             <!--浮动的详细信息-->
                             <div class="detail_info">
                                 20小时，24.5 元，超出部分 0.03元/分钟
