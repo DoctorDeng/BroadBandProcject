@@ -54,7 +54,7 @@
 		<select id="selectBillDetailByMonthById" parameterType="Map" resultType="BillDetailDto">
 			SELECT cu.customerId,os.osAccount,os.serverIp,
 			cu.customerAccount,os.osId ,ta.tariffName,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,
-			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId AND DATE_FORMAT(loginOutTime,'%Y%m')= #{month}) as totalTime 
+			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId AND DATE_FORMAT(loginOutTime,'%Y%m')= #{months}) as totalTime 
 			FROM customer as cu
 			INNER JOIN os 
 			ON cu.customerId = os.customerId

@@ -34,7 +34,7 @@ public class BillDetailFormBean {
 	 */
 	private int    osId;
 	//月份
-	private String month;
+	private String months;
 	
 	
 	public BillDetailFormBean(int customerId, String osAccount, String serverIp, String customerAccount,
@@ -50,6 +50,20 @@ public class BillDetailFormBean {
 		this.osId = osId;
 	}
 	
+	public BillDetailFormBean(int customerId, String osAccount, String serverIp, String customerAccount,
+			String timeLong, String cost, String tariffName, int osId, String months) {
+		super();
+		this.customerId = customerId;
+		this.osAccount = osAccount;
+		this.serverIp = serverIp;
+		this.customerAccount = customerAccount;
+		this.timeLong = timeLong;
+		this.cost = cost;
+		this.tariffName = tariffName;
+		this.osId = osId;
+		this.months = months;
+	}
+
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -98,18 +112,19 @@ public class BillDetailFormBean {
 	public void setOsId(int osId) {
 		this.osId = osId;
 	}
+
+	public String getMonths() {
+		return months;
+	}
+
+	public void setMonths(String months) {
+		this.months = months;
+	}
+
 	@Override
 	public String toString() {
 		return "BillDetailFormBean [customerId=" + customerId + ", osAccount=" + osAccount + ", serverIp=" + serverIp
 				+ ", customerAccount=" + customerAccount + ", timeLong=" + timeLong + ", cost=" + cost + ", tariffName="
-				+ tariffName + ", osId=" + osId + "]";
-	}
-
-	public String getMonth() {
-		return month;
-	}
-
-	public void setMonth(String month) {
-		this.month = month;
+				+ tariffName + ", osId=" + osId + ", months=" + months + "]";
 	}
 }

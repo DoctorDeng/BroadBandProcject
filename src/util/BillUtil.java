@@ -54,9 +54,9 @@ public class BillUtil {
 			String timeLong = TimeUtil.secondToString(temp.getTotalTime());
 			double cost     = TariffUtil.countAccountTariff(temp.getTotalTime(), temp.getTariff(), temp.getTimeLong(), temp.getTimeTariff(), temp.getTariffType());
 			//将double转换为两位小数
-			DecimalFormat df = new DecimalFormat("#.00"); 
+			DecimalFormat df = new DecimalFormat("0.00"); 
 			BillDetailFormBean billDetailForm = new BillDetailFormBean(temp.getCustomerId(),temp.getOsAccount(),temp.getServerIp(),temp.getCustomerAccount(),
-					timeLong,df.format(cost),temp.getTariffName(),temp.getOsId());
+					timeLong,df.format(cost),temp.getTariffName(),temp.getOsId(),temp.getMonths());
 			billDetailForms.add(billDetailForm);
 		}
 		

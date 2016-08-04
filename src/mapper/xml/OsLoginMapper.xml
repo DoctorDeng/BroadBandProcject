@@ -42,6 +42,6 @@
 		ON os.osId = ol.osId
 		INNER JOIN tariff as ta
 		ON os.tariffId = ta.tariffId
-		WHERE DATE_FORMAT(loginOutTime,'%Y%m')= #{month} AND ol.osId = #{osId}
+		WHERE DATE_FORMAT(loginOutTime,'%Y%m')= #{months} AND ol.osId = #{osId}
 	</select>
 </mapper>

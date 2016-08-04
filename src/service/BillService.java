@@ -1,6 +1,8 @@
 package service;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -158,13 +160,39 @@ public class BillService {
 			e.printStackTrace();
 		}
 		OsLoginMapper osLoginMapper = sqlSession.getMapper(OsLoginMapper.class);
+		Map map = new HashMap();
+		map.put("osId",osId);
+		map.put("months",months);
 		
-		List<OsLoginDto> osLoginDtos = osLoginMapper.selectOsLoginDtoByOsId(osId);
+		List<OsLoginDto> osLoginDtos = osLoginMapper.selectOsLoginByMonthById(map);
 		List<OsLoginFormBean> loginList = OsLoginUtil.osLoginDtoToFormBean(osLoginDtos);
 		
 		close();
 		return loginList;
 	} 
+	/**
+	 * 获取指定客户指定月份的各账号的详单信息
+	 * @param customerId   客户ID
+	 * @param months       月份
+	 * @return  List<BillDetailFormBean>
+	 */
+	public List<BillDetailFormBean> getMonthBillDetailForm(int customerId,String months) {
+		init();
+		Map map = new HashMap();
+		map.put("customerId", customerId);
+		map.put("months", months);
+		
+		List<BillDetailDto> billDetailDtos = billMapper.selectBillDetailByMonthById(map);
+		
+		for (BillDetailDto billDetails : billDetailDtos) {
+			billDetails.setMonths(months);
+		}
+		
+		List<BillDetailFormBean> list = BillUtil.billDetailDtoToFormBean(billDetailDtos);
+		
+		close();
+		return list;
+	}
 	
 	/**
 	 * 初始化SqlSession和mapper
@@ -196,7 +224,7 @@ public class BillService {
 			System.out.println(temp.toString());
 		}*/
 		
-		/*List<BillDetailFormBean> forms = bill.getBillDetailForm(1);
+		/*List<BillDetailFormBean> forms = bill.getMonthBillDetailForm(1,"201607");
 		for (BillDetailFormBean temp:forms) {
 			System.out.println(temp.toString());
 		}*/
@@ -204,10 +232,14 @@ public class BillService {
 		for (BillFormBean temp: page.getDataList()) {
 			System.out.println(temp.toString());
 		}*/
-		BillSearchDto billSearch = new BillSearchDto("","","","201607");
+	/*	BillSearchDto billSearch = new BillSearchDto("","","","201607");
 		PageDto<BillFormBean> page = bill.getMonthBillFormByCondition("", "", "杨", "201607");
 		for (BillFormBean temp: page.getDataList()) {
 			System.out.println(temp.toString());
+		}*/
+		List<OsLoginFormBean> osLogins = bill.getOsLoginFormByMonth(1, "201606");
+		for (OsLoginFormBean osLogin:osLogins) {
+			System.out.println(osLogin.toString());
 		}
 	}
 }
