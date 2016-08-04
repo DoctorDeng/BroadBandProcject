@@ -3,6 +3,8 @@ package bean.dto;
 public class BillDto {
 	//账单ID
 	private int    billId;
+	//客户ID
+	private int    customerId;
 	//客户姓名
 	private String customerName;
 	//客户身份证号
@@ -16,16 +18,10 @@ public class BillDto {
 	//账单支付状态
 	private String payStatus;
 	//账单月份
-	private String month;
+	private String months;
+	//消费
+	private String cost;
 	
-	public String getMonth() {
-		return month;
-	}
-
-	public void setMonth(String month) {
-		this.month = month;
-	}
-
 	public BillDto(){}
 
 	public int getBillId() {
@@ -82,5 +78,37 @@ public class BillDto {
 
 	public void setPayStatus(String payStatus) {
 		this.payStatus = payStatus;
+	}
+
+	public String getMonths() {
+		return months;
+	}
+
+	public void setMonths(String months) {
+		this.months = months;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+
+	public String getCost() {
+		return cost;
+	}
+
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
+
+	@Override
+	public String toString() {
+		return "BillDto [billId=" + billId + ", customerId=" + customerId + ", customerName=" + customerName
+				+ ", idNumber=" + idNumber + ", customerAccount=" + customerAccount + ", totalTime=" + totalTime
+				+ ", payWay=" + payWay + ", payStatus=" + payStatus + ", months=" + months + ", cost=" + cost + "]";
 	}
 }

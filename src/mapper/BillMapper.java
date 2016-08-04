@@ -37,4 +37,21 @@ public interface BillMapper {
 	 * @return
 	 */
 	public List<BillDetailDto> selectBillDetailByMonthById(Map map);
+	/**
+	 * 通过月份和指定页面来查找客户的月份账单信息
+	 * @param page
+	 * @return
+	 */
+	public List<BillDto>  selectMonthBillByPage(Page page);
+	/**
+	 * 获取月份账单的数据总条数
+	 * @return
+	 */
+	public int getBillsNum();
+	/**
+	 * 通过条件来查询出月份账单
+	 * @param billSearchDto
+	 * @return
+	 */
+	public List<BillDto> selectMonthBillByCondition(BillSearchDto billSearchDto);
 }

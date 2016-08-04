@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import bean.Page;
 import bean.dto.BillDto;
 import bean.dto.BillSearchDto;
 import mapper.BillMapper;
@@ -49,17 +50,32 @@ public class TestBill {
 	
 	@Test
 	public void selectBillByCondition() {
-		BillSearchDto billSearchDto = new BillSearchDto("429005", "", "");
+		/*BillSearchDto billSearchDto = new BillSearchDto("429005", "", "");
 		List<BillDto> billDtos = billMapper.selectBillByCondition(billSearchDto);
 		for (BillDto billDto : billDtos) {
 			System.out.print("客户账务账号: " + billDto.getCustomerAccount() + "  ");
 			System.out.print("客户姓名:" + billDto.getCustomerName());
 			System.out.println();
+		}*/
+		BillSearchDto billSearch = new BillSearchDto("","","","201607");
+		List<BillDto> bills = billMapper.selectMonthBillByCondition(billSearch);
+		for (BillDto bill:bills) {
+			System.out.println(bill.toString());
+		}
+	}
+	@Test
+	public void selectMonthBillByPage() {
+		Page page = new Page();
+		page.setIndex(0);
+		page.setSize(5);
+		List<BillDto> bills = billMapper.selectMonthBillByPage(page);
+		for (BillDto bill:bills) {
+			System.out.println(bill.toString());
 		}
 	}
 	
 	@Test
 	public void getBillNum() {
-		System.out.println(billMapper.getBillNum());
+		System.out.println(billMapper.getBillsNum());
 	}
 }
