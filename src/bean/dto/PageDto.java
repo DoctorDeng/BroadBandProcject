@@ -43,6 +43,14 @@ public class PageDto<T> {
 		if(this.currentPage > this.pageNum) {
 			this.currentPage = this.pageNum;
 		}
+		
+		if (this.currentPage < 1) {
+			this.currentPage = 1;
+		}
+		
+		if(this.currentPage > this.pageNum) {
+			this.currentPage = this.pageNum;
+		}
 		if (this.currentPage != 1 && this.pageNum > 1) {
   			this.upPage   = this.currentPage - 1; 
   		}

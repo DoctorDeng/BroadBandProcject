@@ -28,6 +28,23 @@ public class BillUtil {
 		}
 		return billForms;
 	}
+	/**
+	 * 将月份账单信息的BillDto转换为BillFormBean
+	 * @param billDtos
+	 * @return
+	 */
+	public static List<BillFormBean> monthBillDtoToBillFormBean(List<BillDto> billDtos) {
+		List<BillFormBean> billForms = new ArrayList<>();
+		
+		for (BillDto billDto: billDtos) {
+			int totalTime = billDto.getTotalTime();
+			String timeLong = TimeUtil.secondToString(totalTime);
+			String payStatus = ("0".equals(billDto.getPayStatus())?"未支付":"已支付");
+			BillFormBean billForm = new BillFormBean(billDto.getBillId(),billDto.getCustomerName(),billDto.getIdNumber(),billDto.getCustomerAccount(),timeLong,billDto.getPayWay(),payStatus,billDto.getCost(),billDto.getMonths(),billDto.getCustomerId());
+			billForms.add(billForm);
+		}
+		return billForms;
+	}
 	
 	public static List<BillDetailFormBean> billDetailDtoToFormBean(List<BillDetailDto>  billDetailDtos) {
 		

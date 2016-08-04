@@ -30,7 +30,11 @@ public class BillFormBean {
 	 */
 	private String payStatus;
 	//月份
-	private String month;
+	private String months;
+	//花费
+	private String cost;
+	//客户ID
+	private int    customerId;
 	
 	public BillFormBean(int billId, String customerName, String idNumber, String customerAccount, String timeLong,
 			String payWay, String payStatus) {
@@ -44,11 +48,19 @@ public class BillFormBean {
 		this.payStatus = payStatus;
 	}
 	
-	@Override
-	public String toString() {
-		return "BillFormBean [billId=" + billId + ", customerName=" + customerName + ", idNumber=" + idNumber
-				+ ", customerAccount=" + customerAccount + ", timeLong=" + timeLong + ", payWay=" + payWay
-				+ ", payStatus=" + payStatus + "]";
+	public BillFormBean(int billId, String customerName, String idNumber, String customerAccount, String timeLong,
+			String payWay, String payStatus, String cost,String months, int customerId) {
+		super();
+		this.billId = billId;
+		this.customerName = customerName;
+		this.idNumber = idNumber;
+		this.customerAccount = customerAccount;
+		this.timeLong = timeLong;
+		this.payWay = payWay;
+		this.payStatus = payStatus;
+		this.cost = cost;
+		this.months = months;
+		this.customerId = customerId;
 	}
 
 	public int getBillId() {
@@ -92,6 +104,38 @@ public class BillFormBean {
 	}
 	public void setPayStatus(String payStatus) {
 		this.payStatus = payStatus;
+	}
+
+	public String getMonths() {
+		return months;
+	}
+
+	public void setMonths(String months) {
+		this.months = months;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getCost() {
+		return cost;
+	}
+
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
+
+	@Override
+	public String toString() {
+		return "BillFormBean [billId=" + billId + ", customerName=" + customerName + ", idNumber=" + idNumber
+				+ ", customerAccount=" + customerAccount + ", timeLong=" + timeLong + ", payWay=" + payWay
+				+ ", payStatus=" + payStatus + ", months=" + months + ", cost=" + cost + ", customerId=" + customerId
+				+ "]";
 	}
 	
 	

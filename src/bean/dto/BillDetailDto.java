@@ -13,18 +13,6 @@ public class BillDetailDto {
 	private String tariffName;
 	//月资费
 	private double tariff;
-	//Os账号ID
-	private int    osId;
-	//月份
-	private String month;
-	
-	public int getOsId() {
-		return osId;
-	}
-
-	public void setOsId(int osId) {
-		this.osId = osId;
-	}
 	//单位时间资费
 	private int    timeTariff;
 	//资费时长
@@ -33,6 +21,18 @@ public class BillDetailDto {
 	private String tariffType;
 	//账号登陆总时间
 	private int    totalTime;
+	//Os账号ID
+	private int    osId;
+	//月份
+	private String months;
+	
+	public int getOsId() {
+		return osId;
+	}
+
+	public void setOsId(int osId) {
+		this.osId = osId;
+	}
 	
 	public BillDetailDto(){}
 	
@@ -97,12 +97,12 @@ public class BillDetailDto {
 		this.totalTime = totalTime;
 	}
 
-	public String getMonth() {
-		return month;
+	public String getMonths() {
+		return months;
 	}
 
-	public void setMonth(String month) {
-		this.month = month;
+	public void setMonths(String months) {
+		this.months = months;
 	}
-	
+
 }

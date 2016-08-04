@@ -70,11 +70,6 @@
 			where bi.customerId = cu.customerId
 		</select>
 		
-		<select id="selectMonthBillByCondition" resultType="BillDto">
-		
-		
-		</select>
-		
 		<select id="selectMonthBillByPage" parameterType="Page" resultType="BillDto">
 			select billId,cu.customerId,cu.customerName,cu.idNumber,cu.customerAccount,cost,months,payWay,payStatus
 			FROM bills as bi
