@@ -11,6 +11,8 @@ public class BillSearchDto {
 	private String customerAccount;
 	//客户姓名
 	private String customerName;
+	//月份
+	private String month;
 	
 	public BillSearchDto(String idNumber, String customerAccount, String customerName) {
 		super();
@@ -36,5 +38,13 @@ public class BillSearchDto {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 }

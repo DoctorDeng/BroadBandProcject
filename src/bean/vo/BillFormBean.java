@@ -29,6 +29,8 @@ public class BillFormBean {
 	 * 支付状态 0 未支付， 1已支付
 	 */
 	private String payStatus;
+	//月份
+	private String month;
 	
 	public BillFormBean(int billId, String customerName, String idNumber, String customerAccount, String timeLong,
 			String payWay, String payStatus) {

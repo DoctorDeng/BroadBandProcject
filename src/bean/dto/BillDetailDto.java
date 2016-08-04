@@ -15,6 +15,9 @@ public class BillDetailDto {
 	private double tariff;
 	//Os账号ID
 	private int    osId;
+	//月份
+	private String month;
+	
 	public int getOsId() {
 		return osId;
 	}
@@ -92,6 +95,14 @@ public class BillDetailDto {
 	}
 	public void setTotalTime(int totalTime) {
 		this.totalTime = totalTime;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 	
 }

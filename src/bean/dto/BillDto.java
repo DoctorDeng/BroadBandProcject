@@ -15,7 +15,17 @@ public class BillDto {
 	private String payWay;
 	//账单支付状态
 	private String payStatus;
+	//账单月份
+	private String month;
 	
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
 	public BillDto(){}
 
 	public int getBillId() {

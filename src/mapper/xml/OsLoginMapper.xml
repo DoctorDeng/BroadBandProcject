@@ -33,4 +33,15 @@
 				ON os.tariffId = ta.tariffId 
 				WHERE ol.osId = #{osId};
 	</select>
+	
+	<select id="selectOsLoginByMonthById" parameterType="Map" resultType="OsLoginDto" >
+		select loginIp,loginInTime,loginOutTime ,ta.tariffName,ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
+		TIMESTAMPDIFF(SECOND,loginInTime,loginOutTime) timeLogin
+		FROM oslogin  as ol  
+		INNER JOIN os
+		ON os.osId = ol.osId
+		INNER JOIN tariff as ta
+		ON os.tariffId = ta.tariffId
+		WHERE DATE_FORMAT(loginOutTime,'%Y%m')= #{month} AND ol.osId = #{osId}
+	</select>
 </mapper>

@@ -33,6 +33,9 @@ public class BillDetailFormBean {
 	 * os账号Id
 	 */
 	private int    osId;
+	//月份
+	private String month;
+	
 	
 	public BillDetailFormBean(int customerId, String osAccount, String serverIp, String customerAccount,
 			String timeLong, String cost, String tariffName, int osId) {
@@ -100,5 +103,13 @@ public class BillDetailFormBean {
 		return "BillDetailFormBean [customerId=" + customerId + ", osAccount=" + osAccount + ", serverIp=" + serverIp
 				+ ", customerAccount=" + customerAccount + ", timeLong=" + timeLong + ", cost=" + cost + ", tariffName="
 				+ tariffName + ", osId=" + osId + "]";
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 }

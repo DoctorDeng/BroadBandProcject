@@ -1,6 +1,7 @@
 package mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import bean.OsLogin;
 import bean.dto.OsLoginDto;
@@ -24,4 +25,10 @@ public interface OsLoginMapper {
 	 * @return
 	 */
 	public List<OsLoginDto> selectOsLoginDtoByOsId(int osId);
+	/**
+	 * 获取指定月份和OsId的登录记录
+	 * @param map
+	 * @return
+	 */
+	public List<OsLoginDto> selectOsLoginByMonthById(Map map);
 }

@@ -2,6 +2,9 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -35,7 +38,11 @@ public class TestOsLogin {
 
 	@Test
 	public void selOneOsLoginByOsLoginId() {
-		System.out.println(osLoginMapper.selOneOsLoginByOsLoginId(4));
+		/*System.out.println(osLoginMapper.selOneOsLoginByOsLoginId(4));*/
+		Map map = new HashMap<>();
+		map.put("osId","2");
+		map.put("month", "201606");
+		System.out.println(osLoginMapper.selectOsLoginByMonthById(map).size());
 	}
 
 }
