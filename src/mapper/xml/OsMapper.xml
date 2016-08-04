@@ -32,7 +32,7 @@
 				status = #{status}
 			</if>
 		</set> 
-		where osId = #{osId}
+		where osAccount = #{osAccount}
 	</update>
 	<!-- 通过业务账号去删除信息 -->
 	<delete id="delOneOsByOsId">

@@ -7,6 +7,9 @@ public class OsAddDto {
     private String osPassword;     //宽带账号密码
     private String serverIp;      //服务器IP地址
     private String status;
+    
+    
+    
 	public int getCustomerId() {
 		return CustomerId;
 	}

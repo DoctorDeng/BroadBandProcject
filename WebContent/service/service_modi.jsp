@@ -65,7 +65,6 @@
                 List<OsDto> Listo = (new ProfessionService()).serviceListShow();
                 OsDto bv = null;
         		int id = Integer.parseInt(request.getParameter("id"));
-        		System.out.println(id);
         		for(OsDto sa : Listo){
         			if(sa.getBussinessId() == id)
         				bv = sa;

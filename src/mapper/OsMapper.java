@@ -46,8 +46,9 @@ public interface OsMapper {
 	/**
 	 * 业务界面添加
 	 * @param Os
+	 * @return 
 	 */
-	public void addOsInfo(OsAddDto osAddDto);
+	public boolean addOsInfo(OsAddDto osAddDto);
 	
 	/**
 	 * 通过条件查询
@@ -62,11 +63,6 @@ public interface OsMapper {
 	 * @return
 	 */
 	public List<OsShowDto> setManyInfo(int id);
-	
-	/**
-	 * 修改一个Os表的信息
-	 * @param osDto
-	 * @return
-	 */
-	public boolean upOneSelvice(OsDto osDto);
 }
+	
+

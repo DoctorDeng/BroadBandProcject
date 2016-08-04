@@ -1,5 +1,6 @@
 package service;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Bussiness;
 import bean.Customer;
 import bean.Os;
+import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import bean.dto.OsShowDto;
 import mapper.BussinessMapper;
@@ -81,9 +83,14 @@ public class ProfessionService {
 	 * 进行修改信息
 	 * @return
 	 */
-	public List<OsDto> upServiceT(OsDto osDto){
-		osDto.getBussinessId();
-		return  null;
+	public List<Customer> upServiceT(Customer customer){
+		start();
+		String idNumber = customer.getIdNumber();
+		Customer cu = customerMapper.selectCustomerByIdNumber(idNumber);
+		List<Customer> list = new ArrayList<Customer>();
+		list.add(cu);
+		close();
+		return  list;
 	}
 	
 	/**
@@ -104,7 +111,24 @@ public class ProfessionService {
 	 */
 	public boolean upForOneService(OsDto osDto){
 		start();
+		Os os = new Os();
+		os.setOsAccount(osDto.getOsAccount());
+		os.setTariffId(osDto.getTariffId());
+		boolean b = osMapper.upOneOsByBussinessId(os);
+		if(b){
+			close();
+			return true;
+		}
+		close();
+		return false;
 		
+	}
+	public boolean addServiceOneInfo(OsAddDto osAddDto){
+		start();
+		boolean b = osMapper.addOsInfo(osAddDto);
+		if(b){
+			return true;
+		}
 		close();
 		return false;
 		

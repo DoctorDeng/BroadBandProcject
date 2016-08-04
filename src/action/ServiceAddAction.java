@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import bean.Customer;
+import bean.dto.OsAddDto;
 import bean.vo.ServiceAddViewBean;
 import service.ProfessionService;
 
@@ -34,20 +35,21 @@ public class ServiceAddAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session =request.getSession();
-		Customer customer = (Customer) session.getAttribute("customer");
-		ServiceAddViewBean  serviceAddViewBean = new ServiceAddViewBean();
-		serviceAddViewBean.setCustomerId(customer.getCustomerId());
-		serviceAddViewBean.setOsAccount(request.getParameter("osAccount"));
-		serviceAddViewBean.setOsPassword(request.getParameter("osPassword"));
+		OsAddDto  osAddDto = new OsAddDto();
+		Customer customer = (Customer) session.getAttribute("c");
+		System.out.println(customer.getCustomerId());
+		osAddDto.setCustomerId(customer.getCustomerId());
+		osAddDto.setOsAccount(request.getParameter("osAccount"));
+		osAddDto.setOsPassword(request.getParameter("osPassword"));
 		String traiffId = request.getParameter("traiffId");
-		serviceAddViewBean.setTariffId(Integer.parseInt(traiffId));
-		serviceAddViewBean.setServerId(request.getParameter("serverIp"));
-		/*boolean succiess = new ProfessionService().addService(serviceAddViewBean);
+		osAddDto.setTariffId(Integer.parseInt(traiffId));
+		osAddDto.setServerIp(request.getParameter("serverIp"));
+		boolean succiess =   new ProfessionService().addServiceOneInfo(osAddDto);
 		if(succiess){
 			response.sendRedirect("ServiceMainAction");
 		}else{
 			
-		}*/
+		}
 	}
 
 	/**

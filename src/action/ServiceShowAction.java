@@ -42,15 +42,17 @@ public class ServiceShowAction extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
-		OsDto 	osDto = new OsDto();
-		osDto.setIdNumber( request.getParameter("id"));
-		List<OsDto> listOsDto = new ProfessionService().upServiceT(osDto);
-		for(OsDto sav : listOsDto){
-			out.println(sav.getBussinessId());
-			Customer customer = new Customer();
-			customer.setCustomerId(sav.getCustomerId());
+		Customer customer = new Customer();
+		customer.setIdNumber( request.getParameter("id"));
+		System.out.println(request.getParameter("id"));
+		List<Customer> listOsDto = new ProfessionService().upServiceT(customer);
+		for(Customer sav : listOsDto){
+			out.println(sav.getCustomerId());
+			Customer c = new Customer();
+			session.setAttribute("c", c);
+			c.setCustomerId(sav.getCustomerId());
 			Os os = new Os();
-			os.setCustomer(customer);
+			os.setCustomer(c);
 			session.setAttribute("os", os);
 		}
 		out.close();
