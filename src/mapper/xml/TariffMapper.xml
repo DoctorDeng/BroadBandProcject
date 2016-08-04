@@ -22,7 +22,7 @@
    </select>
    <insert id="addTariff">
         insert into tariff(tariffName,tariff,timeLong,timeTariff,createTime,status,tariffType,tariffExplain)
-		values(#{tariffName},#{tariff},#{timeLong},#{timeTariff},now(),,#{tariffType},#{tariffExplain})
+		values(#{tariffName},#{tariff},#{timeLong},#{timeTariff},now(),0,#{tariffType},#{tariffExplain})
    </insert>
    <delete id="delTariff" parameterType="int">
        delete from tariff where tariffId=#{tariffId}
