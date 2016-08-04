@@ -42,41 +42,18 @@ public class StatementAction extends HttpServlet {
 			return;
 		}
 		PageDto page       = new PageDto();
-		int pageSize    = 4;
-  		int currentPage = 1;
-  		int indexPage   = 1;
-		int nextPage    = 1;
- 		int upPage      = 1;	 		
- 		int recordNum   = statementService.getStatementCount();
+		int pageSize    = 4;	 		
+ 		int recordNum   = statementService.getMonthStatementCount();
  		int pageNum     = (int) Math.ceil((recordNum*1.0)/(pageSize*1.0));
- 		int endPage     = pageNum;
- 		
  		String currentPageStr = request.getParameter("currentPage");
-		if (null !=currentPageStr && !"".equals(currentPageStr)) {
-			currentPage = Integer.parseInt(currentPageStr);
-		}
-		
-		if (currentPage!=1 && pageNum > 1) {
-  			upPage = currentPage - 1; 
-  		}
-  		if (currentPage<pageNum && pageNum>2) {
-  			nextPage = currentPage +1;
-  		}
-  		if (currentPage== pageNum) {
-  			nextPage = pageNum;
-  		}
-  		page.setIndexPage(indexPage);
-  		page.setEndPage(endPage);
-  		page.setNextPage(nextPage);
-  		page.setUpPage(upPage);
-  		page.setCurrentPage(currentPage);
+ 		page.init(recordNum, pageSize, currentPageStr);
 		
 		switch (operation) {
 		/**
 		 * 显示默认报表信息
 		 */
 		case "default":
-			List<StatementVo> statementList = statementService.getStatementPage(currentPage,pageSize);
+			List<StatementVo> statementList = statementService.getMonthStatementPage(page.getCurrentPage(),page.getPageSize());
 			request.setAttribute("statementForm", statementList);
 			request.setAttribute("page", page);
 			request.setAttribute("operation", "default");
@@ -86,7 +63,7 @@ public class StatementAction extends HttpServlet {
 		 * 通过时长降序显示报表信息
 		 */
 		case "orderByDesc":
-			List<StatementVo> statementListDesc = statementService.getStatementPageByDesc(currentPage,pageSize);
+			List<StatementVo> statementListDesc = statementService.getMonthStatementPageByDesc(page.getCurrentPage(),page.getPageSize());
 			request.setAttribute("statementForm", statementListDesc);
 			request.setAttribute("page", page);
 			request.setAttribute("operation", "orderByDesc");

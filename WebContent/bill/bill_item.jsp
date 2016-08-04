@@ -1,33 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../template/powerPage.jsp">
+	<jsp:param value="7" name="pagePower"/>
+</jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
- 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="admin" value="${not empty sessionScope.admin}" />
-  		<c:if test="${not admin}">
-  			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/login.jsp";
-  			</script>
-  		</c:if>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==6}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
-  			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
-  			</script>
-  		</c:if>
+        <title>用户详单</title>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
     </head>

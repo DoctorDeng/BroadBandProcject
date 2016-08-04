@@ -1,32 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../template/powerPage.jsp">
+	<jsp:param value="7" name="pagePower"/>
+</jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="admin" value="${not empty sessionScope.admin}" />
-  		<c:if test="${not admin}">
-  			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/login.jsp";
-  			</script>
-  		</c:if>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==7}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
-  		<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
-  			</script>
-  		</c:if>
+        <title>报表</title>
+        <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+        <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+        
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -64,7 +50,7 @@
         <div id="report_main">
         	<div class="tabs">
     	        <ul onclick="changeTab(event,this);">
-        	        <li><a href="<%=request.getContextPath()%>/StatementAction?operation=default" class="tab_on" title="每位客户每月的累计时长">客户使用时长</a></li>
+        	        <li><a href="<%=request.getContextPath()%>/StatementAction?operation=default" class="tab_out" title="每位客户每月的累计时长">客户使用时长</a></li>
                     <li><a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
                 </ul>
             </div>            
@@ -78,12 +64,12 @@
                             <th>客户名称</th>
                             <th class="width200">身份证号码</th>
                             <th>电话</th>
-                            <th class="width150">累积时长</th>
+                            <th>月份<th>
+                            <th>累积时长</th>
                         </tr>     
                    <c:set var="statementForm" value="${not empty requestScope.statementForm}" />
   					<c:if test="${not statementForm}">
   						<tr>
-  							<td>没有信息</td>
   							<td>没有信息</td>
   							<td>没有信息</td>
   							<td>没有信息</td>
@@ -101,6 +87,7 @@
   								<td><c:out value="${statement.customerName}"/></td>
   								<td><c:out value="${statement.idNumber}"/></td>
   								<td><c:out value="${statement.phone}"/></td>
+  								<td><c:out value="${statement.months}" /></td>
   								<td><c:out value="${statement.timeLong}"/></td>
   							<tr>
   						</c:forEach>     
