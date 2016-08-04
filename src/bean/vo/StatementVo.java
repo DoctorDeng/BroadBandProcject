@@ -29,6 +29,10 @@ public class StatementVo {
 	 * 总时长
 	 */
 	private String timeLong;
+	/**
+	 * 月份
+	 */
+	private String months;
 	
 	public int getCustomerId() {
 		return customerId;
@@ -66,9 +70,16 @@ public class StatementVo {
 	public void setTimeLong(String timeLong) {
 		this.timeLong = timeLong;
 	}
+	public String getMonths() {
+		return months;
+	}
+	public void setMonths(String months) {
+		this.months = months;
+	}
 	@Override
 	public String toString() {
 		return "StatementVo [customerId=" + customerId + ", customerAccount=" + customerAccount + ", customerName="
-				+ customerName + ", idNumber=" + idNumber + ", phone=" + phone + ", timeLong=" + timeLong + "]";
+				+ customerName + ", idNumber=" + idNumber + ", phone=" + phone + ", timeLong=" + timeLong + ", months="
+				+ months + "]";
 	}
 }

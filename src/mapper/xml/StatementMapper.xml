@@ -21,4 +21,16 @@
 		select count(*) as count 
 	    FROM customer 
 	</select>
+	
+	<select id="selectMonthStatementByPage" parameterType="Page" resultType="StatementVo">
+		select cu.customerId,cu.customerAccount,cu.customerName,cu.idNumber,cu.phone,DATE_FORMAT(ol.loginOutTime,'%Y%m') months , 
+		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId) AND DATE_FORMAT(loginOutTime,'%Y%m') = months ) as totalTime
+		FROM osLogin as ol
+		INNER JOIN os 
+		on os.osId = ol.osId 
+		Inner JOIN  customer as cu
+		on cu.customerId = os.customerId
+		GROUP BY  cu.customerId, months
+		LIMIT #{index},#{size}
+	</select>
 </mapper>
