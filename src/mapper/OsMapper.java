@@ -62,4 +62,11 @@ public interface OsMapper {
 	 * @return
 	 */
 	public List<OsShowDto> setManyInfo(int id);
+	
+	/**
+	 * 修改一个Os表的信息
+	 * @param osDto
+	 * @return
+	 */
+	public boolean upOneSelvice(OsDto osDto);
 }
