@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="bean.dto.*" %>
+<%@page import="service.*" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -61,11 +62,11 @@
             <form action="../ServiceModiAction" method="post" class="main_form">
                 <!--必填项-->
                <%
-                List<OsShowDto>  list = (ArrayList<OsShowDto>)session.getAttribute("lsit");
-               OsShowDto bv = null;
+                List<OsDto> Listo = (new ProfessionService()).serviceListShow();
+                OsDto bv = null;
         		int id = Integer.parseInt(request.getParameter("id"));
         		System.out.println(id);
-        		for(OsShowDto sa : list){
+        		for(OsDto sa : Listo){
         			if(sa.getBussinessId() == id)
         				bv = sa;
         		}
@@ -84,7 +85,7 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select name = "traiffId" class="width150" value = "<%=bv.getTraiffName()%>">
+                    <select name = "traiffId" class="width150" value = "<%=bv.getTariffName()%>">
                         <option value= "1">包50小时</option>
                         <option value= "2">包时8888</option>
                         <option value= "3">包月</option>

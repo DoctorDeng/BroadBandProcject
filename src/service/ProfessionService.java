@@ -98,6 +98,18 @@ public class ProfessionService {
 	}
 	
 	/**
+	 * 根据查询返回osDto 修改资费类型
+	 * @param osDto
+	 * @return
+	 */
+	public boolean upForOneService(OsDto osDto){
+		start();
+		
+		close();
+		return false;
+		
+	}
+	/**
 	 * 
 	 * 构建环境
 	 */

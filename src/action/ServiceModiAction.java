@@ -1,14 +1,15 @@
 package action;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.vo.BussinessViewBean;
-import bean.vo.ServiceAddViewBean;
+import bean.dto.OsDto;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceModiAction
@@ -30,14 +31,14 @@ public class ServiceModiAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BussinessViewBean bussinessViewBean  = new BussinessViewBean();
+		OsDto osDto  = new OsDto();
 		String tariffId = request.getParameter("traiffId");
-		bussinessViewBean.setOsAccount(request.getParameter("osAccount"));
-		bussinessViewBean.setTariffId(Integer.parseInt(tariffId));
-		//boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);
-		/*if(b){
+		osDto.setOsAccount(request.getParameter("osAccount"));
+		osDto.setTariffId(Integer.parseInt(tariffId));
+		boolean b = new ProfessionService().upForOneService(osDto);
+		if(b){
 			response.sendRedirect("ServiceMainAction");
-		}*/
+		}
 	}
 
 	/**

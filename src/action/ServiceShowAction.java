@@ -40,17 +40,17 @@ public class ServiceShowAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
+		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		OsDto 	osDto = new OsDto();
 		osDto.setIdNumber( request.getParameter("id"));
-		List<OsDto> lsa = new ProfessionService().upServiceT(osDto);
-		for(OsDto sav : lsa){
+		List<OsDto> listOsDto = new ProfessionService().upServiceT(osDto);
+		for(OsDto sav : listOsDto){
 			out.println(sav.getBussinessId());
 			Customer customer = new Customer();
 			customer.setCustomerId(sav.getCustomerId());
 			Os os = new Os();
 			os.setCustomer(customer);
-			HttpSession session = request.getSession();
 			session.setAttribute("os", os);
 		}
 		out.close();
