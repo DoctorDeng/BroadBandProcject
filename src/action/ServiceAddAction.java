@@ -37,7 +37,6 @@ public class ServiceAddAction extends HttpServlet {
 		HttpSession session =request.getSession();
 		OsAddDto  osAddDto = new OsAddDto();
 		Customer customer = (Customer) session.getAttribute("c");
-		System.out.println(customer.getCustomerId());
 		osAddDto.setCustomerId(customer.getCustomerId());
 		osAddDto.setOsAccount(request.getParameter("osAccount"));
 		osAddDto.setOsPassword(request.getParameter("osPassword"));

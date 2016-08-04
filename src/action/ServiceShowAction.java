@@ -44,7 +44,6 @@ public class ServiceShowAction extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		Customer customer = new Customer();
 		customer.setIdNumber( request.getParameter("id"));
-		System.out.println(request.getParameter("id"));
 		List<Customer> listOsDto = new ProfessionService().upServiceT(customer);
 		for(Customer sav : listOsDto){
 			out.println(sav.getCustomerId());

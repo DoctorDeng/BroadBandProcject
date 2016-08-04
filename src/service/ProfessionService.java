@@ -123,14 +123,16 @@ public class ProfessionService {
 		return false;
 		
 	}
+	/**
+	 * 增加信息
+	 * @param osAddDto
+	 * @return
+	 */
 	public boolean addServiceOneInfo(OsAddDto osAddDto){
 		start();
 		boolean b = osMapper.addOsInfo(osAddDto);
-		if(b){
-			return true;
-		}
 		close();
-		return false;
+		return b;
 		
 	}
 	/**
