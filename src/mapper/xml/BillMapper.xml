@@ -50,4 +50,21 @@
 			SELECT count(*) as count FROM bill as bi 
 			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
 		</select>
+		
+		<select id="selectBillDetailByMonthById" parameterType="Map" resultType="BillDetailDto">
+			SELECT cu.customerId,os.osAccount,os.serverIp,
+			cu.customerAccount,os.osId ,ta.tariffName,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,
+			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId AND DATE_FORMAT(loginOutTime,'%Y%m')= #{month}) as totalTime 
+			FROM customer as cu
+			INNER JOIN os 
+			ON cu.customerId = os.customerId
+			INNER JOIN tariff as ta
+			ON ta.tariffId = os.tariffId
+			WHERE cu.customerId = #{customerId}
+		</select>
+		
+		<select id="selectAllBillGroupMonth" resultType="BillDto">
+		
+		
+		</select>
 	</mapper>

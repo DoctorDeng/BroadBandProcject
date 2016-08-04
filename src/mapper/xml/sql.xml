@@ -26,11 +26,20 @@ sum(TIMESTAMPDIFF(SECOND,loginInTime,loginOutTime)) totalTime FROM oslogin
 WHERE DATE_FORMAT(loginOutTime,'%Y%m')= 201606 AND osId = 2 GROUP BY osId, months  -->
 
 <!-- 查询出客户每个月的账单待补充 -->
-<!-- select DATE_FORMAT(ol.loginOutTime,'%Y%m') months ,cu.customerName ,
+<!-- select cu.customerName,cu.idNumber,cu.customerAccount,DATE_FORMAT(ol.loginOutTime,'%Y%m') months , 
 (SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId) AND DATE_FORMAT(loginOutTime,'%Y%m') = months ) as totalTime
 FROM osLogin as ol
 INNER JOIN os 
 on os.osId = ol.osId 
 Inner JOIN  customer as cu
 on cu.customerId = os.customerId
-GROUP BY  cu.customerId, months -->
+GROUP BY  cu.customerId, months-->
+<!-- 批量插入账单Bills表信息 -->
+<!-- INSERT into bills (customerId,months) 
+(select cu.customerId,DATE_FORMAT(ol.loginOutTime,'%Y%m') months 
+FROM osLogin as ol
+INNER JOIN os 
+on os.osId = ol.osId 
+Inner JOIN  customer as cu
+on cu.customerId = os.customerId
+GROUP BY  cu.customerId, months) -->

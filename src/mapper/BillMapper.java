@@ -1,6 +1,7 @@
 package mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import bean.Page;
 import bean.dto.BillDetailDto;
@@ -30,5 +31,10 @@ public interface BillMapper {
 	 * @return int 账单数据数
 	 */
 	public int getBillNum();
-	
+	/**
+	 * 查找指定客户，指定月份的os账号详单情况
+	 * @param map
+	 * @return
+	 */
+	public List<BillDetailDto> selectBillDetailByMonthById(Map map);
 }

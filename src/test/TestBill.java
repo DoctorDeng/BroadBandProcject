@@ -1,6 +1,8 @@
 package test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
@@ -9,7 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import bean.Page;
 import bean.dto.BillDto;
 import bean.dto.BillSearchDto;
 import mapper.BillMapper;
@@ -39,7 +40,11 @@ public class TestBill {
 	@Test
 	public void test() {
 		/*System.out.println(billMapper.selectBillDetailDtoByBillId(1).size());*/
-		System.out.println(billMapper.selectPageBill(new Page(1,5)).size());
+		/*System.out.println(billMapper.selectPageBill(new Page(1,5)).size());*/
+		Map map = new HashMap<>();
+		map.put("customerId",2);
+		map.put("month","201607");
+		System.out.println(billMapper.selectBillDetailByMonthById(map).get(0).getTotalTime());
 	}
 	
 	@Test
