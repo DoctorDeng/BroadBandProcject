@@ -77,18 +77,7 @@
 		
     </head>
     <body onload="initialYearAndMonth();">
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
-            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>              
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-               <%@include file= "../template/power.jsp" %>
-            </ul>            
-        </div>
+        <%@include file="../template/head.jsp" %>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">

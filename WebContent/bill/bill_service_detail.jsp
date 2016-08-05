@@ -13,19 +13,7 @@
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
     </head>
     <body onload="initialYearAndMonth();">
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
-            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>             
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
-            </ul>            
-        </div>
-        <!--导航区域结束-->
+        <%@include file="../template/head.jsp" %>
         <!--主要区域开始-->
         <div id="main">
             <form action="" method="">
@@ -72,16 +60,6 @@
   						</c:forEach>
                     </table>
                 </div>
-                <!--分页-->
-                <<!-- div id="pages">
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                </div>  -->                   
             </form>
         </div>
         <!--主要区域结束-->
