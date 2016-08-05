@@ -25,6 +25,9 @@ public class AccountService {
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
 			List<Customer> lc =  cm.selectAllCustomer();
 			for(Customer c:lc){
+				if("2".equals(c.getStatus())){
+					continue;
+				}
 				AccountViewBean a = new AccountViewBean();
 				a.setBussinessId(c.getCustomerId());
 				a.setBussinessName(c.getCustomerName());
@@ -65,6 +68,9 @@ public class AccountService {
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
 			List<Customer> lc =  cm.selectCustomerByCondition(customer);
 			for(Customer c:lc){
+				if("2".equals(c.getStatus())){
+					continue;
+				}
 				AccountViewBean a1 = new AccountViewBean();
 				a1.setBussinessId(c.getCustomerId());
 				a1.setBussinessName(c.getCustomerName());

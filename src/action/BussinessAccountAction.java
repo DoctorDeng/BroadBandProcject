@@ -43,11 +43,12 @@ public class BussinessAccountAction extends HttpServlet {
 		int customerId = bussinessId;
 		Customer customer = new Customer();
 		customer.setCustomerId(customerId);
+		customer.setStatus("2");
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
-			cm.deleteCustomer(customerId);
+			cm.updateCustomer(customer);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
