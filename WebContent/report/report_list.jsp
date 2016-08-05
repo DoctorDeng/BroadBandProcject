@@ -12,46 +12,19 @@
         <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
         <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-        
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
-        <script language="javascript" type="text/javascript">
-            function changeTab(e,ulObj) {                
-                var obj = e.srcElement || e.target;
-                if (obj.nodeName == "A") {
-                    var links = ulObj.getElementsByTagName("a");
-                    for (var i = 0; i < links.length; i++) {
-                        if (links[i].innerHTML == obj.innerHTML) {
-                            links[i].className = "tab_on";
-                        }
-                        else {
-                            links[i].className = "tab_out";
-                        }
-                    }
-                }
-            }
-        </script>
+        <script src="<%=request.getContextPath()%>/js/report_list.js"></script>
+    	<script src="<%=request.getContextPath()%>/report_list.js"></script>
     </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
-            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>            
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
-            </ul>            
-        </div>
-        <!--导航区域结束-->
+        <%@include file="../template/head.jsp" %>
         <!--主要区域开始-->        
         <div id="report_main">
         	<div class="tabs">
     	        <ul onclick="changeTab(event,this);">
-        	        <li><a href="<%=request.getContextPath()%>/StatementAction?operation=default" class="tab_out" title="每位客户每月的累计时长">客户使用时长</a></li>
-                    <li><a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
+        	        <li><a href="<%=request.getContextPath()%>/StatementAction?operation=default" class="tab_on" title="每位客户每月的累计时长" id="defaultTab">客户使用时长</a></li>
+                    <li><a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc" class="tab_out" title="按照客户每月累计时长排序" id="orderTab">时长排行榜</a></li>
                 </ul>
             </div>            
             <div class="report_box">
@@ -96,46 +69,53 @@
                 <!--分页-->
                 <c:choose>
                 	<c:when test="${operation == 'default'}">
+                		 <script>
+                		 	defaultTab();
+                		 </script>
                 		 
-                <div id="pages">
-                    <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
-                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
-                    	<c:if test="${i == requestScope.page.currentPage}">
-                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${i}" class="current_page" >${i}</a>
-                    	</c:if>
-                    	<c:if test="${i != requestScope.page.currentPage}">
-                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${i}">${i}</a>
-                    	</c:if>
-                    </c:forEach>
-                    <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    <a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.endPage}">末页</a>
-                </div>
+                		<div id="pages">
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.upPage}">上一页</a>
+                    		
+                    		<c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    			<c:if test="${i == requestScope.page.currentPage}">
+                    				<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${i}" class="current_page" >${i}</a>
+                    			</c:if>
+                    			<c:if test="${i != requestScope.page.currentPage}">
+                    				<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${i}">${i}</a>
+                    			</c:if>
+                    		</c:forEach>
+                    		
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.endPage}">末页</a>
+                		</div>
                 	</c:when>
                 	<c:when test="${operation == 'orderByDesc'}">
-                		 
-                <div id="pages">
-                    <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.indexPage}">首页</a>
-        	        <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.upPage}">上一页</a>
-                    <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
-                    	<c:if test="${i == requestScope.page.currentPage}">
-                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
-                    	</c:if>
-                    	<c:if test="${i != requestScope.page.currentPage}">
-                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
-                    	</c:if>
-                    </c:forEach>
-                    <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
-                    <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
-                </div>
+                		  <script>
+                		  	orderByTab();
+                		 </script>
+               			 <div id="pages">
+                   			 <a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.indexPage}">首页</a>
+        	        		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.upPage}">上一页</a>
+                   
+                   			 <c:forEach var="i" begin="${requestScope.page.indexPage}" end="${requestScope.page.endPage}">
+                    			<c:if test="${i == requestScope.page.currentPage}">
+                    				<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${i}" class="current_page" >${i}</a>
+                    			</c:if>
+                    			<c:if test="${i != requestScope.page.currentPage}">
+                    				<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${i}">${i}</a>
+                    			</c:if>
+                    		</c:forEach>
+                    		
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
+                    		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
+               			 </div>
                 	</c:when>
                 </c:choose>
             </div>
         </div>
         <!--主要区域结束-->
         <div id="footer">
-          
-          
         </div>
     </body>
 </html>
