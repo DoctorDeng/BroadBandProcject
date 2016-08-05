@@ -122,7 +122,7 @@
                         <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=<%=a.getBussinessId() %>"><%=a.getBussinessName() %></a></td>
                         <td><%=a.getIdNumber() %></td>
                         <td><%=a.getLoginAccount() %></td>
-                        <td><%=!a.getStatus().equals("1")?"暂停":"开通" %></td>
+                        <td><%=a.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=a.getCreateTime() %></td>
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
