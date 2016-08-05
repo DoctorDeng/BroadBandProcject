@@ -20,9 +20,12 @@
         <div id="main">
             <form action="#" method="">
                 <!--查询-->
-                <div class="search_add">    
-                	<div style="width:360px">&nbsp;&nbsp;</div>                        
-                    <div style="font-size:20px">用户账单明细</div>                      
+                <div class="search_add">  
+                	<div>账务账号：<span class="readonly width70">${requestScope.customerAccount}</span></div>                            
+                    <div>身份证：<span class="readonly width150">${requestScope.idNumber}</span></div>
+                    <div>计费时间：<span class="readonly width70">${requestScope.month}</span></div>
+                    <div>总费用：<span class="readonly width70">${requestScope.cost}</span></div>
+                    <div style="font-size:15px">用户账单明细</div>                     
                     <input type="button" value="返回" class="btn_add" 
                     onclick="location.href='<%=request.getContextPath()%>/BillAction?operation=showBill';" />
                 </div>  
@@ -63,7 +66,9 @@
   								<td><c:out value="${billDetail.timeLong}"/></td>
   								<td><c:out value="${billDetail.cost}"/></td>
   								<td><c:out value="${billDetail.tariffName}"/></td>
-  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showLogin&osId=${billDetail.osId}&months=${billDetail.months}" title="账单明细">明细</a></td>
+  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showLogin&osId=${billDetail.osId}&months=${billDetail.months}
+  								&customerAccount=${billDetail.customerAccount}&osAccount=${billDetail.osAccount}&serverIp=${billDetail.serverIp}
+  								&cost=${billDetail.cost}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
                     </table>

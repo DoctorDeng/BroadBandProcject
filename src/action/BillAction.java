@@ -58,7 +58,11 @@ public class BillAction extends HttpServlet {
 		 * 显示详单信息
 		 */
 		case "showDetailBill":
-			String customerIdStr = request.getParameter("customerId");
+			String customerIdStr   = request.getParameter("customerId");
+			String customerAccount = request.getParameter("customerAccount");
+			String idNumber        = request.getParameter("idNumber");
+			String month           = request.getParameter("months");
+			String cost            = request.getParameter("cost");
 			
 			if (null == customerIdStr | "".equals(customerIdStr)) {
 				customerIdStr = "0";
@@ -67,6 +71,11 @@ public class BillAction extends HttpServlet {
 			List<BillDetailFormBean> billDetails = 
 					billService.getMonthBillDetailForm(Integer.parseInt(customerIdStr),months);
 			
+			request.setAttribute("customerAccount", customerAccount);
+			request.setAttribute("idNumber", idNumber);
+			request.setAttribute("month", month);
+			request.setAttribute("cost", cost);
+			
 			request.setAttribute("billDetailForm",billDetails);
 			request.getRequestDispatcher("/bill/bill_item.jsp").forward(request, response);
 			break;
@@ -74,12 +83,24 @@ public class BillAction extends HttpServlet {
 		 * 展示账号登陆信息
 		 */
 		case "showLogin":
-			String osIdStr  = request.getParameter("osId");
+			String osIdStr  		= request.getParameter("osId");
+			String customerAccount1 = request.getParameter("customerAccount");
+			String osAccount        = request.getParameter("osAccount");
+			String serverIp         = request.getParameter("serverIp");
+			String month1           = request.getParameter("months");
+			String cost1            = request.getParameter("cost");
+			
 			if (null == osIdStr | "".equals(osIdStr)) {
 				osIdStr = "0";
 			}
 			List<OsLoginFormBean> osLoginList = 
 					billService.getOsLoginFormByMonth(Integer.parseInt(osIdStr),months);
+			
+			request.setAttribute("customerAccount", customerAccount1);
+			request.setAttribute("osAccount", osAccount);
+			request.setAttribute("serverIp", serverIp);
+			request.setAttribute("months", month1);
+			request.setAttribute("cost", cost1);
 			request.setAttribute("osLoginForm", osLoginList);
 			request.getRequestDispatcher("/bill/bill_service_detail.jsp").forward(request, response);
 			break;

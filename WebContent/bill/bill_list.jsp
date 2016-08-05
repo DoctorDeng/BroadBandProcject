@@ -133,7 +133,8 @@
   								<td><c:out value="${bill.cost}"/></td>
   								<td><c:out value="${bill.payWay}"/></td>
   								<td><c:out value="${bill.payStatus}"/></td>
-  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showDetailBill&customerId=${bill.customerId}&months=${bill.months}" title="账单明细">明细</a></td>
+  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showDetailBill&customerId=${bill.customerId}&months=${bill.months}
+  								&customerAccount=${bill.customerAccount}&idNumber=${bill.idNumber}&months=${bill.months}&cost=${bill.cost}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
                 </table>

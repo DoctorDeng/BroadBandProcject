@@ -19,8 +19,14 @@
             <form action="" method="">
                 <!--查询-->
                 <div class="search_add">
+                    <div>账务账号：<span class="readonly width70">${requestScope.customerAccount}</span></div>                            
+                    <div>OS 账号：<span class="readonly width100">${requestScope.osAccount}</span></div>
+                    <div>服务器 IP：<span class="readonly width100">${requestScope.serverIp}</span></div>
+                    <div>计费时间：<span class="readonly width70">${requestScope.months}</span></div>
+                    <div>费用：<span class="readonly width70">${requestScope.cost}</span></div>
+                    <!-- <input type="button" value="返回" class="btn_add" onclick="location.href='bill_item.html';" />
                     <div style="width:340px">&nbsp;&nbsp;</div>                        
-                    <div style="font-size:20px">用户Os账号登陆明细</div>                            
+                    <div style="font-size:20px">用户Os账号登陆明细</div>   -->                          
                     <input type="button" value="返回" class="btn_add" 
                     onclick="location.href='<%=request.getContextPath()%>/BillAction?operation=showBill';" />
                 </div>  
