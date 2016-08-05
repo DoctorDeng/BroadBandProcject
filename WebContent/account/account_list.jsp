@@ -79,7 +79,7 @@
                             <option value="-1">全部</option>
                             <option value="1">开通</option>
                             <option value="0">暂停</option>
-                            <option value="-1">删除</option>
+                            <option value="2">删除</option>
                         </select>
                     </div>
                     <div><input type="button" value="搜索" class="btn_search" id="btnsub" onclick="sub()" /></div>
@@ -122,7 +122,7 @@
                         <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=<%=a.getBussinessId() %>"><%=a.getBussinessName() %></a></td>
                         <td><%=a.getIdNumber() %></td>
                         <td><%=a.getLoginAccount() %></td>
-                        <td><%=a.getStatus().equals("1")?"暂停":"开通" %></td>
+                        <td><%=!a.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=a.getCreateTime() %></td>
                         <td><%=a.getLastLoginTime() %></td>                           
                         <td class="td_modi">
