@@ -54,4 +54,15 @@ public interface BillMapper {
 	 * @return
 	 */
 	public List<BillDto> selectMonthBillByCondition(BillSearchDto billSearchDto);
+	/**
+	 * 更新指定账单的资费数据
+	 * @param map  
+	 * @return 
+	 */
+	public int updateBill(Map map);
+	/**
+	 * 获取所有月份账单数据
+	 * @return
+	 */
+	public List<BillDto> selectAllMonthBill();
 }

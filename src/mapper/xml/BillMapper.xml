@@ -107,4 +107,17 @@
 				</if>
 			</where>
 	    </select>
+	    
+	    <update id="updateBill" parameterType="Map">
+	    	UPDATE bills SET cost = #{cost} 
+	    	WHERE  customerId = #{customerId} 
+	    	AND    months = #{months}
+	    </update>
+	    
+	    <select id="selectAllMonthBill" resultType="BillDto">
+	    	select billId,cu.customerId,cu.customerName,cu.idNumber,cu.customerAccount,cost,months,payWay,payStatus
+			FROM bills as bi
+			INNER JOIN customer as cu
+			ON bi.customerId = cu.customerId
+	    </select>
 	</mapper>

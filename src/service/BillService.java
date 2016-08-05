@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import bean.Bill;
 import bean.Page;
 import bean.dto.BillDetailDto;
 import bean.dto.BillDto;
@@ -26,82 +27,6 @@ public class BillService {
 	private BillMapper billMapper;
 	
 	public BillService() {
-	}
-	/**
-	 * 通过分页，获取指定页的账单信息
-	 * @return  包含账单信息的PageDto
-	 */
-	public PageDto<BillFormBean> getBillFormByPage(String currentPageStr, int pageSize) {
-		
-		init();
-		int recordNum = billMapper.getBillNum();
-		
-		PageDto<BillFormBean> pageDto = new PageDto<>();
-		pageDto.init(recordNum, pageSize, currentPageStr);
-		
-		List<BillDto> billDtos = billMapper.selectPageBill(new Page((pageDto.getCurrentPage()-1)*pageSize,pageSize)); 
-		
-		List<BillFormBean> billForms = BillUtil.billDtoToBillFormBean(billDtos);
-		
-		pageDto.setDataList(billForms);
-		close();
-		return pageDto;
-	}
-	/**
-	 * 获取客户Os账号登陆表单信息
-	 * @param osId   账号Id
-	 * @return
-	 */
-	public List<OsLoginFormBean>   getOsLoginForm(int osId) {
-		try {
-			sqlSession = SqlSessionUtil.getSqlSession();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		OsLoginMapper osLoginMapper = sqlSession.getMapper(OsLoginMapper.class);
-		
-		List<OsLoginDto> osLoginDtos = osLoginMapper.selectOsLoginDtoByOsId(osId);
-		List<OsLoginFormBean> loginList = OsLoginUtil.osLoginDtoToFormBean(osLoginDtos);
-		
-		close();
-		return loginList;
-	}
-	/**
-	 * 获取客户详单信息
-	 * @param billId  账单Id
-	 * @return  返回详单表单Bean的集合
-	 */
-	public List<BillDetailFormBean> getBillDetailForm(int billId) {
-		init();
-		
-		List<BillDetailDto> billDetailDtos = billMapper.selectBillDetailDtoByBillId(billId);
-		
-		List<BillDetailFormBean> list = BillUtil.billDetailDtoToFormBean(billDetailDtos);
-		
-		close();
-		return list;
-	}
-	/**
-	 * 通过客户身份证号、账务账号、客户姓名来查找客户的
-	 * @param idNumber       客户身份证号
-	 * @param loginAccount   客户账务账号
-	 * @param customerName   客户姓名
-	 * @return               账单表单Bean（包含用户账单信息）集合
-	 */
-	public PageDto<BillFormBean> getBillFormByCondition(String idNumber, String customerAccount, String customerName) {
-		init();
-		
-		BillSearchDto billSearchDto = new BillSearchDto(idNumber, customerAccount, customerName);
-		
-		List<BillDto> billDtos = billMapper.selectBillByCondition(billSearchDto);
-		
-		List<BillFormBean> billForms = BillUtil.billDtoToBillFormBean(billDtos);
-		
-		close();
-		PageDto<BillFormBean> pageDto = new PageDto<>();
-		pageDto.setDataList(billForms);
-		
-		return pageDto;
 	}
 	/**
 	 * 获取指定页的月份账单信息
@@ -193,6 +118,55 @@ public class BillService {
 		close();
 		return list;
 	}
+	/**
+	 * 通过后台OsLogin数据更新账单表的资费数据
+	 * @return
+	 */
+	public boolean updateAllBill() {
+		init();
+		List<BillDto> bills = billMapper.selectAllMonthBill();
+		int resultNum = 0;
+		for (int i=0; i<bills.size(); i++) {
+			BillDto bill = bills.get(i);
+			List<BillDetailFormBean> billDetails = getMonthBillDetailForm(bill.getCustomerId(),bill.getMonths());
+			double cost = 0.00;
+			
+			for (BillDetailFormBean billDetail: billDetails) {
+				cost += Double.parseDouble(billDetail.getCost()); 
+			}
+			System.out.println(cost);
+			Map map = new HashMap();
+			map.put("customerId",bill.getCustomerId());
+			map.put("months", bill.getMonths());
+			map.put("cost", cost);
+			
+			try {
+				SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+				BillMapper billMapper = sqlSession.getMapper(BillMapper.class);
+				int result = billMapper.updateBill(map);
+				if (result >0) {
+					sqlSession.commit();
+					resultNum += 1;
+				} else {
+					sqlSession.rollback();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(resultNum);
+		return true;
+	}
+	
+/*	public void test(){
+		init();
+		Map map = new HashMap();
+		map.put("customerId",1);
+		map.put("months", 201603);
+		map.put("cost", 30);
+		System.out.println(billMapper.updateBill(map));;
+		close();
+	}*/
 	
 	/**
 	 * 初始化SqlSession和mapper
@@ -224,10 +198,10 @@ public class BillService {
 			System.out.println(temp.toString());
 		}*/
 		
-		List<BillDetailFormBean> forms = bill.getMonthBillDetailForm(1,"201603");
+	/*	List<BillDetailFormBean> forms = bill.getMonthBillDetailForm(1,"201603");
 		for (BillDetailFormBean temp:forms) {
 			System.out.println(temp.toString());
-		}
+		}*/
 		/*PageDto<BillFormBean> page = bill.getMonthBillFormByPage("1",5);
 		for (BillFormBean temp: page.getDataList()) {
 			System.out.println(temp.toString());
@@ -241,5 +215,7 @@ public class BillService {
 		for (OsLoginFormBean osLogin:osLogins) {
 			System.out.println(osLogin.toString());
 		}*/
+		bill.updateAllBill();
+	/*	bill.test();*/
 	}
 }
