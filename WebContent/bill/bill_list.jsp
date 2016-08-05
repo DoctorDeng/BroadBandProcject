@@ -18,17 +18,20 @@
 		<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
 		<script type="text/javascript">
 			function search() {
-				
-				var idNumber = $("#idNumber").val();
+				var idNumber     = $("#idNumber").val();
             	var loginAccount = $("#loginAccount").val();
             	var customerName = $("#customerName").val();
+            	var year         = $("#selYears").find("option:selected").text();
+            	var month        = $("#selMonths").find("option:selected").text();
+            	var months       = year+month;
             	$("#pages").hide();
             	$("#datalist").hide("fast");
             	
 				$.post("/lanqiao/BillTest", {
 					'idNumber' 	   : idNumber,
 					'loginAccount' : loginAccount,
-					'customerName' : customerName
+					'customerName' : customerName,
+					 'months'      : months
 				}, function(data) {
 					var $menuId = $("#menuId");
 					$("#datalist").empty();
@@ -45,6 +48,31 @@
 					window.location.href="<%=request.getContextPath()%>/BillAction?operation=showBill";
 				});
 			}
+			 //写入下拉框中的年份和月份
+            function initialYearAndMonth() {
+                //写入最近3年
+                var yearObj = document.getElementById("selYears");
+                var year = (new Date()).getFullYear();
+                for (var i = 0; i <= 2; i++) {
+                    var opObj = new Option(year - i, year - i);
+                    yearObj.options[i] = opObj;
+                }
+                //写入 12 月
+                var monthObj = document.getElementById("selMonths");
+              /*   var opObj = new Option("全部", "全部");
+                monthObj.options[0] = opObj; */
+                for (var i = 0; i < 12; i++) {
+                	if(i<9) {
+	                    var opObj = new Option("0"+(i+1), i);
+                	} else {
+                		var opObj = new Option(i+1, i);
+                	}
+                    monthObj.options[i] = opObj;
+                }
+			 }
+            $(document).ready(function(){
+            	initialYearAndMonth();
+            });
 		</script>
 		
     </head>
@@ -70,6 +98,10 @@
                     <div>身份证：<input type="text" id="idNumber"       class="text_search" /></div>
                     <div>账务账号：<input type="text"  id="loginAccount" class="width100 text_search" /></div>                            
                     <div>姓名：<input type="text"     id="customerName" class="width70 text_search" /></div>
+                    <div>
+                        <select class="select_search" id="selYears"></select>年
+                        <select class="select_search" id="selMonths"></select>月
+                    </div>
                     <div><input type="button" value="搜索" class="btn_search" onclick="search()" /></div>
                     <div><input type="button" value="显示所有" class="btn_search" onclick="show()" /></div>
                 </div>  
@@ -81,7 +113,8 @@
                         <th class="width70">姓名</th>
                         <th class="width150">身份证</th>
                         <th class="width150">账务账号</th>
-                        <th class="width100">总时长</th>
+                        <th class="width100">月份</th>
+                        <th class="width100">费用</th>
                         <th class="width100">支付方式</th>
                         <th class="width100">支付状态</th>                                                        
                         <th class="width50"></th>
@@ -89,6 +122,7 @@
                     <c:set var="billPage" value="${not empty requestScope.billPage}" />
   					<c:if test="${not billPage}">
   						<tr>
+  							<td>没有信息</td>
   							<td>没有信息</td>
   							<td>没有信息</td>
   							<td>没有信息</td>
@@ -106,10 +140,11 @@
   								<td><c:out value="${bill.customerName}"/></td>
   								<td><c:out value="${bill.idNumber}"/></td>
   								<td><c:out value="${bill.customerAccount}"/></td>
-  								<td><c:out value="${bill.timeLong}"/></td>
+  								<td><c:out value="${bill.months}"/></td>
+  								<td><c:out value="${bill.cost}"/></td>
   								<td><c:out value="${bill.payWay}"/></td>
   								<td><c:out value="${bill.payStatus}"/></td>
-  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showDetailBill&billId=${bill.billId}" title="账单明细">明细</a></td>
+  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showDetailBill&customerId=${bill.customerId}&months=${bill.months}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
                 </table>

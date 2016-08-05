@@ -224,10 +224,10 @@ public class BillService {
 			System.out.println(temp.toString());
 		}*/
 		
-		/*List<BillDetailFormBean> forms = bill.getMonthBillDetailForm(1,"201607");
+		List<BillDetailFormBean> forms = bill.getMonthBillDetailForm(1,"201603");
 		for (BillDetailFormBean temp:forms) {
 			System.out.println(temp.toString());
-		}*/
+		}
 		/*PageDto<BillFormBean> page = bill.getMonthBillFormByPage("1",5);
 		for (BillFormBean temp: page.getDataList()) {
 			System.out.println(temp.toString());
@@ -237,9 +237,9 @@ public class BillService {
 		for (BillFormBean temp: page.getDataList()) {
 			System.out.println(temp.toString());
 		}*/
-		List<OsLoginFormBean> osLogins = bill.getOsLoginFormByMonth(1, "201606");
+		/*List<OsLoginFormBean> osLogins = bill.getOsLoginFormByMonth(1, "201606");
 		for (OsLoginFormBean osLogin:osLogins) {
 			System.out.println(osLogin.toString());
-		}
+		}*/
 	}
 }

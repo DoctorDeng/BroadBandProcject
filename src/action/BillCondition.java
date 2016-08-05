@@ -36,12 +36,13 @@ public class BillCondition extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BillService billService = new BillService();
-		String idNumber = request.getParameter("idNumber");
+		String idNumber     = request.getParameter("idNumber");
 		String loginAccount = request.getParameter("loginAccount");
 		String customerName = request.getParameter("customerName");
+		String months       = request.getParameter("months");
 		
 		List<BillFormBean> manyBillFrom = new ArrayList<>();
-		PageDto<BillFormBean> pageDto = billService.getBillFormByCondition(idNumber, loginAccount, customerName);
+		PageDto<BillFormBean> pageDto = billService.getMonthBillFormByCondition(idNumber, loginAccount, customerName,months);
 		List<BillFormBean> billList = pageDto.getDataList();
 		
 		if(billList.size() >7) {
@@ -55,10 +56,11 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getCustomerName()+"</td>");
 				out.println("<td>" +billForm.getIdNumber()+"</td>");
 				out.println("<td>" +billForm.getCustomerAccount()+"</td>");
-				out.println("<td>" +billForm.getTimeLong()+"</td>");
+				out.println("<td>" +billForm.getMonths()+"</td>");
+				out.println("<td>" +billForm.getCost()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
 				out.println("<td>" +billForm.getPayStatus()+"</td>");
-				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
+				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&customerId=" +billForm.getCustomerId()+"&months=" +billForm.getMonths()+"\" title=\"账单明细\">明细</a></td>");
 				out.print("</tr>");
 			}
 			out.flush();
@@ -76,6 +78,7 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>没有搜索到!</td>");
 				out.println("<td>没有搜索到!</td>");
 				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
 				out.print("</tr>");
 			}
 			for(BillFormBean billForm :billList) {
@@ -84,10 +87,11 @@ public class BillCondition extends HttpServlet {
 				out.println("<td>" +billForm.getCustomerName()+"</td>");
 				out.println("<td>" +billForm.getIdNumber()+"</td>");
 				out.println("<td>" +billForm.getCustomerAccount()+"</td>");
-				out.println("<td>" +billForm.getTimeLong()+"</td>");
+				out.println("<td>" +billForm.getMonths()+"</td>");
+				out.println("<td>" +billForm.getCost()+"</td>");
 				out.println("<td>" +billForm.getPayWay()+"</td>");
 				out.println("<td>" +billForm.getPayStatus()+"</td>");
-				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&billId=" +billForm.getBillId()+"\" title=\"账单明细\">明细</a></td>");
+				out.println("<td><a href=\""+request.getContextPath()+"/BillAction?operation=showDetailBill&customerId=" +billForm.getCustomerId()+"&months=" +billForm.getMonths()+"\" title=\"账单明细\">明细</a></td>");
 				out.print("</tr>");
 			}
 			out.flush();

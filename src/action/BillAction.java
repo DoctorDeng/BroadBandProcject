@@ -42,13 +42,14 @@ public class BillAction extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
+		String months   = request.getParameter("months");
 		switch (operation) {
 		/**
 		 * 通过分页显示账单信息
 		 */
 		case "showBill":
 			String currentPageStr = request.getParameter("currentPage");
-			PageDto pageDto = billService.getBillFormByPage(currentPageStr, 4);
+			PageDto pageDto = billService.getMonthBillFormByPage(currentPageStr, 4);
 	  		request.setAttribute("billPage", pageDto);
 	  		request.setAttribute("isPage", "yes");
 			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
@@ -57,13 +58,16 @@ public class BillAction extends HttpServlet {
 		 * 显示详单信息
 		 */
 		case "showDetailBill":
-			String billIdStr  = request.getParameter("billId");
-			if (null == billIdStr | "".equals(billIdStr)) {
-				billIdStr = "0";
+			String customerIdStr = request.getParameter("customerId");
+			
+			if (null == customerIdStr | "".equals(customerIdStr)) {
+				customerIdStr = "0";
 			}
-			List<BillDetailFormBean> billDetailList = 
-					billService.getBillDetailForm(Integer.parseInt(billIdStr));
-			request.setAttribute("billDetailForm", billDetailList);
+			
+			List<BillDetailFormBean> billDetails = 
+					billService.getMonthBillDetailForm(Integer.parseInt(customerIdStr),months);
+			
+			request.setAttribute("billDetailForm",billDetails);
 			request.getRequestDispatcher("/bill/bill_item.jsp").forward(request, response);
 			break;
 		/**
@@ -75,28 +79,11 @@ public class BillAction extends HttpServlet {
 				osIdStr = "0";
 			}
 			List<OsLoginFormBean> osLoginList = 
-					billService.getOsLoginForm(Integer.parseInt(osIdStr));
+					billService.getOsLoginFormByMonth(Integer.parseInt(osIdStr),months);
 			request.setAttribute("osLoginForm", osLoginList);
 			request.getRequestDispatcher("/bill/bill_service_detail.jsp").forward(request, response);
 			break;
 		case "condition":
-			/*String idNumber = request.getParameter("idNumber");
-			String loginAccount = request.getParameter("loginAccount");
-			String customerName = java.net.URLDecoder.decode(request.getParameter("customerName"), "UTF-8");
-			List<BillFormBean> billFormListTemp = billService.getBillFormByCondition(idNumber, loginAccount, customerName);
-			if(billFormListTemp.size() >7) {
-				List<BillFormBean> manyBillFrom = new ArrayList<>();
-				for (int i=0; i<7;i ++) {
-					manyBillFrom.add(billFormListTemp.get(i));
-				}
-				request.setAttribute("billForm", billFormListTemp);
-				request.setAttribute("isPage", "no");
-				request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
-			}
-			request.setAttribute("isPage", "no");
-			request.setAttribute("billForm", billFormListTemp);
-			request.getRequestDispatcher("/bill/bill_list.jsp").forward(request, response);
-			break;*/
 		}
 	}
 

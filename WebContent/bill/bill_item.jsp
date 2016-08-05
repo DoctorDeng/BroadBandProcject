@@ -73,39 +73,9 @@
   								<td><c:out value="${billDetail.timeLong}"/></td>
   								<td><c:out value="${billDetail.cost}"/></td>
   								<td><c:out value="${billDetail.tariffName}"/></td>
-  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showLogin&osId=${billDetail.osId}" title="账单明细">明细</a></td>
+  								<td><a href="<%=request.getContextPath()%>/BillAction?operation=showLogin&osId=${billDetail.osId}&months=${billDetail.months}" title="账单明细">明细</a></td>
   							<tr>
   						</c:forEach>
-                        <!-- <tr>
-                            <td>1</td>
-                            <td>openlab1</td>
-                            <td>192.168.100.100</td>
-                            <td>101</td>
-                            <td>1小时3分15秒</td>
-                            <td>43.45</td>
-                            <td>包 20 小时</td>                          
-                            <td><a href="bill_service_detail.jsp" title="业务详单">详单</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>openlab1</td>
-                            <td>192.168.100.20</td>
-                            <td>101</td>
-                            <td>3分15秒</td>
-                            <td>3.45</td>
-                            <td>包 20 小时</td>                          
-                            <td><a href="bill_service_detail.jsp" title="业务详单">详单</a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>openlab1</td>
-                            <td>192.168.0.23</td>
-                            <td>101</td>
-                            <td>13分15秒</td>
-                            <td>13.45</td>
-                            <td>包 40 小时</td>                          
-                            <td><a href="bill_service_detail.jsp" title="业务详单">详单</a></td>
-                        </tr> -->
                     </table>
                 </div>
                 <!--分页-->
