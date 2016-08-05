@@ -87,6 +87,8 @@
                AND status=#{status}
               </if>
               </where>
+              ORDER BY
+              b.bussinessId ASC
 	</select>
 	<!-- 详细查询 -->
 	<select id="setManyInfo"  resultType="OsShowDto">

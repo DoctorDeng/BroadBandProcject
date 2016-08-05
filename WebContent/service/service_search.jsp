@@ -44,21 +44,21 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="post">
+             <form action="<%=request.getContextPath() %>/ServiceSearchAction" method="post">
                 <!--查询-->
-                <div class="search_add">                        
-                    <div>OS 账号：<input type="text" value="" class="width100 text_search" id="osC"/></div>                            
-                    <div>服务器 IP：<input type="text" value="" class="width100 text_search" id="sIp"/></div>
-                    <div>身份证：<input type="text"  value="" class="text_search" id="idCard"/></div>
+               <div class="search_add">                        
+                    <div>OS 账号：<input type="text" id="osC" name="osC" class="width100 text_search" /></div>                            
+                    <div>服务器 IP：<input type="text" name="sIp" class="width100 text_search" /></div>
+                    <div>身份证：<input type="text"  name="idCard" class="text_search" /></div>
                     <div>状态：
-                        <select class="select_search" id="show">
+                        <select class="select_search" id="choose" name="status">
                             <option value="0">全部</option>
                             <option value="1">开通</option>
                             <option value="2">暂停</option>
                             <option value="3">删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" id="search" /></div>
+                    <div><input type="submit" value="搜索" class="btn_search"  id="search"/></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='service_add.jsp';" />
                 	</div>  
                 <!--删除的操作提示-->
@@ -89,7 +89,7 @@
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
                         <td><%=sv.getOsAccount() %></td>
-                        <td><%=sv.getStatus()%></td>
+                        <td><%=!sv.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=sv.getServerIp()%></td>
                         <td>
                             <a class="summary" ><%=sv.getTariffName()%></a>
@@ -104,7 +104,9 @@
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
-                    <%} %>                                                              
+                    <%}
+			
+			%>                                                              
                 </table>
                 <p>业务说明：<br />
                 1、创建即开通，记载创建时间；<br />
@@ -115,7 +117,7 @@
                 6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
                 </div>                    
                 <!--分页-->
-                <!-- <div id="pages">
+                <div id="pages">
                     <a href="#">首页</a>
         	        <a href="#">上一页</a>
                     <a href="#" class="current_page">1</a>
@@ -125,7 +127,7 @@
                     <a href="#">5</a>
                     <a href="#">下一页</a>
                     <a href="#">末页</a>
-                </div>       -->              
+                </div>                  
             </form>
         </div>
         <!--主要区域结束-->

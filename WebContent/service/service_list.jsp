@@ -137,7 +137,7 @@
                         <td><%=sv.getIdNumber() %></td>
                         <td><%=sv.getCustomerName() %></td>
                         <td><%=sv.getOsAccount() %></td>
-                        <td><%=sv.getStatus()%></td>
+                        <td><%=!sv.getStatus().equals("1")?"暂停":"开通" %></td>
                         <td><%=sv.getServerIp()%></td>
                         <td>
                             <a class="summary" ><%=sv.getTariffName()%></a>
