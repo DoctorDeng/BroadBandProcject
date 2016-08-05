@@ -135,6 +135,12 @@ public class ProfessionService {
 		return b;
 		
 	}
+	public boolean  upStutas(Customer customer){
+		start();
+		customerMapper.updateCustomer(customer);
+		close();
+		return true;
+	}
 	/**
 	 * 
 	 * 构建环境
