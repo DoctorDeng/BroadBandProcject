@@ -81,7 +81,10 @@
                     删除成功！
                 </div>    
                 <!--数据区域：用表格展示数据-->     
-                <div id="data">            
+                <div id="data"> 
+                <%
+                  
+                %>           
                     <table id="datalist">
                         <tr>
                             <th>资费ID</th>
@@ -106,8 +109,26 @@
                             <td><%=sv.getTariff() %></td>
                             <td><%=sv.getTimeTariff() %></td>
                             <td><%=sv.getCreateTime() %></td>
+                            <%
+                            if(sv.getOpenTime()==null){
+                            %>
+                            <td></td>
+                            <%
+                            }else{
+                            %>
                             <td><%=sv.getOpenTime() %></td>
-                            <td><%=sv.getStatus() %></td>
+                            <%
+                            }
+                            %>
+                            <%
+                            if("1".equals(sv.getStatus())){
+                            %>
+                            <td>开通</td>
+                            <%
+                            }else{
+                            %>
+                            <td>暂停</td>
+                            <%} %>
                             <td>      
                             <%
                             if("0".equals(sv.getStatus())){
