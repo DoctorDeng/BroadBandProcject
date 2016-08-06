@@ -10,11 +10,23 @@ public interface AdminMapper {
 	 * @return  List<Admin>
 	 */
 	public List<Admin> selectAllAdmin();
-	
+	/**
+	 * 通过管理员获取管理员信息
+	 * @param adminId  管理员ID
+	 * @return   Admin
+	 */
 	public Admin selectAdminById(int adminId);
-	
+	/**
+	 * 插入管理员
+	 * @param admin
+	 * @return
+	 */
 	public int insertAdmin(Admin admin);
-	
+	/**
+	 * 更新管理员个人信息(不包括权限)
+	 * @param admin
+	 * @return
+	 */
 	public int updateAdminInfor(Admin admin);
 	/**
 	 * 批量重置管理员的账号密码
@@ -22,12 +34,22 @@ public interface AdminMapper {
 	 * @return
 	 */
 	public int resetAdminsPassword(int[] adminIds);
-	
+	/**
+	 * 删除指定管理
+	 * @param adminId  要删除的管理员ID
+	 * @return
+	 */
 	public int deleteAdminById(int adminId);
-	
+	/**
+	 * 更新管理员密码
+	 * @param admin
+	 * @return
+	 */
 	public int updateAdminPassword(Admin admin);
 	/**
 	 * 登陆验证
+	 * @param admin
+	 * @return  验证成功返回一个Admin对象,失败返回 null
 	 */
 	public Admin verifyAdmin(Admin admin);
 	/**

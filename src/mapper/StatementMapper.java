@@ -7,23 +7,6 @@ import bean.vo.StatementVo;
 
 public interface StatementMapper {
 	/**
-	 * 获取指定页面的报表信息
-	 * @param page  
-	 * @return  List<StatementVo>
-	 */
-	public List<StatementVo> selectStatementByPagging(Page page);
-	/**
-	 * 获取通过客户Os账号总登陆时长降序排序的报表信息
-	 * @param page
-	 * @return   List<StatementVo>
-	 */
-	public List<StatementVo> selectStatementByPaggingByDesc(Page page);
-	/**
-	 * 获取报表数据总条数
-	 * @return  int 
-	 */
-	public int getStatementNum();
-	/**
 	 * 获取按月份分组的客户报表信息
 	 * @param page  Page
 	 * @return  List<StatementVo>

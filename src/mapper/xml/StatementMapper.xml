@@ -2,26 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.StatementMapper">
-	<select id="selectStatementByPagging" parameterType="Page" resultType="StatementVo">
-		select cu.customerId, customerAccount,customerName,idNumber,phone, 
-		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as timeLong 
-		FROM customer as cu 
-		LIMIT #{index},#{size}
-	</select>
-	
-	<select id="selectStatementByPaggingByDesc" parameterType="Page" resultType="StatementVo">
-		select cu.customerId, customerAccount,customerName,idNumber,phone, 
-		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as timeLong 
-		FROM customer as cu 
-		ORDER BY timeLong DESC 
-		LIMIT #{index},#{size}
-	</select>
-	
-	<select id="getStatementNum" resultType="int">
-		select count(*) as count 
-	    FROM customer 
-	</select>
-	
 	<select id="selectMonthStatementByPage" parameterType="Page" resultType="StatementVo">
 		select cu.customerId,cu.customerAccount,cu.customerName,cu.idNumber,cu.phone,DATE_FORMAT(ol.loginOutTime,'%Y%m') months , 
 		(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId) AND DATE_FORMAT(loginOutTime,'%Y%m') = months ) as timeLong
