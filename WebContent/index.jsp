@@ -8,10 +8,10 @@
  		<c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
-  				window.location.href="/lanqiao/login.jsp";
+  				window.location.href="<%=request.getContextPath()%>/login.jsp";
   			</script>
   		</c:if>
-<title>Insert title here</title>
+<title>首页</title>
  <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" /> 
     </head>

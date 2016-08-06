@@ -7,7 +7,7 @@
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-         <c:set var="hasPower">false</c:set>
+        <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -24,6 +24,8 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
+      	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+      	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
             function showDetail(flag, a) {
@@ -51,7 +53,12 @@
                 if (a>0) {
                  	   document.getElementById("resetForm").submit();
                 } else {
-                	window.alert("请至少选择一条记录!");
+                	layer.open({
+                		  type: 0, 
+                		  area: ['400px', '150px'],
+                		  skin: 'layui-layer-molv',
+                		  content: '<p></p><h2>请选择至少一个管理员</h2><p></p>'
+                		});
                 }
             }
          
