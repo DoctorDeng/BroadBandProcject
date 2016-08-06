@@ -76,6 +76,7 @@ public interface OsMapper {
 	 * @return
 	 */
 	public Os upOsIdByCustomerId(int  id);
+	public boolean upStutas(Os os);
 }
 	
 

@@ -131,4 +131,7 @@
 	<select id="upOsIdByCustomerId">
 		select osId from bussiness where bussinessId=#{id}
 	</select>
+	<update id="upStutas">
+		update os set status=#{status}  where osId=#{osId}
+	</update>
 </mapper>

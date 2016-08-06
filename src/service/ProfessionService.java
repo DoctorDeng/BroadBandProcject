@@ -140,11 +140,22 @@ public class ProfessionService {
 	 * @param customer
 	 * @return
 	 */
-	public boolean  upStutas(Customer customer){
+	public boolean  upStutas(OsDto customer){
 		start();
-		customerMapper.updateCustomer(customer);
+		int id = customer.getCustomerId();
+		Bussiness bussiness = bussinessMapper.selectBussinessById(id);
+		int osId = bussiness.getOsId();
+		Os os = new Os();
+		os.setOsId(osId);
+		os.setStatus(customer.getStatus());
+		boolean b = osMapper.upStutas(os);
+		if(b){
+			close();
+			return true;
+		}
 		close();
-		return true;
+		return false;
+		
 	}
 	/**
 	 * 根据OsAccount 改变其状态  变为删除状态

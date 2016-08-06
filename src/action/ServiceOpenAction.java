@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
 import bean.Customer;
+import bean.dto.OsDto;
 import service.ProfessionService;
 
 /**
@@ -37,7 +38,7 @@ public class ServiceOpenAction extends HttpServlet {
 			bussinessId = Integer.parseInt(strId);
 		}
 		String status = request.getParameter("status");
-		Customer customer = new Customer();
+		OsDto customer = new OsDto();
 		customer.setCustomerId(bussinessId);
 		if("1".equals(status)){
 			customer.setStatus("0");
