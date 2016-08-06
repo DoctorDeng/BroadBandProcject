@@ -3,89 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <jsp:include page="../template/powerPage.jsp">
+  	<jsp:param value="2" name="pagePower"/>
+ </jsp:include>
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==2}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
-  			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
-  			</script>
-  		</c:if>
+        <title>管理员</title>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
       	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
       	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
-        <script language="javascript" type="text/javascript">
-            //显示角色详细信息
-            function showDetail(flag, a) {
-                var detailDiv = a.parentNode.getElementsByTagName("div")[0];
-                if (flag) {
-                    detailDiv.style.display = "block";
-                }
-                else
-                    detailDiv.style.display = "none";
-            }
-          //查询管理员信息  
-            function SerchAdminInfor(){
-            		var adminId = document.getElementById("serchAdmin").value;        	
-            		window.location.href="<%=request.getContextPath()%>/ShowAdminAction?operation=search&adminId="+adminId;
-              }
-            
-            function resetPwd(){  
-            	var a=0;
-                var choose=document.getElementsByName("choose");
-                for(var i=0;i<choose.length;i++){
-                   if(choose[i].checked){
-                	   a +=1;
-                   }
-                }
-                if (a>0) {
-                 	   document.getElementById("resetForm").submit();
-                } else {
-                	layer.open({
-                		  type: 0, 
-                		  area: ['400px', '150px'],
-                		  skin: 'layui-layer-molv',
-                		  content: '<p></p><h2>请选择至少一个管理员</h2><p></p>'
-                		});
-                }
-            }
-         
-            function selectAdmins(inputObj) {
-                var inputArray = document.getElementById("datalist").getElementsByTagName("input");
-                for (var i = 1; i < inputArray.length; i++) {
-                    if (inputArray[i].type == "checkbox") {
-                        inputArray[i].checked = inputObj.checked;
-                    }
-                }
-            }
-        </script>       
+		<script src="<%=request.getContextPath()%>/js/admin_list.js"></script>
     </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>              
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
-            </ul>            
-        </div>
-        <!--导航区域结束-->
+         <%@include file="../template/head.jsp" %>
         <!--主要区域开始-->
         <div id="main">
             <form action="<%=request.getContextPath()%>/ShowAdminAction?operation=reset" method="post" id="resetForm">

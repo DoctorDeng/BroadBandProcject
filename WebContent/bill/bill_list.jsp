@@ -8,72 +8,14 @@
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
+        <title>账单</title>
         <link href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
         <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
   	
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
 		<link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
-		<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
-		<script type="text/javascript">
-			function search() {
-				var idNumber     = $("#idNumber").val();
-            	var loginAccount = $("#loginAccount").val();
-            	var customerName = $("#customerName").val();
-            	var year         = $("#selYears").find("option:selected").text();
-            	var month        = $("#selMonths").find("option:selected").text();
-            	var months       = year+month;
-            	$("#pages").hide();
-            	$("#datalist").hide("fast");
-            	
-				$.post("/lanqiao/BillTest", {
-					'idNumber' 	   : idNumber,
-					'loginAccount' : loginAccount,
-					'customerName' : customerName,
-					 'months'      : months
-				}, function(data) {
-					var $menuId = $("#menuId");
-					$("#datalist").empty();
-					$("#datalist").append($menuId);
-					$("#datalist").append(data);
-					$("#datalist").show("slow",function(){
-						$("#point").show();
-					});
-				});
-			}
-			
-			function  show() {
-				$("#datalist").hide("slow",function(){
-					window.location.href="<%=request.getContextPath()%>/BillAction?operation=showBill";
-				});
-			}
-			 //写入下拉框中的年份和月份
-            function initialYearAndMonth() {
-                //写入最近3年
-                var yearObj = document.getElementById("selYears");
-                var year = (new Date()).getFullYear();
-                for (var i = 0; i <= 2; i++) {
-                    var opObj = new Option(year - i, year - i);
-                    yearObj.options[i] = opObj;
-                }
-                //写入 12 月
-                var monthObj = document.getElementById("selMonths");
-              /*   var opObj = new Option("全部", "全部");
-                monthObj.options[0] = opObj; */
-                for (var i = 0; i < 12; i++) {
-                	if(i<9) {
-	                    var opObj = new Option("0"+(i+1), i);
-                	} else {
-                		var opObj = new Option(i+1, i);
-                	}
-                    monthObj.options[i] = opObj;
-                }
-			 }
-            $(document).ready(function(){
-            	initialYearAndMonth();
-            });
-		</script>
+		<script src="<%=request.getContextPath()%>/js/bill_list.js"></script>
 		
     </head>
     <body onload="initialYearAndMonth();">
@@ -144,7 +86,6 @@
                 <!--分页-->
                 <div id="pages">
                 		<c:if test="${requestScope.isPage == 'yes'}" >
-                			
                 			<c:if test="${requestScope.billPage.currentPage == requestScope.billPage.indexPage}">
 	                			<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.indexPage}" class="btn btn-success disabled">首页</a>
         	        		</c:if>

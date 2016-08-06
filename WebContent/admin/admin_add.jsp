@@ -1,48 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <jsp:include page="../template/powerPage.jsp">
+  	<jsp:param value="2" name="pagePower"/>
+ </jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==2}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
-  			<script type="text/javascript">
-  				window.location.href="<%=request.getContextPath()%>/nopower.jsp";
-  			</script>
-  		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
-        <script type="text/javascript" src="js/addAdmin.js"></script>
-        <script language="javascript" type="text/javascript">
-            //保存成功的提示消息
-             function showResult() {
-                showResultDiv(true);
-                window.setTimeout("showResultDiv(false)", 1000);
-            }
-            function submitForm() {
-            	document.getElementById("save").submit();
-            }
-            function showResultDiv(flag) {
-                var divResult = document.getElementById("save_result_info");
-                if (flag)
-                    divResult.style.display = "block";
-                else {
-                    divResult.style.display = "none";
-               		submitForm(); 
-                }
-            }
-        </script>
+        <title>添加管理员</title>
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />
+       	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+      	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
+        <script src="<%=request.getContextPath() %>/js/addAdmin.js"></script>
     </head>
     <body>
         <!--Logo区域开始-->
@@ -64,7 +35,7 @@
             <form action="<%=request.getContextPath() %>/AddAdminAction" method="post" class="main_form"  id="save">
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                        <input type="text" name="adminName" id="admin"/>
+                        <input type="text" name="adminName" id="adminName"/>
                         <span class="required">*</span>
                         <div class="validate_msg_long" id="adminError">20长度以内的汉字、字母、数字的组合</div>
                     </div>
