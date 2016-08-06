@@ -153,8 +153,13 @@ public class ProfessionService {
 	 */
 	public boolean  upStutasWithOsAccount(OsDto osDto){
 		start();
-		System.out.println(osDto.getOsAccount());
-		boolean b =osMapper.upStutasWithOsAccount(osDto);
+		System.out.println(osDto.getBussinessId());
+		int id = osDto.getBussinessId();
+		Bussiness bussiness = bussinessMapper.selectBussinessById(id);
+		int osId = bussiness.getOsId();
+		Os o = new Os();
+		o.setOsId(osId);
+		boolean b =osMapper.upStutasWithOsAccount(o);
 		if(b){
 			close();
 			return true;

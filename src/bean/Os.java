@@ -5,10 +5,11 @@ public class Os {
     private String osAccount;     //宽带账号
     private String osPassword;     //宽带账号密码
     private String serverIp;      //服务器IP地址
-    private Customer customer;   //客户对象
     private Tariff  tariff;     //资费对象
     private int   tariffId;     //资费对象
     private String status;
+    private int customerId ;
+    private Customer customer;
     
 	/**
      * 空的构造方法
@@ -36,15 +37,6 @@ public class Os {
 		this.osPassword = osPassword;
 	}
 	
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 
 	public String getServerIp() {
 		return serverIp;
@@ -77,6 +69,22 @@ public class Os {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	@Override
 	public String toString() {
 		return "Os [osId=" + osId + ", osAccount=" + osAccount + ", osPassword=" + osPassword + ", serverIp=" + serverIp

@@ -130,7 +130,8 @@
 		<%
 		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
 		for(OsDto sv:Listo){
-			if("2".equals(sv.getStatus())){
+			String status = sv.getStatus();
+			if("2".equals(status)){
 				continue;
 			}
 		%>
@@ -152,7 +153,7 @@
                         <td class="td_modi">
                             <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountOpenAction?id=<%=sv.getOsAccount() %>&status=<%=sv.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getCustomerId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
                       <%} %>                                                                 

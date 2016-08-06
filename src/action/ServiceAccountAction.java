@@ -35,10 +35,10 @@ public class ServiceAccountAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int customerId = Integer.parseInt(request.getParameter("id"));
-		System.out.println(customerId);
+		int bussinessId = Integer.parseInt(request.getParameter("id"));
 		OsDto osDto = new OsDto();
-		osDto.setCustomerId(customerId);
+		osDto.setBussinessId(bussinessId);
+		System.out.println(bussinessId);
 		ProfessionService pro = new ProfessionService();
 		boolean b = pro.upStutasWithOsAccount(osDto);
 		if(b){
