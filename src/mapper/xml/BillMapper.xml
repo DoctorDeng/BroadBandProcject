@@ -2,55 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="mapper.BillMapper">
-		<select id="selectBillDetailDtoByBillId" parameterType="int" resultType="BillDetailDto">
-			SELECT cu.customerId,os.osAccount,os.serverIp,
-			cu.customerAccount,ta.tariffName,os.osId ,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,
-			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId) as totalTime 
-			FROM bill as bi
-			INNER JOIN customer as cu
-			ON bi.customerId = cu.customerId
-			INNER JOIN os
-			ON bi.customerId = os.customerId
-			INNER JOIN tariff as ta 
-			ON ta.tariffId = os.tariffId  
-			WHERE bi.billId = #{billId}
-		</select>
-		
-		<select id="selectPageBill" parameterType="Page" resultType="BillDto">
-			SELECT bi.billId,cu.customerName, cu.idNumber, cu.customerAccount,
-			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as totalTime,
-		 	bi.payWay,bi.payStatus 
-			FROM bill as bi 
-			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
-			LIMIT #{index},#{size}
-		</select>
-		
-		<select id="selectBillByCondition" parameterType="BillSearchDto" resultType="BillDto">
-			SELECT bi.billId,cu.customerName, cu.idNumber, cu.customerAccount,
-			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId)) as totalTime,
-		 	bi.payWay,bi.payStatus 
-			FROM bill as bi 
-			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
-			<where>
-				<if test="idNumber != null and idNumber != '' ">
-					  idNumber like  CONCAT(CONCAT('%',#{idNumber}),'%') 
-				</if>
-				
-				<if test="customerAccount != null and customerAccount != '' ">
-			 		 AND customerAccount like  CONCAT(CONCAT('%',#{customerAccount}),'%') 
-				</if>
-				
-				<if test="customerName != null and customerName != '' ">
-					 AND customerName like  CONCAT(CONCAT('%',#{customerName}),'%') 
-				</if>
-			</where>
-		</select>
-		
-		<select id="getBillNum" resultType="int">
-			SELECT count(*) as count FROM bill as bi 
-			INNER JOIN customer as cu ON bi.customerId = cu.customerId 
-		</select>
-		
 		<select id="selectBillDetailByMonthById" parameterType="Map" resultType="BillDetailDto">
 			SELECT cu.customerId,os.osAccount,os.serverIp,
 			cu.customerAccount,os.osId ,ta.tariffName,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,
@@ -61,13 +12,6 @@
 			INNER JOIN tariff as ta
 			ON ta.tariffId = os.tariffId
 			WHERE cu.customerId = #{customerId}
-		</select>
-		
-		<select id="selectAllBillGroupMonth" resultType="BillDto">
-			select billId,cu.customerId,cu.customerName,cu.idNumber,cu.customerAccount,cost,months,payWay,payStatus
-			FROM bills as bi
-			INNER JOIN customer as cu
-			where bi.customerId = cu.customerId
 		</select>
 		
 		<select id="selectMonthBillByPage" parameterType="Page" resultType="BillDto">

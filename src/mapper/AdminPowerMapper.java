@@ -7,7 +7,7 @@ import bean.AdminPower;
 public interface AdminPowerMapper {
 	/**
 	 * 添加管理员权限
-	 * @param adminPowers
+	 * @param adminPowers  权限集合
 	 * @return
 	 */
 	public int insertAdminPower(List<AdminPower> adminPowers);
