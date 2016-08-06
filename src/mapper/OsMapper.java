@@ -69,7 +69,13 @@ public interface OsMapper {
 	 * @param osDto
 	 * @return
 	 */
-	public boolean upStutasWithOsAccount(OsDto osDto);
+	public boolean upStutasWithOsAccount(Os os);
+	/**
+	 * 根据bussinessId查询OSid
+	 * @param os
+	 * @return
+	 */
+	public Os upOsIdByCustomerId(int  id);
 }
 	
 

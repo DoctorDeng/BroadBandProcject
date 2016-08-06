@@ -126,6 +126,9 @@
 			</where>
 	</select>
 	<update id="upStutasWithOsAccount">
-		update os set status=2 where osAccount=#{osAccount}
+		update os set status=2 where osId=#{osId}
 	</update>
+	<select id="upOsIdByCustomerId">
+		select osId from bussiness where bussinessId=#{id}
+	</select>
 </mapper>
