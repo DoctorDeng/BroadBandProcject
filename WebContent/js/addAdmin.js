@@ -2,7 +2,7 @@
  * 用于添加用户的表单验证
  */
 function checkAdmin(){
-	var admin = document.getElementById("adminName").value();
+	var admin = document.getElementById("adminName").value;
 	var adminError = document.getElementById("adminError");
 	if(admin==""){
 		adminError.innerHTML =  "姓名不能为空！";
