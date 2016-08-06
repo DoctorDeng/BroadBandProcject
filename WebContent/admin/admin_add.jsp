@@ -37,43 +37,43 @@
                     <div class="input_info">
                         <input type="text" name="adminName" id="adminName"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_long" id="adminError">20长度以内的汉字、字母、数字的组合</div>
+                        <div class="validate_msg_long" id="adminError">6长度以内的汉字、字母、数字的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>管理员账号：</span></div>
                     <div class="input_info">
                         <input type="text" name="adminAccount" id="adminAccount"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_long" id="accountError">30长度以内的字母、数字和下划线的组合</div>
+                        <div class="validate_msg_long" id="accountError">10长度以内的字母、数字和下划线的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>密码：</span></div>
                     <div class="input_info">
                         <input type="password" name="password" id="pwd"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_long error_msg" id="pwdError">30长度以内的字母、数字和下划线的组合</div>
+                        <div class="validate_msg_long" id="pwdError">10长度以内的字母、数字和下划线的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>重复密码：</span></div>
                     <div class="input_info">
                         <input type="password" id="rePwd" />
                         <span class="required">*</span>
-                        <div class="validate_msg_long error_msg" id="rePwdError">两次密码必须相同</div>
+                        <div class="validate_msg_long" id="rePwdError"></div>
                     </div>      
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="phone" id="phone"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_medium error_msg" id="phoneError">正确的电话号码格式：手机或固话</div>
+                        <div class="validate_msg_medium" id="phoneError"></div>
                     </div>
                     <div class="text_info clearfix"><span>身份证号：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="idNumber" id="idNumber"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_medium error_msg" id="idnumberError">真实的18位身份证号</div>
+                        <div class="validate_msg_medium" id="idnumberError">真实的18位身份证号</div>
                     </div>
                     <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="email" id="emial"/>
-                        <span class="required">*</span>
-                        <div class="validate_msg_medium error_msg" id="emailError">50长度以内，正确的 email 格式</div>
+                        <span class="required"></span>
+                        <div class="validate_msg_medium" id="emailError"></div>
                     </div>
                     <div class="text_info clearfix"><span>角色：</span></div>
                     <div class="input_info_high">
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                         <span class="required">*</span>
-                        <div class="validate_msg_tiny error_msg" id="powerError">至少选择一个</div>
+                        <div class="validate_msg_tiny" id="powerError"></div>
                     </div>
                     <div class="button_info clearfix">
                         <input type="button" value="保存" class="btn_save"  onclick="showResult()"/> <!-- onclick="showResult();" --> 
