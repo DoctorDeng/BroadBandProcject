@@ -135,6 +135,11 @@ public class ProfessionService {
 		return b;
 		
 	}
+	/**
+	 * 修改状态
+	 * @param customer
+	 * @return
+	 */
 	public boolean  upStutas(Customer customer){
 		start();
 		customerMapper.updateCustomer(customer);
