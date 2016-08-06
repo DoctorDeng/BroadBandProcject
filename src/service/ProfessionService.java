@@ -147,6 +147,23 @@ public class ProfessionService {
 		return true;
 	}
 	/**
+	 * 根据OsAccount 改变其状态  变为删除状态
+	 * @param osDto
+	 * @return
+	 */
+	public boolean  upStutasWithOsAccount(OsDto osDto){
+		start();
+		System.out.println(osDto.getOsAccount());
+		boolean b =osMapper.upStutasWithOsAccount(osDto);
+		if(b){
+			close();
+			return true;
+		}
+		close();
+		return false;
+		
+	}
+	/**
 	 * 
 	 * 构建环境
 	 */

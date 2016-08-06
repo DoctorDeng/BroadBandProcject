@@ -130,6 +130,9 @@
 		<%
 		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
 		for(OsDto sv:Listo){
+			if("2".equals(sv.getStatus())){
+				continue;
+			}
 		%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>" title="查看明细" ><%=sv.getBussinessId()%></a></td>
@@ -147,9 +150,9 @@
                             </div>
                         </td>                            
                         <td class="td_modi">
-                            <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountOpenAction?id=<%=sv.getBussinessId() %>&status=<%=sv.getStatus() %>';" />
+                            <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountOpenAction?id=<%=sv.getOsAccount() %>&status=<%=sv.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getCustomerId() %>';" />
                         </td>
                     </tr>
                       <%} %>                                                                 

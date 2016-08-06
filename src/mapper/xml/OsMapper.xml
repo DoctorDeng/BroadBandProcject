@@ -50,7 +50,7 @@
                WHERE
                b.osId = o.osId AND
                o.customerId = c.customerId AND
-               t.tariffId = o.tariffId
+               t.tariffId = o.tariffId 
 			   ORDER BY
                b.bussinessId ASC
 	</select>
@@ -125,4 +125,7 @@
 				</if>
 			</where>
 	</select>
+	<update id="upStutasWithOsAccount">
+		update os set status=2 where osAccount=#{osAccount}
+	</update>
 </mapper>

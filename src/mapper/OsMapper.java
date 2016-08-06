@@ -63,6 +63,13 @@ public interface OsMapper {
 	 * @return
 	 */
 	public List<OsShowDto> setManyInfo(int id);
+	
+	/**
+	 * 根据OsAccount 改变其状态  变为删除状态
+	 * @param osDto
+	 * @return
+	 */
+	public boolean upStutasWithOsAccount(OsDto osDto);
 }
 	
 

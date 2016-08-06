@@ -34,14 +34,13 @@ public class ServiceAccountAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int bussinessId = 0;
-		if(request.getParameter("id")!=null&&request.getParameter("id")!=""){
-			bussinessId = Integer.parseInt(request.getParameter("id"));
-		}
+		
+		int customerId = Integer.parseInt(request.getParameter("id"));
+		System.out.println(customerId);
 		OsDto osDto = new OsDto();
-		osDto.setBussinessId(bussinessId);
+		osDto.setCustomerId(customerId);
 		ProfessionService pro = new ProfessionService();
-		boolean b = pro.delService(osDto);
+		boolean b = pro.upStutasWithOsAccount(osDto);
 		if(b){
 			response.sendRedirect("service/service_list.jsp");
 		}
