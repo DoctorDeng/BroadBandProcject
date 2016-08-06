@@ -15,6 +15,14 @@
       	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
       	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
 		<script src="<%=request.getContextPath()%>/js/admin_list.js"></script>
+		<script type="text/javascript">
+		//查询管理员信息  
+		function SerchAdminInfor() {
+			var adminId = document.getElementById("serchAdmin").value;
+			window.location.href = "<%=request.getContextPath()%>/ShowAdminAction?operation=search&adminId="
+					+ adminId;
+		}
+		</script>
     </head>
     <body>
          <%@include file="../template/head.jsp" %>

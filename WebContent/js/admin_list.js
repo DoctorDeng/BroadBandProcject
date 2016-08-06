@@ -6,13 +6,6 @@ function showDetail(flag, a) {
 	} else
 		detailDiv.style.display = "none";
 }
-//查询管理员信息  
-function SerchAdminInfor() {
-	var adminId = document.getElementById("serchAdmin").value;
-	window.location.href = "<%=request.getContextPath()%>/ShowAdminAction?operation=search&adminId="
-			+ adminId;
-}
-
 function resetPwd() {
 	var a = 0;
 	var choose = document.getElementsByName("choose");

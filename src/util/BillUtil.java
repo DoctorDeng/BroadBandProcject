@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Bill;
 import bean.dto.BillDetailDto;
 import bean.dto.BillDto;
 import bean.vo.BillDetailFormBean;

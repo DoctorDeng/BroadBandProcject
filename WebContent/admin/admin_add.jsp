@@ -16,18 +16,7 @@
         <script src="<%=request.getContextPath() %>/js/addAdmin.js"></script>
     </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>             
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">
-            <ul id="menu">
-             <%@include file= "../template/power.jsp" %> 
-            </ul>
-        </div>
+        <%@include file="../template/head.jsp" %>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">            
@@ -91,7 +80,7 @@
                         <div class="validate_msg_tiny" id="powerError"></div>
                     </div>
                     <div class="button_info clearfix">
-                        <input type="button" value="保存" class="btn_save"  onclick="showResult()"/> <!-- onclick="showResult();" --> 
+                        <input type="button" value="保存" class="btn_save"  onclick="showResult()"/>
                         <input type="reset" value="取消" class="btn_save" />
                     </div>
                 </form>  

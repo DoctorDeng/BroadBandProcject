@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import bean.Bill;
 import bean.Page;
 import bean.dto.BillDetailDto;
 import bean.dto.BillDto;
