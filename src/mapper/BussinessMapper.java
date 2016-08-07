@@ -31,5 +31,17 @@ public interface BussinessMapper {
 	 * 修改记录（根据ID修改）
 	 */
 	public void updateBussiness(Bussiness bussiness);
+	/**
+	 * 当业务暂停是 记录暂停时间
+	 * @param bussiness
+	 * @return
+	 */
+	public boolean  updatePauseTime(Bussiness bussiness);
 	
+	/**
+	 * 业务开通时候删除暂停时间
+	 * @param osId
+	 * @return
+	 */
+	public boolean  updatePauseTimeToNull(int osId);
 }
