@@ -41,7 +41,7 @@
 	<!-- 查询在业务界面所需要显示的信息 -->
 	<select id="selServiceShow" resultType="OsDto">
 		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
-               o.`status`,o.serverIp,t.tariffName
+               o.`status`,o.serverIp,t.tariffName,o.tariffId
                FROM
 			   os AS o 
                INNER JOIN  bussiness AS b  ON  b.osId = o.osId 

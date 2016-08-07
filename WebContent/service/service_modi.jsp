@@ -66,9 +66,11 @@
                 OsDto bv = null;
         		int id = Integer.parseInt(request.getParameter("id"));
         		for(OsDto sa : Listo){
-        			if(sa.getBussinessId() == id)
+        			if(!(sa.getBussinessId() == id)){
+        				continue;
+        			}else{
         				bv = sa;
-        		}
+        				System.out.println(bv.getTariffId());
       		  %>
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info">
@@ -84,17 +86,21 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select name = "traiffId" class="width150" value = "<%=bv.getTariffName()%>">
-                        <option value= "1">包50小时</option>
-                        <option value= "2">包时8888</option>
-                        <option value= "3">包月</option>
-						<option value= "4">季卡</option>
-						<option value= "5">年卡</option>
+                    <select name = "traiffId" class="width150" >
+                        <option value= "1" <%=(bv.getTariffId()==1)?"selected":"" %>>包50小时</option>
+                        <option value= "2" <%=(bv.getTariffId()==2)?"selected":"" %>>包时8888</option>
+                        <option value= "3" <%=(bv.getTariffId()==3)?"selected":"" %>>包月</option>
+						<option value= "4" <%=(bv.getTariffId()==4)?"selected":"" %>>季卡</option>
+						<option value= "5" <%=(bv.getTariffId()==5)?"selected":"" %>>年卡</option>
                     </select> 
                     <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>                      
                 </div>
                 <!--操作按钮-->
                 <div class="button_info clearfix">
+               <%
+        			}
+        		}
+               %>
                     <input type="submit" value="保存" class="btn_save" />
                     <input type="button" value="取消" class="btn_save" />
                 </div>
