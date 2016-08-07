@@ -1,6 +1,7 @@
 package mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import bean.Admin;
 
@@ -64,4 +65,6 @@ public interface AdminMapper {
 	 * @return              返回管理员账号对应的管理员ID的字符串表示,如果没有此管理员账号,返回空
 	 */
 	public String selectAdminIdByAccount(String adminAccount);
+	
+	public List<Admin> selectAdminByCondition(Map map); 
 }

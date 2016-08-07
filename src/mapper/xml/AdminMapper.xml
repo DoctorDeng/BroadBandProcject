@@ -165,4 +165,8 @@
 			SELECT adminId FROM admin 
 			WHERE adminAccount = #{adminAccount}
 		</select>
+		
+		<select id="selectAdminByCondition" parameterType="Map" resultType="Admin">
+			
+		</select>
 	</mapper>
