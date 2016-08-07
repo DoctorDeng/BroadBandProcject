@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import bean.Admin;
 import bean.AdminPower;
+import bean.Page;
 import bean.Power;
+import bean.dto.PageDto;
 import mapper.AdminMapper;
 import mapper.AdminPowerMapper;
 import util.SqlSessionUtil;
@@ -151,7 +153,19 @@ public class AdminService {
 		close();
 		return admins;
 	}
-	
+	/**
+	 * 分页查询
+	 */
+	public PageDto<Admin> selectFromPage(String currentPageStr, int pageSize){
+		init();
+		int totle=adminMapper.selectAdminCount();
+		PageDto<Admin> pagedto=new PageDto<>();
+		pagedto.init(totle, pageSize, currentPageStr);
+		List<Admin> lsadmin=adminMapper.selectByPage(new Page((pagedto.getCurrentPage()-1)*pageSize,pageSize));
+		pagedto.setDataList(lsadmin);
+		close();
+		return pagedto;
+	}
 	/**
 	 * 初始化SqlSession和mapper
 	 */

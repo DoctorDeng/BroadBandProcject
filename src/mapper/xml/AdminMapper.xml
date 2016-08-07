@@ -166,7 +166,21 @@
 			WHERE adminAccount = #{adminAccount}
 		</select>
 		
-		<select id="selectAdminByCondition" parameterType="Map" resultType="Admin">
-			
+		<select id="selectAdminByCondition" parameterType="String" resultType="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin
+			<where>
+				<if test="adminName != null and adminName != '' ">
+					 adminName like CONCAT(CONCAT('%',#{adminName}),'%')
+				</if>
+			</where>
+		</select>
+		
+		<select id="selectAdminCount" resultType="int">
+	    	 SELECT count(adminId) FROM ADMIN
+		</select>
+		<select id="selectByPage" parameterType="Page" resultMap="AdminResultMap">
+	    	 SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+	    	 FROM admin LIMIT #{index},#{size}
 		</select>
 	</mapper>

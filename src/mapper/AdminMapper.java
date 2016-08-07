@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import bean.Admin;
+import bean.Page;
 
 public interface AdminMapper {
 	/**
@@ -65,6 +66,19 @@ public interface AdminMapper {
 	 * @return              返回管理员账号对应的管理员ID的字符串表示,如果没有此管理员账号,返回空
 	 */
 	public String selectAdminIdByAccount(String adminAccount);
-	
+	/**
+	 * 通过管理员姓名来模糊查询管理员
+	 * @param adminName    管理员姓名
+	 * @return  List<Admin>
+	 */
 	public List<Admin> selectAdminByCondition(Map map); 
+	/**
+	 * 通过页面大小和当前点来实现分页查询
+	 */
+	public List<Admin> selectByPage(Page page);
+	/**
+	* 获取管理员信息总条数
+	* 
+	*/
+	public int selectAdminCount();
 }
