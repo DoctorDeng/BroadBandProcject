@@ -38,8 +38,8 @@
 		</set>
 		where customerId=#{customerId}
 	</update>
-	<select id="selectAllCustomer" resultType="Customer">
-		select * from Customer
+	<select id="selectAllCustomer" parameterType="Map" resultType="Customer">
+		select * from Customer limit #{startPage},#{pageSize};
 	</select>
 	<select id="selectCustomerById" parameterType="int" resultType="Customer">
 		select * from Customer 
@@ -66,5 +66,8 @@
 				and status=#{status}
 			</if>
 		</where>
+	</select>
+	<select id="countCustomer" resultType="int">
+		select count(*) from Customer;
 	</select>
 </mapper>
