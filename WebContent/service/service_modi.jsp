@@ -70,8 +70,8 @@
         				continue;
         			}else{
         				bv = sa;
-        				System.out.println(bv.getTariffId());
       		  %>
+      		  	<c:forEach items=""></c:forEach>
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info">
                     <input type="text" value="<%=request.getParameter("id") %>" readonly class="readonly" />
