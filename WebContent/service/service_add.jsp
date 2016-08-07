@@ -91,7 +91,7 @@
                 <div class="input_info">
                     <input type="text" value="192.168.0.23"  name = "serverIp" />
                     <span class="required">*</span>
-                    <div class="validate_msg_long">15 长度，符合IP的地址规范</div>
+                    <div class="validate_msg_long">15长度，符合IP的地址规范</div>
                 </div>                   
                 <div class="text_info clearfix"><span>登录 OS 账号：</span></div>
                 <div class="input_info">

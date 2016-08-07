@@ -4,6 +4,7 @@ public class Bussiness {
 
 	private int bussinessId;
 	private int osId;
+	private String createTime;
 	private Os os;
 
 	
@@ -25,10 +26,7 @@ public class Bussiness {
 	public int getBussinessId() {
 		return bussinessId;
 	}
-	@Override
-	public String toString() {
-		return "Bussiness [bussinessId=" + bussinessId + ", osId=" + osId + ", os=" + os + "]";
-	}
+	
 
 
 	public Bussiness(int bussinessId, int osId) {
@@ -47,6 +45,16 @@ public class Bussiness {
 	public void setBussinessId(int bussinessId) {
 		this.bussinessId = bussinessId;
 	}
+	public String getCreateTime() {
+		return createTime;
+	}
+
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+
 	public int getOsId() {
 		return osId;
 	}

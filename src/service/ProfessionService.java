@@ -1,6 +1,8 @@
 package service;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -134,6 +136,16 @@ public class ProfessionService {
 	public boolean addServiceOneInfo(OsAddDto osAddDto){
 		start();
 		boolean b = osMapper.addOsInfo(osAddDto);
+		if(b){
+			Os os = osMapper.selOsidByOsAccount(osAddDto.getOsAccount());
+			String createTime = (new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+			Bussiness bussiness = new Bussiness();
+			bussiness.setCreateTime(createTime);
+			bussiness.setOsId(os.getOsId());
+			bussinessMapper.insertBussiness(bussiness);
+			close();
+			return b;
+		}
 		close();
 		return b;
 		

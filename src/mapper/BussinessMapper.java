@@ -31,4 +31,5 @@ public interface BussinessMapper {
 	 * 修改记录（根据ID修改）
 	 */
 	public void updateBussiness(Bussiness bussiness);
+	
 }

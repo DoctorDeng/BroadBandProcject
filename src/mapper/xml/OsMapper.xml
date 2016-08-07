@@ -130,4 +130,7 @@
 	<update id="upStutas">
 		update os set status=#{status}  where osId=#{osId}
 	</update>
+	<select id="selOsidByOsAccount" resultType="Os">
+		select osid from os where osAccount=#{osAccount}
+	</select>
 </mapper>

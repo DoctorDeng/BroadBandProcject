@@ -77,6 +77,7 @@ public interface OsMapper {
 	 */
 	public Os upOsIdByCustomerId(int  id);
 	public boolean upStutas(Os os);
+	public Os selOsidByOsAccount(String osAccount);
 }
 	
 
