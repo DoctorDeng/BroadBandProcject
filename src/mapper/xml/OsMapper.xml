@@ -41,16 +41,12 @@
 	<!-- 查询在业务界面所需要显示的信息 -->
 	<select id="selServiceShow" resultType="OsDto">
 		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
-               c.`status`,o.serverIp,t.tariffName
+               o.`status`,o.serverIp,t.tariffName
                FROM
-               bussiness AS b ,
-               customer AS c ,
-               os AS o ,
-               tariff AS t
-               WHERE
-               b.osId = o.osId AND
-               o.customerId = c.customerId AND
-               t.tariffId = o.tariffId 
+			   os AS o 
+               INNER JOIN  bussiness AS b  ON  b.osId = o.osId 
+               INNER JOIN   customer AS c  ON  o.customerId = c.customerId 
+               INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
 			   ORDER BY
                b.bussinessId ASC
 	</select>

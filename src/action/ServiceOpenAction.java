@@ -44,6 +44,8 @@ public class ServiceOpenAction extends HttpServlet {
 			customer.setStatus("0");
 		}else if("0".equals(status)){
 			customer.setStatus("1");
+		}else if("2".equals(status)){
+			customer.setStatus("1");
 		}
 		boolean b = new ProfessionService().upStutas(customer);
 		if(b){
