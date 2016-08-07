@@ -43,7 +43,7 @@ public class BussinessAccountShowAction extends HttpServlet {
 		List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
 		HttpSession session = request.getSession();
 		session.setAttribute("l", l);
-		response.sendRedirect("");
+		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?currentPage="+currentPage);
 	}
 
 	/**

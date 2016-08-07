@@ -128,10 +128,8 @@
                     	currentPage = 1;
                     }
                     int totalPage = -1;
-                    if(request.getParameter("type")==null||"".equals(request.getParameter("type"))){	                                               
-	                    List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
-						session.setAttribute("l", l);
-	                    for(AccountViewBean a:l){
+	                List<AccountViewBean> l = (List<AccountViewBean>)session.getAttribute("l");
+	                for(AccountViewBean a:l){
                     %>
                     <tr>
                         <td><%=a.getBussinessId() %></td>
@@ -149,33 +147,6 @@
                     </tr> 
                     <%
                     totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5+1);
-	                    }
-                    }
-                    else if("search".equals(request.getParameter("type"))){
-                    	AccountViewBean a = new AccountViewBean();
-                    	a.setIdNumber(request.getParameter("idNumber"));
-                    	a.setBussinessName(request.getParameter("bussinessName"));
-                    	a.setLoginAccount(request.getParameter("loginAccount"));
-                    	List<AccountViewBean> ls = (List<AccountViewBean>)session.getAttribute("ls");
-	                    for(AccountViewBean ac:ls){
-                    %> 
-                    	<tr>
-                        <td><%=ac.getBussinessId() %></td>
-                        <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=<%=ac.getBussinessId() %>"><%=ac.getBussinessName() %></a></td>
-                        <td><%=ac.getIdNumber() %></td>
-                        <td><%=ac.getLoginAccount() %></td>
-                        <td><%=!ac.getStatus().equals("1")?"暂停":"开通" %></td>
-                        <td><%=ac.getCreateTime() %></td>
-                        <td><%=ac.getLastLoginTime() %></td>                           
-                        <td class="td_modi">
-                            <input type="button" value="<%=ac.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountOpenAction?id=<%=ac.getBussinessId() %>&status=<%=a.getStatus() %>';" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=ac.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/lanqiao/BussinessAccountAction?id=<%=ac.getBussinessId() %>';" />
-                        </td>
-                    </tr> 
-                    <%
-                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5+1);
-                    }
                     }%>            
                 </table>
                 <p>业务说明：<br />
@@ -189,33 +160,22 @@
                 </div>                   
                 <!--分页-->
                 <%
-                if(request.getParameter("type")==null||"".equals(request.getParameter("type"))){
                 %>
                 <div id="pages">
                 <%
-                		if(currentPage>1){
+                	if(currentPage>1){
                 %>
-                    <a href="account_list.jsp?currentPage=1">首页</a>
-        	        <a href="account_list.jsp?currentPage=<%=currentPage-1 %>">上一页</a>
+                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=1">首页</a>
+        	        <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=<%=currentPage-1 %>">上一页</a>
         	        <%} %>
                     <a href="#" class="current_page"><%=currentPage %></a>  
                 <%
-                		if(currentPage<=totalPage){
+                	if(currentPage<=totalPage){
                 %>       
-                    <a href="account_list.jsp?currentPage=<%=currentPage+1 %>">下一页</a>
-                    <a href="account_list.jsp?currentPage=<%=totalPage %>">末页</a>
+                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=<%=currentPage+1 %>">下一页</a>
+                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=<%=totalPage %>">末页</a>
                 <%} %>
                 </div>
-                <%}
-                else if("search".equals(request.getParameter("type"))){%> 
-                <div id="pages">
-                    <a href="#">首页</a>
-        	        <a href="account_list.jsp?currentPage=<%=currentPage-1 %>">上一页</a>
-                    <a href="#" class="current_page"><%=currentPage %></a>                 
-                    <a href="account_list.jsp?currentPage=<%=currentPage+1 %>">下一页</a>
-                    <a href="#">末页</a>
-                </div>
-                <%} %>                   
             </form>
         </div>
         <!--主要区域结束-->

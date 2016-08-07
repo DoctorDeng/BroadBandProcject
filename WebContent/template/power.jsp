@@ -20,7 +20,7 @@
   				
   				<c:choose>
   					<c:when test="${power==4}">
-                		 <li><a href="<%=request.getContextPath() %>/account/account_list.jsp" class="account_off"></a></li>
+                		 <li><a href="<%=request.getContextPath() %>/BussinessAccountShowAction" class="account_off"></a></li>
   					</c:when>
   				</c:choose>
   				
