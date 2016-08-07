@@ -5,6 +5,8 @@ public class Bussiness {
 	private int bussinessId;
 	private int osId;
 	private String createTime;
+	private String openTime;
+	private String deletTime;
 	private Os os;
 
 	
@@ -60,6 +62,26 @@ public class Bussiness {
 	}
 	public void setOsId(int osId) {
 		this.osId = osId;
+	}
+
+
+	public String getOpenTime() {
+		return openTime;
+	}
+
+
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+
+
+	public String getDeletTime() {
+		return deletTime;
+	}
+
+
+	public void setDeletTime(String deletTime) {
+		this.deletTime = deletTime;
 	}
 
 	
