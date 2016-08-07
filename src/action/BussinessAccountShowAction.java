@@ -1,11 +1,17 @@
 package action;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.vo.AccountViewBean;
+import service.AccountService;
 
 /**
  * Servlet implementation class BussinessAccountShowAction
@@ -27,7 +33,17 @@ public class BussinessAccountShowAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int currentPage = 0;
+        String c = request.getParameter("currentPage");
+        if(c!=""&&c!=null){
+        	currentPage = Integer.parseInt(c);
+        } else{
+        	currentPage = 1;
+        }
+		List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
+		HttpSession session = request.getSession();
+		session.setAttribute("l", l);
+		response.sendRedirect("");
 	}
 
 	/**

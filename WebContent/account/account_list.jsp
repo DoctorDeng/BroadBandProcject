@@ -28,6 +28,7 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
         <script language="javascript" type="text/javascript">
             //删除
             function deleteAccount() {
@@ -49,6 +50,21 @@
             function sub(){
             	document.getElementById("form").submit();
             }
+            function search() {
+            	var idNumber = $("#idNumber").val();
+            	var name = $("#name");
+            	var loginAccount = $("loginAccount");
+            	var sstatus = $("status");
+				$.post("<%=request.getContextPath()%>/BussinessAccountSearchAction", {
+					'idNumber' 		:idNumber,
+					'name'	   		:name,
+					'loginAccount'	:loginAccount,
+					'sstatus'		:sstatus
+				}, function(data,status) {
+					$("#datalist tr:not(:first)").remove();
+					$("datalist").append(data);
+				});
+			}
         </script>
     </head>
     <body>
@@ -82,7 +98,7 @@
                             <option value="2">删除</option>
                         </select>
                     </div>
-                    <div><input type="button" value="搜索" class="btn_search" id="btnsub" onclick="sub()" /></div>
+                    <div><input type="button" value="搜索" class="btn_search" id="btnsub" onclick="search()" /></div>
                     <input type="button" value="增加" class="btn_add" onclick="location.href='account_add.jsp';" />
                 </div>  
                 <!--删除等的操作提示-->
@@ -132,7 +148,7 @@
                         </td>
                     </tr> 
                     <%
-                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5);
+                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5+1);
 	                    }
                     }
                     else if("search".equals(request.getParameter("type"))){
@@ -158,7 +174,7 @@
                         </td>
                     </tr> 
                     <%
-                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5);
+                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5+1);
                     }
                     }%>            
                 </table>
@@ -184,7 +200,7 @@
         	        <%} %>
                     <a href="#" class="current_page"><%=currentPage %></a>  
                 <%
-                		if(currentPage<totalPage){
+                		if(currentPage<=totalPage){
                 %>       
                     <a href="account_list.jsp?currentPage=<%=currentPage+1 %>">下一页</a>
                     <a href="account_list.jsp?currentPage=<%=totalPage %>">末页</a>
