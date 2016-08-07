@@ -4,9 +4,10 @@ public class Bussiness {
 
 	private int bussinessId;
 	private int osId;
-	private String createTime;
-	private String openTime;
-	private String deletTime;
+	private String createTime; //创建时间
+	private String openTime;   //开通时间
+	private String deletTime;  //删除时间
+	private String pauseTime;  //暂停时间
 	private Os os;
 
 	
@@ -82,6 +83,16 @@ public class Bussiness {
 
 	public void setDeletTime(String deletTime) {
 		this.deletTime = deletTime;
+	}
+
+
+	public String getPauseTime() {
+		return pauseTime;
+	}
+
+
+	public void setPauseTime(String pauseTime) {
+		this.pauseTime = pauseTime;
 	}
 
 	

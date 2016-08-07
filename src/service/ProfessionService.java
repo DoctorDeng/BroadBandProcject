@@ -158,7 +158,22 @@ public class ProfessionService {
 		Os os = new Os();
 		os.setOsId(osId);
 		os.setStatus(customer.getStatus());
+		boolean a = true;
 		boolean b = osMapper.upStutas(os);
+		if(a=b){
+			if("0".equals(customer.getStatus())){
+				String pauseTime = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+				Bussiness bus = new Bussiness();
+				bus.setPauseTime(pauseTime);
+				bus.setOsId(osId);
+				boolean c = bussinessMapper.updatePauseTime(bus);
+				return c ;
+			}else if("1".equals(customer.getStatus())){
+				Bussiness bus = new Bussiness();
+				bus.setOsId(osId);
+				boolean c = bussinessMapper.updatePauseTimeToNull(osId);
+			}
+		}
 		close();
 		return b;
 		

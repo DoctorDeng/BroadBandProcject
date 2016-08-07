@@ -29,4 +29,18 @@
 			bussinessId=#{bussinessId}
 		</where>
 	</select>
+	<update id="updatePauseTime">
+		update bussiness 
+		<set>
+			pauseTime=#{pauseTime}
+		</set>
+		where osId=#{osId}
+	</update>
+	<update id="updatePauseTimeToNull">
+		update bussiness 
+		<set>
+			pauseTime=null
+		</set>
+		where osId=#{osId}
+	</update>
 </mapper>
