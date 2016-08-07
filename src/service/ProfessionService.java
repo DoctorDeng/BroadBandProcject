@@ -29,6 +29,9 @@ public class ProfessionService {
 		start();
 		osMapper = sqlSession.getMapper(OsMapper.class);
 		List<OsDto> listOs = osMapper.selServiceShow();
+		/*for(OsDto o : listOs){
+			System.out.println(o.getTariffId());
+		}*/
 		close();
 		return listOs;
 		// TODO Auto-generated method stub

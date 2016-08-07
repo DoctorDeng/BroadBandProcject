@@ -41,7 +41,7 @@
 	<!-- 查询在业务界面所需要显示的信息 -->
 	<select id="selServiceShow" resultType="OsDto">
 		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
-               o.`status`,o.serverIp,t.tariffName
+               o.`status`,o.serverIp,t.tariffName,o.tariffId
                FROM
 			   os AS o 
                INNER JOIN  bussiness AS b  ON  b.osId = o.osId 
@@ -71,16 +71,16 @@
                 t.tariffId = o.tariffId
               </if>
               <if test='osAccount!="#" '>
-               AND osAccount=#{osAccount}
+               AND o.osAccount=#{osAccount}
               </if>
               <if test='serverIp!="#"'>
-               AND serverIp =#{serverIp}
+               AND o.serverIp =#{serverIp}
               </if>
               <if test='idNumber!="#"'>
-               AND idNumber=#{idNumber}
+               AND c.idNumber=#{idNumber}
               </if>
-              <if test='status!="0"'>
-               AND status=#{status}
+              <if test='status!="-1"'>
+               AND o.`status`=#{status}
               </if>
               </where>
               ORDER BY
