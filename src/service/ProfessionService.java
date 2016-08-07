@@ -172,6 +172,7 @@ public class ProfessionService {
 				Bussiness bus = new Bussiness();
 				bus.setOsId(osId);
 				boolean c = bussinessMapper.updatePauseTimeToNull(osId);
+				return c;
 			}
 		}
 		close();
