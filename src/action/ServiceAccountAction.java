@@ -42,7 +42,7 @@ public class ServiceAccountAction extends HttpServlet {
 		ProfessionService pro = new ProfessionService();
 		boolean b = pro.upStutasWithOsAccount(osDto);
 		if(b){
-			response.sendRedirect("service/service_list.jsp");
+			response.sendRedirect("ServiceListAction");
 		}
 	}
 

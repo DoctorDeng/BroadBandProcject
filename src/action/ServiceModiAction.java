@@ -37,7 +37,7 @@ public class ServiceModiAction extends HttpServlet {
 		osDto.setTariffId(Integer.parseInt(tariffId));
 		boolean b = new ProfessionService().upForOneService(osDto);
 		if(b){
-			response.sendRedirect("ServiceMainAction");
+			response.sendRedirect("ServiceListAction");
 		}
 	}
 

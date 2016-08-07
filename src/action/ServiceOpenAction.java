@@ -49,7 +49,7 @@ public class ServiceOpenAction extends HttpServlet {
 		}
 		boolean b = new ProfessionService().upStutas(customer);
 		if(b){
-		response.sendRedirect(request.getContextPath()+"/service/service_list.jsp");
+			response.sendRedirect("ServiceListAction");
 		}else{
 			
 		}
