@@ -52,10 +52,10 @@
                     <div>身份证：<input type="text"  name="idCard" class="text_search" /></div>
                     <div>状态：
                         <select class="select_search" id="choose" name="status">
-                            <option value="0">全部</option>
+                            <option value="-1">全部</option>
                             <option value="1">开通</option>
-                            <option value="2">暂停</option>
-                            <option value="3">删除</option>
+                            <option value="0">暂停</option>
+                            <option value="2">删除</option>
                         </select>
                     </div>
                     <div><input type="submit" value="搜索" class="btn_search"  id="search"/></div>
@@ -82,6 +82,32 @@
                     </tr>
 			<% List<OsDto> lsb = (ArrayList<OsDto>)session.getAttribute("lsa");
 			for(OsDto sv : lsb){
+				String status = sv.getStatus();
+				if("2".equals(status)){
+					%>
+					<tr>
+                    <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
+                    <td><%=sv.getCustomerId() %></td>
+                    <td><%=sv.getIdNumber() %></td>
+                    <td><%=sv.getCustomerName() %></td>
+                    <td><%=sv.getOsAccount() %></td>
+                    <td><%=sv.getStatus().equals("2")?"删除":"开通" %></td>
+                    <td><%=sv.getServerIp()%></td>
+                    <td>
+                        <a class="summary" ><%=sv.getTariffName()%></a>
+                        <!--浮动的详细信息-->
+                        <div class="detail_info">
+                            20小时，24.5 元，超出部分 0.03元/分钟
+                        </div>
+                    </td>                            
+                    <td class="td_modi">
+                       <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=<%=sv.getBussinessId() %>&status=<%=sv.getStatus() %>';" />
+                       <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
+                       <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
+                    </td>
+                </tr>
+                <% 
+				}else{
 			%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
@@ -99,13 +125,13 @@
                             </div>
                         </td>                            
                         <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
+                            <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=<%=sv.getBussinessId() %>&status=<%=sv.getStatus() %>';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
                     <%}
-			
+                    }
 			%>                                                              
                 </table>
                 <p>业务说明：<br />

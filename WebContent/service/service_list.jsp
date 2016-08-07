@@ -1,4 +1,4 @@
-`<%@page import="service.ProfessionService"%>
+<%@page import="service.ProfessionService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="bean.dto.*" %>
@@ -26,7 +26,7 @@
   		%>
   		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script type="text/javascript" src="../js/jquery.js"></script> 
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
@@ -99,10 +99,10 @@
                     <div>身份证：<input type="text"  name="idCard" class="text_search" /></div>
                     <div>状态：
                         <select class="select_search" id="choose" name="status">
-                            <option value="0">全部</option>
+                            <option value="-1">全部</option>
                             <option value="1">开通</option>
-                            <option value="2">暂停</option>
-                            <option value="3">删除</option>
+                            <option value="0">暂停</option>
+                            <option value="2">删除</option>
                         </select>
                     </div>
                     <div><input type="submit" value="搜索" class="btn_search"  id="search"/></div>

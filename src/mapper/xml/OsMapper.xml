@@ -79,7 +79,7 @@
               <if test='idNumber!="#"'>
                AND idNumber=#{idNumber}
               </if>
-              <if test='status!="0"'>
+              <if test='status!="-1"'>
                AND status=#{status}
               </if>
               </where>
