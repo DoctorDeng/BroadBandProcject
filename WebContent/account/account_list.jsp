@@ -52,17 +52,17 @@
             }
             function search() {
             	var idNumber = $("#idNumber").val();
-            	var name = $("#name");
-            	var loginAccount = $("loginAccount");
-            	var sstatus = $("status");
+            	var name = $("#name").val();
+            	var loginAccount = $("loginAccount").val();
+            	var sstatus = $("#status  option:selected").val();
 				$.post("<%=request.getContextPath()%>/BussinessAccountSearchAction", {
 					'idNumber' 		:idNumber,
 					'name'	   		:name,
 					'loginAccount'	:loginAccount,
 					'sstatus'		:sstatus
-				}, function(data,status) {
+				}, function(data) {
 					$("#datalist tr:not(:first)").remove();
-					$("datalist").append(data);
+					$("#datalist").append(data);
 				});
 			}
         </script>
@@ -91,7 +91,7 @@
                     <div>登录名：<input type="text" name="loginAccount" value="不验证" id="loginAccount" class="text_search"/></div>
                     <div>
                         状态：
-                        <select name="status" class="select_search">
+                        <select name="status" id="status" class="select_search">
                             <option value="-1" selected="selected">全部</option>
                             <option value="1">开通</option>
                             <option value="0">暂停</option>

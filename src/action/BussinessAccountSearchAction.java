@@ -55,6 +55,7 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		session.setAttribute("ls", l);
 		PrintWriter out = response.getWriter();
 		for(AccountViewBean acc:l) {
+			System.out.println("搜索到数据++++");
 			out.println("<tr>");
 			out.println("<td>"+acc.getBussinessId()+"</td>");
 			out.println("<td><a href=\""+request.getContextPath()+"/BussinessAccountDetailAction?id="+acc.getBussinessId()+"\">"+acc.getBussinessName()+"</a><td>");
@@ -81,7 +82,7 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		}
 		out.flush();
 		out.close();
-		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?type=search&currentPage=1");
+		//response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?type=search&currentPage=1");
 	}
 
 	/**
