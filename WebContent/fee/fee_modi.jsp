@@ -129,7 +129,7 @@
                 </div>   
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                    <textarea class="width300 height70" name="tariffExplain">没有启用的资费，可以修改除 ID 以外的所有信息
+                    <textarea class="width300 height70" name="tariffExplain"><%=request.getParameter("tariffExplain") %>
                     </textarea>
                     <div class="validate_msg_short">100长度的字母、数字、汉字和下划线的组合</div>
                 </div>                    

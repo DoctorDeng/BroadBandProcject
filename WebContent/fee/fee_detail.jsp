@@ -16,11 +16,11 @@
   			</c:choose>
   		</c:forEach>
   		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
+  		<%-- <c:if test="${hasPower==false}">
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> 
+  		</c:if>  --%>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />       
     </head>
@@ -42,48 +42,48 @@
         <div id="main">            
             <form action="" method="" class="main_form">
                 <div class="text_info clearfix"><span>资费ID：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value="1" /></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value=<%=request.getParameter("id") %> /></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value="包 20 小时"/></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value=<%=request.getParameter("tariffName") %>/></div>
                 <div class="text_info clearfix"><span>资费状态：</span></div>
                 <div class="input_info">
-                    <select class="readonly" disabled>
-                        <option>开通</option>
-                        <option>暂停</option>
-                        <option>删除</option>
+                    <select class="readonly" >
+                        <option value="1">开通</option>
+                        <option value="2">暂停</option>
+                        <option value="3">删除</option>
                     </select>                        
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
-                    <input type="radio" name="radFeeType" id="monthly" disabled="disabled" />
+                    <input type="radio" name="radFeeType" id="monthly" />
                     <label for="monthly">包月</label>
-                    <input type="radio" name="radFeeType" id="package" disabled="disabled" />
+                    <input type="radio" name="radFeeType" id="package" />
                     <label for="package">套餐</label>
-                    <input type="radio" name="radFeeType" checked="checked" id="timeBased" disabled="disabled" />
+                    <input type="radio" name="radFeeType" checked="checked" id="timeBased" />
                     <label for="timeBased">计时</label>
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" class="readonly" readonly value="20"  />
+                    <input type="text" class="readonly" readonly value=<%=request.getParameter("timeLong") %>  />
                     <span>小时</span>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">
-                    <input type="text"  class="readonly" readonly value="24.5" />
+                    <input type="text"  class="readonly" readonly value=<%=request.getParameter("tariff") %> />
                     <span>元</span>
                 </div>
                 <div class="text_info clearfix"><span>单位费用：</span></div>
                 <div class="input_info">
-                    <input type="text"  class="readonly" readonly value="3.00" />
+                    <input type="text"  class="readonly" readonly value=<%=request.getParameter("timeTariff") %> />
                     <span>元/小时</span>
                 </div>
                 <div class="text_info clearfix"><span>创建时间：</span></div>
-                <div class="input_info"><input type="text"  class="readonly" readonly value="2013/1/1 00:00:00" /></div>      
+                <div class="input_info"><input type="text"  class="readonly" readonly value=<%=request.getParameter("createTime") %> /></div>      
                 <div class="text_info clearfix"><span>启动时间：</span></div>
-                <div class="input_info"><input type="text"  class="readonly" readonly value="2013/1/1 00:00:00" /></div>      
+                <div class="input_info"><input type="text"  class="readonly" readonly value=<%=request.getParameter("openTime") %> /></div>      
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                    <textarea class="width300 height70 readonly" readonly>包 20 小时，20 小时以内 24.5 元，超出部分 3.00 元/小时</textarea>
+                    <textarea class="width300 height70 readonly" readonly><%=request.getParameter("tariffExplain") %></textarea>
                 </div>                    
                 <div class="button_info clearfix">
                     <input type="button" value="返回" class="btn_save" onclick="location.href='fee_list.html';" />

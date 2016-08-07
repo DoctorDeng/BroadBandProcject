@@ -105,7 +105,7 @@
                         %>                   
                         <tr>
                             <td><%=sv.getTariffId() %></td>
-                            <td><a href="fee_detail.jsp"><%=sv.getTariffName() %></a></td>
+                            <td><a href="fee_detail.jsp?id=<%=sv.getTariffId() %>&tariffName=<%=sv.getTariffName() %>&status=<%=sv.getStatus() %>&tariffType=<%=sv.getTariffType() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>&createTime=<%=sv.getCreateTime() %>&openTime=<%=sv.getOpenTime() %>&tariffExplain=<%=sv.getTariffExplain() %>"><%=sv.getTariffName() %></a></td>
                             <td><%=sv.getTimeLong() %></td>
                             <td><%=sv.getTariff() %></td>
                             <td><%=sv.getTimeTariff() %></td>
@@ -135,7 +135,7 @@
                             if("0".equals(sv.getStatus())){
                             %>  
                                 <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId()%>&tariffName=<%=sv.getTariffName() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId()%>&tariffName=<%=sv.getTariffName() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>&tariffExplain=<%=sv.getTariffExplain() %>';" />
                                 <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
                             <%}else{%>
                                 <div></div>
