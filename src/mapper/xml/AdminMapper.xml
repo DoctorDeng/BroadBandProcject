@@ -179,7 +179,7 @@
 		<select id="selectAdminCount" resultType="int">
 	    	 SELECT count(adminId) FROM ADMIN
 		</select>
-		<select id="selectByPage" parameterType="Page" resultMap="AdminResultMap">
+		<select id="selectByPage" parameterType="Page" resultType="AdminResultMap">
 	    	 SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
 	    	 FROM admin LIMIT #{index},#{size}
 		</select>
