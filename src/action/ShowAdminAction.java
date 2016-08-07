@@ -1,9 +1,7 @@
 package action;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Admin;
+import bean.dto.PageDto;
 import service.AccountManage;
 import service.AdminService;
 
@@ -35,43 +34,38 @@ public class ShowAdminAction extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String operation = request.getParameter("operation");
+		
 		if (null == operation | "".equals(operation)) {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
 		
-  		List<Admin> adminList = adminService.getAllAdminInfor();
-  	
+  		String currentPageStr = request.getParameter("currentPage");
+  		
 		switch (operation) {
-		case "init" :		
-			session.setAttribute("admininforList", adminList);
+		case "init" :	
+			PageDto<Admin> pagedto = adminService.selectFromPage(currentPageStr, 4);
+			session.setAttribute("adminPage", pagedto);
+			session.setAttribute("isPage", true);
 		    response.sendRedirect("admin/admin_list.jsp");
 		    return;
 		  
 		case "search":
-			 String adminId = request.getParameter("adminId");
-			 if(null==adminId||"".equals(adminId)){
-				 session.setAttribute("admininforList", adminList);  
-				 response.sendRedirect("admin/admin_list.jsp");
-				 return;
-			 } 
-			 else{	 
-				 Admin temp = adminService.getAdminById(Integer.parseInt(adminId));
-				 
-				 if(null != temp) {
-					  List<Admin> inforList =new ArrayList<>();
-					  inforList.add(temp);
-					  session.setAttribute("admininforList", "");
-					  session.setAttribute("admininforList", inforList);
-					  response.sendRedirect("admin/admin_list.jsp");
-					  return;
-				 } else {
-					  List<Admin> inforList1 =new ArrayList<>();
-					  session.setAttribute("admininforList", inforList1);
-					  response.sendRedirect("admin/admin_list.jsp");
-					  return;
-				 }
-			 }
+			String power 	 = request.getParameter("power");
+			String adminName = request.getParameter("adminName");
+
+			List<Admin> admins = adminService.getAdminByCondition(adminName,power);
+			PageDto<Admin> pageDto1 = new PageDto<>();
+			
+			Object obj = session.getAttribute("adminPage");
+			if (null != obj) {
+				pageDto1 = (PageDto<Admin>) obj;
+			}
+			pageDto1.setDataList(admins);
+			session.setAttribute("adminPage", pageDto1);
+			session.setAttribute("isPage", false);
+			response.sendRedirect("admin/admin_list.jsp");
+			return;
 			 
 	     case "reset" :
 	    	 String[] arrays = request.getParameterValues("choose");
@@ -104,7 +98,6 @@ public class ShowAdminAction extends HttpServlet{
 	 }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

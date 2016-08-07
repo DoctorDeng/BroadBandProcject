@@ -25,7 +25,7 @@
 		values(#{tariffName},#{tariff},#{timeLong},#{timeTariff},now(),0,#{tariffType},#{tariffExplain})
    </insert>
    <delete id="delTariff" parameterType="int">
-       delete from tariff where tariffId=#{tariffId}
+       update tariff set status = '2' where tariffId=#{tariffId}
    </delete>
    <update id="updateTariff" parameterType="int">
        update tariff

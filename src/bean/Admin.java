@@ -137,4 +137,11 @@ public class Admin {
 	public void setPowers(List<Power> powers) {
 		this.powers = powers;
 	}
+
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminAccount=" + adminAccount + ", password=" + password
+				+ ", adminName=" + adminName + ", idNumber=" + idNumber + ", phone=" + phone + ", email=" + email
+				+ ", createTime=" + createTime + ", powers=" + powers + "]";
+	}
 }

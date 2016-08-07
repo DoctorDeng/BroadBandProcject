@@ -1,16 +1,21 @@
 package bean.dto;
 
 import java.util.List;
-
+/**
+ * 公用的分页类，用于存储分页时页面相关数据和分页信息
+ * @author Doctor邓
+ *
+ * @param <T>
+ */
 public class PageDto<T> {
 	//首页页码,默认为1
 	private int indexPage = 1;
 	//尾页页码
 	private int endPage;
 	//上一页
-	private int upPage;
+	private int upPage=1;
 	//下一页
-	private int nextPage;
+	private int nextPage=1;
 	//当前页页码
 	private int currentPage = 1;
 	//页面大小--一页包含数据条数,默认为4
@@ -54,7 +59,7 @@ public class PageDto<T> {
 		if (this.currentPage != 1 && this.pageNum > 1) {
   			this.upPage   = this.currentPage - 1; 
   		}
-  		if (this.currentPage < this.pageNum && this.pageNum > 2) {
+  		if (this.currentPage < this.pageNum && this.pageNum >= 2) {
   			this.nextPage = this.currentPage + 1;
   		}
   		if (this.currentPage == this.pageNum) {
@@ -134,6 +139,4 @@ public class PageDto<T> {
 	public void setNextPage(int nextPage) {
 		this.nextPage = nextPage;
 	}
-	
-	
 }

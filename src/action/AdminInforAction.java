@@ -33,6 +33,11 @@ public class AdminInforAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Object obj = request.getSession().getAttribute("admin");
+		if (null == obj) {
+			request.getRequestDispatcher("/nopwer.jsp").forward(request, response);
+			return;
+		}
 		Admin adminInfo = (Admin)request.getSession().getAttribute("admin");
 		//判断adminInfo是否为空
 		if (null == adminInfo) {

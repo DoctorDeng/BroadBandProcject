@@ -156,7 +156,10 @@ public class AdminService {
 		return admins;
 	}
 	/**
-	 * 分页查询
+	 * 分页查询管理员表信息
+	 * @param currentPageStr  当前页码的字符串表现形式
+	 * @param pageSize        页面数据条数
+	 * @return  PageDto<Admin>
 	 */
 	public PageDto<Admin> selectFromPage(String currentPageStr, int pageSize){
 		init();
@@ -174,13 +177,20 @@ public class AdminService {
 	 * @return   List<Admin>
 	 */
 	public List<Admin> getAdminByCondition(String adminName,String power) {
+		init();
 		Map map = new HashMap();
 		map.put("adminName", adminName);
 
 		List<Admin> adminList = new ArrayList<>();
 		List<Admin> admins = adminMapper.selectAdminByCondition(map);
 		/**
-		 * 当管理员中有power这个权限时，将管理员添加到返回的集合中.
+		 * 当权限为空时直接返回查询结果
+		 */
+		if (StringUtil.isNull(power)) {
+			return admins;
+		}
+		/**
+		 * 当管理员中有power这个权限时，将管理员添加到返回的管理员集合中.
 		 */
 		for (int i=0; i<admins.size(); i++) {
 			Admin admin = admins.get(i);
@@ -194,6 +204,7 @@ public class AdminService {
 				}
 			}
 		}
+		close();
 		return adminList;
 	}
 	/**
@@ -207,14 +218,16 @@ public class AdminService {
 			e.printStackTrace();
 		}
 	}
-	//提交关闭SqlSession
+	/**
+	 * 提交关闭SqlSession
+	 */
 	public void close(){
 		sqlSession.commit();
 		sqlSession.close();
 	}
 	public static void main(String[] args) {
-		AdminService adminService = new AdminService();
-		Admin admin = new Admin();
+	/*	AdminService adminService = new AdminService();*/
+		/*Admin admin = new Admin();
 		admin.setAdminAccount("testForadd");
 		admin.setAdminName("doctorTest");
 		admin.setEmail("22@#");
@@ -226,6 +239,10 @@ public class AdminService {
 		power.setPowerId(1);
 		powers.add(power);
 		admin.setPowers(powers);
-		System.out.println(adminService.addAdmin(admin));
+		System.out.println(adminService.addAdmin(admin));*/
+		/*List<Admin> admins = adminService.getAdminByCondition("邓", "1");
+		for (Admin admin:admins) {
+			System.out.println(admin.toString());
+		}*/
 	}
 }
