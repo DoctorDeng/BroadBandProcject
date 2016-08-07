@@ -44,22 +44,19 @@
         <div id="main">            
             <form action="" method="" class="main_form">
                 <>!--必填项-->
-                <%
-                List<OsShowDto>  lsit = (ArrayList<OsShowDto>)session.getAttribute("lsit");
-                for(OsShowDto sv : lsit){
-                %>
+                <c:forEach items="${sessionScope.lsit}" var="OsShowDto">
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
-                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getBussinessId()%>" /></div>
+                <div class="input_info"><input type="text"  readonly class="readonly" value="${OsShowDto.bussinessId}" /></div>
                 <div class="text_info clearfix"><span>账务账号ID：</span></div>
-                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getCustomerId() %>"/></div>
+                <div class="input_info"><input type="text"  readonly class="readonly" value="${OsShowDto.customerId}"/></div>
                 <div class="text_info clearfix"><span>客户姓名：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly"  value="<%=sv.getCustomerName() %>"/></div>
+                <div class="input_info"><input type="text" readonly class="readonly"  value="${OsShowDto.customerName}"/></div>
                 <div class="text_info clearfix"><span>身份证号码：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly"  value="<%=sv.getIdNumber() %>"/></div>
+                <div class="input_info"><input type="text" readonly class="readonly"  value="${OsShowDto.idNumber}"/></div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
-                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getServerIp() %>" /></div>
+                <div class="input_info"><input type="text"  readonly class="readonly" value="${OsShowDto.serverIp}" /></div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
-                <div class="input_info"><input type="text"  readonly class="readonly" value="<%=sv.getOsAccount() %>"/></div>
+                <div class="input_info"><input type="text"  readonly class="readonly" value="${OsShowDto.osAccount}"/></div>
                 <div class="text_info clearfix"><span>状态：</span></div>
                 <div class="input_info">
                     <select disabled >
@@ -69,20 +66,18 @@
                     </select>                        
                 </div>
                 <div class="text_info clearfix"><span>资费 ID：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value="<%=sv.getTariffId() %>"/></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value="${OsShowDto.tariffId}"/></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
-                <div class="input_info"><input type="text" readonly class="width200 readonly" value="<%=sv.getTraiffName() %>"/></div>
+                <div class="input_info"><input type="text" readonly class="width200 readonly" value="${OsShowDto.traiffName}"/></div>
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                    <textarea class="width300 height70 readonly" readonly><%=sv.getTariffExplain() %></textarea>
+                    <textarea class="width300 height70 readonly" readonly>${OsShowDto. tariffExplain}</textarea>
                 </div>  
                 <!--操作按钮-->
                 <div class="button_info clearfix">
                     <input type="button" value="返回" class="btn_save" onclick="location.href='service_list.jsp';" />
                 </div>
-                <%
-                }
-                %>>
+                </c:forEach>
             </form>
         </div>
         <!--主要区域结束-->
