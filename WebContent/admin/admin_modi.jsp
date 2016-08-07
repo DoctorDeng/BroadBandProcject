@@ -58,7 +58,6 @@
                                 <li><input type="checkbox" name="power" value="7"/> 报表管理员</li>
                             </ul>
                         </div>
-                        
                         <span class="required">*</span>
                         <div class="validate_msg_tiny" id="powerError">至少选择一个</div>
                     </div>
@@ -72,5 +71,15 @@
         <div id="footer">
            
         </div>
+        
+        <c:forEach items="${requestScope.modiAdmin.powers}" var="power" >
+        	<input type="hidden" name="power"  value='<c:out value="${power.power}"/>'>
+  		</c:forEach>
+  		<script type="text/javascript">
+  				var powers = document.getElementsByName("power");
+  				for (var i=0;i<powers.length;i++) {
+  					checked(powers[i].value);
+  				}
+        </script>
     </body>
 </html>

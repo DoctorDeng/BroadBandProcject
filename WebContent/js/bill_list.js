@@ -29,7 +29,7 @@ function show() {
 			.hide(
 					"slow",
 					function() {
-						window.location.href = "<%=request.getContextPath()%>/BillAction?operation=showBill";
+						window.location.href = "../BillAction?operation=showBill";
 					});
 }
 //写入下拉框中的年份和月份

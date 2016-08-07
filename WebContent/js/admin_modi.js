@@ -54,3 +54,12 @@ function showResultDiv(flag) {
         submitForm();
     }
 }
+function checked(power) {
+	 var chks=document.getElementsByName('power');
+	    for(var i=0;i<chks.length;i++)
+	    {
+	        if (power==(i+1)) {
+	        	chks[i].checked = true;
+	        }
+	    }
+}
