@@ -43,4 +43,11 @@
 		</set>
 		where osId=#{osId}
 	</update>
+	<update id="deletedDeletTime">
+		update bussiness 
+		<set>
+			deletTime=#{deletTime}
+		</set>
+		where osId=#{osId}
+	</update>
 </mapper>

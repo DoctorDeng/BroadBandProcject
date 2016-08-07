@@ -152,6 +152,9 @@ public class ProfessionService {
 	 */
 	public boolean  upStutas(OsDto customer){
 		start();
+		/**
+		 * 获取取值的bussinessId
+		 */
 		int id = customer.getCustomerId();
 		Bussiness bussiness = bussinessMapper.selectBussinessById(id);
 		int osId = bussiness.getOsId();
@@ -167,11 +170,13 @@ public class ProfessionService {
 				bus.setPauseTime(pauseTime);
 				bus.setOsId(osId);
 				boolean c = bussinessMapper.updatePauseTime(bus);
+				close();
 				return c ;
 			}else if("1".equals(customer.getStatus())){
 				Bussiness bus = new Bussiness();
 				bus.setOsId(osId);
 				boolean c = bussinessMapper.updatePauseTimeToNull(osId);
+				close();
 				return c;
 			}
 		}
@@ -186,13 +191,22 @@ public class ProfessionService {
 	 */
 	public boolean  upStutasWithOsAccount(OsDto osDto){
 		start();
-		System.out.println(osDto.getBussinessId());
 		int id = osDto.getBussinessId();
 		Bussiness bussiness = bussinessMapper.selectBussinessById(id);
 		int osId = bussiness.getOsId();
 		Os o = new Os();
 		o.setOsId(osId);
+		boolean a = true;
 		boolean b =osMapper.upStutasWithOsAccount(o);
+		if(a=b){
+			String deletTime = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+			Bussiness bus = new Bussiness();
+			bus.setOsId(osId);
+			bus.setDeletTime(deletTime);
+			boolean c = bussinessMapper.deletedDeletTime(bus);
+			close();
+			return c ;
+		}
 		close();
 		return b;
 		

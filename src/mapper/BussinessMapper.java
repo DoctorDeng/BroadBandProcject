@@ -44,4 +44,10 @@ public interface BussinessMapper {
 	 * @return
 	 */
 	public boolean  updatePauseTimeToNull(int osId);
+	/**
+	 * 业务删除时记载删除时间
+	 * @param bussiness
+	 * @return
+	 */
+	public boolean  deletedDeletTime(Bussiness bussiness);
 }
