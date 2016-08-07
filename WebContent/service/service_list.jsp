@@ -127,22 +127,19 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-		<%
-		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
-		for(OsDto sv:Listo){
-			String status = sv.getStatus();
-			if("2".equals(status)){
-				%>
+				<c:forEach items="${sessionScope.Listo}"  var="OsDto">
+				<c:choose>
+				<c:when test="${OsDto.status==2}">
 				<tr>
-                    <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
-                    <td><%=sv.getCustomerId() %></td>
-                    <td><%=sv.getIdNumber() %></td>
-                    <td><%=sv.getCustomerName() %></td>
-                    <td><%=sv.getOsAccount() %></td>
-                    <td><%=sv.getStatus().equals("2")?"删除":"开通" %></td>
-                    <td><%=sv.getServerIp()%></td>
+                    <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=${OsDto.bussinessId}">${OsDto.bussinessId}</a></td>
+                    <td>${OsDto.customerId}</td>
+                    <td>${OsDto.idNumber}</td>
+                    <td>${OsDto.customerName}</td>
+                    <td>${OsDto.osAccount}</td>
+                    <td>${OsDto.status=='2'?"删除":"开通"}</td>
+                    <td>${OsDto.serverIp}</td>
                     <td>
-                        <a class="summary" ><%=sv.getTariffName()%></a>
+                        <a class="summary" >${OsDto.tariffName}</a>
                         <!--浮动的详细信息-->
                         <div class="detail_info">
                             20小时，24.5 元，超出部分 0.03元/分钟
@@ -151,34 +148,32 @@
                     <td class="td_modi">            
                     </td>
                 </tr>
-				<% 
-			}else{
-				
-		%>
-                    <tr>
-                        <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>" title="查看明细" ><%=sv.getBussinessId()%></a></td>
-                        <td><%=sv.getCustomerId() %></td>
-                        <td><%=sv.getIdNumber() %></td>
-                        <td><%=sv.getCustomerName() %></td>
-                        <td><%=sv.getOsAccount() %></td>
-                        <td><%=!sv.getStatus().equals("1")?"暂停":"开通" %></td>
-                        <td><%=sv.getServerIp()%></td>
-                        <td>
-                            <a class="summary" ><%=sv.getTariffName()%></a>
-                            <!--浮动的详细信息-->
-                            <div class="detail_info">
-                                20小时，24.5 元，超出部分 0.03元/分钟
-                            </div>
-                        </td>                            
+                </c:when>
+                <c:otherwise>
+                <tr>
+                    <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=${OsDto.bussinessId}">${OsDto.bussinessId}</a></td>
+                    <td>${OsDto.customerId}</td>
+                    <td>${OsDto.idNumber}</td>
+                    <td>${OsDto.customerName}</td>
+                    <td>${OsDto.osAccount}</td>
+                    <td>${OsDto.status=='0'?"暂停":"开通"}</td>
+                    <td>${OsDto.serverIp}</td>
+                    <td>
+                        <a class="summary" >${OsDto.tariffName}</a>
+                        <!--浮动的详细信息-->
+                        <div class="detail_info">
+                            20小时，24.5 元，超出部分 0.03元/分钟
+                        </div>
+                    </td>                                   
                         <td class="td_modi">
-                            <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=<%=sv.getBussinessId() %>&status=<%=sv.getStatus() %>';" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
+                            <input type="button" value=${OsDto.status=='1'?"暂停":"开通"} class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=${OsDto.bussinessId}&status=${OsDto.status}';" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=${OsDto.bussinessId}';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=${OsDto.bussinessId}';" />
                         </td>
                     </tr>
-                      <%} 
-		}
-                      %>                                                                 
+        			</c:otherwise>
+        			</c:choose>
+        			</c:forEach>                                                          
                 </table>
                 <p>业务说明：<br />
                 1、创建即开通，记载创建时间；<br />

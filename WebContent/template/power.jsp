@@ -26,7 +26,7 @@
   				
   				<c:choose>
   					<c:when test="${power==5}">
-                		<li><a href="<%=request.getContextPath() %>/ServiceMainAction" class="service_off"></a></li>
+                		<li><a href="<%=request.getContextPath() %>/ServiceListAction" class="service_off"></a></li>
   					</c:when>
   				</c:choose>
   				
