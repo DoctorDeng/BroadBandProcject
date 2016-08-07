@@ -131,8 +131,29 @@
 		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
 		for(OsDto sv:Listo){
 			String status = sv.getStatus();
-			if("2".equals(status))
-				continue;
+			if("2".equals(status)){
+				%>
+				<tr>
+                    <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>"><%=sv.getBussinessId()%></a></td>
+                    <td><%=sv.getCustomerId() %></td>
+                    <td><%=sv.getIdNumber() %></td>
+                    <td><%=sv.getCustomerName() %></td>
+                    <td><%=sv.getOsAccount() %></td>
+                    <td><%=sv.getStatus().equals("2")?"删除":"开通" %></td>
+                    <td><%=sv.getServerIp()%></td>
+                    <td>
+                        <a class="summary" ><%=sv.getTariffName()%></a>
+                        <!--浮动的详细信息-->
+                        <div class="detail_info">
+                            20小时，24.5 元，超出部分 0.03元/分钟
+                        </div>
+                    </td>                            
+                    <td class="td_modi">            
+                    </td>
+                </tr>
+				<% 
+			}else{
+				
 		%>
                     <tr>
                         <td><a href="<%=request.getContextPath() %>/ServiceDetailAction?bussinessId=<%=sv.getBussinessId()%>" title="查看明细" ><%=sv.getBussinessId()%></a></td>
@@ -155,7 +176,9 @@
                             <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
                         </td>
                     </tr>
-                      <%} %>                                                                 
+                      <%} 
+		}
+                      %>                                                                 
                 </table>
                 <p>业务说明：<br />
                 1、创建即开通，记载创建时间；<br />
