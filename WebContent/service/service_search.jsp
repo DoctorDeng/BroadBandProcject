@@ -100,10 +100,7 @@
                             20小时，24.5 元，超出部分 0.03元/分钟
                         </div>
                     </td>                            
-                    <td class="td_modi">
-                       <input type="button" value="<%=sv.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=<%=sv.getBussinessId() %>&status=<%=sv.getStatus() %>';" />
-                       <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=<%=sv.getBussinessId() %>';" />
-                       <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=<%=sv.getBussinessId() %>';" />
+                    <td class="td_modi">            
                     </td>
                 </tr>
                 <% 

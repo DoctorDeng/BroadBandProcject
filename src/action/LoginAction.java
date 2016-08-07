@@ -42,6 +42,7 @@ public class LoginAction extends HttpServlet {
 				return;
 			} else {
 				session.setAttribute("admin", admin);
+				System.out.println(admin);
 				//request.getSession().setAttribute("admin", admin);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 				return;

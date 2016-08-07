@@ -42,5 +42,5 @@
   					</c:when>
   				</c:choose>
   			</c:forEach>
-                <li><a href="<%=request.getContextPath() %>/AdminInforAction?operation=initInfor" class="information_off"></a></li>
+                <li><a href="<%=request.getContextPath() %>/user/user_info.jsp" class="information_off"></a></li>
                 <li><a href="<%=request.getContextPath() %>/user/user_modi_pwd.jsp" class="password_off"></a></li>
