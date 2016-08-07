@@ -55,10 +55,10 @@ public class BussinessAccountSearchAction extends HttpServlet {
 		session.setAttribute("ls", l);
 		PrintWriter out = response.getWriter();
 		for(AccountViewBean acc:l) {
-			System.out.println("搜索到数据++++");
+			//System.out.println("搜索到数据++++");
 			out.println("<tr>");
 			out.println("<td>"+acc.getBussinessId()+"</td>");
-			out.println("<td><a href=\""+request.getContextPath()+"/BussinessAccountDetailAction?id="+acc.getBussinessId()+"\">"+acc.getBussinessName()+"</a><td>");
+			out.println("<td><a href=\""+request.getContextPath()+"/BussinessAccountDetailAction?id="+acc.getBussinessId()+"\" >"+acc.getBussinessName()+"</a></td>");
 			out.println("<td>"+acc.getIdNumber()+"</td>");
 			out.println("<td>"+acc.getLoginAccount()+"</td>");
 			String statusValue = null;
