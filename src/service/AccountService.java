@@ -2,7 +2,9 @@ package service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,15 +21,20 @@ public class AccountService {
 	
 	public List<AccountViewBean> getAccountViewBean(int currentPage){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
+		Map<String,Integer> page = new HashMap<String,Integer>();
+		int startPage = (currentPage-1)*pageSize;
+		page.put("startPage", startPage);
+		page.put("pageSize", pageSize);
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
-			List<Customer> lc =  cm.selectAllCustomer();
+			List<Customer> lc =  cm.selectAllCustomer(page);
+			int countPage = cm.countCustomer();
 			for(Customer c:lc){
-				if("2".equals(c.getStatus())){
-					continue;
-				}
+//				if("2".equals(c.getStatus())){
+//					continue;
+//				}
 				AccountViewBean a = new AccountViewBean();
 				a.setBussinessId(c.getCustomerId());
 				a.setBussinessName(c.getCustomerName());
@@ -38,6 +45,7 @@ public class AccountService {
 				a.setPassword(c.getPassword());
 				a.setPhone(c.getPhone());
 				a.setStatus(c.getStatus());
+				a.setCountPage(countPage);
 				l.add(a);
 			}
 		} catch (IOException e) {
@@ -67,10 +75,11 @@ public class AccountService {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
 			List<Customer> lc =  cm.selectCustomerByCondition(customer);
+			int countPage = cm.countCustomer();
 			for(Customer c:lc){
-				if("2".equals(c.getStatus())){
-					continue;
-				}
+//				if("2".equals(c.getStatus())){
+//					continue;
+//				}
 				AccountViewBean a1 = new AccountViewBean();
 				a1.setBussinessId(c.getCustomerId());
 				a1.setBussinessName(c.getCustomerName());
@@ -81,6 +90,7 @@ public class AccountService {
 				a1.setPassword(c.getPassword());
 				a1.setPhone(c.getPhone());
 				a1.setStatus(c.getStatus());
+				a1.setCountPage(countPage);
 				la.add(a1);
 			}
 		} catch (IOException e) {

@@ -11,7 +11,7 @@ public interface CustomerMapper {
 	 * 查找所有记录
 	 * @return
 	 */
-	public List<Customer> selectAllCustomer();
+	public List<Customer> selectAllCustomer(Map page);
 	
 	/**
 	 * 根据ID查找
@@ -43,4 +43,8 @@ public interface CustomerMapper {
 	 */
 	public List<Customer> selectCustomerByCondition(Customer customer);
 	
+	/**
+	 * 查询所有记录条数
+	 */
+	public int countCustomer();
 }

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Customer;
+import bean.vo.AccountViewBean;
 import mapper.CustomerMapper;
+import service.AccountService;
 import util.SqlSessionUtil;
 
 /**
@@ -40,22 +42,10 @@ public class BussinessAccountAction extends HttpServlet {
 			String bus = request.getParameter("id");
 			bussinessId = Integer.parseInt(bus);
 		}
-		int customerId = bussinessId;
-		Customer customer = new Customer();
-		customer.setCustomerId(customerId);
-		customer.setStatus("2");
-		SqlSession ss = null;
-		try {
-			ss = SqlSessionUtil.getSqlSession();
-			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
-			cm.updateCustomer(customer);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			ss.commit();
-			ss.close();
-		}
+		AccountViewBean a = new AccountViewBean();
+		a.setBussinessId(bussinessId);
+		a.setStatus("2");
+		new AccountService().updateBussinessAccount(a);
 		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
 		
 	}

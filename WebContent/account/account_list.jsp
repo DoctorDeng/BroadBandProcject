@@ -71,12 +71,12 @@
                 <!--查询-->
                 <div class="search_add">                        
                     <div>身份证：<input type="text" id="idNumber" name="idNumber" value="不验证" class="text_search" /></div>                            
-                    <div>姓名：<input type="text" id="name" name="name" class="text_search" value="不验证" /></div>
+                    <div>姓名：<input type="text" id="name" name="name" class="width70 text_search" value="不验证" /></div>
                     <div>登录名：<input type="text" name="loginAccount" value="不验证" id="loginAccount" class="text_search"/></div>
                     <div>
                         状态：
                         <select name="status" class="select_search">
-                            <option value="-1">全部</option>
+                            <option value="-1" selected="selected">全部</option>
                             <option value="1">开通</option>
                             <option value="0">暂停</option>
                             <option value="2">删除</option>
