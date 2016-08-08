@@ -83,7 +83,7 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-					<c:forEach items="${sessionScope.lsa}" var="OsDto">
+					<c:forEach items="${sessionScope.pageDto.dataList}"  var="OsDto">
 					<c:choose>
 					<c:when test="${OsDto.status==2}">
 						<tr>
@@ -141,15 +141,23 @@
                 </div>                    
                 <!--分页-->
                 <div id="pages">
-                    <a href="#">首页</a>
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                    <a href="#">末页</a>
+					<c:if test="${sessionScope.pageDto.currentPage <= 1}">
+						<a>首页</a>&nbsp;
+						<a>上一页</a>
+					</c:if>
+					<c:if test="${sessionScope.pageDto.currentPage > 1}">
+                   		<a href="../ServiceListAction?curPage=1" id="fistP">首页</a>
+        	        	<a href="../ServiceListAction?curPage=${sessionScope.pageDto.currentPage-1}" id="secondP">上一页</a>  
+        	        </c:if> 
+        	        <c:if test="${sessionScope.pageDto.currentPage >= sessionScope.pageDto.pageNum}">
+        	    		<a>下一页</a>
+        	    		<a>末页</a>
+        	    	</c:if>
+        	    	<c:if test="${sessionScope.pageDto.currentPage < sessionScope.pageDto.pageNum}">
+                    	<a href="../ServiceListAction?curPage=${sessionScope.pageDto.currentPage+1}" id="thirdP">下一页</a>
+                   		<a href="../ServiceListAction?curPage=${sessionScope.pageDto.pageNum }" id="lastP">末页</a>
+                    </c:if>
+					第<c:out value="${sessionScope.pageDto.currentPage}"/>页/共<c:out value="${sessionScope.pageDto.pageNum}"/>页 
                 </div>                  
             </form>
         </div>
