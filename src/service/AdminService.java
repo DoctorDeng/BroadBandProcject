@@ -2,7 +2,9 @@ package service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -165,6 +167,34 @@ public class AdminService {
 		pagedto.setDataList(lsadmin);
 		close();
 		return pagedto;
+	}
+	/**
+	 * 通过管理员姓名查询管理员
+	 * @param adminName  管理员姓名
+	 * @return   List<Admin>
+	 */
+	public List<Admin> getAdminByCondition(String adminName,String power) {
+		Map map = new HashMap();
+		map.put("adminName", adminName);
+
+		List<Admin> adminList = new ArrayList<>();
+		List<Admin> admins = adminMapper.selectAdminByCondition(map);
+		/**
+		 * 当管理员中有power这个权限时，将管理员添加到返回的集合中.
+		 */
+		for (int i=0; i<admins.size(); i++) {
+			Admin admin = admins.get(i);
+			List<Power> powers = admin.getPowers();
+			if (null != powers) {
+				for (int j=0; j<powers.size(); i++) {
+					Power powerTemp = powers.get(j);
+					if (power == powerTemp.getPower() | powerTemp.getPower().equals(power)) {
+						adminList.add(admin);
+					}
+				}
+			}
+		}
+		return adminList;
 	}
 	/**
 	 * 初始化SqlSession和mapper

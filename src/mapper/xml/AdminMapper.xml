@@ -153,7 +153,9 @@
 		
 		<select id="verifyAdmin" parameterType="Admin" resultMap="AdminResultMap">
 			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
-			FROM admin where adminAccount=#{adminAccount} and password=#{password}
+			FROM admin 
+			where adminAccount=#{adminAccount} 
+			and password=#{password}
 		</select>
 		
 		<select id="verifyAdminAccount" parameterType="String" resultType="String">
