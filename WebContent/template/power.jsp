@@ -14,7 +14,7 @@
   				
   				<c:choose>
   					<c:when test="${power==3}">
-                		<li><a href="<%=request.getContextPath() %>/fee/fee_list.jsp" class="fee_off"></a></li>
+                		<li><a href="<%=request.getContextPath() %>/TariffListAction" class="fee_off"></a></li>
   					</c:when>
   				</c:choose>
   				

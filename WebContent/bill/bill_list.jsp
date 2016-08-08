@@ -37,7 +37,7 @@
                     <div><input type="button" value="显示所有" class="btn_search" onclick="show()" /></div>
                 </div>  
                 <!--数据区域：用表格展示数据-->     
-                <div id="data">            
+                <div id="data">                                                          
                     <table id="datalist">
                     <tr id="menuId">
                         <th class="width50">账单ID</th>

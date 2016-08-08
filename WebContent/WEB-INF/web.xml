@@ -28,4 +28,14 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TariffListAction</display-name>
+    <servlet-name>TariffListAction</servlet-name>
+    <servlet-class>action.TariffListAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TariffListAction</servlet-name>
+    <url-pattern>/TariffListAction</url-pattern>
+  </servlet-mapping>
 </web-app>

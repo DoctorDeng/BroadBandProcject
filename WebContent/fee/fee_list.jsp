@@ -66,7 +66,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="<%=request.getContextPath()%>/TariffListAction?operation" method="post">
                 <!--排序-->
                 <div class="search_add">
                     <!-- <div>
@@ -97,8 +97,37 @@
                             <th>开通时间</th>
                             <th class="width50">状态</th>
                             <th class="width200"></th>
-                        </tr>   
-                        <%
+                        </tr>
+                        <c:set var="tariffPage" value="${not empty sessionScope.tariffs}" />
+  					    <c:if test="${not tariffPage}">
+  						   <tr>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  						   </tr>
+  					    </c:if> 
+  					    <c:forEach items="${sessionScope.tariffs}" var="tariff" >
+  							<tr>
+  								<td><c:out value="${tariff.tariffId}"/></td>
+  								<td><a href="fee_detail.jsp?id=${tariff.tariffId }&tariffName=${tariff.tariffName }&status=${tariff.status }&tariffType=${tariff.tariffType }&timeLong=${tariff.timeLong }&tariff=${tariff.tariff }&timeTariff=${tariff.timeTariff }&createTime=${tariff.createTime }&openTime=${tariff.openTime }&tariffExplain=${tariff.tariffExplain }">${tariff.tariffName }</a></td>
+  								<td><c:out value="${tariff.timeLong}"/></td>
+  								<td><c:out value="${tariff.tariff}"/></td>
+  								<td><c:out value="${tariff.timeTariff}"/></td>
+  								<td><c:out value="${tariff.createTime}"/></td>
+  								<td><c:out value="${tariff.openTime}"/></td>
+  								<td><c:out value="${tariff.status}"/></td>
+  								<input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=${tariff.tariffId}';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=${tariff.tariffId}&tariffName=${tariff.tariffName }&timeLong=${tariff.timeLong}&tariff=${tariff.tariff}&timeTariff=${tariff.timeTariff}&tariffExplain=${tariff.tariffExplain }';" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=${tariff.tariffId}';" />
+  							<tr>
+  						</c:forEach>  
+                       <%--  <%
                              TariffService tm = new TariffService();
                              List<Tariff> tv = tm.getShowMessage();
                              for(Tariff sv:tv){
@@ -142,7 +171,7 @@
                                 <%} %>
                             </td>
                         </tr>
-                        <%} %>
+                        <%} %> --%>
                     </table>
                     <p>业务说明：<br />
                     1、创建资费时，状态为暂停，记载创建时间；<br />
