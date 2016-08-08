@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.dto.OsDto;
+import bean.dto.PageDto;
 import service.ProfessionService;
 
 /**
@@ -19,6 +21,7 @@ import service.ProfessionService;
 @WebServlet(urlPatterns="/ServiceListAction")
 public class ServiceListAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Object Listo = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,10 +37,17 @@ public class ServiceListAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		List<OsDto> Listo = (new ProfessionService()).serviceListShow();
-		System.out.println(Listo.size());
-	    session.setAttribute("Listo", Listo);
-	    response.sendRedirect("service/service_list.jsp");
+	    /**
+	     * 分页部分
+	     */
+		String currentPageStr = request.getParameter("curPage");  //当前页数
+		int pageSize = 5; //每页显示的数据数目
+		/**
+		 * 获得总记录数
+		 */
+		PageDto pageDto = (new ProfessionService()).serviceListShow(currentPageStr, 5);
+		session.setAttribute("pageDto", pageDto);
+		response.sendRedirect("service/service_list.jsp");
 	}
 
 	/**

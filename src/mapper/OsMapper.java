@@ -3,6 +3,7 @@ package mapper;
 import java.util.List;
 
 import bean.Os;
+import bean.Page;
 import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import bean.dto.OsLoginDto;
@@ -41,7 +42,7 @@ public interface OsMapper {
 	 * @param osDto
 	 * @return
 	 */
-	public List<OsDto> selServiceShow();
+	public List<OsDto> selServiceShow(Page page);
 	
 	/**
 	 * 业务界面添加
@@ -89,6 +90,12 @@ public interface OsMapper {
 	 * @return
 	 */
 	public Os selOsAcAndOsPa(Os Os);
+	/**
+	 * 查询当前显示记录条数，
+	 * @return int
+	 */
+	public int selCountSize();
+
 }
 	
 

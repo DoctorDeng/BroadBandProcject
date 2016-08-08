@@ -10,10 +10,13 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Bussiness;
 import bean.Customer;
 import bean.Os;
+import bean.Page;
 import bean.Tariff;
 import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import bean.dto.OsShowDto;
+import bean.dto.PageDto;
+import bean.vo.BillFormBean;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
 import mapper.OsMapper;
@@ -26,16 +29,21 @@ public class ProfessionService {
 	private CustomerMapper customerMapper;
 	private TariffMapper tariffMapper;
 	
+	
+	/******************************业务需求方法*********************/
 	/**
 	 * 查询信息显示界面
 	 * @return
 	 */
-	public List<OsDto> serviceListShow() {
+	public PageDto serviceListShow(String currentPageStr, int pageSize) {
 		start();
-		osMapper = sqlSession.getMapper(OsMapper.class);
-		List<OsDto> listOs = osMapper.selServiceShow();
+		PageDto<OsDto> pageDto = new PageDto<>();
+		int recordNum = osMapper.selCountSize();
+		pageDto.init(recordNum,pageSize,currentPageStr);
+		List<OsDto> listOs = osMapper.selServiceShow(new Page((pageDto.getCurrentPage()-1)*pageSize,pageSize));
+		pageDto.setDataList(listOs);
 		close();
-		return listOs;
+		return pageDto;
 		// TODO Auto-generated method stub
 		
 	}
@@ -238,6 +246,7 @@ public class ProfessionService {
 		return o;
 		
 	}
+	/****************************构建环境*******************************/
 	/**
 	 * 
 	 * 构建环境

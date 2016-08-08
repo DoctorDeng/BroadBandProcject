@@ -85,13 +85,14 @@ public class TestOS {
 	/**
 	 * 测试业务表的界面显示信息功能
 	 */
-	@Test
-	public void selServiceShow(){
-		List<OsDto> listDto = osMapper.selServiceShow();
+	/*public void selServiceShow(){
+		List<OsDto> listDto = osMapper.selServiceShow("222",5);
 		for(OsDto osDto:listDto){
 		System.out.println(osDto);
 		}
 	}
+	*/
+	
 	/**
 	 * 通过业务账号通过业务Id来修改Os表里面的资费类型
 	 */

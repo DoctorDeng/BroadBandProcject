@@ -49,6 +49,7 @@
                INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
 			   ORDER BY
                b.bussinessId ASC
+               LIMIT #{index},#{size}
 	</select>
 	<!-- 通过查询身份证进行对Os表的添加功能 -->
 	<insert id="addOsInfo">
@@ -135,5 +136,15 @@
 	</select>
 	<select id="selOsAcAndOsPa">
 		select * from os where osAccount=#{osAccount} And osPassword=#{osPassword}
+	</select>
+	<select id="selCountSize" resultType="Integer"> 
+		SELECT COUNT(*)
+               FROM
+			   os AS o 
+               INNER JOIN  bussiness AS b  ON  b.osId = o.osId 
+               INNER JOIN   customer AS c  ON  o.customerId = c.customerId 
+               INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
+			   ORDER BY
+               b.bussinessId ASC
 	</select>
 </mapper>
