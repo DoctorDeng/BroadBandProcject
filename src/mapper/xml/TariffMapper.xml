@@ -17,9 +17,11 @@
    <select id="findAllTariff" resultMap="TariffResultMap">
        select * from tariff
    </select>
+   
    <select id="selectByOpenStatus" resultMap="TariffResultMap">
        select * from tariff where status="1"
    </select>
+   
    <select id="findOneTariff" resultMap="TariffResultMap">
        select * from tariff where tariffId=#{tariffId}
    </select>

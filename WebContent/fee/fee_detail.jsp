@@ -42,9 +42,9 @@
         <div id="main">            
             <form action="" method="" class="main_form">
                 <div class="text_info clearfix"><span>资费ID：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value=<%=request.getParameter("id") %> /></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value=${sessionScope.tariff.tariffId } /></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value=<%=request.getParameter("tariffName") %>/></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value=${sessionScope.tariff.tariffName }/></div>
                 <div class="text_info clearfix"><span>资费状态：</span></div>
                 <div class="input_info">
                     <select class="readonly" >
@@ -64,26 +64,26 @@
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">
-                    <input type="text" class="readonly" readonly value=<%=request.getParameter("timeLong") %>  />
+                    <input type="text" class="readonly" readonly value=${sessionScope.tariff.timeLong }  />
                     <span>小时</span>
                 </div>
                 <div class="text_info clearfix"><span>基本费用：</span></div>
                 <div class="input_info">
-                    <input type="text"  class="readonly" readonly value=<%=request.getParameter("tariff") %> />
+                    <input type="text"  class="readonly" readonly value=${sessionScope.tariff.tariff } />
                     <span>元</span>
                 </div>
                 <div class="text_info clearfix"><span>单位费用：</span></div>
                 <div class="input_info">
-                    <input type="text"  class="readonly" readonly value=<%=request.getParameter("timeTariff") %> />
+                    <input type="text"  class="readonly" readonly value=${sessionScope.tariff.timeTariff } />
                     <span>元/小时</span>
                 </div>
                 <div class="text_info clearfix"><span>创建时间：</span></div>
-                <div class="input_info"><input type="text"  class="readonly" readonly value=<%=request.getParameter("createTime") %> /></div>      
+                <div class="input_info"><input type="text"  class="readonly" readonly value=${sessionScope.tariff.createTime } /></div>      
                 <div class="text_info clearfix"><span>启动时间：</span></div>
-                <div class="input_info"><input type="text"  class="readonly" readonly value=<%=request.getParameter("openTime") %> /></div>      
+                <div class="input_info"><input type="text"  class="readonly" readonly value=${sessionScope.tariff.openTime } /></div>      
                 <div class="text_info clearfix"><span>资费说明：</span></div>
                 <div class="input_info_high">
-                    <textarea class="width300 height70 readonly" readonly><%=request.getParameter("tariffExplain") %></textarea>
+                    <textarea class="width300 height70 readonly" readonly>${sessionScope.tariff.tariffExplain }</textarea>
                 </div>                    
                 <div class="button_info clearfix">
                     <input type="button" value="返回" class="btn_save" onclick="location.href='fee_list.html';" />

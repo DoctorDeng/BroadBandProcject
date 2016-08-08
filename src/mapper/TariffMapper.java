@@ -28,5 +28,5 @@ public interface TariffMapper {
 	public int selectTariffCount();
 	
 	public List<Tariff> selectByOpenStatus();
-
+	
 }

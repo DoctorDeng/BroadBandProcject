@@ -116,7 +116,8 @@
   					    <c:forEach items="${sessionScope.tariffPage.dataList}" var="tariff" >
   							<tr>
   								<td><c:out value="${tariff.tariffId}"/></td>
-  								<td><a href="fee_detail.jsp?id=${tariff.tariffId }&tariffName=${tariff.tariffName }&status=${tariff.status }&tariffType=${tariff.tariffType }&timeLong=${tariff.timeLong }&tariff=${tariff.tariff }&timeTariff=${tariff.timeTariff }&createTime=${tariff.createTime }&openTime=${tariff.openTime }&tariffExplain=${tariff.tariffExplain }">${tariff.tariffName }</a></td>
+  								<%-- <td><a href="fee_detail.jsp?id=${tariff.tariffId }&tariffName=${tariff.tariffName }&status=${tariff.status }&tariffType=${tariff.tariffType }&timeLong=${tariff.timeLong }&tariff=${tariff.tariff }&timeTariff=${tariff.timeTariff }&createTime=${tariff.createTime }&openTime=${tariff.openTime }&tariffExplain=${tariff.tariffExplain }">${tariff.tariffName }</a></td> --%>
+  								<td><a href="<%=request.getContextPath()%>/TariffByNameAction?id=${tariff.tariffId }">${tariff.tariffName }</a></td>
   								<td><c:out value="${tariff.timeLong}"/></td>
   								<td><c:out value="${tariff.tariff}"/></td>
   								<td><c:out value="${tariff.timeTariff}"/></td>
@@ -144,7 +145,7 @@
   								<td>
   								<c:if test="${tariff.status == '0'}">
   								<input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=${tariff.tariffId}';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=${tariff.tariffId}&tariffName=${tariff.tariffName }&timeLong=${tariff.timeLong}&tariff=${tariff.tariff}&timeTariff=${tariff.timeTariff}&tariffExplain=${tariff.tariffExplain }';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='<%=request.getContextPath()%>/TariffDetailAction?id=${tariff.tariffId}';" />
                                 <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=${tariff.tariffId}';" />
   							    </c:if>
   							    </td>

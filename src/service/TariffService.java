@@ -22,6 +22,12 @@ public class TariffService {
 	 * 获取资费管理所需要的表格信息（后期可能需要封装到pageBean里面，暂时封装到Tariff）
 	 * @return
 	 */
+	public Tariff findOneTariff(int tariffId){
+		init();
+		Tariff tariff = tariffMapper.findOneTariff(tariffId);
+		close();
+		return tariff;
+	}
 	public List<Tariff> getShowMessage(){
 		init();
 		List<Tariff>tariff=tariffMapper.findAllTariff();
