@@ -35,6 +35,7 @@ public class TariffListAction extends HttpServlet {
 		  TariffService tm = new TariffService();
           List<Tariff> tv = tm.getShowMessage();
           request.getSession().setAttribute("tariffs",tv );
+          response.sendRedirect(request.getContextPath()+"fee_list.jsp");
 	}
 
 	/**
