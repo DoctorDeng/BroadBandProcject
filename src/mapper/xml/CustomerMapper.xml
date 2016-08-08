@@ -50,7 +50,7 @@
 	<select id="selectCustomerByIdNumber" parameterType="String" resultType="Customer">
 		select * from customer where idNumber=#{idNumber}
 	</select>
-	<select id="selectCustomerByCondition" parameterType="Customer" resultType="Customer">
+	<select id="selectCustomerByCondition" parameterType="Map" resultType="Customer">
 		select * from customer
 		<where>
 			<if test="idNumber!=null and idNumber!='' and idNumber!='不验证'">
@@ -66,6 +66,7 @@
 				and status=#{status}
 			</if>
 		</where>
+		limit #{startPage},#{pageSize}
 	</select>
 	<select id="countCustomer" resultType="int">
 		select count(*) from Customer;

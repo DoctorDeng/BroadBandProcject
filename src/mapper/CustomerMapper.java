@@ -41,7 +41,7 @@ public interface CustomerMapper {
 	/**
 	 * 根据输入的条件搜索customer
 	 */
-	public List<Customer> selectCustomerByCondition(Customer customer);
+	public List<Customer> selectCustomerByCondition(Map customer);
 	
 	/**
 	 * 查询所有记录条数

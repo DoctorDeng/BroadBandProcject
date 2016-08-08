@@ -46,6 +46,7 @@ public class BussinessAccountOpenAction extends HttpServlet {
 		c.setCustomerId(bussinessId);
 		if("1".equals(status)){
 			c.setStatus("0");
+			
 		}else if("0".equals(status)){
 			c.setStatus("1");
 		}

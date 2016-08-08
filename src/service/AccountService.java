@@ -29,7 +29,7 @@ public class AccountService {
 		try {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
-			List<Customer> lc =  cm.selectAllCustomer(page);
+			List<Customer> lc =  cm.selectCustomerByCondition(page);
 			int countPage = cm.countCustomer();
 			for(Customer c:lc){
 //				if("2".equals(c.getStatus())){
@@ -68,13 +68,20 @@ public class AccountService {
 			customer.setCustomerName(a.getBussinessName());
 		}
 		customer.setCustomerAccount(a.getLoginAccount());
+		Map page = new HashMap();
+		int startPage = (currentPage-1)*pageSize;
+		page.put("startPage", startPage);
+		page.put("pageSize", pageSize);
 		List<AccountViewBean> la = new ArrayList<AccountViewBean>();
-		System.out.println(customer);
+		page.put("idNumber", a.getIdNumber());
+		page.put("customerName", a.getBussinessName());
+		page.put("customerAccount", a.getLoginAccount());
+		page.put("status", a.getStatus());
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
-			List<Customer> lc =  cm.selectCustomerByCondition(customer);
+			List<Customer> lc =  cm.selectCustomerByCondition(page);
 			int countPage = cm.countCustomer();
 			for(Customer c:lc){
 //				if("2".equals(c.getStatus())){
