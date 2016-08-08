@@ -53,10 +53,6 @@
             	})
             });
             function endA() {
-            	var no = document.getElementById("no").value;
-            	if(no !== null) {
-            		no.innerHTML = ""
-            	}
 				var serverIp = document.getElementById("serverIp").value;
 				var ser = document.getElementById("ser");
 				var regAge = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
@@ -80,7 +76,7 @@
 				var osP  = document.getElementById("osP");
 				var regAge = /[a-zA-Z0-9]{6,30}/;
 				if (regAge.test(pswd) == false) {
-					osP.innerHTML = "30长度以内的字母、数字和下划线的组合";
+					osP.innerHTML = "26长度以内的字母、数字和下划线的组合";
 						return false
 				}
 					osP.innerHTML = ""
