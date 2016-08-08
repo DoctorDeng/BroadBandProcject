@@ -45,7 +45,7 @@ public class ServiceAddAction extends HttpServlet {
 		osAddDto.setServerIp(request.getParameter("serverIp"));
 		boolean succiess =   new ProfessionService().addServiceOneInfo(osAddDto);
 		if(succiess){
-			response.sendRedirect("ServiceMainAction");
+			response.sendRedirect("ServiceListAction");
 		}else{
 			
 		}

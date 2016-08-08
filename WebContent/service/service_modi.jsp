@@ -2,8 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="bean.dto.*" %>
 <%@page import="service.*" %>
+<%@page import="bean.dto.*" %>
+<%@page import="bean.*" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,6 +55,11 @@
             <ul id="menu">
                <%@include file= "../template/power.jsp" %>
             </ul>
+            <%
+	            TariffService tm = new TariffService();
+	            List<Tariff> tv = tm.getShowMessage();
+	            request.getSession().setAttribute("tariffs",tv );
+            %>
         </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
@@ -61,46 +67,33 @@
             <!--保存操作的提示信息-->
             <form action="../ServiceModiAction" method="post" class="main_form">
                 <!--必填项-->
-               <%
-                List<OsDto> Listo = (new ProfessionService()).serviceListShow();
-                OsDto bv = null;
-        		int id = Integer.parseInt(request.getParameter("id"));
-        		for(OsDto sa : Listo){
-        			if(!(sa.getBussinessId() == id)){
-        				continue;
-        			}else{
-        				bv = sa;
-      		  %>
-      		  	<c:forEach items=""></c:forEach>
+      		  	<c:forEach items="${sessionScope.Listo}"  var="OsDto">
+      		  	<c:if test="${OsDto.bussinessId==param.id}">
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info">
-                    <input type="text" value="<%=request.getParameter("id") %>" readonly class="readonly" />
+                    <input type="text" value="${param.id} " readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" name= "osAccount" value="<%=bv.getOsAccount() %>" readonly class="readonly" />
+                    <input type="text" name= "osAccount" value="${OsDto.osAccount}" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input name = "serverId" type="text" value="<%=bv.getServerIp() %>" readonly class="readonly" />
+                    <input name = "serverId" type="text" value="${OsDto.serverIp}" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select name = "traiffId" class="width150" >
-                        <option value= "1" <%=(bv.getTariffId()==1)?"selected":"" %>>包50小时</option>
-                        <option value= "2" <%=(bv.getTariffId()==2)?"selected":"" %>>包时8888</option>
-                        <option value= "3" <%=(bv.getTariffId()==3)?"selected":"" %>>包月</option>
-						<option value= "4" <%=(bv.getTariffId()==4)?"selected":"" %>>季卡</option>
-						<option value= "5" <%=(bv.getTariffId()==5)?"selected":"" %>>年卡</option>
+                    <select name = "tariffName" class="width150" >
+                 		<c:forEach items="${sessionScope.tariffs}" var="Tariff">
+                        	<option value="${OsDto.tariffId}">${Tariff.tariffName}</option>
+                    	</c:forEach>
                     </select> 
                     <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>                      
                 </div>
+                </c:if>
+                </c:forEach>
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-               <%
-        			}
-        		}
-               %>
                     <input type="submit" value="保存" class="btn_save" />
                     <input type="button" value="取消" class="btn_save" />
                 </div>

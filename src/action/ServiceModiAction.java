@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Tariff;
 import bean.dto.OsDto;
 import service.ProfessionService;
 
@@ -32,9 +33,11 @@ public class ServiceModiAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		OsDto osDto  = new OsDto();
-		String tariffId = request.getParameter("traiffId");
+		String tariffName = request.getParameter("traiffName");
+		Tariff tariff = new ProfessionService().selTarriffId(tariffName);
+		int tariffId = tariff.getTariffId();
 		osDto.setOsAccount(request.getParameter("osAccount"));
-		osDto.setTariffId(Integer.parseInt(tariffId));
+		osDto.setTariffId(tariffId);
 		boolean b = new ProfessionService().upForOneService(osDto);
 		if(b){
 			response.sendRedirect("ServiceListAction");

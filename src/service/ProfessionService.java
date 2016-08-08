@@ -10,18 +10,21 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Bussiness;
 import bean.Customer;
 import bean.Os;
+import bean.Tariff;
 import bean.dto.OsAddDto;
 import bean.dto.OsDto;
 import bean.dto.OsShowDto;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
 import mapper.OsMapper;
+import mapper.TariffMapper;
 import util.SqlSessionUtil;
 public class ProfessionService {
 	private SqlSession sqlSession;
 	private OsMapper osMapper;
 	private BussinessMapper bussinessMapper;
 	private CustomerMapper customerMapper;
+	private TariffMapper tariffMapper;
 	
 	/**
 	 * 查询信息显示界面
@@ -209,6 +212,18 @@ public class ProfessionService {
 		
 	}
 	/**
+	 * 通过查询资费表里面的Name 获得其ID
+	 * @param tariffName
+	 * @return
+	 */
+	public Tariff selTarriffId(String tariffName){
+		start();
+		Tariff tariff = tariffMapper.findIdByName(tariffName);
+		close();
+		return tariff;
+		
+	}
+	/**
 	 * 
 	 * 构建环境
 	 */
@@ -218,6 +233,7 @@ public class ProfessionService {
 			osMapper = sqlSession.getMapper(OsMapper.class);
 			bussinessMapper = sqlSession.getMapper(BussinessMapper.class);
 			customerMapper = sqlSession.getMapper(CustomerMapper.class);
+			tariffMapper = sqlSession.getMapper(TariffMapper.class);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

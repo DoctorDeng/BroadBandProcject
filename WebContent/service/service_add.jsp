@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="service.*" %>
+<%@page import="bean.dto.*" %>
+<%@page import="bean.*" %>
+<%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-       <%--  <c:set var="hasPower">false</c:set>
+       <c:set var="hasPower">false</c:set>
         <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
@@ -20,7 +24,12 @@
   		<%
   			response.sendRedirect("../nopower.jsp");
   		%>
-  		</c:if> --%>
+  		</c:if> 
+  		 <%
+	            TariffService tm = new TariffService();
+	            List<Tariff> tv = tm.getShowMessage();
+	            request.getSession().setAttribute("tariffs",tv );
+            %>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <script type="text/javascript" src="../js/jquery.js"></script>
@@ -80,11 +89,9 @@
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info">
                     <select name = "traiffId">
-                        <option value= "1">包50小时</option>
-                        <option value= "2">包时8888</option>
-                        <option value= "3">包月</option>
-						<option value= "4">季卡</option>
-						<option value= "5">年卡</option>
+                        <c:forEach items="${sessionScope.tariffs}" var="Tariff">
+                        	<option value="${Tariff.tariffId}">${Tariff.tariffName}</option>
+                    	</c:forEach>
 					</select>
                 </div> 
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
