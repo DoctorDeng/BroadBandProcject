@@ -98,7 +98,7 @@
                             <th class="width50">状态</th>
                             <th class="width200"></th>
                         </tr>
-                        <c:set var="tariffPage" value="${not empty sessionScope.tariffs}" />
+                        <c:set var="tariffPage" value="${not empty sessionScope.tariffPage}" />
   					    <c:if test="${not tariffPage}">
   						   <tr>
   							   <td>没有信息</td>
@@ -112,7 +112,7 @@
   							   <td>没有信息</td>
   						   </tr>
   					    </c:if> 
-  					    <c:forEach items="${sessionScope.tariffs}" var="tariff" >
+  					    <c:forEach items="${sessionScope.tariffPage.dataList}" var="tariff" >
   							<tr>
   								<td><c:out value="${tariff.tariffId}"/></td>
   								<td><a href="fee_detail.jsp?id=${tariff.tariffId }&tariffName=${tariff.tariffName }&status=${tariff.status }&tariffType=${tariff.tariffType }&timeLong=${tariff.timeLong }&tariff=${tariff.tariff }&timeTariff=${tariff.timeTariff }&createTime=${tariff.createTime }&openTime=${tariff.openTime }&tariffExplain=${tariff.tariffExplain }">${tariff.tariffName }</a></td>
@@ -157,14 +157,17 @@
                     4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）
                     </p>
                 </div>
-                
                 <!--分页-->
                 <div id="pages">
-        	        <a href="#">首页</a>
-        	        <a href="#">上一页</a>
-                    <a href="#">下一页</a>
-                    <a href="#">尾页</a>
-                </div>
+                 	<c:if test="${sessionScope.isPage == true}">
+	                	 <c:if test="${not empty sessionScope.tariffPage}">
+                			<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.indexPage}" >首页</a>
+        	        		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.upPage}" >上一页</a>
+                        	<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.nextPage}">下一页</a>
+                    		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.endPage}" >末页</a>
+                		</c:if>
+                 	</c:if>
+                </div>              
             </form>
         </div>
         <!--主要区域结束-->
