@@ -44,7 +44,7 @@
                 <div class="text_info clearfix"><span>资费ID：</span></div>
                 <div class="input_info"><input type="text" class="readonly" readonly value=${sessionScope.tariff.tariffId } /></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value=${sessionScope.tariff.tariffName }/></div>
+                <div class="input_info"><input type="text" class="readonly" readonly value=${sessionScope.tariff.tariffName } /></div>
                 <div class="text_info clearfix"><span>资费状态：</span></div>
                 <div class="input_info">
                     <select class="readonly" >

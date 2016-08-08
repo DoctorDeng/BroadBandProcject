@@ -93,7 +93,7 @@
                 <div class="input_info"><input type="text" name="tariffId" class="readonly" readonly value=${sessionScope.tariff.tariffId } /></div>
                 <div class="text_info clearfix"><span>资费名称：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width300" name="tariffName" value=${sessionScope.tariff.tariffName }/>
+                    <input type="text" class="width300" name="tariffName" value=${sessionScope.tariff.tariffName } />
                     <span class="required">*</span>
                     <div class="validate_msg_short">50长度的字母、数字、汉字和下划线的组合</div>
                 </div>
