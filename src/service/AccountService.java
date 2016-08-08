@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import bean.Bussiness;
 import bean.Customer;
+import bean.Os;
 import bean.vo.AccountViewBean;
 import mapper.BussinessMapper;
 import mapper.CustomerMapper;
@@ -157,7 +158,10 @@ public class AccountService {
 			cm.updateCustomer(c);
 			/** 当要设置状态为0（暂停）时，同时将关联的其他业务账号状态设为暂停**/
 			if("0".equals(c.getStatus())){
-				
+				Os os = new Os();
+				os.setCustomerId(c.getCustomerId());
+				os.setStatus(c.getStatus());
+				om.updateOsByCustomerId(os);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

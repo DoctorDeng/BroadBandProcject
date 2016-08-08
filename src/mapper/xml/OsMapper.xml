@@ -148,6 +148,6 @@
                b.bussinessId ASC
 	</select>
 	<update id="updateOsByCustomerId" parameterType="Os">
-		update os set status=#{status}  where osId=#{customerId}
+		update os set status=#{status}  where customerId=#{customerId}
 	</update>
 </mapper>

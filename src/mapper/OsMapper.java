@@ -99,7 +99,7 @@ public interface OsMapper {
 	/**
 	 * 根据customerId修改os表状态字段
 	 */
-	public boolean updateOsByCustomerId(int customerId);
+	public boolean updateOsByCustomerId(Os os);
 
 }
 	
