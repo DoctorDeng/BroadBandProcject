@@ -43,24 +43,21 @@
         <div id="main">            
             <form action="" method="" class="main_form">
                 <!--必填项-->
-                <%
-                	AccountViewBean a = (AccountViewBean)session.getAttribute("acc");
-                %>
                 <div class="text_info clearfix"><span>账务账号ID：</span></div>
-                <div class="input_info"><input type="text" value="<%=a.getBussinessId() %>" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" value="${sessionScope.acc.bussinessId }" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>姓名：</span></div>
-                <div class="input_info"><input type="text" value="<%=a.getBussinessName() %>" readonly class="readonly" /></div>
+                <div class="input_info"><input type="text" value="${sessionScope.acc.bussinessName }" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" value="<%=a.getIdNumber() %>" readonly class="readonly" />
+                    <input type="text" value="${sessionScope.acc.idNumber }" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>登录账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="<%=a.getLoginAccount() %>" readonly class="readonly" />
+                    <input type="text" value="${sessionScope.acc.loginAccount }" readonly class="readonly" />
                 </div>                   
                 <div class="text_info clearfix"><span>电话：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width200 readonly" readonly value="<%=a.getPhone() %>" />
+                    <input type="text" class="width200 readonly" readonly value="${sessionScope.acc.phone }" />
                 </div>
                 <div class="text_info clearfix"><span>推荐人账务账号ID：</span></div>
                 <div class="input_info"><input type="text" readonly class="readonly" value="" /></div>
@@ -69,9 +66,15 @@
                 <div class="text_info clearfix"><span>状态：</span></div>
                 <div class="input_info">
                     <select disabled="disabled">
-                        <option <%=a.getStatus().equals("1")?"selected":"" %>>开通</option>
-                        <option <%=a.getStatus().equals("0")?"selected":"" %>>暂停</option>
-                        <option>删除</option>
+                    	<c:if test="${sessionScope.acc.status=='1' }">
+                        	<option selected>开通</option>
+                        </c:if>
+                        <c:if test="${sessionScope.acc.status=='0' }">
+                        	<option selected>暂停</option>
+                        </c:if>
+                        <c:if test="${sessionScope.acc.status=='2' }">
+                        	<option selected>删除</option>
+                        </c:if>
                     </select>                        
                 </div>                    
                 <div class="text_info clearfix"><span>开通/暂停/删除时间：</span></div>

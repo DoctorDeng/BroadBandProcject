@@ -32,9 +32,6 @@ public class AccountService {
 			List<Customer> lc =  cm.selectCustomerByCondition(page);
 			int countPage = cm.countCustomer();
 			for(Customer c:lc){
-//				if("2".equals(c.getStatus())){
-//					continue;
-//				}
 				AccountViewBean a = new AccountViewBean();
 				a.setBussinessId(c.getCustomerId());
 				a.setBussinessName(c.getCustomerName());
@@ -45,7 +42,7 @@ public class AccountService {
 				a.setPassword(c.getPassword());
 				a.setPhone(c.getPhone());
 				a.setStatus(c.getStatus());
-				a.setCountPage(countPage);
+				a.setCountPage(countPage%pageSize==0?(countPage/5):(countPage/5+1));
 				l.add(a);
 			}
 		} catch (IOException e) {
@@ -82,7 +79,7 @@ public class AccountService {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
 			List<Customer> lc =  cm.selectCustomerByCondition(page);
-			int countPage = cm.countCustomer();
+			//int countPage = cm.countCustomer();
 			for(Customer c:lc){
 //				if("2".equals(c.getStatus())){
 //					continue;
@@ -97,7 +94,7 @@ public class AccountService {
 				a1.setPassword(c.getPassword());
 				a1.setPhone(c.getPhone());
 				a1.setStatus(c.getStatus());
-				a1.setCountPage(countPage);
+				//a1.setCountPage(countPage);
 				la.add(a1);
 			}
 		} catch (IOException e) {
@@ -163,21 +160,24 @@ public class AccountService {
 		}			
 		return b;
 	}
-	
-	/*public static void main(String[] args){
-		System.out.println("测试开始.....");
-		List<AccountViewBean> l = new AccountService().getAccountViewBean(1);
-        for(AccountViewBean a:l){
-        	System.out.println(a.getBussinessId());
-        	System.out.println(a.getBussinessName());
-        	System.out.println(a.getIdNumber());
-        	System.out.println(a.getLoginAccount());
-        	System.out.println(a.getStatus());
-        	System.out.println(a.getCreateTime());
-        	System.out.println(a.getLastLoginTime());
-        }
-        System.out.println("测试结束.");
-	}*/
-	
+		
+	public int getCountPage() {
+		int countPage = -1;
+		SqlSession ss = null;
+		try
+		{
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);	
+			countPage = cm.countCustomer();
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}	
+		return countPage;
+	}
 	
 }

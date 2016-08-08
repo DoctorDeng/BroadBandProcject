@@ -72,37 +72,35 @@
             <div id="save_result_info" class="save_fail">保存失败，旧密码错误！</div>
             <form action="<%=request.getContextPath()%>/BussinessAccountModiAction" method="post" class="main_form" id="form">
                     <!--必填项-->
-                    <%
-                    AccountViewBean a = null;
-                    int bussinessId = Integer.parseInt(request.getParameter("id"));
-                    List<AccountViewBean> l = (List<AccountViewBean>)session.getAttribute("l");
-                    for(AccountViewBean ac:l){
-                    	if(ac.getBussinessId()==bussinessId)
-                    		a = ac;
-                    }
-                    %>
+                    <c:set var="l" value="${sessionScope.l }" />
+                    <c:forEach items="${sessionScope.l }" var="a">
+                    	<c:if test="${a.bussinessId == param.id }">
+                    		<c:set var="acc" value="${a }" />
+                    
                     <div class="text_info clearfix"><span>账务账号ID：</span></div>
                     <div class="input_info">
-                        <input type="text" name="bussinessId" value="<%=request.getParameter("id") %>" readonly class="readonly" />
+                        <input type="text" name="bussinessId" value="${param.id }" readonly class="readonly" />
                     </div>
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                        <input type="text" name="name" value="<%=a.getBussinessName() %>" />
+                        <input type="text" name="name" value="${acc.bussinessName }" />
                         <span class="required">*</span>
                         <div class="validate_msg_long error_msg">20长度以内的汉字、字母和数字的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>身份证：</span></div>
                     <div class="input_info">
-                        <input type="text" value="<%=a.getIdNumber() %>" readonly class="readonly" />
+                        <input type="text" value="${acc.idNumber }" readonly class="readonly" />
                     </div>
                     <div class="text_info clearfix"><span>登录账号：</span></div>
                     <div class="input_info">
-                        <input type="text" value="<%=a.getLoginAccount() %>" readonly class="readonly"  />                        
+                        <input type="text" value="${acc.loginAccount }" readonly class="readonly"  />                        
                         <div class="change_pwd">
                             <input id="chkModiPwd" type="checkbox" onclick="showPwd(this);" />
                             <label for="chkModiPwd">修改密码</label>
                         </div>
                     </div>
+                    </c:if>
+                    </c:forEach>
                     <!--修改密码部分-->
                     <div id="divPwds">
                         <div class="text_info clearfix"><span>旧密码：</span></div>

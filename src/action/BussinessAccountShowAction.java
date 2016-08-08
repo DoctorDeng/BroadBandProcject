@@ -43,7 +43,8 @@ public class BussinessAccountShowAction extends HttpServlet {
 		List<AccountViewBean> l = new AccountService().getAccountViewBean(currentPage);
 		HttpSession session = request.getSession();
 		session.setAttribute("l", l);
-		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?currentPage="+currentPage);
+		int countPage = new AccountService().getCountPage();
+		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?currentPage="+currentPage+"&countPage="+(countPage%5==0?(countPage/5):(countPage/5+1)));
 	}
 
 	/**

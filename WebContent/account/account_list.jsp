@@ -119,35 +119,34 @@
                         <th class="width150">上次登录时间</th>                                                      
                         <th class="width200"></th>
                     </tr>
-                    <%
-                    int currentPage = 0;
-                    String c = request.getParameter("currentPage");
-                    if(c!=""&&c!=null){
-                    	currentPage = Integer.parseInt(c);
-                    } else{
-                    	currentPage = 1;
-                    }
-                    int totalPage = -1;
-	                List<AccountViewBean> l = (List<AccountViewBean>)session.getAttribute("l");
-	                for(AccountViewBean a:l){
-                    %>
+                    <c:forEach items="${sessionScope.l }" var="a">
                     <tr>
-                        <td><%=a.getBussinessId() %></td>
-                        <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=<%=a.getBussinessId() %>"><%=a.getBussinessName() %></a></td>
-                        <td><%=a.getIdNumber() %></td>
-                        <td><%=a.getLoginAccount() %></td>
-                        <td><%=!a.getStatus().equals("1")?"暂停":"开通" %></td>
-                        <td><%=a.getCreateTime() %></td>
-                        <td><%=a.getLastLoginTime() %></td>                           
+                        <td>${a.bussinessId }</td>
+                        <td><a href="<%=request.getContextPath()%>/BussinessAccountDetailAction?id=${a.bussinessId }">${a.bussinessName }</a></td>
+                        <td>${a.idNumber }</td>
+                        <td>${a.loginAccount }</td>
+                        <td><c:choose>
+                        	<c:when test="${a.status=='0' }">暂停</c:when>
+                        	<c:when test="${a.status=='1' }">开通</c:when>
+                        	<c:when test="${a.status=='2' }">删除</c:when>
+                        </c:choose></td>
+                        <td>${a.createTime }</td>
+                        <td>${a.lastLoginTime }</td>                           
                         <td class="td_modi">
-                            <input type="button" value="<%=a.getStatus().equals("1")?"暂停":"开通" %>" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=<%=a.getBussinessId() %>&status=<%=a.getStatus() %>';" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=<%=a.getBussinessId() %>';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=<%=a.getBussinessId() %>';" />
+                        	<c:if test="${a.status!='2' }">
+	                        	<c:if test="${a.status=='0' }">
+		                            <input type="button" value="开通" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=0';" />
+		                        </c:if>
+	                        	<c:if test="${a.status=='1' }">
+		                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=1';" />
+		                        </c:if>
+	                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=${a.bussinessId}';" />
+	                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=${a.bussinessId }';" />
+                           </c:if>
                         </td>
                     </tr> 
-                    <%
-                    totalPage = a.getCountPage()%5==0?(a.getCountPage()/5):(a.getCountPage()/5+1);
-                    }%>            
+                    </c:forEach>
+                                
                 </table>
                 <p>业务说明：<br />
                 1、创建则开通，记载创建时间；<br />
@@ -159,22 +158,16 @@
                 7、删除账务账号，同时删除下属的所有业务账号。</p>
                 </div>                   
                 <!--分页-->
-                <%
-                %>
                 <div id="pages">
-                <%
-                	if(currentPage>1){
-                %>
+                <c:if test="${param.currentPage>1 }">
                     <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=1">首页</a>
-        	        <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=<%=currentPage-1 %>">上一页</a>
-        	        <%} %>
-                    <a href="#" class="current_page"><%=currentPage %></a>  
-                <%
-                	if(currentPage<=totalPage){
-                %>       
-                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=<%=currentPage+1 %>">下一页</a>
-                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=<%=totalPage %>">末页</a>
-                <%} %>
+        	        <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=${param.currentPage-1}">上一页</a>
+        	    </c:if>
+                    <a href="#" class="current_page">${param.currentPage } / ${param.countPage }</a>
+                <c:if test="${param.currentPage<param.countPage}">
+                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=${param.currentPage+1}">下一页</a>
+                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=${param.countPage}">末页</a>
+        	    </c:if>
                 </div>
             </form>
         </div>
