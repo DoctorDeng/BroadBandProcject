@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -48,6 +49,24 @@ public class ProfessionService {
 		
 	}
 	
+	/**
+	 * 通过不同的条件分别查询信息
+	 * @return
+	 */
+	public PageDto selForChoice(Map map){
+		start();
+		PageDto<OsDto> pageDto = new PageDto<>();
+		OsDto osDto = (OsDto) map.get("osD");
+		String currentPageStr = (String) map.get("currentPageStr");
+		int pageSize = (int) map.get("pageSize");
+		int recordNum = osMapper.selFindCountSize(osDto);
+		pageDto.init(recordNum,pageSize,currentPageStr);
+		System.out.println("查找前一步");
+		List<OsDto> listDto = osMapper.selChooseInfo(new Page((pageDto.getCurrentPage()-1)*pageSize,pageSize));
+		pageDto.setDataList(listDto);
+		close();
+		return pageDto;
+	}
 	/**
 	 * 删除信息
 	 * @param osDto
@@ -103,16 +122,6 @@ public class ProfessionService {
 		return  list;
 	}
 	
-	/**
-	 * 通过不同的条件分别查询信息
-	 * @return
-	 */
-	public List<OsDto> selForChoice(OsDto osDto){
-		start();
-		List<OsDto> listDto = osMapper.selChooseInfo(osDto);
-		close();
-		return listDto;
-	}
 	
 	/**
 	 * 根据查询返回osDto 修改资费类型

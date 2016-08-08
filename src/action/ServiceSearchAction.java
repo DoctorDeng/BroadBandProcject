@@ -1,7 +1,9 @@
 package action;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.dto.OsDto;
+import bean.dto.PageDto;
 import bean.vo.ServiceAddViewBean;
 import service.ProfessionService;
 
@@ -39,22 +42,29 @@ public class ServiceSearchAction extends HttpServlet {
 		 if(!(request.getParameter("idCard") == "")){
 			 idNumber = request.getParameter("idCard");
 		 }
+		 System.out.println(idNumber);
 		String osAccount  = "#";
 		 if(!(request.getParameter("osC") == "")){
 			 osAccount = request.getParameter("osC");
 		 }
+		 System.out.println(osAccount);
 		String serviceIp =  "#" ;
 		if(!(request.getParameter("sIp") == "")){
 			serviceIp = request.getParameter("sIp");
 		}
+		System.out.println(serviceIp);
 		String status   =  request.getParameter("status");
 		OsDto osD = new OsDto();
-		osD.setIdNumber(idNumber);
-		osD.setOsAccount(osAccount);
-		osD.setServerIp(serviceIp);
-		osD.setStatus(status);
-		List<OsDto> lsa = new  ProfessionService().selForChoice(osD);
-		for(OsDto sa :lsa)
+			osD.setIdNumber(idNumber);
+			osD.setOsAccount(osAccount);
+			osD.setServerIp(serviceIp);
+			osD.setStatus(status);
+		String currentPageStr = request.getParameter("curPage");  //当前页数
+		Map<Object, Object> map = new HashMap<Object, Object>();
+			map.put("osD", osD);
+			map.put("currentPageSt", currentPageStr);
+			map.put("pageSize", 5);
+		PageDto lsa = new  ProfessionService().selForChoice(map);
 		session.setAttribute("lsa", lsa);
 		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");
 	}

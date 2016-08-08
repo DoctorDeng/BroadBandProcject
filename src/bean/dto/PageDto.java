@@ -26,6 +26,43 @@ public class PageDto<T> {
 	private int recordNum;
 	//定义一个通用的泛型，（泛型方法），存储每个页面的数据
 	private List<T> dataList;
+	private String osAccount;     //宽带账号
+	private String status;
+	private String serverIp;      //服务器IP地址
+	private String idNumber;
+	
+	
+	public String getOsAccount() {
+		return osAccount;
+	}
+
+	public void setOsAccount(String osAccount) {
+		this.osAccount = osAccount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getServerIp() {
+		return serverIp;
+	}
+
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
+	}
+
+	public String getIdNumber() {
+		return idNumber;
+	}
+
+	public void setIdNumber(String idNumber) {
+		this.idNumber = idNumber;
+	}
 
 	public PageDto(){}
 	

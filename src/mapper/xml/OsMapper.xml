@@ -86,6 +86,7 @@
               </where>
               ORDER BY
               b.bussinessId ASC
+              LIMIT #{index},#{size}
 	</select>
 	<!-- 详细查询 -->
 	<select id="setManyInfo"  resultType="OsShowDto">
@@ -134,8 +135,8 @@
 	<select id="selOsidByOsAccount" resultType="Os">
 		select osid from os where osAccount=#{osAccount}
 	</select>
-	<select id="selOsAcAndOsPa">
-		select * from os where osAccount=#{osAccount} And osPassword=#{osPassword}
+	<select id="selOsAcAndOsPa" resultType="Os">
+		select osId,customerId,tariffId,osAccount,osPassword,serverIp,status from os where osAccount=#{osAccount} And osPassword=#{osPassword}
 	</select>
 	<select id="selCountSize" resultType="Integer"> 
 		SELECT COUNT(*)
@@ -150,4 +151,35 @@
 	<update id="updateOsByCustomerId" parameterType="Os">
 		update os set status=#{status}  where customerId=#{customerId}
 	</update>
+	<select id="selFindCountSize"  resultType="Integer">
+		SELECT
+			   COUNT(*)
+			   FROM
+               bussiness AS b ,customer AS c ,os AS o ,tariff AS t
+              <where>
+              <if test="true">
+                b.osId = o.osId AND
+              </if>
+              <if test="true">
+                o.customerId = c.customerId AND
+              </if>
+              <if test="true">
+                t.tariffId = o.tariffId
+              </if>
+              <if test='osAccount!="#" '>
+               AND o.osAccount like concat(concat('%',#{osAccount}),'%')
+              </if>
+              <if test='serverIp!="#"'>
+               AND o.serverIp like concat(concat('%',#{serverIp}),'%')
+              </if>
+              <if test='idNumber!="#"'>
+               AND c.idNumber like concat(concat('%',#{idNumber}),'%')
+              </if>
+              <if test='status!="-1"'>
+               AND o.`status`=#{status}
+              </if>
+              </where>
+              ORDER BY
+              b.bussinessId ASC
+	</select>
 </mapper>

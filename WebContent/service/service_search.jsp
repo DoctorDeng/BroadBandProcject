@@ -83,7 +83,7 @@
                         <th class="width100">资费</th>                                                        
                         <th class="width200"></th>
                     </tr>
-					<c:forEach items="${sessionScope.pageDto.dataList}"  var="OsDto">
+					<c:forEach items="${sessionScope.lsa.dataList}"  var="OsDto">
 					<c:choose>
 					<c:when test="${OsDto.status==2}">
 						<tr>
@@ -139,26 +139,26 @@
                 5、业务账号不设计修改密码功能，由用户自服务功能实现；<br />
                 6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
                 </div>                    
-                <!--分页-->
+                <!--分页--> 
                 <div id="pages">
 					<c:if test="${sessionScope.pageDto.currentPage <= 1}">
 						<a>首页</a>&nbsp;
 						<a>上一页</a>
 					</c:if>
 					<c:if test="${sessionScope.pageDto.currentPage > 1}">
-                   		<a href="../ServiceListAction?curPage=1" id="fistP">首页</a>
-        	        	<a href="../ServiceListAction?curPage=${sessionScope.pageDto.currentPage-1}" id="secondP">上一页</a>  
+                   		<a href="../ServiceSearchAction?curPage=1" id="fistP">首页</a>
+        	        	<a href="../ServiceSearchAction?curPage=${sessionScope.pageDto.currentPage-1}" id="secondP">上一页</a>  
         	        </c:if> 
         	        <c:if test="${sessionScope.pageDto.currentPage >= sessionScope.pageDto.pageNum}">
         	    		<a>下一页</a>
         	    		<a>末页</a>
         	    	</c:if>
         	    	<c:if test="${sessionScope.pageDto.currentPage < sessionScope.pageDto.pageNum}">
-                    	<a href="../ServiceListAction?curPage=${sessionScope.pageDto.currentPage+1}" id="thirdP">下一页</a>
-                   		<a href="../ServiceListAction?curPage=${sessionScope.pageDto.pageNum }" id="lastP">末页</a>
+                    	<a href="../ServiceSearchAction?curPage=${sessionScope.pageDto.currentPage+1}" id="thirdP">下一页</a>
+                   		<a href="../ServiceSearchAction?curPage=${sessionScope.pageDto.pageNum }" id="lastP">末页</a>
                     </c:if>
 					第<c:out value="${sessionScope.pageDto.currentPage}"/>页/共<c:out value="${sessionScope.pageDto.pageNum}"/>页 
-                </div>                  
+                </div>           
             </form>
         </div>
         <!--主要区域结束-->
