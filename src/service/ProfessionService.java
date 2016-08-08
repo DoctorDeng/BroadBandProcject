@@ -53,19 +53,11 @@ public class ProfessionService {
 	 * 通过不同的条件分别查询信息
 	 * @return
 	 */
-	public PageDto selForChoice(Map map){
+	public List<OsDto> selForChoice(OsDto osDto){
 		start();
-		PageDto<OsDto> pageDto = new PageDto<>();
-		OsDto osDto = (OsDto) map.get("osD");
-		String currentPageStr = (String) map.get("currentPageStr");
-		int pageSize = (int) map.get("pageSize");
-		int recordNum = osMapper.selFindCountSize(osDto);
-		pageDto.init(recordNum,pageSize,currentPageStr);
-		System.out.println("查找前一步");
-		List<OsDto> listDto = osMapper.selChooseInfo(new Page((pageDto.getCurrentPage()-1)*pageSize,pageSize));
-		pageDto.setDataList(listDto);
+		List<OsDto> listDto = osMapper.selChooseInfo(osDto);
 		close();
-		return pageDto;
+		return listDto;
 	}
 	/**
 	 * 删除信息

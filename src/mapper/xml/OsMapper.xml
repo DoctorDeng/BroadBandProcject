@@ -86,7 +86,6 @@
               </where>
               ORDER BY
               b.bussinessId ASC
-              LIMIT #{index},#{size}
 	</select>
 	<!-- 详细查询 -->
 	<select id="setManyInfo"  resultType="OsShowDto">

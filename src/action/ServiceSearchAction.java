@@ -42,29 +42,21 @@ public class ServiceSearchAction extends HttpServlet {
 		 if(!(request.getParameter("idCard") == "")){
 			 idNumber = request.getParameter("idCard");
 		 }
-		 System.out.println(idNumber);
 		String osAccount  = "#";
 		 if(!(request.getParameter("osC") == "")){
 			 osAccount = request.getParameter("osC");
 		 }
-		 System.out.println(osAccount);
 		String serviceIp =  "#" ;
 		if(!(request.getParameter("sIp") == "")){
 			serviceIp = request.getParameter("sIp");
 		}
-		System.out.println(serviceIp);
 		String status   =  request.getParameter("status");
 		OsDto osD = new OsDto();
 			osD.setIdNumber(idNumber);
 			osD.setOsAccount(osAccount);
 			osD.setServerIp(serviceIp);
 			osD.setStatus(status);
-		String currentPageStr = request.getParameter("curPage");  //当前页数
-		Map<Object, Object> map = new HashMap<Object, Object>();
-			map.put("osD", osD);
-			map.put("currentPageSt", currentPageStr);
-			map.put("pageSize", 5);
-		PageDto lsa = new  ProfessionService().selForChoice(map);
+		List<OsDto>	 lsa = new  ProfessionService().selForChoice(osD);
 		session.setAttribute("lsa", lsa);
 		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");
 	}

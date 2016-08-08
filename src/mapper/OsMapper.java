@@ -56,7 +56,7 @@ public interface OsMapper {
 	 * @param osDto
 	 * @return
 	 */
-	public List<OsDto> selChooseInfo(Page page);
+	public List<OsDto> selChooseInfo(OsDto osDto);
 	
 	/**
 	 * 查询详细信息所用
@@ -100,11 +100,6 @@ public interface OsMapper {
 	 * 根据customerId修改os表状态字段
 	 */
 	public boolean updateOsByCustomerId(Os os);
-	/**
-	 * 查询搜索后的记录条数
-	 * @return
-	 */
-	public int selFindCountSize(OsDto osDto);
 
 }
 	
