@@ -11,7 +11,9 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Bussiness;
 import bean.Customer;
 import bean.vo.AccountViewBean;
+import mapper.BussinessMapper;
 import mapper.CustomerMapper;
+import mapper.OsMapper;
 import util.SqlSessionUtil;
 
 public class AccountService {
@@ -146,11 +148,17 @@ public class AccountService {
 		c.setPassword(a.getPassword());
 		c.setPhone(a.getPhone());
 		c.setStatus(a.getStatus());
+		c.setPauseTime(a.getPauseTime());
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
-			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);	
+			OsMapper om = ss.getMapper(OsMapper.class);
 			cm.updateCustomer(c);
+			/** 当要设置状态为0（暂停）时，同时将关联的其他业务账号状态设为暂停**/
+			if("0".equals(c.getStatus())){
+				
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

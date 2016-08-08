@@ -13,6 +13,20 @@ public class AccountViewBean {
 	private String password;			//账务账号密码
 	private String phone;				//业务账号对应的电话号码
 	private int countPage;				//分页总数
+	private String pauseTime;  //暂停时间
+	private String delTime;  //删除时间
+	public String getPauseTime() {
+		return pauseTime;
+	}
+	public void setPauseTime(String pauseTime) {
+		this.pauseTime = pauseTime;
+	}
+	public String getDelTime() {
+		return delTime;
+	}
+	public void setDelTime(String delTime) {
+		this.delTime = delTime;
+	}
 	public int getCountPage() {
 		return countPage;
 	}

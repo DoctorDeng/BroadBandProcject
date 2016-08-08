@@ -46,7 +46,7 @@ public class BussinessAccountAction extends HttpServlet {
 		a.setBussinessId(bussinessId);
 		a.setStatus("2");
 		new AccountService().updateBussinessAccount(a);
-		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
+		response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction?currentPage="+request.getParameter("currentPage"));
 		
 	}
 

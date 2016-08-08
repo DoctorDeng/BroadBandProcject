@@ -135,13 +135,13 @@
                         <td class="td_modi">
                         	<c:if test="${a.status!='2' }">
 	                        	<c:if test="${a.status=='0' }">
-		                            <input type="button" value="开通" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=0';" />
+		                            <input type="button" value="开通" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=0&currentPage=${param.currentPage }';" />
 		                        </c:if>
 	                        	<c:if test="${a.status=='1' }">
-		                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=1';" />
+		                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=1&currentPage=${param.currentPage }';" />
 		                        </c:if>
-	                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=${a.bussinessId}';" />
-	                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=${a.bussinessId }';" />
+	                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=${a.bussinessId}&currentPage=${param.currentPage }';" />
+	                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=${a.bussinessId }&currentPage=${param.currentPage }';" />
                            </c:if>
                         </td>
                     </tr> 

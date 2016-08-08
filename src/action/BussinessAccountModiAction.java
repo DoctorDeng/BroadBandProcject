@@ -44,7 +44,8 @@ public class BussinessAccountModiAction extends HttpServlet {
 		b.setLoginAccount(request.getParameter("loginAccount"));
 		b.setPhone(request.getParameter("phone"));
 		new AccountService().updateBussinessAccount(b);
-		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
+		response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction?currentPage="
+				+request.getParameter("currentPage"));
 	}
 
 	/**
