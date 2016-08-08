@@ -95,6 +95,11 @@ public interface OsMapper {
 	 * @return int
 	 */
 	public int selCountSize();
+	
+	/**
+	 * 根据customerId修改os表状态字段
+	 */
+	public boolean updateOsByCustomerId(int customerId);
 
 }
 	
