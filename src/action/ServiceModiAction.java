@@ -33,9 +33,10 @@ public class ServiceModiAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		OsDto osDto  = new OsDto();
-		String tariffName = request.getParameter("traiffName");
+		/*String tariffName = request.getParameter("traiffName");
 		Tariff tariff = new ProfessionService().selTarriffId(tariffName);
-		int tariffId = tariff.getTariffId();
+		int tariffId = tariff.getTariffId();*/
+		int tariffId = Integer.parseInt(request.getParameter("tariffId"));
 		osDto.setOsAccount(request.getParameter("osAccount"));
 		osDto.setTariffId(tariffId);
 		boolean b = new ProfessionService().upForOneService(osDto);

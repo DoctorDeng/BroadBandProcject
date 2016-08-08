@@ -83,9 +83,9 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select name = "tariffName" class="width150" >
+                    <select name = "tariffId" class="width150"  id="tariffId">
                  		<c:forEach items="${sessionScope.tariffs}" var="Tariff">
-                        	<option value="${OsDto.tariffId}">${Tariff.tariffName}</option>
+                        	<option value="${Tariff.tariffId}">${Tariff.tariffName}</option>
                     	</c:forEach>
                     </select> 
                     <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>                      
