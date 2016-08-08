@@ -33,5 +33,6 @@
 		<mapper resource="mapper/xml/TariffMapper.xml"/> 
 		<mapper resource="mapper/xml/AdminPowerMapper.xml"/> 
 		<mapper resource="mapper/xml/StatementMapper.xml"/> 
+		<mapper resource="mapper/xml/BillDetailMapper.xml"/>
 	</mappers>
 </configuration>
