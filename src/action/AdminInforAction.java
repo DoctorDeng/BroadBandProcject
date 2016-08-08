@@ -33,47 +33,29 @@ public class AdminInforAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String operation = request.getParameter("operation");
+		Admin objAdmin = (Admin)request.getSession().getAttribute("admin");
 		
-		if (null == operation | "".equals(operation)) {
-			response.sendRedirect(request.getContextPath()+"/login.jsp");
-			return;
-		}
-		Object objAdmin = request.getSession().getAttribute("admin");
-		//Object objAdmin = LoginAction.session;
 		if (null == objAdmin) {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
-		Admin admin  = (Admin)objAdmin;
-		switch (operation) {
-		/**
-		 * 鍒濆鍖栦慨鏀逛俊鎭〉闈俊鎭�
-		 */
-		case "initInfor":
-			Admin temp = adminService.getAdminById(admin.getAdminId());
-			request.setAttribute("admin", temp);
-			request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
-			break;
-		/**
-		 * 鏇存敼绠＄悊鍛樹俊鎭�
-		 */
-		case "updateInfor":
+			Admin adminInfo  = (Admin)objAdmin;
+			
 			String adminName = request.getParameter("adminName");
 			String email     = request.getParameter("email");
 			String phone     = request.getParameter("phone");
-			Admin newAdmin = new Admin();
-			newAdmin.setAdminId(admin.getAdminId());
-			newAdmin.setAdminName(adminName);
-			newAdmin.setEmail(email);
-			newAdmin.setPhone(phone);
-			adminService.updateInfor(newAdmin);
-			request.getRequestDispatcher("/AdminInforAction?operation=initInfor").forward(request, response);
-			break;
+			adminInfo.setAdminName(adminName);
+			adminInfo.setEmail(email);
+			adminInfo.setPhone(phone);
+			
+			if (adminService.updateInfor(adminInfo)) {
+				request.getSession().setAttribute("admin", adminInfo);
+				request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
+			}
 		}
 		
-		
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
