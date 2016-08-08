@@ -69,11 +69,11 @@
             <form action="<%=request.getContextPath()%>/TariffListAction?operation" method="post">
                 <!--排序-->
                 <div class="search_add">
-                    <!-- <div>
+                    <div>
                         <input type="button" value="月租" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="基费" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="时长" class="sort_asc" onclick="sort(this);" />
-                    </div> -->
+                    </div>
                     <input type="button" value="增加" class="btn_add" onclick="window.location.href='fee_add.jsp';" />
                 </div> 
                 <!--启用操作的操作提示-->

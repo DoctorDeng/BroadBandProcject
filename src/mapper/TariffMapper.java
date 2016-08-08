@@ -18,5 +18,7 @@ public interface TariffMapper {
 	public boolean updateTariff(Tariff tariff);
 	
 	public boolean updateTariffStatus(int tariffId);
+	
+	public Tariff findIdByName(String tariffName);
 
 }
