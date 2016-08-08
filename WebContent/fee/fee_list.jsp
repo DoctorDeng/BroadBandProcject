@@ -98,7 +98,7 @@
                             <th class="width50">状态</th>
                             <th class="width200"></th>
                         </tr>
-                        <c:set var="tariffPage" value="${not empty sessionScope.tariffs}" />
+                        <c:set var="tariffPage" value="${not empty sessionScope.tariffPage}" />
   					    <c:if test="${not tariffPage}">
   						   <tr>
   							   <td>没有信息</td>
@@ -112,7 +112,7 @@
   							   <td>没有信息</td>
   						   </tr>
   					    </c:if> 
-  					    <c:forEach items="${sessionScope.tariffs}" var="tariff" >
+  					    <c:forEach items="${sessionScope.tariffPage.dataList}" var="tariff" >
   							<tr>
   								<td><c:out value="${tariff.tariffId}"/></td>
   								<td><a href="fee_detail.jsp?id=${tariff.tariffId }&tariffName=${tariff.tariffName }&status=${tariff.status }&tariffType=${tariff.tariffType }&timeLong=${tariff.timeLong }&tariff=${tariff.tariff }&timeTariff=${tariff.timeTariff }&createTime=${tariff.createTime }&openTime=${tariff.openTime }&tariffExplain=${tariff.tariffExplain }">${tariff.tariffName }</a></td>
@@ -149,51 +149,6 @@
   							    </td>
   							<tr>
   						</c:forEach>  
-                       <%--  <%
-                             TariffService tm = new TariffService();
-                             List<Tariff> tv = tm.getShowMessage();
-                             for(Tariff sv:tv){
-                        %>                   
-                        <tr>
-                            <td><%=sv.getTariffId() %></td>
-                            <td><a href="fee_detail.jsp?id=<%=sv.getTariffId() %>&tariffName=<%=sv.getTariffName() %>&status=<%=sv.getStatus() %>&tariffType=<%=sv.getTariffType() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>&createTime=<%=sv.getCreateTime() %>&openTime=<%=sv.getOpenTime() %>&tariffExplain=<%=sv.getTariffExplain() %>"><%=sv.getTariffName() %></a></td>
-                            <td><%=sv.getTimeLong() %></td>
-                            <td><%=sv.getTariff() %></td>
-                            <td><%=sv.getTimeTariff() %></td>
-                            <td><%=sv.getCreateTime() %></td>
-                            <%
-                            if(sv.getOpenTime()==null){
-                            %>
-                            <td></td>
-                            <%
-                            }else{
-                            %>
-                            <td><%=sv.getOpenTime() %></td>
-                            <%
-                            }
-                            %>
-                            <%
-                            if("1".equals(sv.getStatus())){
-                            %>
-                            <td>开通</td>
-                            <%
-                            }else{
-                            %>
-                            <td>暂停</td>
-                            <%} %>
-                            <td>      
-                            <%
-                            if("0".equals(sv.getStatus())){
-                            %>  
-                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId()%>&tariffName=<%=sv.getTariffName() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>&tariffExplain=<%=sv.getTariffExplain() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
-                            <%}else{%>
-                                <div></div>
-                                <%} %>
-                            </td>
-                        </tr>
-                        <%} %> --%>
                     </table>
                     <p>业务说明：<br />
                     1、创建资费时，状态为暂停，记载创建时间；<br />
@@ -203,15 +158,16 @@
                     </p>
                 </div>
                 <!--分页-->
-                <!-- <div id="pages">
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                </div> -->
+                <div id="pages">
+                 	<c:if test="${sessionScope.isPage == true}">
+	                	 <c:if test="${not empty sessionScope.tariffPage}">
+                			<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.indexPage}" >首页</a>
+        	        		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.upPage}" >上一页</a>
+                        	<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.nextPage}">下一页</a>
+                    		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.endPage}" >末页</a>
+                		</c:if>
+                 	</c:if>
+                </div>              
             </form>
         </div>
         <!--主要区域结束-->

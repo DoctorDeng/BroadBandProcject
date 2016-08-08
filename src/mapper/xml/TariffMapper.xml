@@ -23,7 +23,7 @@
    <select id="findOneTariff" resultMap="TariffResultMap">
        select * from tariff where tariffId=#{tariffId}
    </select>
-   <select id="selectByPage" resultMap="TariffResultMap">
+   <select id="selectByPage" parameterType="Page" resultMap="TariffResultMap">
        select tariffId,tariffName,timeLong,timeTariff,tariff,createTime,openTime,status,tariffType,tariffExplain 
        from tariff LIMIT #{index},#{size}
    </select>

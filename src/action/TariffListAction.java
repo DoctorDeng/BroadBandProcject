@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Admin;
 import bean.Tariff;
@@ -35,14 +36,12 @@ public class TariffListAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		  // TODO Auto-generated method stub
 		  String currentPageStr = request.getParameter("currentPage");
+		  HttpSession session = request.getSession();
 		  TariffService tm = new TariffService();
-          List<Tariff> tv = tm.getShowMessage();
-          request.getSession().setAttribute("tariffs",tv );
-          /*response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
           PageDto<Tariff> pagedto = tm.selectFromPage(currentPageStr, 4);
-			session.setAttribute("adminPage", pagedto);
-			session.setAttribute("isPage", true);
-		    response.sendRedirect("admin/admin_list.jsp");*/
+	      session.setAttribute("tariffPage", pagedto);
+		  session.setAttribute("isPage", true);
+		  response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
 	}
 
 	/**
