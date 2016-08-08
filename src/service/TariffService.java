@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import bean.Admin;
+import bean.Page;
 import bean.Tariff;
+import bean.dto.PageDto;
 import mapper.TariffMapper;
 import util.SqlSessionUtil;
 
@@ -22,6 +25,13 @@ public class TariffService {
 	public List<Tariff> getShowMessage(){
 		init();
 		List<Tariff>tariff=tariffMapper.findAllTariff();
+		close();
+		return tariff;
+	}
+	
+	public List<Tariff> selectByOpenStatus(){
+		init();
+		List<Tariff> tariff= tariffMapper.selectByOpenStatus();
 		close();
 		return tariff;
 	}
@@ -59,6 +69,18 @@ public class TariffService {
 		close();
 		return b;
 	}
+	
+	public PageDto<Tariff> selectFromPage(String currentPageStr, int pageSize){
+		init();
+		int totle=tariffMapper.selectTariffCount();
+		PageDto<Tariff> pagedto=new PageDto<>();
+		pagedto.init(totle, pageSize, currentPageStr);
+		List<Tariff> lstariff=tariffMapper.selectByPage(new Page((pagedto.getCurrentPage()-1)*pageSize,pageSize));
+		pagedto.setDataList(lstariff);
+		close();
+		return pagedto;
+	}
+	
 	/**
 	 * 更新Tariff
 	 * @param tariff

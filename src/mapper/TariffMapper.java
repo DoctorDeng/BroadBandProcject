@@ -2,6 +2,8 @@ package mapper;
 
 import java.util.List;
 
+import bean.Admin;
+import bean.Page;
 import bean.Tariff;
 
 
@@ -20,5 +22,11 @@ public interface TariffMapper {
 	public boolean updateTariffStatus(int tariffId);
 	
 	public Tariff findIdByName(String tariffName);
+	
+	public List<Tariff> selectByPage(Page page);
+	
+	public int selectTariffCount();
+	
+	public List<Tariff> selectByOpenStatus();
 
 }

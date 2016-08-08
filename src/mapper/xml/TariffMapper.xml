@@ -17,8 +17,15 @@
    <select id="findAllTariff" resultMap="TariffResultMap">
        select * from tariff
    </select>
+   <select id="selectByOpenStatus" resultMap="TariffResultMap">
+       select * from tariff where status="1"
+   </select>
    <select id="findOneTariff" resultMap="TariffResultMap">
        select * from tariff where tariffId=#{tariffId}
+   </select>
+   <select id="selectByPage" resultMap="TariffResultMap">
+       select tariffId,tariffName,timeLong,timeTariff,tariff,createTime,openTime,status,tariffType,tariffExplain 
+       from tariff LIMIT #{index},#{size}
    </select>
    <select id="findIdByName" resultType="Tariff">
        select * from tariffId where tariffName=#{tariffName}
@@ -57,4 +64,7 @@
    <update id="updateTariffStatus">
        update tariff SET openTime=now(),status='1' WHERE tariffId=#{tariffId}   
    </update>
+   <select id="selectTariffCount" resultType="int">
+	    	 SELECT count(tariffId) FROM tariff
+		</select>
 </mapper>
