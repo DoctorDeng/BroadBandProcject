@@ -44,11 +44,58 @@
             				data:{"id": id},
             				success:function(result){
             					$("#adminId").val(result)
+            				},
+            				error:function(){
+            					no.innerHTML = "没有此账务账号，请重新录入！"
             				}
             			})
             		}
             	})
-            }); 
+            });
+            function endA() {
+            	var no = document.getElementById("no").value;
+            	if(no !== null) {
+            		no.innerHTML = ""
+            	}
+				var serverIp = document.getElementById("serverIp").value;
+				var ser = document.getElementById("ser");
+				var regAge = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+				if (regAge.test(serverIp) == false) {
+					ser.innerHTML = "15长度，符合IP的地址规范";
+					return false
+				}
+					ser.innerHTML = ""
+				
+				var name = document.getElementById("osAccount").value;
+				var osA = document.getElementById("osA");
+				var regAge = /^[A-Za-z]{3,8}$/;
+				if (regAge.test(name) == false) {
+					osA.innerHTML = "必须大于三个字符，且为字母";
+					return false
+				}
+					osA.innerHTML = ""
+
+
+				var pswd = document.getElementById("osPassword").value
+				var osP  = document.getElementById("osP");
+				var regAge = /[a-zA-Z0-9]{6,30}/;
+				if (regAge.test(pswd) == false) {
+					osP.innerHTML = "30长度以内的字母、数字和下划线的组合";
+						return false
+				}
+					osP.innerHTML = ""
+						
+				var firstP = document.getElementById("rosPassword").value;
+				var rosP = document.getElementById("rosP");
+				if (pswd !== firstP) {
+				rosP.innerHTML = "你输入的密码不正确，请重新输入!";
+				return false
+				}
+				    rosP.innerHTML = "";
+					return true
+		}
+		
+		
         </script>
     </head>
     <body>
@@ -69,7 +116,7 @@
         <div id="main">
             <!--保存操作的提示信息-->
             <div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过 OS 账号 “mary”。</div>
-            <form action="../ServiceAddAction" method="post" class="main_form">
+            <form action="../ServiceAddAction" method="post" class="main_form" onsubmit=" return endA()">
                 <!--内容项-->
                	 <div class="text_info clearfix"><span>身份证：</span></div>   
                  <div class="input_info">       
@@ -83,7 +130,7 @@
                 <div class="input_info">
                     <input type="text" id="adminId" onkeyup="searchAccounts(this);" />
                     <span class="required">*</span>
-                    <div class="validate_msg_long">没有此账务账号，请重新录入。</div>
+                    <div class="validate_msg_long" id="no"></div>
                 </div>
 
                 <div class="text_info clearfix"><span>资费类型：</span></div>
@@ -94,33 +141,33 @@
                     	</c:forEach>
 					</select>
                 </div> 
-                <div class="text_info clearfix"><span>服务器 IP：</span></div>
+                <div class="text_info clearfix" ><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input type="text" value="192.168.0.23"  name = "serverIp" />
+                    <input type="text" id="serverIp"  name = "serverIp" />
                     <span class="required">*</span>
-                    <div class="validate_msg_long">15长度，符合IP的地址规范</div>
+                    <div class="validate_msg_long" id="ser"></div>
                 </div>                   
                 <div class="text_info clearfix"><span>登录 OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" name="osAccount" />
+                    <input type="text" name="osAccount" id="osAccount"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">8长度以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_long" id="osA"></div>
                 </div>
                 <div class="text_info clearfix"><span>密码：</span></div>
                 <div class="input_info">
-                    <input type="password" name="osPassword" />
+                    <input type="password" name="osPassword"  id="osPassword"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_long" id="osP"></div>
                 </div>
                 <div class="text_info clearfix"><span>重复密码：</span></div>
                 <div class="input_info">
-                    <input type="password"  name = "rosPassword"/>
+                    <input type="password"  name = "rosPassword" id="rosPassword"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">两次密码必须相同</div>
+                    <div class="validate_msg_long" id="ros">两次密码必须相同</div>
                 </div>     
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="submit" value="保存" class="btn_save" onclick="showResult();" />
+                    <input type="submit" value="保存" class="btn_save"  />
                     <input type="button" value="取消" class="btn_save" />
                 </div>
             </form>
