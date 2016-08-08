@@ -6,28 +6,17 @@
 <%@ page import="bean.vo.AccountViewBean" %>
 <%@ page import="service.AccountService" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="../template/powerPage.jsp">
+  	<jsp:param value="4" name="pagePower"/>
+ </jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==4}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
-  		</c:if>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
         <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
         <script language="javascript" type="text/javascript">
             //删除
@@ -65,30 +54,35 @@
 					$("#datalist").append(data);
 				});
 			}
+            function toPage(page){
+            	var idNumber = $("#idNumber").val();
+            	var name = $("#name").val();
+            	var loginAccount = $("loginAccount").val();
+            	var sstatus = $("#status  option:selected").val();
+            	var url = "<%=request.getContextPath()%>/BussinessAccountShowAction"
+           		 +"?idNumber="+idNumber+"&loginAccount="+loginAccount+"&name="+name+"&sstatus="
+        		 +sstatus+"&currentPage="+page;
+            	//alert(url)
+            		 window.location.href= url;
+            }
+            //取url参数方法 用法：GetQueryString("参数名")
+            function GetQueryString(name)
+            {
+                 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                 var r = window.location.search.substr(1).match(reg);
+                 if(r!=null)return  unescape(r[2]); return null;
+            }
         </script>
     </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-           <img src="../images/logo.png" alt="logo" class="left" />
-            <a href="#">[退出]</a>            
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
-            </ul>            
-        </div>
-        <!--导航区域结束-->
-        <!--主要区域开始-->
+        <%@include file="../template/head.jsp" %>
         <div id="main">
             <form action="<%=request.getContextPath()%>/BussinessAccountSearchAction" method="post" id="form">
                 <!--查询-->
                 <div class="search_add">                        
-                    <div>身份证：<input type="text" id="idNumber" name="idNumber" value="不验证" class="text_search" /></div>                            
-                    <div>姓名：<input type="text" id="name" name="name" class="width70 text_search" value="不验证" /></div>
-                    <div>登录名：<input type="text" name="loginAccount" value="不验证" id="loginAccount" class="text_search"/></div>
+                    <div>身份证：<input type="text" id="idNumber" name="idNumber" class="text_search" /></div>                            
+                    <div>姓名：<input type="text" id="name" name="name" class="width70 text_search" /></div>
+                    <div>登录名：<input type="text" name="loginAccount" id="loginAccount" class="text_search"/></div>
                     <div>
                         状态：
                         <select name="status" id="status" class="select_search">
@@ -160,13 +154,13 @@
                 <!--分页-->
                 <div id="pages">
                 <c:if test="${param.currentPage>1 }">
-                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=1">首页</a>
-        	        <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=${param.currentPage-1}">上一页</a>
+                    <a href="#" onclick="toPage(1)">首页</a>
+        	        <a href="#" onclick="toPage(${param.currentPage-1})">上一页</a>
         	    </c:if>
                     <a href="#" class="current_page">${param.currentPage } / ${param.countPage }</a>
                 <c:if test="${param.currentPage<param.countPage}">
-                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=${param.currentPage+1}">下一页</a>
-                    <a href="<%=request.getContextPath() %>/BussinessAccountShowAction?currentPage=${param.countPage}">末页</a>
+                    <a href="#" onclick="toPage(${param.currentPage+1})">下一页</a>
+                    <a href="#" onclick="toPage(${param.countPage})">末页</a>
         	    </c:if>
                 </div>
             </form>

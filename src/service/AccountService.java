@@ -59,24 +59,16 @@ public class AccountService {
 	}
 	
 	public List<AccountViewBean> searchAccountViewBean(AccountViewBean a,int currentPage){
-		Customer customer = new Customer();
-		if(!"不验证".equals(a.getIdNumber())){
-			customer.setIdNumber(a.getIdNumber());
-		}
-		customer.setStatus(a.getStatus());
-		if(!"不验证".equals(a.getBussinessName())){
-			customer.setCustomerName(a.getBussinessName());
-		}
-		customer.setCustomerAccount(a.getLoginAccount());
 		Map page = new HashMap();
 		int startPage = (currentPage-1)*pageSize;
 		page.put("startPage", startPage);
 		page.put("pageSize", pageSize);
-		List<AccountViewBean> la = new ArrayList<AccountViewBean>();
 		page.put("idNumber", a.getIdNumber());
 		page.put("customerName", a.getBussinessName());
 		page.put("customerAccount", a.getLoginAccount());
 		page.put("status", a.getStatus());
+		//System.out.println(page.get("customerName"));
+		List<AccountViewBean> la = new ArrayList<AccountViewBean>();
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
