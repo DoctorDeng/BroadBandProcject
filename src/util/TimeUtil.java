@@ -1,5 +1,9 @@
 package util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TimeUtil {
 	/**
 	 * 将秒转换为 时分秒的字符串形式
@@ -16,4 +20,18 @@ public class TimeUtil {
 		String timeLong    = h + "时" + m + "分" + s +"秒";
 		return timeLong;
 	}
+	/**
+	 * 获取当前日期的月份
+	 * @return  当前月份的字符串表现形式
+	 */
+	public static String getNowMonth() {
+		Date currentTime = new Date();
+		DateFormat format = new SimpleDateFormat("yyyyMM"); 
+		String months = format.format(currentTime);
+		return months;
+	}
+	
+	/*public static void main(String[] args) {
+		System.out.println(dateToMonth());
+	}*/
 }

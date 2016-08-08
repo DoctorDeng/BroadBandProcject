@@ -44,5 +44,15 @@ public class TestOsLogin {
 		map.put("month", "201606");
 		System.out.println(osLoginMapper.selectOsLoginByMonthById(map).size());
 	}
+	@Test
+	public void updateOsLogin() {
+		Map map = new HashMap<>();
+		map.put("osId", "1");
+		map.put("loginIp", "111.22.33");
+		map.put("osLoginId", 1);
+		int result = osLoginMapper.insertOsLogin(map);
+		sqlSession.commit();
+		System.out.println(map.get("osLoginId"));
+	}
 
 }

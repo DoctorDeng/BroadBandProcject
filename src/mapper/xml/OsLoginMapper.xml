@@ -45,12 +45,14 @@
 		WHERE DATE_FORMAT(loginOutTime,'%Y%m')= #{months} AND ol.osId = #{osId}
 	</select>
 	
-	<insert id="insertLoginByOsId" parameterType="Map">
+	<insert id="insertOsLogin" useGeneratedKeys="true" keyProperty="osLoginId" parameterType="Map">
 		INSERT INTO osLogin (osId,loginIp,loginInTime) 
-		VALUES(#{osId},#{osIp},now())
+		VALUES(#{osId},#{loginIp},now())
 	</insert>
 	
-	<update id="">
-		UPDATE osLogin
+	<update id="updateOsLogin" parameterType="int">
+		UPDATE osLogin 
+		SET  loginOutTime = now() 
+		WHERE osLoginId = #{osLoginId}
 	</update>
 </mapper>

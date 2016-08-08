@@ -5,17 +5,19 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>模拟Os账号登陆</title>
-        <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
-        <script type="text/javascript" src="js/login.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+      	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/osLogin.js"></script>
     </head>
     <body class="index">
         <div class="login_box">
-        <form action="OsLoginAction" method="post" id ="form" name= "login" onsubmit="return tipsName()">
+        <form action="<%=request.getContextPath()%>/OsLoginAction?operation=login" method="post" id ="loginForm" name= "login" >
             <table>
                 <tr>
                     <td class="login_info">账号：</td>
-                    <td colspan="2"><input name="adminAccount" id="adminAccount" type="text" class="width150" /></td>
+                    <td colspan="2"><input name="osAccount" id="adminAccount" type="text" class="width150" /></td>
                     <td class="login_error_info"><span class="required" id = "iname"></span></td>
                 </tr>
                 <tr>
@@ -27,7 +29,7 @@
                 <tr>
                     <td></td>
                     <td class="login_button" colspan="2">
-                    <a href = "javascript:login.submit()"><img src="images/login_btn.png" onclick="tipsName()" /></a></td>  
+                      <img style= "CURSOR:hand;" src="<%=request.getContextPath()%>/images/login_btn.png" onclick="osLogin()" /></td>  
                     <td><span class="required"></span></td>                               
                 </tr>
             </table>

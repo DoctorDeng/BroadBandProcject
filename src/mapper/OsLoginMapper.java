@@ -34,7 +34,13 @@ public interface OsLoginMapper {
 	/**
 	 * 记录Os登陆时间和宽带IP
 	 * @param map  
-	 * @return
+	 * @return  插入后表的主键
 	 */
-	public int insertLogin(Map map);
+	public int insertOsLogin(Map map);
+	/**
+	 * 更新Os登出时间
+	 * @param osLoginId Os本次登陆ID
+	 * @return 
+	 */
+	public int updateOsLogin(int osLoginId);
 }
