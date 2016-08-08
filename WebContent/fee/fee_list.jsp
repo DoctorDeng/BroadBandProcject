@@ -149,51 +149,6 @@
   							    </td>
   							<tr>
   						</c:forEach>  
-                       <%--  <%
-                             TariffService tm = new TariffService();
-                             List<Tariff> tv = tm.getShowMessage();
-                             for(Tariff sv:tv){
-                        %>                   
-                        <tr>
-                            <td><%=sv.getTariffId() %></td>
-                            <td><a href="fee_detail.jsp?id=<%=sv.getTariffId() %>&tariffName=<%=sv.getTariffName() %>&status=<%=sv.getStatus() %>&tariffType=<%=sv.getTariffType() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>&createTime=<%=sv.getCreateTime() %>&openTime=<%=sv.getOpenTime() %>&tariffExplain=<%=sv.getTariffExplain() %>"><%=sv.getTariffName() %></a></td>
-                            <td><%=sv.getTimeLong() %></td>
-                            <td><%=sv.getTariff() %></td>
-                            <td><%=sv.getTimeTariff() %></td>
-                            <td><%=sv.getCreateTime() %></td>
-                            <%
-                            if(sv.getOpenTime()==null){
-                            %>
-                            <td></td>
-                            <%
-                            }else{
-                            %>
-                            <td><%=sv.getOpenTime() %></td>
-                            <%
-                            }
-                            %>
-                            <%
-                            if("1".equals(sv.getStatus())){
-                            %>
-                            <td>开通</td>
-                            <%
-                            }else{
-                            %>
-                            <td>暂停</td>
-                            <%} %>
-                            <td>      
-                            <%
-                            if("0".equals(sv.getStatus())){
-                            %>  
-                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId()%>&tariffName=<%=sv.getTariffName() %>&timeLong=<%=sv.getTimeLong()%>&tariff=<%=sv.getTariff() %>&timeTariff=<%=sv.getTimeTariff() %>&tariffExplain=<%=sv.getTariffExplain() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
-                            <%}else{%>
-                                <div></div>
-                                <%} %>
-                            </td>
-                        </tr>
-                        <%} %> --%>
                     </table>
                     <p>业务说明：<br />
                     1、创建资费时，状态为暂停，记载创建时间；<br />
@@ -202,16 +157,14 @@
                     4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）
                     </p>
                 </div>
+                
                 <!--分页-->
-                <!-- <div id="pages">
+                <div id="pages">
+        	        <a href="#">首页</a>
         	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
                     <a href="#">下一页</a>
-                </div> -->
+                    <a href="#">尾页</a>
+                </div>
             </form>
         </div>
         <!--主要区域结束-->
