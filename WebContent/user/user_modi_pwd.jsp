@@ -20,31 +20,52 @@
 					msg.innerHTML="请输入旧密码！";
 					return false;
 				}
+				var regOldPassword=/^[A-Za-z0-9_]{6,20}$/;
+				if(regOldPassword.test(oldPassword)==false){
+					  msg.innerHTML="密码格式不正确，请重新输入！";
+					  return false;
+				}
+				msg.innerHTML="长度6-10以内的字母、数字和下划线的组合";
+				
 				if(newPassword==""){
 					newMsg.innerHTML="请输入新密码！";
 					return false;
 				}
+				var regNewPassword=/^[A-Za-z0-9_]{6,20}$/;
+				if(regNewPassword.test(newPassword)==false){
+					newMsg.innerHTML="密码格式不正确，请重新输入！";
+					 return false;
+				 }
 				if(oldPassword==newPassword){
 					newMsg.innerHTML="新密码与旧密码相同，请重新输入！";
 					return false;
 				}
+				newMsg.innerHTML="长度6-10以内的字母、数字和下划线的组合";
+				
 				if(reNewPwd==""){
 					reNewMsg.innerHTML="请重新输入新密码！";
 					return false;
 				}
+				var regNewPwd=/^[A-Za-z0-9_]{6,20}$/;
+				if(regNewPwd.test(reNewPwd)==false){
+					reNewMsg.innerHTML="密码格式不正确，请重新输入！";
+					 return false;
+				 }
 				if(reNewPwd!=newPassword){
 					reNewMsg.innerHTML="两次密码不一致，请重新输入！";
 					return false;
 				}
-				msg.innerHTML="";
-				newMsg.innerHTML="";
-				reNewMsg.innerHTML="";
+				reNewMsg.innerHTML="两次新密码必须相同";
 			}
 			
 			function reset() {
 				document.getElementById("oldPassword").value="";
+				var msg = document.getElementById("msg");
+				msg.innerHTML="长度6-10以内的字母、数字和下划线的组合";
 				document.getElementById("newPassword").value="";
+				document.getElementById("newMsg").innerHTML="长度6-10以内的字母、数字和下划线的组合";
 				document.getElementById("reNewPwd").value="";
+				document.getElementById("reNewMsg").innerHTML="两次新密码必须相同";
 			}
 		</script>
 </head>
@@ -69,12 +90,12 @@
                 <div class="text_info clearfix"><span>旧密码：</span></div>
                 <div class="input_info">
                     <input type="password" class="width200" name="oldPassword" id="oldPassword"/><span class="required">*</span>
-                    <div class="validate_msg_medium" id="msg">20长度以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_medium" id="msg">长度6-10以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>新密码：</span></div>
                 <div class="input_info">
                     <input type="password"  class="width200" name="newPassword" id="newPassword"/><span class="required">*</span>
-                    <div class="validate_msg_medium" id="newMsg">20长度以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_medium" id="newMsg">长度6-10以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>重复新密码：</span></div>
                 <div class="input_info">

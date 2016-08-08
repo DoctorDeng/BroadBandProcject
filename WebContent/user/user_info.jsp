@@ -15,8 +15,54 @@
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
+        function check(){
+        	var adminName = document.getElementById("adminName").value;
+			var nameMsg = document.getElementById("nameMsg");
+			var phone = document.getElementById("phone").value;
+			var phoneMsg = document.getElementById("phoneMsg");
+			var email = document.getElementById("email").value;
+			var emailMsg = document.getElementById("emailMsg");
+			
+			if(adminName==""){
+				nameMsg.innerHTML="姓名不能为空！";
+				return false;
+			}
+			var regName=/^[A-Za-z]{8,20}$/;
+			var regNameC=/^[\u4e00-\u9fa5]{2,6}$/;
+			if(regName.test(adminName)==false){
+				if(regNameC.test(adminName)==false){
+					nameMsg.innerHTML="姓名格式不正确！";
+					return false;
+				}
+			}
+			nameMsg.innerHTML="";
+			
+			if(phone==""){
+				phoneMsg.innerHTML="电话号码不能为空！";
+				return false;
+			}
+			var regPhone=/^1\d{10}$/;
+			if(regPhone.test(phone)==false){
+				phoneMsg.innerHTML="手机格式不正确，请重新输入！";
+				return false;
+			}
+			phoneMsg.innerHTML="";
+			
+			if(email==""){
+				emailMsg.innerHTML="邮箱不能为空！";
+				return false;
+			}
+			var regEmail=/^\w+@\w+.[A-Za-z]{2,3}(.[A-Za-z]{2,3})?$/;
+			  if(regEmail.test(email)==false){
+				  emailMsg.innerHTML="邮箱格式不正确，请重新输入！";
+				  return false;
+			  }
+			  emailMsg.innerHTML="";
+			  
+			  showResult(true);
+        }
             //保存成功的提示信息
-            function showResult() {
+            function showResult(flag) {
                 showResultDiv(true);
                 window.setTimeout("showResultDiv(false)",1000);
             }
@@ -29,50 +75,13 @@
                     document.getElementById('infor').submit();
                 }
             }
-            function check(){
-            	var adminName = document.getElementById("adminName").value;
-				var nameMsg = document.getElementById("nameMsg");
-				var phone = document.getElementById("phone").value;
-				var phoneMsg = document.getElementById("phoneMsg");
-				var email = document.getElementById("email").value;
-				var emailMsg = document.getElementById("emailMsg");
-				
-				if(adminName==""){
-					nameMsg.innerHTML="姓名不能为空！";
-					return false;
-				}
-				var regName=/^[A-Za-z]{8,20}$/;
-				var regNameC=/^[\u4e00-\u9fa5]{2,6}$/;
-				if(regName.test(adminName)==false){
-					if(regNameC.test(adminName)){
-						nameMsg.innerHTML="姓名格式不正确！";
-						return false;
-					}
-				}
-				nameMsg.innerHTML="";
-				
-				if(phone==""){
-					phoneMsg.innerHTML="电话号码不能为空！";
-					return false;
-				}
-				var regPhone=/^1\d{10}$/;
-				if(regPhone.test(phone)==false){
-					phoneMsg.innerHTML="手机格式不正确，请重新输入！";
-					return false;
-				}
-				phoneMsg.innerHTML="";
-				
-				if(email==""){
-					emailMsg.innerHTML="邮箱不能为空！";
-					return false;
-				}
-				var regEmail=/^\w+@\w+.[A-Za-z]{2,3}(.[A-Za-z]{2,3})?$/;
-				  if(regEmail.test(email)==false){
-					  emailMsg.innerHTML="邮箱格式不正确，请重新输入！";
-					  return false;
-				  }
-				  emailMsg.innerHTML="";
-            }
+            
+            function reset() {
+				document.getElementById("adminName").value="${sessionScope.admin.adminName}";
+				document.getElementById("phone").value="${sessionScope.admin.phone}";
+				document.getElementById("email").value="${sessionScope.admin.email}";
+			}
+
         </script>
     </head>
     <body>
@@ -101,7 +110,7 @@
   					
   					
             <div id="save_result_info" class="save_success">正在保存！</div><!--保存失败，数据并发错误！-->
-            <form action="<%=request.getContextPath() %>/AdminInforAction" method="post" class="main_form" id="infor" onsubmit="return check()">
+            <form action="<%=request.getContextPath() %>/AdminInforAction" method="post" class="main_form" id="infor" >
                 <div class="text_info clearfix"><span>管理员账号：</span></div>
                 <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="${sessionScope.admin.adminAccount}" /></div>
                 
@@ -136,8 +145,8 @@
                 <div class="text_info clearfix"><span>创建时间：</span></div>
                 <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="${sessionScope.admin.createTime}"/></div>
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save" onclick="showResult();" />
-                    <input type="button" value="取消" class="btn_save" />
+                    <input type="button" value="保存" class="btn_save" onclick="check();" />
+                    <input type="button" value="取消" class="btn_save" onclick="reset()" />
                 </div>
             </form>  
         </div>
