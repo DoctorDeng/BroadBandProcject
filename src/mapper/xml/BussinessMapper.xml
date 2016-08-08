@@ -8,7 +8,7 @@
 		<collection property="os" javaType="Os" column="osId" select="mapper.OsMapper.selOneOsByOsid" />
 	</resultMap>
 	<insert id="insertBussiness" parameterType="Bussiness">
-		insert into bussiness values(null,#{osId},#{createTime})
+		insert into bussiness values(null,#{osId},#{createTime},#{openTime},null,null)
 	</insert>
 	<delete id="deleteBussiness" parameterType="int">
 		delete from bussiness where bussinessId=#{id}

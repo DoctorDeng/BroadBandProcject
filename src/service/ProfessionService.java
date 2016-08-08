@@ -50,11 +50,8 @@ public class ProfessionService {
 		Bussiness bus = bussinessMapper.selectBussinessById(osDto.getBussinessId());
 		bussinessMapper.deleteBussiness(bus.getBussinessId());
 		boolean b = osMapper.delOneOsByOsId(bus.getOsId());
-		if(b){
-			return true;
-		}
 		close();
-		return false;
+		return b;
 	}
 	
 	
@@ -120,12 +117,8 @@ public class ProfessionService {
 		os.setOsAccount(osDto.getOsAccount());
 		os.setTariffId(osDto.getTariffId());
 		boolean b = osMapper.upOneOsByBussinessId(os);
-		if(b){
-			close();
-			return true;
-		}
 		close();
-		return false;
+		return b;
 		
 	}
 	/**
@@ -139,9 +132,11 @@ public class ProfessionService {
 		if(b){
 			Os os = osMapper.selOsidByOsAccount(osAddDto.getOsAccount());
 			String createTime = (new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+			String openTime   = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 			Bussiness bussiness = new Bussiness();
 			bussiness.setCreateTime(createTime);
 			bussiness.setOsId(os.getOsId());
+			bussiness.setOpenTime(openTime);
 			bussinessMapper.insertBussiness(bussiness);
 			close();
 			return b;
@@ -164,12 +159,8 @@ public class ProfessionService {
 		os.setOsId(osId);
 		os.setStatus(customer.getStatus());
 		boolean b = osMapper.upStutas(os);
-		if(b){
-			close();
-			return true;
-		}
 		close();
-		return false;
+		return b;
 		
 	}
 	/**
@@ -186,12 +177,8 @@ public class ProfessionService {
 		Os o = new Os();
 		o.setOsId(osId);
 		boolean b =osMapper.upStutasWithOsAccount(o);
-		if(b){
-			close();
-			return true;
-		}
 		close();
-		return false;
+		return b;
 		
 	}
 	/**
