@@ -84,12 +84,12 @@
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_fail">保存失败，资费名称重复！</div>
-            <form action="<%=request.getContextPath()%>/TariffAddAction" method="post" class="main_form">
+            <form action="<%=request.getContextPath()%>/TariffAddAction" method="post" class="main_form" >
                 <div class="text_info clearfix"><span>资费名称：</span></div>
                 <div class="input_info">
                     <input type="text" class="width300" name="tariffName"  />
                     <span class="required">*</span>
-                    <div class="validate_msg_short">50长度的字母、数字、汉字和下划线的组合</div>
+                    <div class="validate_msg_short">6长度的字母、数字、汉字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">

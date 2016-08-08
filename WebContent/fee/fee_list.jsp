@@ -48,7 +48,8 @@
             
             
             
-        </script>        
+        </script>  
+          <script src="<%=request.getContextPath()%>/js/addTariff.js"></script>
     </head>
     <body>
         <!--Logo区域开始-->

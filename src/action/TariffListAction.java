@@ -38,7 +38,7 @@ public class TariffListAction extends HttpServlet {
 		  String currentPageStr = request.getParameter("currentPage");
 		  HttpSession session = request.getSession();
 		  TariffService tm = new TariffService();
-          PageDto<Tariff> pagedto = tm.selectFromPage(currentPageStr, 4);
+          PageDto<Tariff> pagedto = tm.selectFromPage(currentPageStr, 5);
 	      session.setAttribute("tariffPage", pagedto);
 		  session.setAttribute("isPage", true);
 		  response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
