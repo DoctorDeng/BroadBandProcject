@@ -20,7 +20,7 @@
 					msg.innerHTML="请输入旧密码！";
 					return false;
 				}
-				var regOldPassword=/^[A-Za-z0-9_]{6,20}$/;
+				var regOldPassword=/^[A-Za-z0-9_]{6,10}$/;
 				if(regOldPassword.test(oldPassword)==false){
 					  msg.innerHTML="密码格式不正确，请重新输入！";
 					  return false;
@@ -31,7 +31,7 @@
 					newMsg.innerHTML="请输入新密码！";
 					return false;
 				}
-				var regNewPassword=/^[A-Za-z0-9_]{6,20}$/;
+				var regNewPassword=/^[A-Za-z0-9_]{6,10}$/;
 				if(regNewPassword.test(newPassword)==false){
 					newMsg.innerHTML="密码格式不正确，请重新输入！";
 					 return false;
@@ -46,7 +46,7 @@
 					reNewMsg.innerHTML="请重新输入新密码！";
 					return false;
 				}
-				var regNewPwd=/^[A-Za-z0-9_]{6,20}$/;
+				var regNewPwd=/^[A-Za-z0-9_]{6,10}$/;
 				if(regNewPwd.test(reNewPwd)==false){
 					reNewMsg.innerHTML="密码格式不正确，请重新输入！";
 					 return false;
