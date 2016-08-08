@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="selectOsLoginByMonthById" parameterType="Map" resultType="OsLoginDto" >
-		select loginIp,loginInTime,loginOutTime ,ta.tariffName,ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
+		SELECT loginIp,loginInTime,loginOutTime ,ta.tariffName,ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
 		TIMESTAMPDIFF(SECOND,loginInTime,loginOutTime) timeLogin
 		FROM oslogin  as ol  
 		INNER JOIN os
@@ -44,4 +44,13 @@
 		ON os.tariffId = ta.tariffId
 		WHERE DATE_FORMAT(loginOutTime,'%Y%m')= #{months} AND ol.osId = #{osId}
 	</select>
+	
+	<insert id="insertLoginByOsId" parameterType="Map">
+		INSERT INTO osLogin (osId,loginIp,loginInTime) 
+		VALUES(#{osId},#{osIp},now())
+	</insert>
+	
+	<update id="">
+		UPDATE osLogin
+	</update>
 </mapper>

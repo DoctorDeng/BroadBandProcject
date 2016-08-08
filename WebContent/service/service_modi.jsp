@@ -57,7 +57,7 @@
             </ul>
             <%
 	            TariffService tm = new TariffService();
-	            List<Tariff> tv = tm.getShowMessage();
+            	List<Tariff> tv = tm.selectByOpenStatus();
 	            request.getSession().setAttribute("tariffs",tv );
             %>
         </div>

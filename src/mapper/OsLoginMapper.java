@@ -31,4 +31,10 @@ public interface OsLoginMapper {
 	 * @return
 	 */
 	public List<OsLoginDto> selectOsLoginByMonthById(Map map);
+	/**
+	 * 记录Os登陆时间和宽带IP
+	 * @param map  
+	 * @return
+	 */
+	public int insertLogin(Map map);
 }
