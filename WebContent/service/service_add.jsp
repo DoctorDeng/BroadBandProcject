@@ -27,7 +27,7 @@
   		</c:if> 
   		 <%
 	            TariffService tm = new TariffService();
-	            List<Tariff> tv = tm.getShowMessage();
+	            List<Tariff> tv = tm.selectByOpenStatus();
 	            request.getSession().setAttribute("tariffs",tv );
             %>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
