@@ -22,7 +22,7 @@
        select * from tariff where status="1"
    </select>
    
-   <select id="findOneTariff" resultMap="TariffResultMap">
+   <select id="findOneTariff" parameterType="int" resultMap="TariffResultMap">
        select * from tariff where tariffId=#{tariffId}
    </select>
    <select id="selectByPage" parameterType="Page" resultMap="TariffResultMap">

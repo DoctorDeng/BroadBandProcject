@@ -38,11 +38,11 @@ public class TestOsLogin {
 
 	@Test
 	public void selOneOsLoginByOsLoginId() {
-		/*System.out.println(osLoginMapper.selOneOsLoginByOsLoginId(4));*/
-		Map map = new HashMap<>();
+		System.out.println(osLoginMapper.selOneOsLoginByOsLoginId(1).toString());
+		/*Map map = new HashMap<>();
 		map.put("osId","2");
 		map.put("month", "201606");
-		System.out.println(osLoginMapper.selectOsLoginByMonthById(map).size());
+		System.out.println(osLoginMapper.selectOsLoginByMonthById(map).size());*/
 	}
 	@Test
 	public void updateOsLogin() {
@@ -53,6 +53,13 @@ public class TestOsLogin {
 		int result = osLoginMapper.insertOsLogin(map);
 		sqlSession.commit();
 		System.out.println(map.get("osLoginId"));
+	}
+	@Test
+	public void testTotalTime() {
+		Map map = new HashMap<>();
+		map.put("osId", "1");
+		map.put("months", "201606");
+		System.out.println(osLoginMapper.selectTotalTimeByOsIdAndMonth(map));
 	}
 
 }

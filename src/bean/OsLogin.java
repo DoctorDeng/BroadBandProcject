@@ -2,7 +2,7 @@ package bean;
 
 public class OsLogin {
 	private  int osLoginId; 
-	private  String LoginIp;
+	private  String loginIp;
 	private  String loginInTime;
 	private  String loginOutTime;
 	private  int timeLong;
@@ -21,10 +21,10 @@ public class OsLogin {
 	}
 
 	public String getLoginIp() {
-		return LoginIp;
+		return loginIp;
 	}
 	public void setLoginIp(String loginIp) {
-		LoginIp = loginIp;
+		this.loginIp = loginIp;
 	}
 	public String getLoginInTime() {
 		return loginInTime;
@@ -53,7 +53,8 @@ public class OsLogin {
 
 	@Override
 	public String toString() {
-		return "OsLogin [osLoginId=" + osLoginId + ", LoginIp=" + LoginIp + ", loginInTime=" + loginInTime
+		return "OsLogin [osLoginId=" + osLoginId + ", loginIp=" + loginIp + ", loginInTime=" + loginInTime
 				+ ", loginOutTime=" + loginOutTime + ", timeLong=" + timeLong + ", os=" + os + "]";
 	}
+
 }

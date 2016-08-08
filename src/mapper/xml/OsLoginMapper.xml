@@ -13,25 +13,28 @@
 	<!--  测试-->
 	<resultMap type="OsLogin" id="GetMapper">
 		<id         property="osLoginId"          column="osLoginId"/>
-		<result     property="LoginIp"        	  column="LoginIp"/>
+		<result     property="loginIp"        	  column="loginIp"/>
 		<result     property="loginInTime"        column="loginInTime"/>
 		<result     property="loginOutTime"       column="loginOutTime"/>
 		<result     property="timeLong"           column="timeLong"/>
 	</resultMap>
 	
-	<select id="selOneOsLoginByOsLoginId" resultMap="GetMapper">
-		select * from OsLogin where osLoginId =#{osLoginId}
+	<select id="selOneOsLoginByOsLoginId" parameterType="int" resultMap="GetMapper">
+		SELECT osLoginId,osId,loginIp,loginInTime,loginOutTime,
+		TIMESTAMPDIFF(SECOND,loginInTime,loginOutTime) as timeLong
+		FROM osLogin WHERE osLoginId =#{osLoginId}
 	</select>
-		<select id="selectOsLoginDtoByOsId"  parameterType="int" resultType="OsLoginDto">
-			SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,
-				ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
-				TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeLogin 
-				FROM osLogin as ol 
-				INNER JOIN os 
-				ON ol.osId = os.osId 
-				INNER JOIN tariff as ta 
-				ON os.tariffId = ta.tariffId 
-				WHERE ol.osId = #{osId};
+	
+	<select id="selectOsLoginDtoByOsId"  parameterType="int" resultType="OsLoginDto">
+		SELECT ol.loginIp,ol.loginInTime,ol.loginOutTime,ta.tariffName,
+		ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
+	    TIMESTAMPDIFF(SECOND,ol.loginInTime,ol.loginOutTime) as timeLogin 
+		FROM osLogin as ol 
+	    INNER JOIN os 
+	    ON ol.osId = os.osId 
+		INNER JOIN tariff as ta 
+		ON os.tariffId = ta.tariffId 
+		WHERE ol.osId = #{osId};
 	</select>
 	
 	<select id="selectOsLoginByMonthById" parameterType="Map" resultType="OsLoginDto" >
@@ -55,4 +58,8 @@
 		SET  loginOutTime = now() 
 		WHERE osLoginId = #{osLoginId}
 	</update>
+	
+	<select id="selectTotalTimeByOsIdAndMonth" parameterType="Map" resultType="int">
+		SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) as totalTime FROM oslogin WHERE osid = #{osId} AND DATE_FORMAT(loginOutTime,'%Y%m')= #{months} 
+	</select>
 </mapper>

@@ -17,6 +17,15 @@
 		<result     property="osPassword"   column="osPassword"/>
 		<result     property="serverIp"     column="serverIp"/>
 	</resultMap>
+	
+	<resultMap type="Os" id="OsResultMap">
+		<id 	property="osId"       column="osId"/>
+		<result property="osAccount"  column="osAccount"/>
+		<result property="osPassword" column="osPassword"/>
+		<result property="serverIp"   column="serverIp"/>
+		<association property="tariff" column="tariffId" select="mapper.TariffMapper.findOneTariff"></association>
+	</resultMap>
+	
 	<!-- 查询一条信息，如需使用请注意修改resultMap -->
 	<select id="selOneOsByOsid" parameterType="Os" resultMap="OstestMap">
 		select * from os where osId=#{osId}
@@ -134,7 +143,7 @@
 	<select id="selOsidByOsAccount" resultType="Os">
 		select osid from os where osAccount=#{osAccount}
 	</select>
-	<select id="selOsAcAndOsPa" resultType="Os">
+	<select id="selOsAcAndOsPa" resultMap="OsResultMap">
 		select osId,customerId,tariffId,osAccount,osPassword,serverIp,status from os where osAccount=#{osAccount} And osPassword=#{osPassword}
 	</select>
 	<select id="selCountSize" resultType="Integer"> 

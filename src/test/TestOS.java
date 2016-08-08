@@ -109,11 +109,16 @@ public class TestOS {
 	 */
 	@Test
 	public void selChooseInfo(){
-		OsDto osD = new OsDto();
-		osD.setIdNumber("429005199608082512");
+		/*OsDto osD = new OsDto();
+		osD.setIdNumber("429005199608082512");*/
 		//List<OsDto> listDto = osMapper.selChooseInfo(osD);
 		//for(OsDto osDto:listDto){
 		//System.out.println(osDto);
 		//}
+		Os os = new Os();
+		os.setOsAccount("doctor1");
+		os.setOsPassword("123456789");
+		Os os1 = osMapper.selOsAcAndOsPa(os);
+		System.out.println(os1.getTariff().toString());
 	}
 }
