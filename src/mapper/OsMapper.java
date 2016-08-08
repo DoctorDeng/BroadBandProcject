@@ -76,8 +76,19 @@ public interface OsMapper {
 	 * @return
 	 */
 	public Os upOsIdByCustomerId(int  id);
+	/**
+	 * 更改状态
+	 * @param os
+	 * @return
+	 */
 	public boolean upStutas(Os os);
 	public Os selOsidByOsAccount(String osAccount);
+	/**
+	 * 查询OS密码和账户账号
+	 * @param Os
+	 * @return
+	 */
+	public Os selOsAcAndOsPa(Os Os);
 }
 	
 

@@ -133,4 +133,7 @@
 	<select id="selOsidByOsAccount" resultType="Os">
 		select osid from os where osAccount=#{osAccount}
 	</select>
+	<select id="selOsAcAndOsPa">
+		select * from os where osAccount=#{osAccount} And osPassword=#{osPassword}
+	</select>
 </mapper>

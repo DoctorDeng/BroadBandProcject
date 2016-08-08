@@ -224,6 +224,21 @@ public class ProfessionService {
 		
 	}
 	/**
+	 * 判断登陆Os账户是否存在、
+	 * @param os
+	 * @return
+	 */
+	public Os selOsAcAndOsPa(String osAccount,String osPassword){
+		start();
+		Os os = new Os();
+		os.setOsAccount(osAccount);
+		os.setOsPassword(osPassword);
+		Os o = osMapper.selOsAcAndOsPa(os);
+		close();
+		return o;
+		
+	}
+	/**
 	 * 
 	 * 构建环境
 	 */
