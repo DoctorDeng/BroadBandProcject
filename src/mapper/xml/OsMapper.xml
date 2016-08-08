@@ -71,13 +71,13 @@
                 t.tariffId = o.tariffId
               </if>
               <if test='osAccount!="#" '>
-               AND o.osAccount=#{osAccount}
+               AND o.osAccount like concat(concat('%',#{osAccount}),'%')
               </if>
               <if test='serverIp!="#"'>
-               AND o.serverIp =#{serverIp}
+               AND o.serverIp like concat(concat('%',#{serverIp}),'%')
               </if>
               <if test='idNumber!="#"'>
-               AND c.idNumber=#{idNumber}
+               AND c.idNumber like concat(concat('%',#{idNumber}),'%')
               </if>
               <if test='status!="-1"'>
                AND o.`status`=#{status}
