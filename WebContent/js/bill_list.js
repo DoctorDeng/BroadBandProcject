@@ -24,12 +24,12 @@ function search() {
 	});
 }
 
-function show() {
+function show(temp) {
 	$("#datalist")
 			.hide(
 					"slow",
 					function() {
-						window.location.href = "../BillAction?operation=showBill";
+						window.location.href = temp+"/BillAction?operation=showBill";
 					});
 }
 //写入下拉框中的年份和月份

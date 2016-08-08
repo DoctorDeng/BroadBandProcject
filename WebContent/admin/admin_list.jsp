@@ -16,15 +16,32 @@
       	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
 		<script src="<%=request.getContextPath()%>/js/admin_list.js"></script>
 		<script type="text/javascript">
+		function showAll() {
+			$("#datalist").hide("slow",function() {
+						window.location.href = "<%=request.getContextPath()%>/ShowAdminAction?operation=init";
+			});
+		} 
 		//查询管理员信息  
 		function SerchAdminInfor() {
 			var power = $("#selectPowers").find("option:selected").val();
-			if (power=="0") {
-				power="";
+			var adminName = $("#serchAdmin").val();
+			if (power == '0') {
+				power = "";
 			}
-			var adminName = document.getElementById("serchAdmin").value;
-			window.location.href = "<%=request.getContextPath()%>/ShowAdminAction?operation=search&power="+power+"adminName="
-			+ adminName;
+			$("#pages").hide();
+			$("#datalist").hide("fast");
+
+			$.post("<%=request.getContextPath()%>/ShowAdminAction?operation=search", {
+				'power' : power,
+				'adminName' : adminName
+			}, function(data) {
+				var $menuId = $("#menuId");
+				$("#datalist").empty();
+				$("#datalist").append($menuId);
+				$("#datalist").append(data);
+				$("#datalist").show("slow", function() {
+				});
+			});
 		}
 		</script>
     </head>
@@ -48,8 +65,9 @@
                     </div>
                     <div>管理员姓名:<input type="text" id="serchAdmin" class="text_search width200" /></div>
                     <div><input type="button"  value="搜索" class="btn_search" onclick="SerchAdminInfor()" /></div>
-                    <input type="button" name="reset" id="reset" value="密码重置" class="btn_add"  onclick="resetPwd()"/>
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" />
+                    <div><input type="button" value="显示所有" class="btn_search" onclick="showAll()" /></div>
+                   <div> <input type="button" name="reset" id="reset" value="密码重置" class="btn_add"  onclick="resetPwd()"/></div>
+                   <div><input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';" /></div>
                 </div>
                 
                 <!--删除和密码重置的操作提示-->
@@ -60,7 +78,7 @@
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">             
-                   		<tr>
+                   		<tr id="menuId">
                             <th class="th_select_all">
                                 <input type="checkbox"   onclick="selectAdmins(this);" />                  
                                 <span>全选</span>

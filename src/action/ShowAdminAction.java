@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Admin;
+import bean.Power;
 import bean.dto.PageDto;
 import service.AccountManage;
 import service.AdminService;
@@ -53,18 +55,50 @@ public class ShowAdminAction extends HttpServlet{
 		case "search":
 			String power 	 = request.getParameter("power");
 			String adminName = request.getParameter("adminName");
-
+			System.out.println(adminName);
+			System.out.println(power);
+			
+			PrintWriter out = response.getWriter();
 			List<Admin> admins = adminService.getAdminByCondition(adminName,power);
-			PageDto<Admin> pageDto1 = new PageDto<>();
-			System.out.println(admins.size());
-			Object obj = session.getAttribute("adminPage");
-			if (null != obj) {
-				pageDto1 = (PageDto<Admin>) obj;
+			if (admins.size() == 0) {
+				out.println("<tr>");
+				out.println("<td><input type=\"checkbox\" name=\"choose\" /></td>");
+				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
+				out.println("<td>没有搜索到!</td>");
+				out.print("</tr>");
 			}
-			pageDto1.setDataList(admins);
-			session.setAttribute("adminPage", pageDto1);
+			for(Admin admin :admins) {
+				out.println("<tr>");
+				out.println("<td><input type=\"checkbox\" name=\"choose\" value=\""+admin.getAdminId()+"\" /></td>");
+				out.println("<td>" +admin.getAdminId()+"</td>");
+				out.println("<td>" +admin.getAdminName()+"</td>");
+				out.println("<td>" +admin.getAdminAccount()+"</td>");
+				out.println("<td>" +admin.getPhone()+"</td>");
+				out.println("<td>" +admin.getEmail()+"</td>");
+				out.println("<td>" +admin.getCreateTime()+"</td>");
+				out.println("<td>");
+				out.println("<a class=\"summary\"  onmouseover=\"showDetail(true,this);\" onmouseout=\"showDetail(false,this);\">查看权限</a>");
+				out.println("<div class=\"detail_info\">");
+				for(Power temp:admin.getPowers()) {
+					out.println(temp.getPowerName()+"&nbsp;");
+				}
+				out.println("</div>");
+				out.println("</td>");
+				out.println("<td class=\"td_modi\">");
+				out.println("<input type=\"button\" value=\"修改\" class=\"btn_modify\" onclick=\"location.href='"+request.getContextPath()+"/ShowAdminAction?operation=initById&adminId="+admin.getAdminId()+"';\"/>");
+				out.println("<input type=\"button\" value=\"删除\" class=\"btn_delete\" onclick=\"location.href='"+request.getContextPath()+"/DelAdminAction?adminId="+admin.getAdminId()+"';\"/>");
+				out.println("</td>");
+				out.print("</tr>");
+			}
+			out.flush();
+			out.close();
+			
 			session.setAttribute("isPage", false);
-			response.sendRedirect("admin/admin_list.jsp");
 			return;
 			 
 	     case "reset" :

@@ -196,7 +196,7 @@ public class AdminService {
 			Admin admin = admins.get(i);
 			List<Power> powers = admin.getPowers();
 			if (null != powers) {
-				for (int j=0; j<powers.size(); i++) {
+				for (int j=0; j<powers.size(); j++) {
 					Power powerTemp = powers.get(j);
 					if (power == powerTemp.getPower() | powerTemp.getPower().equals(power)) {
 						adminList.add(admin);

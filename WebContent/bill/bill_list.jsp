@@ -23,7 +23,7 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="<%=request.getContextPath()%>/BillAction?operation" method="post">
+            <form action="<%=request.getContextPath()%>/BillAction?operation=showBill" method="post">
                 <!--查询-->
                 <div class="search_add">                        
                     <div>身份证：<input type="text" id="idNumber"       class="text_search" /></div>
@@ -34,7 +34,7 @@
                         <select class="select_search" id="selMonths"></select>月
                     </div>
                     <div><input type="button" value="搜索" class="btn_search" onclick="search()" /></div>
-                    <div><input type="button" value="显示所有" class="btn_search" onclick="show()" /></div>
+                    <div><input type="button" value="显示所有" class="btn_search" onclick="show('<%=request.getContextPath() %>')" /></div>
                 </div>  
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">                                                          
