@@ -1,6 +1,8 @@
 package action;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +47,7 @@ public class BussinessAccountAction extends HttpServlet {
 		AccountViewBean a = new AccountViewBean();
 		a.setBussinessId(bussinessId);
 		a.setStatus("2");
+		a.setDelTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 		new AccountService().updateBussinessAccount(a);
 		response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction?currentPage="+request.getParameter("currentPage"));
 		

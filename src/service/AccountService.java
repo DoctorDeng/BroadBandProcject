@@ -155,14 +155,24 @@ public class AccountService {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);	
 			OsMapper om = ss.getMapper(OsMapper.class);
-			cm.updateCustomer(c);
-			/** 当要设置状态为0（暂停）时，同时将关联的其他业务账号状态设为暂停**/
 			if("0".equals(c.getStatus())){
+				//当要设置状态为0（暂停）时，同时将关联的其他业务账号状态设为暂停
 				Os os = new Os();
 				os.setCustomerId(c.getCustomerId());
 				os.setStatus(c.getStatus());
 				om.updateOsByCustomerId(os);
+			}else if ("1".equals(c.getStatus())) {
+				//开通账务账号时，删除暂停时间
+				c.setPauseTime("--");
+			} else if("2".equals(c.getStatus())) {
+				//删除账号时，将其下关联的业务账号状态改为删除（3）
+				Os os = new Os();
+				os.setCustomerId(c.getCustomerId());
+				os.setStatus(c.getStatus());
+				om.updateOsByCustomerId(os);
+				c.setDelTime(a.getDelTime());
 			}
+			cm.updateCustomer(c);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
