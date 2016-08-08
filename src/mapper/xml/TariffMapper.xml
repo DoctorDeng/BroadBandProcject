@@ -20,6 +20,9 @@
    <select id="findOneTariff" resultMap="TariffResultMap">
        select * from tariff where tariffId=#{tariffId}
    </select>
+   <select id="findIdByName" resultType="Tariff">
+       select * from tariffId where tariffName=#{tariffName}
+   </select>
    <insert id="addTariff">
         insert into tariff(tariffName,tariff,timeLong,timeTariff,createTime,status,tariffType,tariffExplain)
 		values(#{tariffName},#{tariff},#{timeLong},#{timeTariff},now(),0,#{tariffType},#{tariffExplain})
