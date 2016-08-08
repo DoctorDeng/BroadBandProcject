@@ -120,12 +120,32 @@
   								<td><c:out value="${tariff.tariff}"/></td>
   								<td><c:out value="${tariff.timeTariff}"/></td>
   								<td><c:out value="${tariff.createTime}"/></td>
-  								<td><c:out value="${tariff.openTime}"/></td>
-  								<td><c:out value="${tariff.status}"/></td>
+  								<%-- <td><c:out value="${tariff.openTime}"/></td> --%>
   								<td>
+  								<c:if test="${tariff.openTime==null}">
+  								</c:if>
+  								<c:if test="${tariff.openTime!=null}">
+  								${tariff.openTime}
+  								</c:if>
+  								<%-- <td><c:out value="${tariff.status}"/></td> --%>
+  								</td>
+  								<td>
+  								<c:if test="${tariff.status==1}">
+  								开通
+  								</c:if>
+  								<c:if test="${tariff.status==0}">
+  								暂停
+  								</c:if>
+  								<c:if test="${tariff.status==2}">
+  								删除
+  								</c:if>
+  								</td>
+  								<td>
+  								<c:if test="${tariff.status == '0'}">
   								<input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=${tariff.tariffId}';" />
                                 <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=${tariff.tariffId}&tariffName=${tariff.tariffName }&timeLong=${tariff.timeLong}&tariff=${tariff.tariff}&timeTariff=${tariff.timeTariff}&tariffExplain=${tariff.tariffExplain }';" />
                                 <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=${tariff.tariffId}';" />
+  							    </c:if>
   							    </td>
   							<tr>
   						</c:forEach>  

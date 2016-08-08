@@ -22,10 +22,9 @@
 			if (power=="0") {
 				power="";
 			}
-			
 			var adminName = document.getElementById("serchAdmin").value;
-			window.location.href = "<%=request.getContextPath()%>/ShowAdminAction?operation=search&adminName="
-					+ adminName+"&power="+power;
+			window.location.href = "<%=request.getContextPath()%>/ShowAdminAction?operation=search&power="+power+"adminName="
+			+ adminName;
 		}
 		</script>
     </head>

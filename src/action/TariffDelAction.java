@@ -38,7 +38,7 @@ public class TariffDelAction extends HttpServlet {
 		}
 		boolean isDel = tt.delTariff(tariffId);
 		if (isDel) {
-			response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
+			response.sendRedirect(request.getContextPath()+"/TariffListAction ");
 		} else {
 			response.sendRedirect(request.getContextPath()+"/operationError.jsp");
 		}

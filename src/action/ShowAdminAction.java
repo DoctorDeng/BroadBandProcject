@@ -56,7 +56,7 @@ public class ShowAdminAction extends HttpServlet{
 
 			List<Admin> admins = adminService.getAdminByCondition(adminName,power);
 			PageDto<Admin> pageDto1 = new PageDto<>();
-			
+			System.out.println(admins.size());
 			Object obj = session.getAttribute("adminPage");
 			if (null != obj) {
 				pageDto1 = (PageDto<Admin>) obj;
