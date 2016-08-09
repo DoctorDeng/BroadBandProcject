@@ -15,6 +15,7 @@ import bean.Os;
 import service.OsLoginService;
 import service.ProfessionService;
 import util.IpUtil;
+import util.StringUtil;
 
 /**
  * Servlet implementation class OsLoginAction
@@ -45,6 +46,8 @@ public class OsLoginAction extends HttpServlet {
 			return;
 		}
 		PrintWriter out = response.getWriter();
+		Object osLoginIdObj =session.getAttribute("osLoginId");
+		Object osObj  = session.getAttribute("os");
 		
 		switch(operation) {
 		
@@ -67,22 +70,42 @@ public class OsLoginAction extends HttpServlet {
 			}
 			break;
 		case "loginOut":
-			Object osLoginIdObj =session.getAttribute("osLoginId");
-			if (null == osLoginIdObj) {
+			System.out.println("正在登出");
+			if (null == osLoginIdObj | null == osObj) {
 				out.print("登陆超时,请重新登陆");
 			} else {
 				int osLoginId = Integer.parseInt(osLoginIdObj.toString());
+				Os osTemp = (Os) osObj;
+				
 				boolean result = osLoginService.recordOsLoginOut(osLoginId);
 				if (result) {
-					
+					double loginTariff = osLoginService.countLoginTariff(osLoginId, osTemp);
+					out.println("本次登陆费用: " + loginTariff+"元");
 				} else {
 					out.print("登出发生异常,请重新登陆");
 				}
 			}
 			break;
 		case "showLoginTime":
+			if (null == osLoginIdObj) {
+				out.print("登陆超时,请重新登陆");
+			} else {
+				String loginInTime = osLoginService.showLoginInTime(Integer.parseInt(osLoginIdObj.toString()));
+				if (StringUtil.isNull(loginInTime)) {
+					out.print("对不起,查询出错");
+				} else {
+					out.print("登入时间:"+loginInTime);
+				}
+			}
 			break;
 		case "showConsume":
+			if (null == osLoginIdObj | null == osObj) {
+				out.print("登陆超时,请重新登陆");
+			} else {
+				Os osTemp1  = (Os) osObj;
+				double cost = osLoginService.getOsMonthTariff(osTemp1);
+				out.print("本月消费为: " + cost +"元");
+			}
 			break;
 		}
 	}
