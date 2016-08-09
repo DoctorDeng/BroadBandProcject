@@ -57,7 +57,7 @@
             function toPage(page){
             	var idNumber = $("#idNumber").val();
             	var name = $("#name").val();
-            	var loginAccount = $("loginAccount").val();
+            	var loginAccount = $("#loginAccount").val();
             	var sstatus = $("#status  option:selected").val();
             	var url = "<%=request.getContextPath()%>/BussinessAccountShowAction"
            		 +"?idNumber="+idNumber+"&loginAccount="+loginAccount+"&name="+name+"&sstatus="
