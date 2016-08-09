@@ -20,7 +20,7 @@ public class OsLoginUtil {
 			String tariffType = osLoginDto.getTariffType();
 			double cost       = TariffUtil.countLoginTariff(times, tariff, timeLogin, timeTariff, tariffType);
 			//将double转换为两位小数
-			DecimalFormat df = new DecimalFormat("#.00");  
+			DecimalFormat df = new DecimalFormat("0.00");  
 			
 			OsLoginFormBean osLoginForm = new OsLoginFormBean(osLoginDto.getLoginIp(),osLoginDto.getLoginInTime(),
 					osLoginDto.getLoginOutTime(),times,df.format(cost),osLoginDto.getTariffName());

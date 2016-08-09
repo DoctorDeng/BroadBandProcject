@@ -153,7 +153,6 @@ public class BillService {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(resultNum);
 		return true;
 	}
 	
