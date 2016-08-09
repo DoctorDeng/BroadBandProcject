@@ -17,3 +17,8 @@ function tipsName()
 				tipB.innerHTML = "";
 				return true;
 			}
+function loginCheck () {
+	if(tipsName()) {
+		document.getElementById("form").submit();
+	}
+}

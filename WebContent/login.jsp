@@ -27,7 +27,7 @@
                 <tr>
                     <td></td>
                     <td class="login_button" colspan="2">
-                    <a href = "javascript:login.submit()"><img src="images/login_btn.png" onclick="tipsName()" /></a></td>  
+                   <img src="images/login_btn.png" onclick="loginCheck()" /></td>  
                     <td><span class="required"></span></td>                               
                 </tr>
             </table>
