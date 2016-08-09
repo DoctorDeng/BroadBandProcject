@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 
-import bean.Bussiness;
 import bean.Customer;
 import bean.Os;
 import bean.vo.AccountViewBean;
-import mapper.BussinessMapper;
 import mapper.CustomerMapper;
 import mapper.OsMapper;
 import util.SqlSessionUtil;
@@ -21,6 +20,7 @@ public class AccountService {
 	//账务账号页面获取数据类
 	
 	int pageSize = 5;
+	private static Logger logger = Logger.getLogger(AccountService.class);
 	
 	public List<AccountViewBean> getAccountViewBean(int currentPage){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
@@ -54,6 +54,9 @@ public class AccountService {
 		} finally{
 			ss.commit();
 			ss.close();
+		}
+		for(AccountViewBean acc:l){
+			logger.debug(acc.getBussinessName());
 		}
 		return l;
 	}

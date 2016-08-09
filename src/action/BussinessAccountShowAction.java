@@ -49,8 +49,8 @@ public class BussinessAccountShowAction extends HttpServlet {
 		a.setIdNumber(idNumber);
 		a.setStatus(status);
 		a.setLoginAccount(loginAccount);
-		System.out.println(name);
-		System.out.println(request.getRequestURL());
+//		System.out.println(name);
+//		System.out.println(request.getRequestURL());
 		List<AccountViewBean> l = new AccountService().searchAccountViewBean(a, currentPage);
 		HttpSession session = request.getSession();
 		session.setAttribute("l", l);
