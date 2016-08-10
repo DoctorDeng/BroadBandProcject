@@ -49,16 +49,10 @@ public class BussinessAccountShowAction extends HttpServlet {
 		a.setIdNumber(idNumber);
 		a.setStatus(status);
 		a.setLoginAccount(loginAccount);
-//		System.out.println(name);
-//		System.out.println(request.getRequestURL());
 		List<AccountViewBean> l = new AccountService().searchAccountViewBean(a, currentPage);
 		HttpSession session = request.getSession();
 		session.setAttribute("l", l);
-		for(AccountViewBean ac:l) {
-			System.out.println(ac.getBussinessName());
-		}
-		int countPage = new AccountService().getCountPage();
-		//response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?currentPage="+currentPage+"&countPage="+(countPage%5==0?(countPage/5):(countPage/5+1)));
+		int countPage = new AccountService().getCountPage(a);
 		request.getRequestDispatcher("/account/account_list.jsp?currentPage="
 		+currentPage+"&countPage="+(countPage%5==0?(countPage/5):(countPage/5+1))).forward(request, response);
 	}

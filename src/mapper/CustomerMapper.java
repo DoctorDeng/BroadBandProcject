@@ -46,5 +46,5 @@ public interface CustomerMapper {
 	/**
 	 * 查询所有记录条数
 	 */
-	public int countCustomer();
+	public int countCustomer(Map map);
 }

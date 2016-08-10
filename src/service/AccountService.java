@@ -22,7 +22,7 @@ public class AccountService {
 	int pageSize = 5;
 	private static Logger logger = Logger.getLogger(AccountService.class);
 	
-	public List<AccountViewBean> getAccountViewBean(int currentPage){
+	/*public List<AccountViewBean> getAccountViewBean(int currentPage){
 		List<AccountViewBean> l = new ArrayList<AccountViewBean>();
 		Map<String,Integer> page = new HashMap<String,Integer>();
 		int startPage = (currentPage-1)*pageSize;
@@ -59,7 +59,7 @@ public class AccountService {
 			logger.debug(acc.getBussinessName());
 		}
 		return l;
-	}
+	}*/
 	
 	public List<AccountViewBean> searchAccountViewBean(AccountViewBean a,int currentPage){
 		Map page = new HashMap();
@@ -79,9 +79,6 @@ public class AccountService {
 			List<Customer> lc =  cm.selectCustomerByCondition(page);
 			//int countPage = cm.countCustomer();
 			for(Customer c:lc){
-//				if("2".equals(c.getStatus())){
-//					continue;
-//				}
 				AccountViewBean a1 = new AccountViewBean();
 				a1.setBussinessId(c.getCustomerId());
 				a1.setBussinessName(c.getCustomerName());
@@ -178,14 +175,19 @@ public class AccountService {
 		return b;
 	}
 		
-	public int getCountPage() {
+	public int getCountPage(AccountViewBean a) {
 		int countPage = -1;
+		Map page = new HashMap();
+		page.put("idNumber", a.getIdNumber());
+		page.put("customerName", a.getBussinessName());
+		page.put("customerAccount", a.getLoginAccount());
+		page.put("status", a.getStatus());
 		SqlSession ss = null;
 		try
 		{
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);	
-			countPage = cm.countCustomer();
+			countPage = cm.countCustomer(page);
 		} catch (IOException e)
 		{
 			// TODO Auto-generated catch block
