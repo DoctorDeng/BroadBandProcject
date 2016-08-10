@@ -26,6 +26,7 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <%-- <script src="<%=request.getContextPath()%>/js/addAccount.js"></script> --%>
         <script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -48,7 +49,9 @@
                     document.getElementById("divPwds").style.display = "none";
             }
             function sub(){
+            	//if(checkAccount()){
             	document.getElementById("form").submit();
+            	//}
             }
         </script>
     </head>
@@ -70,7 +73,7 @@
         <div id="main">  
             <!--保存成功或者失败的提示消息-->          
             <div id="save_result_info" class="save_fail">保存失败，旧密码错误！</div>
-            <form action="<%=request.getContextPath()%>/BussinessAccountModiAction?currentPage=${param.currentPage }" method="post" class="main_form" id="form">
+            <form action="<%=request.getContextPath()%>/BussinessAccountModiAction?currentPage=${param.currentPage }" method="post" class="main_form" id="form" >
                     <!--必填项-->
                     <c:set var="l" value="${sessionScope.l }" />
                     <c:forEach items="${sessionScope.l }" var="a">
@@ -83,9 +86,9 @@
                     </div>
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                        <input type="text" name="name" value="${acc.bussinessName }" />
+                        <input type="text" id="name" name="name" value="${acc.bussinessName }" />
                         <span class="required">*</span>
-                        <div class="validate_msg_long error_msg">20长度以内的汉字、字母和数字的组合</div>
+                        <div class="validate_msg_long error_msg" id="nameMsg">20长度以内的汉字、字母和数字的组合</div>
                     </div>
                     <div class="text_info clearfix"><span>身份证：</span></div>
                     <div class="input_info">
@@ -105,26 +108,27 @@
                     <div id="divPwds">
                         <div class="text_info clearfix"><span>旧密码：</span></div>
                         <div class="input_info">
-                            <input type="password"  />
+                            <input type="password"  name="oldPassword" id="oldPassword"/>
+                            <input type="hidden" value="${acc.password }" id="cPassword"/>
                             <span class="required">*</span>
-                            <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
+                            <div class="validate_msg_long" id="oldPasswordMsg">30长度以内的字母、数字和下划线的组合</div>
                         </div>
                         <div class="text_info clearfix"><span>新密码：</span></div>
                         <div class="input_info">
-                            <input type="password" name="password" />
+                            <input type="password" name="password" id="password"/>
                             <span class="required">*</span>
-                            <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
+                            <div class="validate_msg_long" id="passwordMsg">30长度以内的字母、数字和下划线的组合</div>
                         </div>
                         <div class="text_info clearfix"><span>重复新密码：</span></div>
                         <div class="input_info">
-                            <input type="password"  />
+                            <input type="password" id="rePassword" />
                             <span class="required">*</span>
-                            <div class="validate_msg_long">两次密码必须相同</div>
+                            <div class="validate_msg_long" id="rePasswordMsg">两次密码必须相同</div>
                         </div>  
                     </div>                   
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
-                        <input type="text" name="phone" value="${acc.phone }" class="width200"/>
+                        <input type="text" name="phone" value="${acc.phone }" class="width200" id="phone"/>
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg">正确的电话号码格式：手机或固话</div>
                     </div>
@@ -176,7 +180,8 @@
                     <!--操作按钮-->
                     <div class="button_info clearfix">
                         <input type="button" value="保存" class="btn_save" onclick="sub();" />
-                        <input type="button" value="取消" class="btn_save" />
+                        <input type="button" value="取消" class="btn_save" 
+                        onclick="location.href='<%=request.getContextPath() %>/BussinessAccountShowAction';"/>
                     </div>
                 </form>  
         </div>

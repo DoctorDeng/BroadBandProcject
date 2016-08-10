@@ -168,7 +168,8 @@
                 <!--操作按钮-->
                 <div class="button_info clearfix">
                     <input type="button" value="保存" class="btn_save"  onclick="sub()"/>
-                    <input type="button" value="取消" class="btn_save" />
+                    <input type="button" value="取消" class="btn_save" 
+                    onclick="location.href='<%=request.getContextPath() %>/BussinessAccountShowAction';"/>
                 </div>
             </form>  
         </div>

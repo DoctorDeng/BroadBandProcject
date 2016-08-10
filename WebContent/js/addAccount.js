@@ -84,6 +84,14 @@ function checkAccount(){
 	}
 	phoneMsg.innerHTML = "";
 	
+	var oldPassword = document.getElementById("oldPassword");
+	var cPassword = document.getElementById("cPassword");
+	var oldPasswordMsg = document.getElementById("oldPasswordMsg");
+	if(oldPassword!=cPassword){
+		oldPasswordMsg.innerHTML = "输入的旧密码不正确，请重新输入！";
+		return false;
+	}
+	
 /*	var refererID = document.getElementById("refererID").value;
 	var refererIDMsg = document.getElementById("refererIDMsg");
 	var regRefererID = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
