@@ -53,8 +53,10 @@ public class BussinessAccountShowAction extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("l", l);
 		int countPage = new AccountService().getCountPage(a);
-		request.getRequestDispatcher("/account/account_list.jsp?currentPage="
-		+currentPage+"&countPage="+(countPage%5==0?(countPage/5):(countPage/5+1))).forward(request, response);
+//		request.getRequestDispatcher("/account/account_list.jsp?currentPage="
+//		+currentPage+"&countPage="+(countPage%5==0?(countPage/5):(countPage/5+1))).forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp?currentPage="
+		+currentPage+"&countPage="+(countPage%5==0?(countPage/5):(countPage/5+1)));
 	}
 
 	/**
