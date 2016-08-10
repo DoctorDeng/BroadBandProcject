@@ -110,7 +110,7 @@ public class ShowAdminAction extends HttpServlet{
 	         }	   
 	         boolean resetResult = new AccountManage().resetPassword(adminIds);
 	         if(resetResult){
-	        	 response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=search");
+	        	 response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 	        	 return;
 	         } else {
 	        	 response.sendRedirect(request.getContextPath()+"/operationError.jsp");

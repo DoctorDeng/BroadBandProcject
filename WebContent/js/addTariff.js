@@ -8,9 +8,8 @@ function checkTariff(){
 		nameMsg.innerHTML =  "资费名称不能为空！";
 		return false;
 	}
-	var regTariffName = /^[A-Za-z0-9_]{2,20}$/;
-	if(regTariffName.test(tariffName)==false){
-		nameMsg.innerHTML =  "资费名称格式不正确，请重新输入！";
+	if(tariffName.length > 6){
+		nameMsg.innerHTML =  "资费长度应小于6";
 		return false;
 	} 
 	nameMsg.innerHTML =  "";
@@ -21,8 +20,7 @@ function checkTariff(){
 		timeMsg.innerHTML = "基本时长不能为空!";
 		return false;
 	}
-	var regTimeLong = /^[1-9]\d*{1,600}$/;
-	if(regTimeLong.test(timeLong)==false){
+	if(timeLong >720 | timeLong < 0){
 		timeMsg.innerHTML =  "基本时长格式不满足，请重新输入！";
 		return false;
 	}
@@ -54,7 +52,7 @@ function checkTariff(){
 	}
 	timeTariffMsg.innerHTML = "";
 	
-	var tariffExplain = document.getElementById("tariffExplain").value;
+	var tariffExplain    = document.getElementById("tariffExplain").value;
 	var tariffExplainMsg = document.getElementById("tariffExplainMsg");
 	var regTariffExplain = /^[A-Za-z0-9_\u4e00-\u9fa5]{0,100}$/;
 	if(regTariffExplain.test(tariffExplain)==false){
