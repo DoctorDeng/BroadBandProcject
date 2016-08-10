@@ -1,89 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <jsp:include page="../template/powerPage.jsp">
+  	<jsp:param value="3" name="pagePower"/>
+ </jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==3}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  	<%-- <c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
-  		</c:if> --%>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
-        <script language="javascript" type="text/javascript">
-            //保存结果的提示
-            function showResult() {
-                showResultDiv(true);
-                window.setTimeout("showResultDiv(false);", 3000);
-            }
-            function showResultDiv(flag) {
-                var divResult = document.getElementById("save_result_info");
-                if (flag)
-                    divResult.style.display = "block";
-                else
-                    divResult.style.display = "none";
-            }
-
-            //切换资费类型
-            function feeTypeChange(type) {
-               
-                if (type == 1) {              	
-                    document.getElementById("tariff").disabled =  false;
-                    document.getElementById("timeTariff").disabled = true;
-                    document.getElementById("timeLong").disabled = true;
-                    document.getElementById("tariff").readonly =  false;
-                    document.getElementById("timeTariff").readonly = true;
-                    document.getElementById("timeLong").readonly = true;
-                }
-                else if (type == 2) {
-                	document.getElementById("tariff").readonly = false;
-                    document.getElementById("timeTariff").readonly =  false;
-                    document.getElementById("timeLong").readonly =  false;
-                    document.getElementById("tariff").disabled =  false;
-                    document.getElementById("timeTariff").disabled =  false;
-                    document.getElementById("timeLong").disabled =  false;
-                }
-                else if (type == 3) {
-                	document.getElementById("tariff").readonly = true;
-                    document.getElementById("timeTariff").readonly =  false;
-                    document.getElementById("timeLong").readonly = true;
-                    document.getElementById("tariff").disabled = true;
-                    document.getElementById("timeTariff").disabled =  false;
-                    document.getElementById("timeLong").disabled = true;
-                }
-            }
-         
-            function toView(){
-            	
-            }
-        </script>
+        <title>资费修改</title>
+        <script src="<%=request.getContextPath()%>/js/tariff.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
     </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>             
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">
-            <ul id="menu">
-               <%@include file= "../template/power.jsp" %>
-            </ul>
-        </div>
+        <%@include file="../template/head.jsp" %>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">            
@@ -99,11 +30,11 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
-                    <input type="radio" name="tariffType" value="1" id="monthly" onclick="feeTypeChange(1);" />
+                    <input type="radio" name="tariffType" value="1" id="monthly" onclick="feeTypeChange(1)" />
                     <label for="monthly">包月</label>
-                    <input type="radio" name="tariffType" value="2" checked="checked" id="package" onclick="feeTypeChange(2);" />
+                    <input type="radio" name="tariffType" value="2" checked="checked" id="package" onclick="feeTypeChange(2)" />
                     <label for="package">套餐</label>
-                    <input type="radio" name="tariffType" value="3" id="timeBased" onclick="feeTypeChange(3);" />
+                    <input type="radio" name="tariffType" value="3" id="timeBased" onclick="feeTypeChange(3)" />
                     <label for="timeBased">计时</label>
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>

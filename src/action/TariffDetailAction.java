@@ -37,7 +37,7 @@ public class TariffDetailAction extends HttpServlet {
 		Tariff tariff = ts.findOneTariff(tariffId);
 		session.setAttribute("tariff", tariff);
 		
-		response.sendRedirect(request.getContextPath()+"/fee/fee_detail.jsp");
+		response.sendRedirect(request.getContextPath()+"/fee/fee_modi.jsp");
 	}
 
 	/**

@@ -1,33 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <jsp:include page="../template/powerPage.jsp">
+  	<jsp:param value="3" name="pagePower"/>
+ </jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==3}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<%-- <c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
-  		</c:if>  --%>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />       
+        <title>资费信息</title>
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />       
     </head>
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
             <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>              
         </div>
         <!--Logo区域结束-->
@@ -86,7 +74,7 @@
                     <textarea class="width300 height70 readonly" readonly>${sessionScope.tariff.tariffExplain }</textarea>
                 </div>                    
                 <div class="button_info clearfix">
-                    <input type="button" value="返回" class="btn_save" onclick="location.href='fee_list.html';" />
+                    <input type="button" value="返回" class="btn_save" onclick="location.href='<%=request.getContextPath()%>/TariffListAction';" />
                 </div>
             </form>  
         </div>
