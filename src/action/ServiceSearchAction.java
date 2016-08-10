@@ -51,6 +51,9 @@ public class ServiceSearchAction extends HttpServlet {
 			serviceIp = request.getParameter("sIp");
 		}
 		String status   =  request.getParameter("status");
+		if("#".equals((osAccount))&&("#".equals(idNumber))&&("#".equals(serviceIp))&&("-1".equals(status))){
+			response.sendRedirect(request.getContextPath()+"/ServiceListAction");
+		}else{
 		OsDto osD = new OsDto();
 			osD.setIdNumber(idNumber);
 			osD.setOsAccount(osAccount);
@@ -59,6 +62,7 @@ public class ServiceSearchAction extends HttpServlet {
 		List<OsDto>	 lsa = new  ProfessionService().selForChoice(osD);
 		session.setAttribute("lsa", lsa);
 		response.sendRedirect(request.getContextPath()+"/service/service_search.jsp");
+		}
 	}
 
 	/**
