@@ -67,7 +67,7 @@
             <!--保存操作的提示信息-->
             <form action="../ServiceModiAction" method="post" class="main_form">
                 <!--必填项-->
-      		  	<c:forEach items="${sessionScope.Listo}"  var="OsDto">
+      		  	<c:forEach items="${sessionScope.pageDto.dataList}"  var="OsDto">
       		  	<c:if test="${OsDto.bussinessId==param.id}">
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info">
