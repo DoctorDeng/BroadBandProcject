@@ -84,7 +84,7 @@
 				var firstP = document.getElementById("rosPassword").value;
 				var rosP = document.getElementById("rosP");
 				if (pswd !== firstP) {
-				rosP.innerHTML = "你输入的密码不正确，请重新输入!";
+					rosP.innerHTML = "您两次输入的密码不相同!";
 				return false
 				}
 				    rosP.innerHTML = "";
@@ -159,7 +159,7 @@
                 <div class="input_info">
                     <input type="password"  name = "rosPassword" id="rosPassword"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long" id="ros">两次密码必须相同</div>
+                    <div class="validate_msg_long" id="rosP"></div>
                 </div>     
                 <!--操作按钮-->
                 <div class="button_info clearfix">
