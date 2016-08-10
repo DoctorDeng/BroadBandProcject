@@ -24,8 +24,18 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+        <script language="javascript" type="text/javascript">
+        	function getBirth(){
+        		var idCard18 = $("#idNumber").val();
+        		var year =  idCard18.substring(6,10);   
+        	    var month = idCard18.substring(10,12);   
+        	    var day = idCard18.substring(12,14); 
+        	    $("#birth").val(year+"年"+month+"月"+day+"日");
+        	}
+        </script>
     </head>
-    <body>
+    <body onload="getBirth()">
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left" />
@@ -49,7 +59,7 @@
                 <div class="input_info"><input type="text" value="${sessionScope.acc.bussinessName }" readonly class="readonly" /></div>
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" value="${sessionScope.acc.idNumber }" readonly class="readonly" />
+                    <input type="text" value="${sessionScope.acc.idNumber }" readonly class="readonly" id="idNumber"/>
                 </div>
                 <div class="text_info clearfix"><span>登录账号：</span></div>
                 <div class="input_info">
@@ -59,10 +69,10 @@
                 <div class="input_info">
                     <input type="text" class="width200 readonly" readonly value="${sessionScope.acc.phone }" />
                 </div>
-                <div class="text_info clearfix"><span>推荐人账务账号ID：</span></div>
+                <!-- <div class="text_info clearfix"><span>推荐人账务账号ID：</span></div>
                 <div class="input_info"><input type="text" readonly class="readonly" value="" /></div>
                 <div class="text_info clearfix"><span>推荐人身份证号码：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="" /></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="" /></div> -->
                 <div class="text_info clearfix"><span>状态：</span></div>
                 <div class="input_info">
                     <select disabled="disabled">
@@ -78,20 +88,20 @@
                     </select>                        
                 </div>                    
                 <div class="text_info clearfix"><span>开通/暂停/删除时间：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="2013/01/21 12:00:00" /></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="${sessionScope.acc.createTime }" /></div>
 
                 <div class="text_info clearfix"><span>上次登录时间：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="2013/02/21 12:00:00" /></div>
-                <div class="text_info clearfix"><span>上次登录IP：</span></div>
-                <div class="input_info"><input type="text" readonly class="readonly" value="192.168.0.100" /></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="${sessionScope.acc.lastLoginTime }" /></div>
+                <!-- <div class="text_info clearfix"><span>上次登录IP：</span></div>
+                <div class="input_info"><input type="text" readonly class="readonly" value="" /></div> -->
                 <!--可选项数据-->
-                <div class="text_info clearfix"><span>生日：</span></div>
+                <div class="text_info clearfix"><span >生日：</span></div>
                 <div class="input_info">
-                    <input type="text" readonly class="readonly" value="1980/01/21，由身份证计算而来" />
+                    <input type="text" readonly class="readonly" value="" id="birth"/>
                 </div>
-                <div class="text_info clearfix"><span>Email：</span></div>
+                <!-- <div class="text_info clearfix"><span>Email：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width350 readonly" readonly value="aa@aa.com" />
+                    <input type="text" class="width350 readonly" readonly value="" />
                 </div> 
                 <div class="text_info clearfix"><span>职业：</span></div>
                 <div class="input_info">
@@ -110,11 +120,11 @@
                     <label for="male">男</label>
                 </div> 
                 <div class="text_info clearfix"><span>通信地址：</span></div>
-                <div class="input_info"><input type="text" class="width350 readonly" readonly value="北京市海淀区北三环中路甲18号中鼎大厦" /></div> 
+                <div class="input_info"><input type="text" class="width350 readonly" readonly value="" /></div> 
                 <div class="text_info clearfix"><span>邮编：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value="100098" /></div> 
+                <div class="input_info"><input type="text" class="readonly" readonly value="" /></div> 
                 <div class="text_info clearfix"><span>QQ：</span></div>
-                <div class="input_info"><input type="text" class="readonly" readonly value="12345678" /></div>                
+                <div class="input_info"><input type="text" class="readonly" readonly value="" /></div> -->                
                 <!--操作按钮-->
                 <div class="button_info clearfix">
                     <input type="button" value="返回" class="btn_save" onclick="location.href='account_list.jsp';" />

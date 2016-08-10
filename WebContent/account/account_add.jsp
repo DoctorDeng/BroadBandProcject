@@ -23,7 +23,7 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
-        <%-- <script src="<%=request.getContextPath()%>/js/addAccount.js"></script> --%>
+        <script src="<%=request.getContextPath()%>/js/addAccount.js"></script>
         <script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -51,7 +51,9 @@
                 }
             }
             function sub(){
-            	document.getElementById("form").submit();
+            	if(checkAccount()){
+            		document.getElementById("form").submit();
+            	}
             }
         </script>
     </head>
@@ -73,48 +75,48 @@
         <div id="main">       
             <!--保存成功或者失败的提示消息-->     
             <div id="save_result_info" class="save_fail">保存失败，该身份证已经开通过账务账号！</div>
-            <form action="<%=request.getContextPath()%>/BussinessAccountAddAction" method="post" class="main_form"  id="form" onsubmit="return checkAccount()">
+            <form action="<%=request.getContextPath()%>/BussinessAccountAddAction" method="post" class="main_form"  id="form" onsubmit="return checkAccount();">
                 <!--必填项-->
                 <div class="text_info clearfix"><span>姓名：</span></div>
                 <div class="input_info">
-                    <input type="text" value="张三" name="name"/>
+                    <input type="text" value="" name="name" id="name"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">20长度以内的汉字、字母和数字的组合</div>
+                    <div class="validate_msg_long" id="nameMsg">20长度以内的汉字、字母和数字的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>身份证：</span></div>
                 <div class="input_info">
-                    <input type="text" value="230198765432123456" name="idNumber"/>
+                    <input type="text" value="" name="idNumber" id="idNumber"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">正确的身份证号码格式</div>
+                    <div class="validate_msg_long" id="idNumberMsg">正确的身份证号码格式</div>
                 </div>
                 <div class="text_info clearfix"><span>登录账号：</span></div>
                 <div class="input_info">
-                    <input type="text" value="创建即启用，状态为开通" name="loginAccount" />
+                    <input type="text" value="" name="loginAccount" id="loginAccount"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_long" id="loginAccountMsg">30长度以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>密码：</span></div>
                 <div class="input_info">
-                    <input type="password"  name="password"/>
+                    <input type="password"  name="password" id="password"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_long" id="passwordMsg">30长度以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>重复密码：</span></div>
                 <div class="input_info">
-                    <input type="password"  />
+                    <input type="password"  id="rePassword"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long">两次密码必须相同</div>
+                    <div class="validate_msg_long" id="rePasswordMsg">两次密码必须相同</div>
                 </div>     
                 <div class="text_info clearfix"><span>电话：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width200" name="phone" />
+                    <input type="text" class="width200" name="phone" id="phone" />
                     <span class="required">*</span>
-                    <div class="validate_msg_medium">正确的电话号码格式：手机或固话</div>
+                    <div class="validate_msg_medium" id="phoneMsg">正确的电话号码格式：手机或固话</div>
                 </div>                
                 <!--可选项-->
                 <div class="text_info clearfix"><span>可选项：</span></div>
                 <div class="input_info">
-                    <img src="../images/show.png" alt="展开" onclick="showOptionalInfo(this);" />
+                    <img src="../images/show.png" alt="展开" onclick="//showOptionalInfo(this);" />
                 </div>
                 <div id="optionalInfo" class="hide">
                     <div class="text_info clearfix"><span>推荐人身份证号码：</span></div>
@@ -165,7 +167,7 @@
                 </div>
                 <!--操作按钮-->
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save" onclick="sub()" />
+                    <input type="button" value="保存" class="btn_save"  onclick="sub()"/>
                     <input type="button" value="取消" class="btn_save" />
                 </div>
             </form>  

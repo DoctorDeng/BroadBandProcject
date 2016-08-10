@@ -22,22 +22,46 @@
             //删除
             function deleteAccount() {
                 var r = window.confirm("确定要删除此账务账号吗？\r\n删除后将不能恢复，且会删除其下属的所有业务账号。");
-                document.getElementById("operate_result_info").style.display = "block";
+                var msg = document.getElementById("operate_result_info");
+                msg.innerHTML = "删除账务账号成功！";
+                msg.style.display = "block";
+                if(r){
+                	return true;
+                }else{
+                	return false;
+                }
             }
             //开通或暂停
             function setState() {
                 var r = window.confirm("确定要开通此账务账号吗？");
-                document.getElementById("operate_result_info").style.display = "block";
+                var msg = document.getElementById("operate_result_info");
+                msg.innerHTML = "开通账务账号成功！";
+                msg.style.display = "block";
+                if(r){
+                	return true;
+                }else{
+                	return false;
+                }
             }
+            
+            function pauseStatus(){
+            	var r = window.confirm("确定要暂停此账号吗？\r\n暂停后该账号下的全部业务账号也会暂停！")
+            	var msg = document.getElementById("operate_result_info");
+                msg.innerHTML = "暂停账务账号成功！";
+                msg.style.display = "block";
+            	if(r){
+            		return true;
+            	}else{
+            		return false;
+            	}
+            }
+            
             function sub(){
             	document.getElementById("form").submit();
             }
             
          	function initTable(){
             	$("#datalist tr:not(:first)").remove();            	
-            }
-            function sub(){
-            	document.getElementById("form").submit();
             }
             function search() {
             	var idNumber = $("#idNumber").val();
@@ -98,7 +122,6 @@
                 <!--删除等的操作提示-->
                 <div id="operate_result_info" class="operate_success">
                     <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
-                    删除成功，且已删除其下属的业务账号！
                 </div>   
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -129,13 +152,13 @@
                         <td class="td_modi">
                         	<c:if test="${a.status!='2' }">
 	                        	<c:if test="${a.status=='0' }">
-		                            <input type="button" value="开通" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=0&currentPage=${param.currentPage }';" />
+		                            <input type="button"  value="开通" class="btn_pause" onclick="if(setState()){ location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=0&currentPage=${param.currentPage }';}" />
 		                        </c:if>
 	                        	<c:if test="${a.status=='1' }">
-		                            <input type="button" value="暂停" class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=1&currentPage=${param.currentPage }';" />
+		                            <input type="button" value="暂停" class="btn_pause" onclick="if(pauseStatus()){location.href='<%=request.getContextPath()%>/BussinessAccountOpenAction?id=${a.bussinessId }&status=1&currentPage=${param.currentPage }';}" />
 		                        </c:if>
 	                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp?id=${a.bussinessId}&currentPage=${param.currentPage }';" />
-	                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=${a.bussinessId }&currentPage=${param.currentPage }';" />
+	                            <input type="button" value="删除" class="btn_delete" onclick="if(deleteAccount()){location.href='<%=request.getContextPath()%>/BussinessAccountAction?id=${a.bussinessId }&currentPage=${param.currentPage }';}" />
                            </c:if>
                         </td>
                     </tr> 
@@ -157,7 +180,7 @@
                     <a href="#" onclick="toPage(1)">首页</a>
         	        <a href="#" onclick="toPage(${param.currentPage-1})">上一页</a>
         	    </c:if>
-                    <a href="#" class="current_page">${param.currentPage } / ${param.countPage }</a>
+                    <a href="#" class="current_page">第${param.currentPage }页 /共${param.countPage }页</a>
                 <c:if test="${param.currentPage<param.countPage}">
                     <a href="#" onclick="toPage(${param.currentPage+1})">下一页</a>
                     <a href="#" onclick="toPage(${param.countPage})">末页</a>

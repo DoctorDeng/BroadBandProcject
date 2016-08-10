@@ -8,7 +8,7 @@ function checkAccount(){
 		nameMsg.innerHTML =  "姓名不能为空！";
 		return false;
 	}
-	var regName = /^[A-Za-z0-9\u4e00-\u9fa5]{1,20}$/;
+	var regName = /^[A-Za-z\u4e00-\u9fa5]{1,20}$/;
 	if(regName.test(name)==false){
 		nameMsg.innerHTML =  "姓名格式不正确，请重新输入！";
 		return false;
@@ -84,7 +84,7 @@ function checkAccount(){
 	}
 	phoneMsg.innerHTML = "";
 	
-	var refererID = document.getElementById("refererID").value;
+/*	var refererID = document.getElementById("refererID").value;
 	var refererIDMsg = document.getElementById("refererIDMsg");
 	var regRefererID = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 	if(regRefererID.test(refererID)==false){
@@ -118,7 +118,7 @@ function checkAccount(){
 		qqMsg.innerHTML =  "QQ格式不满足，请重新输入！";
 		return false;
 	}
-	qqMsg.innerHTML = "";
+	qqMsg.innerHTML = "";*/
 	
 	return true;
 }

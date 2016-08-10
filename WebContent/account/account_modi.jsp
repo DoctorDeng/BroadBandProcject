@@ -124,20 +124,20 @@
                     </div>                   
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
-                        <input type="text" name="phone" class="width200"/>
+                        <input type="text" name="phone" value="${acc.phone }" class="width200"/>
                         <span class="required">*</span>
                         <div class="validate_msg_medium error_msg">正确的电话号码格式：手机或固话</div>
                     </div>
-                    <div class="text_info clearfix"><span>推荐人身份证号码：</span></div>
+                    <!-- <div class="text_info clearfix"><span>推荐人身份证号码：</span></div>
                     <div class="input_info">
                         <input type="text"/>
                         <div class="validate_msg_long error_msgs">正确的身份证号码格式</div>
-                    </div>
+                    </div> -->
                     <div class="text_info clearfix"><span>生日：</span></div>
                     <div class="input_info">
                         <input type="text" value="由身份证号计算而来" readonly class="readonly" />
                     </div>
-                    <div class="text_info clearfix"><span>Email：</span></div>
+                    <!-- <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200"/>
                         <div class="validate_msg_medium">50长度以内，合法的 Email 格式</div>
@@ -172,7 +172,7 @@
                     <div class="input_info">
                         <input type="text"/>
                         <div class="validate_msg_long">5到13位数字</div>
-                    </div>                
+                    </div> -->                
                     <!--操作按钮-->
                     <div class="button_info clearfix">
                         <input type="button" value="保存" class="btn_save" onclick="sub();" />
