@@ -8,18 +8,26 @@
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />        
 		<script type="text/javascript">
+		    /**
+		    * 校验用户输入
+		    */
 			function check(){
 				var oldPassword = document.getElementById("oldPassword").value;
-				var msg = document.getElementById("msg");
+				var msg         = document.getElementById("msg");
 				var newPassword = document.getElementById("newPassword").value;
-				var newMsg = document.getElementById("newMsg");
-				var reNewPwd = document.getElementById("reNewPwd").value;
-				var reNewMsg = document.getElementById("reNewMsg");
+				var newMsg      = document.getElementById("newMsg");
+				var reNewPwd    = document.getElementById("reNewPwd").value;
+				var reNewMsg    = document.getElementById("reNewMsg");
+				var nowPassword = document.getElementById("nowPassword").value;
 				
 				if(oldPassword==""){
 					msg.innerHTML="请输入旧密码！";
 					return false;
+				} else if(oldPassword != nowPassword) {
+					msg.innerHTML="旧密码错误！";
+					return false;
 				}
+				msg.innerHTML="";
 				var regOldPassword=/^[A-Za-z0-9_]{3,10}$/;
 				if(regOldPassword.test(oldPassword)==false){
 					  msg.innerHTML="密码格式不正确，请重新输入！";
@@ -70,18 +78,7 @@
 		</script>
 </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="<%=request.getContextPath() %>/images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">
-            <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
-            </ul>
-        </div>
+       <%@include file="../template/head.jsp" %>
         <!--导航区域结束-->
         <div id="main">      
             <!--保存操作后的提示信息：成功或者失败-->      
@@ -106,6 +103,7 @@
                     <input type="submit" value="保存" class="btn_save" />
                     <input type="reset" value="取消" class="btn_save" />
                 </div>
+                <input type="hidden" value="${sessionScope.admin.password}" id="nowPassword">
             </form>  
         </div>
         <!--主要区域结束-->

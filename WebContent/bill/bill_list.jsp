@@ -122,6 +122,7 @@
         	        		<c:if test="${requestScope.billPage.currentPage == requestScope.billPage.endPage}">
 	                    		<a href="<%=request.getContextPath()%>/BillAction?operation=showBill&currentPage=${requestScope.billPage.endPage}" class="btn btn-success disabled">末页</a>
         	        		</c:if>
+        	        		<button type="button" class="btn btn-info">${requestScope.billPage.currentPage}/${requestScope.billPage.endPage}页</button>
                 		</c:if>
                 </div>   
             </form>

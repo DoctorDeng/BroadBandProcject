@@ -88,7 +88,9 @@ public class TariffUtil {
 		double countTariff = 0.00;
 		//Os账号按月历史登陆时间
 		int historyTime = totalTime - oneTime;
-		
+		/**
+		 * 通过资费类型来计算资费
+		 */
 		switch(tariffType) {
 		case "1":
 			countTariff = 0;

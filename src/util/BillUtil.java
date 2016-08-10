@@ -44,7 +44,11 @@ public class BillUtil {
 		}
 		return billForms;
 	}
-	
+	/**
+	 * 将包含详单信息的BillDetailDto转换为用于表单显示的BillDetailFormBean
+	 * @param billDetailDtos
+	 * @return  List<BillDetailFormBean>
+	 */
 	public static List<BillDetailFormBean> billDetailDtoToFormBean(List<BillDetailDto>  billDetailDtos) {
 		
 		List<BillDetailFormBean> billDetailForms = new ArrayList<>();

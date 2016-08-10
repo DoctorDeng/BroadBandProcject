@@ -37,7 +37,7 @@
                             <th>客户名称</th>
                             <th class="width200">身份证号码</th>
                             <th>电话</th>
-                            <th>月份<th>
+                            <th>月份</th>
                             <th>累积时长</th>
                         </tr>     
                    <c:set var="statementForm" value="${not empty requestScope.statementForm}" />
@@ -88,6 +88,7 @@
                     		
                     		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.nextPage}">下一页</a>
                     		<a href="<%=request.getContextPath()%>/StatementAction?operation=default&currentPage=${requestScope.page.endPage}">末页</a>
+                			<button type="button" class="btn btn-info">${requestScope.page.currentPage}/${requestScope.page.endPage}页</button>
                 		</div>
                 	</c:when>
                 	<c:when test="${operation == 'orderByDesc'}">
@@ -109,6 +110,7 @@
                     		
                     		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.nextPage}">下一页</a>
                     		<a href="<%=request.getContextPath()%>/StatementAction?operation=orderByDesc&currentPage=${requestScope.page.endPage}">末页</a>
+                    		<button type="button" class="btn btn-info">${requestScope.page.currentPage}/${requestScope.page.endPage}页</button>
                			 </div>
                 	</c:when>
                 </c:choose>
