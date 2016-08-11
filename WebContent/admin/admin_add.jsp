@@ -13,8 +13,7 @@
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />
        	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
       	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
-        <script src="<%=request.getContextPath() %>/js/addAdmin.js">
-        </script>
+        <script src="<%=request.getContextPath() %>/js/addAdmin.js"></script>
     </head>
     <body>
         <%@include file="../template/head.jsp" %>
@@ -27,43 +26,43 @@
                     <div class="input_info">
                         <input type="text" name="adminName" id="adminName"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_long" ><span id="adminError">6长度以内的汉字、字母、数字的组合</span></div>
+                        <div class="validate_msg_long" ><span id="adminError" class="required">6长度以内的汉字、字母、数字的组合</span></div>
                     </div>
                     <div class="text_info clearfix"><span>管理员账号：</span></div>
                     <div class="input_info">
                         <input type="text" name="adminAccount" id="adminAccount"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_long" ><span id="accountError">10长度以内的字母、数字和下划线的组合</span></div>
+                        <div class="validate_msg_long" ><span id="accountError" class="required">10长度以内的字母、数字和下划线的组合</span></div>
                     </div>
                     <div class="text_info clearfix"><span>密码：</span></div>
                     <div class="input_info">
                         <input type="password" name="password" id="pwd"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_long" ><span id="pwdError">10长度以内的字母、数字和下划线的组合</span></div>
+                        <div class="validate_msg_long" ><span id="pwdError" class="required">10长度以内的字母、数字和下划线的组合</span></div>
                     </div>
                     <div class="text_info clearfix"><span>重复密码：</span></div>
                     <div class="input_info">
                         <input type="password" id="rePwd" />
                         <span class="required">*</span>
-                        <div class="validate_msg_long" ><span id="rePwdError">密码前后不一致</span></div>
+                        <div class="validate_msg_long" ><span id="rePwdError" class="required">密码前后不一致</span></div>
                     </div>      
                     <div class="text_info clearfix"><span>电话：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="phone" id="phone"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_medium" ><span id="phoneError">电话号码11位</span></div>
+                        <div class="validate_msg_medium" ><span id="phoneError" class="required">电话号码11位</span></div>
                     </div>
                     <div class="text_info clearfix"><span>身份证号：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="idNumber" id="idNumber"/>
                         <span class="required">*</span>
-                        <div class="validate_msg_medium" ><span id="idnumberError">真实的18位身份证号</span></div>
+                        <div class="validate_msg_medium" ><span id="idnumberError" class="required">真实的18位身份证号</span></div>
                     </div>
                     <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">
                         <input type="text" class="width200" name="email" id="emial"/>
                         <span class="required"></span>
-                        <div class="validate_msg_medium" ><span id="emailError">邮箱格式错误</span></div>
+                        <div class="validate_msg_medium" ><span id="emailError" class="required">邮箱格式错误</span></div>
                     </div>
                     <div class="text_info clearfix"><span>角色：</span></div>
                     <div class="input_info_high">

@@ -53,7 +53,7 @@
             <form action="<%=request.getContextPath()%>/ShowAdminAction?operation=reset" method="post" id="resetForm">
                 <!--查询-->             
                 <div class="search_add">
-                   <div>角色：
+                   <div>权限：
                         <select id="selectPowers" class="select_search">
                             <option value="0">全部</option>
                             <option value="2">管理员管理</option>
