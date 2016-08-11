@@ -23,15 +23,15 @@
 				if(oldPassword==""){
 					msg.innerHTML="请输入旧密码！";
 					return false;
-				} else if(oldPassword != nowPassword) {
-					msg.innerHTML="旧密码错误！";
-					return false;
 				}
 				msg.innerHTML="";
 				var regOldPassword=/^[A-Za-z0-9_]{3,10}$/;
 				if(regOldPassword.test(oldPassword)==false){
 					  msg.innerHTML="密码格式不正确，请重新输入！";
 					  return false;
+				}else if(oldPassword != nowPassword) {
+					msg.innerHTML="旧密码输入错误！";
+					return false;
 				}
 				msg.innerHTML="长度3-10以内的字母、数字和下划线的组合";
 				
@@ -87,17 +87,17 @@
                 <div class="text_info clearfix"><span>旧密码：</span></div>
                 <div class="input_info">
                     <input type="password" class="width200" name="oldPassword" id="oldPassword"/><span class="required">*</span>
-                    <div class="validate_msg_medium" id="msg">长度3-10以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_medium" id="msg" style="color:red">长度3-10以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>新密码：</span></div>
                 <div class="input_info">
                     <input type="password"  class="width200" name="newPassword" id="newPassword"/><span class="required">*</span>
-                    <div class="validate_msg_medium" id="newMsg">长度3-10以内的字母、数字和下划线的组合</div>
+                    <div class="validate_msg_medium" id="newMsg" style="color:red">长度3-10以内的字母、数字和下划线的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>重复新密码：</span></div>
                 <div class="input_info">
                     <input type="password" class="width200"  name="reNewPwd" id="reNewPwd"/><span class="required">*</span>
-                    <div class="validate_msg_medium" id="reNewMsg">两次新密码必须相同</div>
+                    <div class="validate_msg_medium" id="reNewMsg" style="color:red">两次新密码必须相同</div>
                 </div>
                 <div class="button_info clearfix">
                     <input type="submit" value="保存" class="btn_save" />
