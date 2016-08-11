@@ -37,10 +37,6 @@
 			}
 			nameMsg.innerHTML="";
 			
-			if(phone==""){
-				phoneMsg.innerHTML="电话号码不能为空！";
-				return false;
-			}
 			var regPhone=/^1\d{10}$/;
 			if(regPhone.test(phone)==false){
 				phoneMsg.innerHTML="手机格式不正确，请重新输入！";
@@ -48,10 +44,6 @@
 			}
 			phoneMsg.innerHTML="";
 			
-			if(email==""){
-				emailMsg.innerHTML="邮箱不能为空！";
-				return false;
-			}
 			var regEmail=/^\w+@\w+.[A-Za-z]{2,3}(.[A-Za-z]{2,3})?$/;
 			  if(regEmail.test(email)==false){
 				  emailMsg.innerHTML="邮箱格式不正确，请重新输入！";
@@ -130,17 +122,17 @@
                 <div class="input_info">
                     <input type="text" value="${sessionScope.admin.adminName}" name="adminName" id="adminName"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_long" id="nameMsg">长度2-6以内的汉字或20以内字母的组合</div>
+                    <div class="validate_msg_long" id="nameMsg" style="color:red">长度2-6以内的汉字或20以内字母的组合</div>
                 </div>
                 <div class="text_info clearfix"><span>电话：</span></div>
                 <div class="input_info">
                     <input type="text" class="width200" value="${sessionScope.admin.phone}" name="phone" id="phone"/>
-                    <div class="validate_msg_medium" id="phoneMsg">电话号码格式：手机或固话</div>
+                    <div class="validate_msg_medium" id="phoneMsg" style="color:red">电话号码格式：手机或固话</div>
                 </div>
                 <div class="text_info clearfix"><span>Email：</span></div>
                 <div class="input_info">
                     <input type="text" class="width200" value="${sessionScope.admin.email}" name="email" id="email"/>
-                    <div class="validate_msg_medium" id="emailMsg">20长度以内，符合 email 格式</div>
+                    <div class="validate_msg_medium" id="emailMsg" style="color:red">20长度以内，符合 email 格式</div>
                 </div>
                 <div class="text_info clearfix"><span>创建时间：</span></div>
                 <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="${sessionScope.admin.createTime}"/></div>
