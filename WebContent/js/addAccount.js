@@ -65,7 +65,7 @@ function checkAccount(){
 		rePasswordMsg.innerHTML =  "密码格式不满足，请重新输入！";
 		return false;
 	}
-	if(rePassword!=Password){
+	if(rePassword!=password){
 		rePasswordMsg.innerHTML = "两次密码必须相同";
 		return false;
 	}
@@ -77,8 +77,7 @@ function checkAccount(){
 		phoneMsg.innerHTML = "电话不能为空";
 		return false;
 	}
-	var regPhone = /^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/;
-	if(regPhone.test(phone)==false){
+	if(phone.length > 11){
 		phoneMsg.innerHTML =  "电话格式不满足，请重新输入！";
 		return false;
 	}
