@@ -183,6 +183,6 @@
 		</select>
 		<select id="selectByPage" parameterType="Page" resultMap="AdminResultMap">
 	    	 SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
-	    	 FROM admin LIMIT #{index},#{size}
+	    	 FROM admin order by adminId desc LIMIT #{index},#{size} 
 		</select>
 	</mapper>

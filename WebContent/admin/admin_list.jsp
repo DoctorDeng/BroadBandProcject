@@ -15,6 +15,7 @@
       	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
       	<script src="<%=request.getContextPath()%>/js/layer/layer/layer.js"></script>
 		<script src="<%=request.getContextPath()%>/js/admin_list.js"></script>
+		<script src="<%=request.getContextPath()%>/js/admin_modi.js"></script>
 		<script type="text/javascript">
 		function showAll() {
 			$("#datalist").hide("slow",function() {
@@ -93,16 +94,10 @@
                             <th></th>
                         </tr>    
                         <c:if test="${sessionScope.adminPage== null || fn:length(sessionScope.adminPage.dataList) == 0}">
-                        	<tr>
-                        	    <td><input type="checkbox" name="choose" /></td>  
-                        		<td>没有搜索到信息!</td>
-                        		<td>没有搜索到信息!</td>
-                        		<td>没有搜索到信息!</td>
-                        		<td>没有搜索到信息!</td>
-                        		<td>没有搜索到信息!</td>
-                        		<td>没有搜索到信息!</td>
-                        		<td>没有搜索到信息!</td>
-                        	</tr>
+                        	 <tr>
+                        	    <!-- <td><input type="checkbox" name="choose" /></td> -->  
+                        		<td colspan="0">没有搜索到信息!</td>
+                        	</tr> 
                         </c:if>
                         <c:forEach items="${sessionScope.adminPage.dataList}" var="adminInfor" >                      	                                  
                          <tr>
@@ -130,7 +125,7 @@
                             </td>                       
                             <td class="td_modi">
                                 <input type="button" value="修改" class="btn_modify" onclick="location.href='<%=request.getContextPath() %>/ShowAdminAction?operation=initById&adminId=<c:out value="${adminInfor.adminId}" />';" />
-                                <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath() %>/DelAdminAction?adminId=<c:out value="${adminInfor.adminId}" />';"/>
+                                <input type="button" value="删除" class="btn_delete" onclick="del()"/>
                             </td>
                         </tr>
                         </c:forEach>
@@ -145,10 +140,12 @@
                 			    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.indexPage}" >首页</a>
         	        		    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.upPage}" >上一页</a>
         	                </c:if>
+        	                
         	              	<c:if test="${sessionScope.adminPage.currentPage < sessionScope.adminPage.endPage}">
                         	    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.nextPage}">下一页</a>
                     		    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.endPage}" >末页</a>
                 			</c:if>
+                			<a>总共有${sessionScope.adminPage.endPage}页当前页为第${sessionScope.adminPage.currentPage}页</a>
                 		 </c:if>
                    </c:if>     	
                 </div>                  
