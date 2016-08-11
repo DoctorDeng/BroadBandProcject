@@ -73,7 +73,7 @@ public class BussinessAccountSearchAction extends HttpServlet {
 			out.println("<td>"+acc.getLastLoginTime()+"</td>");
 			out.println("<td class=\"td_modi\">");
 			if(!"2".equals(acc.getStatus())) {
-				out.println("<input type=\"button\" value=\""+("1".equals(acc.getStatus())?"开通":"暂停")+"\" class=\"btn_pause\" onclick=\"location.href='"+request.getContextPath()+"/BussinessAccountOpenAction?id="+acc.getBussinessId()+"&status="+acc.getStatus()+"';\" />");
+				out.println("<input type=\"button\" value=\""+("1".equals(acc.getStatus())?"暂停":"开通")+"\" class=\"btn_pause\" onclick=\"location.href='"+request.getContextPath()+"/BussinessAccountOpenAction?id="+acc.getBussinessId()+"&status="+acc.getStatus()+"';\" />");
 				out.println("<input type=\"button\" value=\"修改\" class=\"btn_modify\" onclick=\"location.href='account_modi.jsp?id="+acc.getBussinessId()+"';\" />");
 				out.println("<input type=\"button\" value=\"删除\" class=\"btn_delete\" onclick=\"location.href='"+request.getContextPath()+"/BussinessAccountAction?id="+acc.getBussinessId()+"';\" />");
 			}

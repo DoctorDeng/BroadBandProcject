@@ -35,7 +35,7 @@ public class BussinessAccountShowAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		int currentPage = 0;
         String c = request.getParameter("currentPage");
-        if(c!=""&&c!=null){
+        if((!"".equals(c))&&c!=null&&(!"null".equals(c))){
         	currentPage = Integer.parseInt(c);
         } else{
         	currentPage = 1;

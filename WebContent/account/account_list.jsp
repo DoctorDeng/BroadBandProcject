@@ -23,9 +23,9 @@
             function deleteAccount() {
                 var r = window.confirm("确定要删除此账务账号吗？\r\n删除后将不能恢复，且会删除其下属的所有业务账号。");
                 var msg = document.getElementById("operate_result_info");
-                msg.innerHTML = "删除账务账号成功！";
-                msg.style.display = "block";
                 if(r){
+	                msg.innerHTML = "删除账务账号成功！";
+	                msg.style.display = "block";
                 	return true;
                 }else{
                 	return false;
@@ -35,9 +35,9 @@
             function setState() {
                 var r = window.confirm("确定要开通此账务账号吗？");
                 var msg = document.getElementById("operate_result_info");
-                msg.innerHTML = "开通账务账号成功！";
-                msg.style.display = "block";
                 if(r){
+	                msg.innerHTML = "开通账务账号成功！";
+	                msg.style.display = "block";
                 	return true;
                 }else{
                 	return false;
@@ -47,9 +47,9 @@
             function pauseStatus(){
             	var r = window.confirm("确定要暂停此账号吗？\r\n暂停后该账号下的全部业务账号也会暂停！")
             	var msg = document.getElementById("operate_result_info");
-                msg.innerHTML = "暂停账务账号成功！";
-                msg.style.display = "block";
             	if(r){
+	                msg.innerHTML = "暂停账务账号成功！";
+	                msg.style.display = "block";
             		return true;
             	}else{
             		return false;
