@@ -56,15 +56,14 @@
             	})
             });  */ 
             function deleteAccount() {
-                var r = window.confirm("确定要删除此业务账号吗？\r\n删除后将不能恢复");
-                var msg = document.getElementById("operate_result_info");         
-                msg.style.display = "block";
+                var r = window.confirm("确定要删除此业务账号吗？\r\n删除后此业务账号将不能进行开通暂停功能");
+                var msg = document.getElementById("operate_result_info");
                 if(r){
+	                msg.innerHTML = "删除业务账号成功！";
+	                msg.style.display = "block";
                 	return true;
-                	msg.innerHTML = "删除业务账号成功！";
                 }else{
                 	return false;
-                	msg.innerHTML = "取消删除成功！";
                 }
             }
         </script>
@@ -103,8 +102,8 @@
                     <input type="button" value="增加"  class="btn_add" onclick="location.href='service_add.jsp';" />
                 </div>  
                 <!--删除的操作提示-->
-                <div id="operate_result_info" > 
-                 
+               <div id="operate_result_info" class="operate_success">
+                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
                 </div>   
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
