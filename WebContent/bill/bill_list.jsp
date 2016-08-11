@@ -53,15 +53,8 @@
                     <c:set var="billPage" value="${not empty requestScope.billPage}" />
   					<c:if test="${not billPage}">
   						<tr>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
-  							<td>没有信息</td>
+  							<td>没有信息</td><td>没有信息</td><td>没有信息</td><td>没有信息</td>
+  							<td>没有信息</td><td>没有信息</td><td>没有信息</td><td>没有信息</td><td>没有信息</td>
   						</tr>
   					</c:if>
   					
