@@ -89,7 +89,7 @@
                             <th>电话</th>
                             <th>电子邮件</th>
                             <th>授权日期</th>
-                            <th class="width100">拥有角色</th>
+                            <th class="width100">拥有权限</th>
                             <th></th>
                         </tr>    
                         <c:if test="${sessionScope.adminPage== null || fn:length(sessionScope.adminPage.dataList) == 0}">
@@ -141,12 +141,16 @@
                  <div id="pages">
                  	<c:if test="${sessionScope.isPage == true}">
 	                	 <c:if test="${not empty sessionScope.adminPage}">
-                			<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.indexPage}" >首页</a>
-        	        		<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.upPage}" >上一页</a>
-                        	<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.nextPage}">下一页</a>
-                    		<a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.endPage}" >末页</a>
-                		</c:if>
-                 	</c:if>
+	                	    <c:if test="${sessionScope.adminPage.currentPage > 1}">
+                			    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.indexPage}" >首页</a>
+        	        		    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.upPage}" >上一页</a>
+        	                </c:if>
+        	              	<c:if test="${sessionScope.adminPage.currentPage < sessionScope.adminPage.endPage}">
+                        	    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.nextPage}">下一页</a>
+                    		    <a href="<%=request.getContextPath()%>/ShowAdminAction?operation=init&currentPage=${sessionScope.adminPage.endPage}" >末页</a>
+                			</c:if>
+                		 </c:if>
+                   </c:if>     	
                 </div>                  
             </form>
         </div>

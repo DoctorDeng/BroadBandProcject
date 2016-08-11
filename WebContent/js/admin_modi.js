@@ -63,3 +63,11 @@ function checked(power) {
 	        }
 	    }
 }
+function deleteChecked(){
+	layer.open({
+		type : 0,
+		area : [ '400px', '150px' ],
+		skin : 'layui-layer-molv',
+		content : '<p></p><h2>请选择至少一个管理员</h2><p></p>'
+	});
+}
