@@ -57,7 +57,7 @@
                INNER JOIN   customer AS c  ON  o.customerId = c.customerId 
                INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
 			   ORDER BY
-               b.bussinessId ASC
+               b.bussinessId desc
                LIMIT #{index},#{size}
 	</select>
 	<!-- 通过查询身份证进行对Os表的添加功能 -->
@@ -94,7 +94,7 @@
               </if>
               </where>
               ORDER BY
-              b.bussinessId ASC
+              b.bussinessId desc
 	</select>
 	<!-- 详细查询 -->
 	<select id="setManyInfo"  resultType="OsShowDto">
@@ -154,7 +154,7 @@
                INNER JOIN   customer AS c  ON  o.customerId = c.customerId 
                INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
 			   ORDER BY
-               b.bussinessId ASC
+               b.bussinessId desc
 	</select>
 	<update id="updateOsByCustomerId" parameterType="Os">
 		update os set status=#{status}  where customerId=#{customerId}
@@ -188,6 +188,6 @@
               </if>
               </where>
               ORDER BY
-              b.bussinessId ASC
+              b.bussinessId desc
 	</select>
 </mapper>
