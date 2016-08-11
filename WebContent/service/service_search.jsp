@@ -122,9 +122,9 @@
                         </div>
                     </td>                                   
                         <td class="td_modi">
-                            <input type="button" value=${OsDto.status=='1'?"暂停":"开通"} class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=${OsDto.bussinessId}&status=${OsDto.status}';" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=${OsDto.bussinessId}';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=${OsDto.bussinessId}';" />
+                            <input type="button" value=${OsDto.status=='1'?"暂停":"开通"} class="btn_pause" onclick="if(setState()){location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=${OsDto.bussinessId}&status=${OsDto.status}';}" />
+                            <input type="button" value="修改" class="btn_modify" onclick="if(pauseStatus()){location.href='service_modi.jsp?id=${OsDto.bussinessId}';}" />
+                            <input type="button" value="删除" class="btn_delete" onclick="if(deleteAccount()){location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=${OsDto.bussinessId}'}"  />
                         </td>
                     </tr>
         			</c:otherwise>

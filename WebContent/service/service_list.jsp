@@ -30,24 +30,6 @@
         <script type="text/javascript" src="../js/jquery.js"></script> 
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
-            function showDetail(flag, a) {
-                var detailDiv = a.parentNode.getElementsByTagName("div")[0];
-                if (flag) {
-                    detailDiv.style.display = "block";
-                }
-                else
-                    detailDiv.style.display = "none";
-            }
-            //删除
-            function deleteAccount() {
-                var r = window.confirm("确定要删除此业务账号吗？删除后将不能恢复。");
-                document.getElementById("operate_result_info").style.display = "block";
-            }
-            //开通或暂停
-            function setState() {
-                var r = window.confirm("确定要开通此业务账号吗？");
-                document.getElementById("operate_result_info").style.display = "block";
-            }
            /*  $(function(){
             	$("#search").click(function(){
             		var id  = "#";
@@ -72,7 +54,19 @@
             				},            		
             		})
             	})
-            });  */
+            });  */ 
+            function deleteAccount() {
+                var r = window.confirm("确定要删除此业务账号吗？\r\n删除后将不能恢复");
+                var msg = document.getElementById("operate_result_info");         
+                msg.style.display = "block";
+                if(r){
+                	return true;
+                	msg.innerHTML = "删除业务账号成功！";
+                }else{
+                	return false;
+                	msg.innerHTML = "取消删除成功！";
+                }
+            }
         </script>
     </head>
     <body>
@@ -109,9 +103,8 @@
                     <input type="button" value="增加"  class="btn_add" onclick="location.href='service_add.jsp';" />
                 </div>  
                 <!--删除的操作提示-->
-                <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
-                    删除成功！
+                <div id="operate_result_info" > 
+                 
                 </div>   
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -168,7 +161,7 @@
                         <td class="td_modi">
                             <input type="button" value=${OsDto.status=='1'?"暂停":"开通"} class="btn_pause" onclick="location.href='<%=request.getContextPath()%>/ServiceOpenAction?id=${OsDto.bussinessId}&status=${OsDto.status}';" />
                             <input type="button" value="修改" class="btn_modify" onclick="location.href='service_modi.jsp?id=${OsDto.bussinessId}';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=${OsDto.bussinessId}';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="if(deleteAccount()){location.href='<%=request.getContextPath()%>/ServiceAccountAction?id=${OsDto.bussinessId}'}"  />
                         </td>
                     </tr>
         			</c:otherwise>
