@@ -8,9 +8,19 @@
   <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
+        <title>客户登陆记录</title>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" /> 
+    	<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#billMenu").attr("class","bill_on");
+   		});
+   		</script>
     </head>
     <body onload="initialYearAndMonth();">
         <%@include file="../template/head.jsp" %>

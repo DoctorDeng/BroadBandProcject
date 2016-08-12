@@ -23,6 +23,16 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+          <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#feeMenu").attr("class","fee_on");
+   		});
+   		</script>
         <script language="javascript" type="text/javascript">
             //保存结果的提示
             function showResult() {

@@ -27,6 +27,7 @@
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
         <%-- <script src="<%=request.getContextPath()%>/js/addAccount.js"></script> --%>
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
         <script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -53,9 +54,16 @@
             	document.getElementById("form").submit();
             	//}
             }
+            function getBirth(){
+        		var idCard18 = $("#idNumber").val();
+        		var year =  idCard18.substring(6,10);   
+        	    var month = idCard18.substring(10,12);   
+        	    var day = idCard18.substring(12,14); 
+        	    $("#birth").val(year+"年"+month+"月"+day+"日");
+        	}
         </script>
     </head>
-    <body>
+    <body onload="getBirth()">
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
@@ -92,7 +100,7 @@
                     </div>
                     <div class="text_info clearfix"><span>身份证：</span></div>
                     <div class="input_info">
-                        <input type="text" value="${acc.idNumber }" readonly class="readonly" />
+                        <input type="text" value="${acc.idNumber }" readonly class="readonly" id="idNumber"/>
                     </div>
                     <div class="text_info clearfix"><span>登录账号：</span></div>
                     <div class="input_info">
@@ -139,7 +147,7 @@
                     </div> -->
                     <div class="text_info clearfix"><span>生日：</span></div>
                     <div class="input_info">
-                        <input type="text" value="由身份证号计算而来" readonly class="readonly" />
+                        <input type="text" value="" readonly class="readonly" id="birth"/>
                     </div>
                     <!-- <div class="text_info clearfix"><span>Email：</span></div>
                     <div class="input_info">

@@ -4,7 +4,11 @@ function search() {
 	var customerName = $("#customerName").val();
 	var year = $("#selYears").find("option:selected").text();
 	var month = $("#selMonths").find("option:selected").text();
-	var months = year + month;
+	if(month !="" && month != null) {
+		var months = year + month;
+	} else {
+		var months = "";
+	}
 	$("#pages").hide();
 	$("#datalist").hide("fast");
 
@@ -43,17 +47,24 @@ function initialYearAndMonth() {
 	}
 	//写入 12 月
 	var monthObj = document.getElementById("selMonths");
-	/*   var opObj = new Option("全部", "全部");
-	  monthObj.options[0] = opObj; */
-	for (var i = 0; i < 12; i++) {
-		if (i < 9) {
-			var opObj = new Option("0" + (i + 1), i);
+	var opObj = new Option("全部", "全");
+	monthObj.options[0] = opObj;
+	for (var i = 1; i < 13; i++) {
+		if (i < 10) {
+			var opObj = new Option("0" + (i), i);
 		} else {
-			var opObj = new Option(i + 1, i);
+			var opObj = new Option(i, i);
 		}
 		monthObj.options[i] = opObj;
 	}
 }
 $(document).ready(function() {
 	initialYearAndMonth();
+});
+/**
+ * 让模块对应的菜单样式为选中
+ * @returns
+ */
+$(function(){
+	$("#billMenu").attr("class","bill_on");
 });

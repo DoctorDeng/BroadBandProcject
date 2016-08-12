@@ -22,3 +22,9 @@ function loginCheck () {
 		document.getElementById("form").submit();
 	}
 }
+
+function clickBtn(event) {
+	if (event.keyCode==13) {
+		loginCheck();
+	}
+}
