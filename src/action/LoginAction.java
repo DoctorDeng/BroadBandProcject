@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,8 +35,28 @@ public class LoginAction extends HttpServlet {
 		String password = request.getParameter("password");
 		AccountManage accountManage = new AccountManage();
 		HttpSession session = request.getSession();
-		
-		if (null != adminAccount && null != password) {
+		PrintWriter out = response.getWriter();
+		Admin  admin = accountManage.login(adminAccount, password);
+		if(null==admin){
+			out.print("fail");
+		}else{
+			session.setAttribute("adminAccount", adminAccount);
+			session.setAttribute("admin", admin);
+			out.print("success");
+		}
+		/*if(null==admin){
+			session.setAttribute("adminAccount", adminAccount);
+			session.setAttribute("password", password);
+			session.setAttribute("errorMessage", "用户名或密码错误，请重新输入！");
+			response.sendRedirect("login.jsp");
+			return;
+		}else{
+			session.setAttribute("adminAccount", adminAccount);
+			session.setAttribute("admin", admin);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+			return;
+		}*/
+		/*if (null != adminAccount && null != password) {
 			Admin  admin = accountManage.login(adminAccount, password);
 			if (null == admin) {
 				response.sendRedirect("loginFail.jsp");
@@ -49,7 +70,7 @@ public class LoginAction extends HttpServlet {
 		} else {
 			response.sendRedirect("loginFail.jsp");
 			return;
-		}
+		}*/
 	}
 
 	/**

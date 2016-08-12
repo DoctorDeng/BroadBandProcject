@@ -8,19 +8,40 @@
         <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
         <script type="text/javascript" src="js/login.js"></script>
+        <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+        <script type="text/javascript">
+        	function loginCheck() {
+        		if(tipsName()) {
+					$.post({
+						url:'LoginAction',
+						data:$("#form").serialize(),
+						success:function(result){
+							if("fail"==result){
+								$("#errorMessage").html("用户名或密码错误，请重新输入！");
+							}else if("success"==result){
+								window.location.href="index.jsp";
+							}
+						}
+					})
+        		}
+			}
+        </script>
     </head>
     <body class="index" onkeypress="clickBtn(event)">
         <div class="login_box">
         <form action="LoginAction" method="post" id ="form" name= "login" onsubmit="return tipsName()">
             <table>
+            	<tr>
+            		<td colspan="3" class="login_info" id="errorMessage"><font color="red">${errorMessage }</font></td>
+            	</tr>
                 <tr>
                     <td class="login_info">账号：</td>
-                    <td colspan="2"><input name="adminAccount" id="adminAccount" type="text" class="width150" /></td>
+                    <td colspan="2"><input name="adminAccount" id="adminAccount" type="text" class="width150" value="${adminAccount}"/></td>
                     <td class="login_error_info"><span class="required" id = "iname"></span></td>
                 </tr>
                 <tr>
                     <td class="login_info">密码：</td>
-                    <td colspan="2"><input name="password" type="password" class="width150" id="password"/></td>
+                    <td colspan="2"><input name="password" type="password" class="width150" id="password" value="${password}"/></td>
                     <td><span class="required" id = "ipswd"></span></td>
                 </tr>
               

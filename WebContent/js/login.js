@@ -17,11 +17,11 @@ function tipsName()
 				tipB.innerHTML = "";
 				return true;
 			}
-function loginCheck () {
+/*function loginCheck () {
 	if(tipsName()) {
 		document.getElementById("form").submit();
 	}
-}
+}*/
 
 function clickBtn(event) {
 	if (event.keyCode==13) {
