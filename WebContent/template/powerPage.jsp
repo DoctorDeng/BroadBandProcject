@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- 	<c:set var="admin" value="${not empty sessionScope.admin}" />
-  	<c:if test="${not admin}">
-  		<script type="text/javascript">
-  			window.location.href="<%=request.getContextPath()%>/login.jsp";
-  		</script>
-  	</c:if>
     <c:set var="hasPower">false</c:set>
     <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
