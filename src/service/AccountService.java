@@ -101,9 +101,13 @@ public class AccountService {
 		}
 		return la;
 	}
-	
-	public boolean addBussinessAccount(AccountViewBean a){
-		boolean b = true;
+	/**
+	 * 添加账务账号，成功返回1，身份证号码已注册返回0，其他错误返回-1
+	 * @param a
+	 * @return
+	 */
+	public int addBussinessAccount(AccountViewBean a){
+		int  b = -1;
 		Customer c = new Customer();
 		c.setCreateTime(a.getCreateTime());
 		c.setCustomerAccount(a.getLoginAccount());
@@ -114,19 +118,30 @@ public class AccountService {
 		c.setPassword(a.getPassword());
 		c.setPhone(a.getPhone());
 		c.setStatus(a.getStatus());
+		Map map = new HashMap();
+		map.put("startPage", 0);
+		map.put("pageSize", 1);
+		map.put("idNumber", a.getIdNumber());
+		List<Customer> lc;
+		boolean bo;
 		SqlSession ss = null;
 		try {
 			ss = SqlSessionUtil.getSqlSession();
 			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			lc = cm.selectCustomerByCondition(map);
+			if(!lc.isEmpty()) {
+				return 0;
+			}
 			cm.insertCustomer(c);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return -1;
 		} finally{
 			ss.commit();
 			ss.close();
 		}
-		return b;
+		return 1;
 	}
 	
 	public boolean updateBussinessAccount(AccountViewBean a){

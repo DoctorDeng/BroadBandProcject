@@ -23,6 +23,7 @@
   		</c:if>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath()%>/styles/global_color.css" />
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
         <script src="<%=request.getContextPath()%>/js/addAccount.js"></script>
         <script language="javascript" type="text/javascript">
             //保存成功的提示信息
@@ -52,7 +53,20 @@
             }
             function sub(){
             	if(checkAccount()){
-            		document.getElementById("form").submit();
+            		//document.getElementById("form").submit();
+            		$.post({
+            			url : 		"${pageContext.request.contextPath }/BussinessAccountAddAction",
+            			data: 		$("#form").serialize(),
+            			success:	function(result){
+            				if(result==1){
+            					alert("添加账号成功！");
+            				}else if (result==0) {
+            					$("#idNumberMsg").html("对不起，您输入的身份证号码已经拥有一个账务账号了。");
+            				}else if (result==-1){
+            					alert("添加账务账号失败！")
+            				}
+            			}	
+            		});
             	}
             }
             function showMenu(){

@@ -45,8 +45,10 @@ public class BussinessAccountAddAction extends HttpServlet {
 		b.setLoginAccount(request.getParameter("loginAccount"));
 		b.setStatus("1");
 		b.setLastLoginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
-		new AccountService().addBussinessAccount(b);
-		response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction");
+		int result = new AccountService().addBussinessAccount(b);
+		System.out.println(result);
+		response.getWriter().println(result);
+		//response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction");
 	}
 
 	/**

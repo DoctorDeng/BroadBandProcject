@@ -60,7 +60,7 @@
 		select * from customer
 		<where>
 			<if test="idNumber!=null and idNumber!='' and idNumber!='不验证'">
-				and idNumber like '%' #{idNumber} '%'
+				and idNumber=#{idNumber} 
 			</if>
 			<if test="customerName!=null and customerName!='' and customerName!='不验证'">
 				and customerName like concat(concat('%',#{customerName}),'%')

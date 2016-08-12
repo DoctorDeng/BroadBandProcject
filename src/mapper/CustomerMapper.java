@@ -21,7 +21,7 @@ public interface CustomerMapper {
 	/**
 	 * 添加记录
 	 */
-	public void insertCustomer(Customer customer);
+	public boolean insertCustomer(Customer customer);
 	
 	/**
 	 * 删除记录
