@@ -1,4 +1,19 @@
 function checkInput() {
+	/*var adminName=document.getElementsById("adminName");
+	var adminError=document.getElementsById("adminError");
+	var adminAccount=document.getElementsById("adminAccount");
+	var accountError=document.getElementsById("accountError");
+	var pwd=document.getElementsById("pwd");
+	var pwdError=document.getElementsById("pwdError");
+	var rePwd=document.getElementsById("rePwd");
+	var rePwdError=document.getElementsById("rePwdError");
+	var phone=document.getElementsById("phone");
+	var phoneError=document.getElementsById("phoneError");
+	var idNumber=document.getElementsById("idNumber");
+	var idnumberError=document.getElementsById("idnumberError");
+	var emial=document.getElementsById("emial");
+	var emailError=document.getElementsById("emailError");*/
+	
     if ($("#adminName").val() == "") {
         $("#adminNameError").val("姓名不能为空！");
         return false;
@@ -34,12 +49,12 @@ function showResult() {
         showResultDiv(true);
         window.setTimeout("showResultDiv(false)", 1000);
     } else {
-         layer.open({
-                type : 0,
-                area : [ '400px', '150px' ],
-                skin : 'layui-layer-molv',
-                content : '<p></p><h2 style="color:red">对不起,您输入的信息不合要求</h2><p></p>'
-            });
+    	layer.open({
+            type : 0,
+            area : [ '400px', '150px' ],
+            skin : 'layui-layer-molv',
+            content : '<p></p><h2 style="color:red">对不起,您输入的信息不合要求</h2><p></p>'
+        });
     }
 }
 function submitForm() {
@@ -62,6 +77,15 @@ function checked(power) {
 	        	chks[i].checked = true;
 	        }
 	    }
+}
+
+function del(){
+    
+    if(window.confirm("确实要删除吗？")){
+        window.location.href = "<%=request.getContextPath() %>/DelAdminAction&adminId=<c:out value='${adminInfor.adminId}' />;" //提交的url
+    }else{
+        return;
+    }
 }
 /**
  * 让模块对应的菜单样式为选中

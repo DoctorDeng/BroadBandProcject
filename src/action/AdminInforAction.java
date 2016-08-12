@@ -39,29 +39,22 @@ public class AdminInforAction extends HttpServlet {
 			return;
 		}
 		Admin adminInfo = (Admin)request.getSession().getAttribute("admin");
-		//判断adminInfo是否为空
-		if (null == adminInfo) {
-			response.sendRedirect(request.getContextPath()+"/login.jsp");
-			return;
-		}
-			//Admin adminInfo  = (Admin)objAdmin;
 			
-			String adminName = request.getParameter("adminName");
-			String email     = request.getParameter("email");
-			String phone     = request.getParameter("phone");
-			adminInfo.setAdminName(adminName);
-			adminInfo.setEmail(email);
-			adminInfo.setPhone(phone);
-			//System.out.println(adminInfo);
+		String adminName = request.getParameter("adminName");
+		String email     = request.getParameter("email");
+		String phone     = request.getParameter("phone");
+		adminInfo.setAdminName(adminName);
+		adminInfo.setEmail(email);
+		adminInfo.setPhone(phone);
 			
-			//刷新封装adminInfo的session
-			if (adminService.updateInfor(adminInfo)) {
-				request.getSession().setAttribute("admin", adminInfo);
-				request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("/error.jsp").forward(request, response);
-			}
+		//刷新封装adminInfo的session
+		if (adminService.updateInfor(adminInfo)) {
+			request.getSession().setAttribute("admin", adminInfo);
+			request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
+	}
 		
 
 	/**

@@ -62,14 +62,8 @@ public class ShowAdminAction extends HttpServlet{
 			List<Admin> admins = adminService.getAdminByCondition(adminName,power);
 			if (admins.size() == 0) {
 				out.println("<tr>");
-				out.println("<td><input type=\"checkbox\" name=\"choose\" /></td>");
-				out.println("<td>没有搜索到!</td>");
-				out.println("<td>没有搜索到!</td>");
-				out.println("<td>没有搜索到!</td>");
-				out.println("<td>没有搜索到!</td>");
-				out.println("<td>没有搜索到!</td>");
-				out.println("<td>没有搜索到!</td>");
-				out.println("<td>没有搜索到!</td>");
+				//out.println("<td><input type=\"checkbox\" name=\"choose\" /></td>");
+				//out.println("<td colspan="0">没有搜索到!</td>");
 				out.print("</tr>");
 			}
 			for(Admin admin :admins) {
