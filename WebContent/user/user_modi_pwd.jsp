@@ -12,7 +12,43 @@
 		    * 校验用户输入
 		    */
 			function check(){
-				var oldPassword = document.getElementById("oldPassword").value;
+		    	var nowPassword=${admin.password};
+				var regOldPassword=/^[A-Za-z0-9_]{3,10}$/;
+				var regNewPassword=/^[A-Za-z0-9_]{3,10}$/;
+		    	if($("#oldPassword").val()==""){
+		    		$("#msg").html("请输入旧密码！");
+		    		return false;
+		    	}
+		    	if(regOldPassword.test($("#oldPassword").val())==false){
+		    		$("#msg").html("密码格式不正确，请重新输入！");
+		    		return false;
+		    	}
+		    	if($("#oldPassword").val()!=nowPassword){
+		    		$("#msg").html("旧密码输入错误！");
+		    	}
+		    	
+		    	if($("#newPassword").val()==""){
+		    		$("#newMsg").html("请输入新密码！");
+		    		return false;
+		    	}
+		    	if(regNewPassword.test($("#newPassword").val())==false){
+		    		$("#newMsg").html("新密码格式不正确，请重新输入！");
+		    		return false;
+		    	}
+		    	
+		    	if($("#reNewMsg").val()==""){
+		    		$("#reNewMsg").html("请再次输入新密码！");
+		    		return false;
+		    	}
+		    	if(regNewPassword.test($("#reNewMsg").val())==false){
+		    		$("#reNewMsg").html("新密码格式不正确，请重新输入！");
+		    		return false;
+		    	}
+		    	if($("#newPassword").val()!=$("#reNewMsg").val()){
+		    		$("#reNewMsg").html("两次密码不一致，请重新输入！");
+		    		return false;
+		    	}
+				/* var oldPassword = document.getElementById("oldPassword").value;
 				var msg         = document.getElementById("msg");
 				var newPassword = document.getElementById("newPassword").value;
 				var newMsg      = document.getElementById("newMsg");
@@ -63,7 +99,7 @@
 					reNewMsg.innerHTML="两次密码不一致，请重新输入！";
 					return false;
 				}
-				reNewMsg.innerHTML="两次新密码必须相同";
+				reNewMsg.innerHTML="两次新密码必须相同"; */
 			}
 			
 			function reset() {
