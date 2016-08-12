@@ -5,7 +5,7 @@
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
+        <title>个人信息修改</title>
         <c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
@@ -75,20 +75,19 @@
 			}
 
         </script>
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#informationMenu").attr("class","information_on");
+   		});
+   		</script>
     </head>
     <body>
-        <!--Logo区域开始-->
-        <div id="header">
-            <img src="<%=request.getContextPath() %>/images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
-        </div>
-        <!--Logo区域结束-->
-        <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-               <%@include file= "../template/power.jsp" %>
-            </ul>            
-        </div>
+        <%@include file="../template/head.jsp" %>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">            

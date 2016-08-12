@@ -20,3 +20,10 @@ function orderByTab() {
     $("#defaultTab").attr("class","tab_out");
     $("#orderTab").attr("class","tab_on");
 }
+/**
+ * 让模块对应的菜单样式为选中
+ * @returns
+ */
+$(function(){
+	$("#reportMenu").attr("class","report_on");
+});

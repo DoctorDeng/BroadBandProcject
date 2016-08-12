@@ -78,3 +78,10 @@ function showResultDiv(flag) {
   		submitForm(); 
    }
 }
+/**
+ * 让模块对应的菜单样式为选中
+ * @returns
+ */
+$(function(){
+	$("#adminMenu").attr("class","admin_on");
+});

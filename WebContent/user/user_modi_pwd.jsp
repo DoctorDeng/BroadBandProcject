@@ -4,7 +4,7 @@
 <html>
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
+        <title>修改密码</title>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />        
 		<script type="text/javascript">
@@ -76,6 +76,16 @@
 				document.getElementById("reNewMsg").innerHTML="两次新密码必须相同";
 			}
 		</script>
+		<script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#passwordMenu").attr("class","password_on");
+   		});
+   		</script>
 </head>
     <body>
        <%@include file="../template/head.jsp" %>
