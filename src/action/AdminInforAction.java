@@ -33,23 +33,28 @@ public class AdminInforAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			Admin adminInfo = (Admin)request.getSession().getAttribute("admin");
-			
-			String adminName = request.getParameter("adminName");
-			String email     = request.getParameter("email");
-			String phone     = request.getParameter("phone");
-			adminInfo.setAdminName(adminName);
-			adminInfo.setEmail(email);
-			adminInfo.setPhone(phone);
-			
-			//刷新封装adminInfo的session
-			if (adminService.updateInfor(adminInfo)) {
-				request.getSession().setAttribute("admin", adminInfo);
-				request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("/error.jsp").forward(request, response);
-			}
+		Object obj = request.getSession().getAttribute("admin");
+		if (null == obj) {
+			request.getRequestDispatcher("/nopwer.jsp").forward(request, response);
+			return;
 		}
+		Admin adminInfo = (Admin)request.getSession().getAttribute("admin");
+			
+		String adminName = request.getParameter("adminName");
+		String email     = request.getParameter("email");
+		String phone     = request.getParameter("phone");
+		adminInfo.setAdminName(adminName);
+		adminInfo.setEmail(email);
+		adminInfo.setPhone(phone);
+			
+		//刷新封装adminInfo的session
+		if (adminService.updateInfor(adminInfo)) {
+			request.getSession().setAttribute("admin", adminInfo);
+			request.getRequestDispatcher("/user/user_info.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
+		}
+	}
 		
 
 	/**

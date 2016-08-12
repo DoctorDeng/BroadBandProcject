@@ -32,11 +32,11 @@ public class PowerFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		Object obj = ((HttpServletRequest)request).getSession().getAttribute("admin");
+		/*Object obj = ((HttpServletRequest)request).getSession().getAttribute("admin");
 		if (null == obj) {
 			request.getRequestDispatcher("/nopwer.jsp").forward(request, response);
 			return;
-		}
+		}*/
 		chain.doFilter(request, response);
 	}
 

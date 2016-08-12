@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- Logo区域 -->
 <div id="header">
+	<span style="font-size:15px">${sessionScope.admin.adminAccount}</span>
 	<img src="<%=request.getContextPath()%>/images/logo.png" alt="logo" class="left"/>
 	<a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>            
 </div>
