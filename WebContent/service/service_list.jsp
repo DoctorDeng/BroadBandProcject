@@ -27,7 +27,17 @@
   		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
-        <script type="text/javascript" src="../js/jquery.js"></script> 
+        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#serviceMenu").attr("class","service_on");
+   		});
+   		</script> 
         <script language="javascript" type="text/javascript">
             //显示角色详细信息
            /*  $(function(){
