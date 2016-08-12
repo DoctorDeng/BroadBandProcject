@@ -103,11 +103,6 @@
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
-        <div id="navi">
-            <ul id="menu">
-                <%@include file= "../template/power.jsp" %>
-            </ul>
-        </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
