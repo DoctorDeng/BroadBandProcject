@@ -17,7 +17,8 @@
 						data:$("#form").serialize(),
 						success:function(result){
 							if("fail"==result){
-								$("#errorMessage").html("用户名或密码错误，请重新输入！");
+								//$("#errorMessage").css(color,"red");
+								$("#errorMessage").html("用户名或密码错误，请重新输入！").css("color","red");
 							}else if("success"==result){
 								window.location.href="index.jsp";
 							}
