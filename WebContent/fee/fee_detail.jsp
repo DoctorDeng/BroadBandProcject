@@ -61,27 +61,27 @@
                 <div class="input_info fee_type">
                 <c:choose>
                    <c:when test="${sessionScope.tariff.tariffType=='1' }">
-                      <input type="radio" name="radFeeType" id="monthly" checked="checked" />
+                      <input type="radio" name="radFeeType" id="monthly" checked="checked" disabled="disabled" />
                       <label for="monthly" >包月</label>
-                      <input type="radio" name="radFeeType" id="package" />
+                      <input type="radio" name="radFeeType" id="package" disabled="disabled" />
                       <label for="package">套餐</label>
-                      <input type="radio" name="radFeeType" id="timeBased" />
+                      <input type="radio" name="radFeeType" id="timeBased" disabled="disabled" />
                       <label for="timeBased">计时</label>
                    </c:when>
                    <c:when test="${sessionScope.tariff.tariffType=='2' }">
-                      <input type="radio" name="radFeeType" id="monthly" />
+                      <input type="radio" name="radFeeType" id="monthly" disabled="disabled"/>
                       <label for="monthly" >包月</label>
-                      <input type="radio" name="radFeeType" id="package" checked="checked" />
+                      <input type="radio" name="radFeeType" id="package" checked="checked" disabled="disabled" />
                       <label for="package">套餐</label>
-                      <input type="radio" name="radFeeType" id="timeBased" />
+                      <input type="radio" name="radFeeType" id="timeBased" disabled="disabled"/>
                       <label for="timeBased">计时</label>
                    </c:when>
                    <c:when test="${sessionScope.tariff.tariffType=='3' }">
-                      <input type="radio" name="radFeeType" id="monthly" />
+                      <input type="radio" name="radFeeType" id="monthly" disabled="disabled" />
                       <label for="monthly" >包月</label>
-                      <input type="radio" name="radFeeType" id="package" />
+                      <input type="radio" name="radFeeType" id="package" disabled="disabled" />
                       <label for="package">套餐</label>
-                      <input type="radio" name="radFeeType" id="timeBased" checked="checked" />
+                      <input type="radio" name="radFeeType" id="timeBased" checked="checked" disabled="disabled" />
                       <label for="timeBased">计时</label>
                    </c:when>
                 </c:choose>
