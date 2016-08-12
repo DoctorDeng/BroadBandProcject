@@ -38,7 +38,6 @@ public class ServiceAccountAction extends HttpServlet {
 		int bussinessId = Integer.parseInt(request.getParameter("id"));
 		OsDto osDto = new OsDto();
 		osDto.setBussinessId(bussinessId);
-		System.out.println(bussinessId);
 		ProfessionService pro = new ProfessionService();
 		boolean b = pro.upStutasWithOsAccount(osDto);
 		if(b){
