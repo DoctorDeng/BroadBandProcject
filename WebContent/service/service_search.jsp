@@ -27,7 +27,17 @@
   		%>
   		</c:if> 
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#serviceMenu").attr("class","service_on");
+   		});
+   		</script>  
         <script language="javascript" type="text/javascript">
         function deleteAccount() {
             var r = window.confirm("确定要删除此业务账号吗？\r\n删除后此业务账号将不能进行开通暂停功能");
