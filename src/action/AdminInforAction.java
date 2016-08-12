@@ -33,18 +33,7 @@ public class AdminInforAction extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Object obj = request.getSession().getAttribute("admin");
-		if (null == obj) {
-			request.getRequestDispatcher("/nopwer.jsp").forward(request, response);
-			return;
-		}
-		Admin adminInfo = (Admin)request.getSession().getAttribute("admin");
-		//判断adminInfo是否为空
-		if (null == adminInfo) {
-			response.sendRedirect(request.getContextPath()+"/login.jsp");
-			return;
-		}
-			//Admin adminInfo  = (Admin)objAdmin;
+			Admin adminInfo = (Admin)request.getSession().getAttribute("admin");
 			
 			String adminName = request.getParameter("adminName");
 			String email     = request.getParameter("email");
@@ -52,7 +41,6 @@ public class AdminInforAction extends HttpServlet {
 			adminInfo.setAdminName(adminName);
 			adminInfo.setEmail(email);
 			adminInfo.setPhone(phone);
-			//System.out.println(adminInfo);
 			
 			//刷新封装adminInfo的session
 			if (adminService.updateInfor(adminInfo)) {
