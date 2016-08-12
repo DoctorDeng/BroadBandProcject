@@ -32,33 +32,40 @@
             %>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
-        <script type="text/javascript" src="../js/jquery.js"></script>
+        <script type="text/javascript" src="../js/jquery.js">
+        </script>
        	<script language="javascript" type="text/javascript">
-            $(function(){
-            	$("#showId").click(function(){
-            		var id = $("#idNumber").val();
-            		if(""==id){	
-            		}else{
-            			$.ajax({
-            				url:'../ServiceShowAction',
-            				data:{"id": id},
-            				success:function(result){
-            					$("#adminId").val(result)
-            				},
-            				error:function(){
-            					no.innerHTML = "没有此账务账号，请重新录入！"
-            				}
-            			})
-            		}
-            	})
-            });
+        $(function(){
+	     	   $("#showId").click(function(){
+	     		   var id = $("#idNumber").val();
+	        	   var regAge = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+	        	   if(regAge.test(id)==false){
+					   sd.innerHTML="你输入的身份身份证错误！";
+					   return false
+				   }        	   
+				   sd.innerHTML="";		
+           		   $.ajax({  
+           			 url:'../ServiceShowAction',
+           			 data:{"id": id},
+           		     success:function(result){
+           			 	$("#adminId").val(result)
+           			 },
+           			 error:function(){
+           					no.innerHTML = "没有此账务账号，请重新录入！"
+           				}
+           			})
+           			return true;	
+	     	   })
+	        });  
             $(function(){
             	$("#returnList").click(function(){
             		window.location.href="${pageContext.request.getContextPath()}/ServiceListAction";
             	})
             });
+            
+            
             function endA() {
-				var serverIp = document.getElementById("serverIp").value;
+            	var serverIp = document.getElementById("serverIp").value;
 				var ser = document.getElementById("ser");
 				var regAge = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
 				if (regAge.test(serverIp) == false) {
@@ -102,10 +109,6 @@
     <body>
     	<%@include file="../template/head.jsp" %>
         <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
-        </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <!--导航区域结束-->
@@ -120,7 +123,7 @@
                     <input type="text" id="idNumber" class="width180"/>
                     <input type="button" id="showId" value="查询账务账号" class="btn_search_large" />
                     <span class="required">*</span>
-                    <div class="validate_msg_short">没有此身份证号，请重新录入。</div>
+                    <div class="validate_msg_short" id="sd"></div>
                 </div>
                 <div class="text_info clearfix"><span>账务账号：</span></div>
                 <input type="hidden" id="customerId"/>
