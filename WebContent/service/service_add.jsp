@@ -95,6 +95,7 @@
         </script>
     </head>
     <body>
+    	<%@include file="../template/head.jsp" %>
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>

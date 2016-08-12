@@ -69,18 +69,10 @@
         </script>
     </head>
     <body>
+    	<%@include file="../template/head.jsp" %>
         <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="href="<%=request.getContextPath() %>/login.jsp">[退出]</a>            
-        </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
-        <div id="navi">                        
-            <ul id="menu">
-                <%@include file= "/template/power.jsp" %>
-            </ul>            
-        </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">

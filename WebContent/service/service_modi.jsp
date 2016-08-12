@@ -45,22 +45,14 @@
     </head>
     <body>
         <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
-        </div>
+        <%@include file="../template/head.jsp" %>
         <!--Logo区域结束-->
         <!--导航区域开始-->
-        <div id="navi">
-            <ul id="menu">
-               <%@include file= "../template/power.jsp" %>
-            </ul>
             <%
 	            TariffService tm = new TariffService();
             	List<Tariff> tv = tm.selectByOpenStatus();
 	            request.getSession().setAttribute("tariffs",tv );
             %>
-        </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
