@@ -45,20 +45,46 @@
                 <div class="input_info"><input type="text" class="readonly" readonly value=${sessionScope.tariff.tariffName } /></div>
                 <div class="text_info clearfix"><span>资费状态：</span></div>
                 <div class="input_info">
-                    <select class="readonly" >
-                        <option value="1">开通</option>
-                        <option value="2">暂停</option>
-                        <option value="3">删除</option>
+                    <select class="readonly" disabled="disabled" >
+                        <c:if test="${sessionScope.tariff.status=='1' }">
+                           <option selected>开通</option>
+                        </c:if>
+                        <c:if test="${sessionScope.tariff.status=='0' }">
+                           <option selected>暂停</option>
+                        </c:if>
+                        <c:if test="${sessionScope.tariff.status=='2' }">
+                           <option selected>删除</option>
+                        </c:if>
                     </select>                        
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
-                    <input type="radio" name="radFeeType" id="monthly" />
-                    <label for="monthly">包月</label>
-                    <input type="radio" name="radFeeType" id="package" />
-                    <label for="package">套餐</label>
-                    <input type="radio" name="radFeeType" checked="checked" id="timeBased" />
-                    <label for="timeBased">计时</label>
+                <c:choose>
+                   <c:when test="${sessionScope.tariff.tariffType=='1' }">
+                      <input type="radio" name="radFeeType" id="monthly" checked="checked" />
+                      <label for="monthly" >包月</label>
+                      <input type="radio" name="radFeeType" id="package" />
+                      <label for="package">套餐</label>
+                      <input type="radio" name="radFeeType" id="timeBased" />
+                      <label for="timeBased">计时</label>
+                   </c:when>
+                   <c:when test="${sessionScope.tariff.tariffType=='2' }">
+                      <input type="radio" name="radFeeType" id="monthly" />
+                      <label for="monthly" >包月</label>
+                      <input type="radio" name="radFeeType" id="package" checked="checked" />
+                      <label for="package">套餐</label>
+                      <input type="radio" name="radFeeType" id="timeBased" />
+                      <label for="timeBased">计时</label>
+                   </c:when>
+                   <c:when test="${sessionScope.tariff.tariffType=='3' }">
+                      <input type="radio" name="radFeeType" id="monthly" />
+                      <label for="monthly" >包月</label>
+                      <input type="radio" name="radFeeType" id="package" />
+                      <label for="package">套餐</label>
+                      <input type="radio" name="radFeeType" id="timeBased" checked="checked" />
+                      <label for="timeBased">计时</label>
+                   </c:when>
+                </c:choose>
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">

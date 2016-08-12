@@ -111,7 +111,6 @@
   					    <c:forEach items="${sessionScope.tariffPage.dataList}" var="tariff" >
   							<tr>
   								<td><c:out value="${tariff.tariffId}"/></td>
-  								<%-- <td><a href="fee_detail.jsp?id=${tariff.tariffId }&tariffName=${tariff.tariffName }&status=${tariff.status }&tariffType=${tariff.tariffType }&timeLong=${tariff.timeLong }&tariff=${tariff.tariff }&timeTariff=${tariff.timeTariff }&createTime=${tariff.createTime }&openTime=${tariff.openTime }&tariffExplain=${tariff.tariffExplain }">${tariff.tariffName }</a></td> --%>
   								<td><a href="<%=request.getContextPath()%>/TariffByNameAction?id=${tariff.tariffId }">${tariff.tariffName }</a></td>
   								<td><c:out value="${tariff.timeLong}"/></td>
   								<td><c:out value="${tariff.tariff}"/></td>
