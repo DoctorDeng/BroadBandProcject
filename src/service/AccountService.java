@@ -199,4 +199,30 @@ public class AccountService {
 		return countPage;
 	}
 	
+	public AccountViewBean getDetail(int bussinessId) {
+		AccountViewBean a = new AccountViewBean();
+		SqlSession ss = null;
+		try {
+			ss = SqlSessionUtil.getSqlSession();
+			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
+			Customer c =  cm.selectCustomerById(bussinessId);			
+			a.setBussinessId(c.getCustomerId());
+			a.setBussinessName(c.getCustomerName());
+			a.setCreateTime(c.getCreateTime());
+			a.setIdNumber(c.getIdNumber());
+			a.setLastLoginTime(c.getLastLoginTime());
+			a.setLoginAccount(c.getCustomerAccount());
+			a.setPassword(c.getPassword());
+			a.setPhone(c.getPhone());
+			a.setStatus(c.getStatus());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			ss.commit();
+			ss.close();
+		}
+		return a;
+	}
+	
 }

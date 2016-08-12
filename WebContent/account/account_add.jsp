@@ -55,9 +55,13 @@
             		document.getElementById("form").submit();
             	}
             }
+            function showMenu(){
+            	$("li a:eq(0)").attr("class","index_off");
+            	$("li a:eq(3)").attr("class","account_on");
+            }
         </script>
     </head>
-    <body>
+    <body onload="showMenu()">
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>

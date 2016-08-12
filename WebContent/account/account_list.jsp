@@ -96,9 +96,13 @@
                  var r = window.location.search.substr(1).match(reg);
                  if(r!=null)return  unescape(r[2]); return null;
             }
+            function showMenu(){
+            	$("li a:eq(0)").attr("class","index_off");
+            	$("li a:eq(3)").attr("class","account_on");
+            }
         </script>
     </head>
-    <body>
+    <body onload="showMenu()">
         <%@include file="../template/head.jsp" %>
         <div id="main">
             <form action="<%=request.getContextPath()%>/BussinessAccountSearchAction" method="post" id="form">

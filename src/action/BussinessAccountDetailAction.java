@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import bean.Customer;
 import bean.vo.AccountViewBean;
 import mapper.CustomerMapper;
+import service.AccountService;
 import util.SqlSessionUtil;
 
 /**
@@ -43,27 +44,7 @@ public class BussinessAccountDetailAction extends HttpServlet {
 			bussinessId = Integer.parseInt(strId);
 		}		
 		AccountViewBean a = new AccountViewBean();
-		SqlSession ss = null;
-		try {
-			ss = SqlSessionUtil.getSqlSession();
-			CustomerMapper cm = ss.getMapper(CustomerMapper.class);						
-			Customer c =  cm.selectCustomerById(bussinessId);			
-			a.setBussinessId(c.getCustomerId());
-			a.setBussinessName(c.getCustomerName());
-			a.setCreateTime(c.getCreateTime());
-			a.setIdNumber(c.getIdNumber());
-			a.setLastLoginTime(c.getLastLoginTime());
-			a.setLoginAccount(c.getCustomerAccount());
-			a.setPassword(c.getPassword());
-			a.setPhone(c.getPhone());
-			a.setStatus(c.getStatus());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally{
-			ss.commit();
-			ss.close();
-		}
+		a = new AccountService().getDetail(bussinessId);
 		HttpSession session = request.getSession();
 		session.setAttribute("acc", a);
 		response.sendRedirect(request.getContextPath()+"/account/account_detail.jsp");

@@ -55,12 +55,17 @@
             	//}
             }
             function getBirth(){
+            	showMenu();
         		var idCard18 = $("#idNumber").val();
         		var year =  idCard18.substring(6,10);   
         	    var month = idCard18.substring(10,12);   
         	    var day = idCard18.substring(12,14); 
         	    $("#birth").val(year+"年"+month+"月"+day+"日");
         	}
+            function showMenu(){
+            	$("li a:eq(0)").attr("class","index_off");
+            	$("li a:eq(3)").attr("class","account_on");
+            }
         </script>
     </head>
     <body onload="getBirth()">
