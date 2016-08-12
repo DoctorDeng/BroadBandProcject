@@ -52,6 +52,11 @@
             		}
             	})
             });
+            $(function(){
+            	$("#returnList").click(function(){
+            		window.location.href="${pageContext.request.getContextPath()}/ServiceListAction";
+            	})
+            });
             function endA() {
 				var serverIp = document.getElementById("serverIp").value;
 				var ser = document.getElementById("ser");
@@ -160,7 +165,7 @@
                 <!--操作按钮-->
                 <div class="button_info clearfix">
                     <input type="submit" value="保存" class="btn_save"  />
-                    <input type="button" value="取消" class="btn_save" />
+                    <input type="button" value="取消" class="btn_save"  id="returnList"/>
                 </div>
             </form>
         </div>
