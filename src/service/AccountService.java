@@ -70,7 +70,7 @@ public class AccountService {
 		page.put("customerName", a.getBussinessName());
 		page.put("customerAccount", a.getLoginAccount());
 		page.put("status", a.getStatus());
-		//System.out.println(page.get("customerName"));
+//		System.out.println(a.getLoginAccount());
 		List<AccountViewBean> la = new ArrayList<AccountViewBean>();
 		SqlSession ss = null;
 		try {

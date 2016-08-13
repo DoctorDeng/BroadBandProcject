@@ -66,7 +66,7 @@
             function search() {
             	var idNumber = $("#idNumber").val();
             	var name = $("#name").val();
-            	var loginAccount = $("loginAccount").val();
+            	var loginAccount = $("#loginAccount").val();
             	var sstatus = $("#status  option:selected").val();
 				$.post("<%=request.getContextPath()%>/BussinessAccountSearchAction", {
 					'idNumber' 		:idNumber,
@@ -184,10 +184,18 @@
                     <a href="#" onclick="toPage(1)">首页</a>
         	        <a href="#" onclick="toPage(${param.currentPage-1})">上一页</a>
         	    </c:if>
-                    <a href="#" class="current_page">第${param.currentPage }页 /共${param.countPage }页</a>
+                <c:if test="${param.currentPage<=1 }">
+                    <div style="width: 44px;display: inline;">首页</div>
+        	        <div style="width: 56px;display: inline;">上一页</div>
+        	    </c:if>
+                    <a class="current_page">第${param.currentPage }页 /共${param.countPage }页</a>
                 <c:if test="${param.currentPage<param.countPage}">
                     <a href="#" onclick="toPage(${param.currentPage+1})">下一页</a>
                     <a href="#" onclick="toPage(${param.countPage})">末页</a>
+        	    </c:if>
+                <c:if test="${param.currentPage>=param.countPage}">
+                    <p style="width: 44px;display: inline;">下一页</p>
+                    <p style="width: 56px;display: inline;">末页</p>
         	    </c:if>
                 </div>
             </form>
