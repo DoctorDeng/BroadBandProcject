@@ -84,10 +84,10 @@
                AND o.osAccount like concat(concat('%',#{osAccount}),'%')
               </if>
               <if test='serverIp!="#"'>
-               AND o.serverIp like concat(concat('%',#{serverIp}),'%')
+               AND o.serverIp=#{serverIp}
               </if>
               <if test='idNumber!="#"'>
-               AND c.idNumber like concat(concat('%',#{idNumber}),'%')
+               AND c.idNumber=#{idNumber}
               </if>
               <if test='status!="-1"'>
                AND o.`status`=#{status}
@@ -178,10 +178,10 @@
                AND o.osAccount like concat(concat('%',#{osAccount}),'%')
               </if>
               <if test='serverIp!="#"'>
-               AND o.serverIp like concat(concat('%',#{serverIp}),'%')
+               AND o.serverIp=#{serverIp}
               </if>
               <if test='idNumber!="#"'>
-               AND c.idNumber like concat(concat('%',#{idNumber}),'%')
+               AND c.idNumber=#{idNumber}
               </if>
               <if test='status!="-1"'>
                AND o.`status`=#{status}
