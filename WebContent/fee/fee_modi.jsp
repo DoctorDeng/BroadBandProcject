@@ -40,12 +40,32 @@
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>
                 <div class="input_info fee_type">
+                   <c:choose>
+                   <c:when test="${sessionScope.tariff.tariffType=='1' }">
+                    <input type="radio" name="tariffType" value="1" checked="checked" id="monthly" dis onclick="feeTypeChange(1)" />
+                    <label for="monthly">包月</label>
+                    <input type="radio" name="tariffType" value="2" id="package" onclick="feeTypeChange(2)" />
+                    <label for="package">套餐</label>
+                    <input type="radio" name="tariffType" value="3" id="timeBased" onclick="feeTypeChange(3)" />
+                    <label for="timeBased">计时</label>
+                   </c:when>
+                   <c:when test="${sessionScope.tariff.tariffType=='2' }">
                     <input type="radio" name="tariffType" value="1" id="monthly" onclick="feeTypeChange(1)" />
                     <label for="monthly">包月</label>
                     <input type="radio" name="tariffType" value="2" checked="checked" id="package" onclick="feeTypeChange(2)" />
                     <label for="package">套餐</label>
                     <input type="radio" name="tariffType" value="3" id="timeBased" onclick="feeTypeChange(3)" />
                     <label for="timeBased">计时</label>
+                   </c:when>
+                   <c:when test="${sessionScope.tariff.tariffType=='3' }">
+                    <input type="radio" name="tariffType" value="1" id="monthly" onclick="feeTypeChange(1)" />
+                    <label for="monthly">包月</label>
+                    <input type="radio" name="tariffType" value="2" id="package" onclick="feeTypeChange(2)" />
+                    <label for="package">套餐</label>
+                    <input type="radio" name="tariffType" value="3" checked="checked" id="timeBased" onclick="feeTypeChange(3)" />
+                    <label for="timeBased">计时</label>
+                   </c:when>
+                </c:choose>
                 </div>
                 <div class="text_info clearfix"><span>基本时长：</span></div>
                 <div class="input_info">

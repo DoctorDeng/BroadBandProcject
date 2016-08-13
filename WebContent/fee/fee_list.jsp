@@ -159,6 +159,7 @@
 	                	 <c:if test="${not empty sessionScope.tariffPage}">
                 			<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.indexPage}" >首页</a>
         	        		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.upPage}" >上一页</a>
+                            <a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.currentPage}" >第${sessionScope.tariffPage.currentPage}页/共${sessionScope.tariffPage.pageNum}页</a>
                         	<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.nextPage}">下一页</a>
                     		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.endPage}" >末页</a>
                 		</c:if>
