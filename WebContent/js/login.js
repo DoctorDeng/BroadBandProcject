@@ -1,6 +1,27 @@
 function tipsName()
 			{
-				var fname = document.getElementById("adminAccount").value;
+				$(function() {
+			
+					if ($("#adminAccount").val() == ""){
+						$("#iname").html("用户名不能为空!");
+						//alert("对不起，请填写用户名！");
+						$("#adminAccount").focus();
+						return false;
+					}
+					$("#iname").html("");
+					
+					if($("#password").val()==""){
+						$("#ipswd").html("密码不能为空！");
+						$("#password").focus();
+						return false;
+					}
+					$("#ipswd").html("");
+					
+					
+				})
+				return true;
+
+				/*var fname = $("#adminAccount").value;
 				var tipA = document.getElementById("iname");
 				if(fname == ""){
 					tipA.innerHTML = "用户名不能为空!";
@@ -14,6 +35,17 @@ function tipsName()
 					tipB.innerHTML = "密码不能为空!";
 					return false;
 				}
-				tipB.innerHTML = "";
-				return true;
+				tipB.innerHTML = "";*/
+				
 			}
+/*function loginCheck () {
+	if(tipsName()) {
+		document.getElementById("form").submit();
+	}
+}*/
+
+function clickBtn(event) {
+	if (event.keyCode==13) {
+		loginCheck();
+	}
+}

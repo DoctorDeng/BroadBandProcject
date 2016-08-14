@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TariffMapper">
+   <resultMap type="Tariff" id="TariffResultMap">
+        <id property="tariffId" column="tariffId"/>
+        <result property="tariffName" column="tariffName"/>
+        <result property="timeLong" column="timeLong"/>
+        <result property="timeTariff" column="timeTariff"/>
+        <result property="tariff" column="tariff"/>
+        <result property="createTime" column="createTime"/>
+        <result property="openTime" column="openTime"/>
+        <result property="status" column="status"/>
+        <result property="tariffType" column="tariffType"/>
+        <result property="tariffExplain" column="tariffExplain"/>
+   </resultMap>
+   <select id="findAllTariff" resultMap="TariffResultMap">
+       select * from tariff
+   </select>
+   
+   <select id="selectByOpenStatus" resultMap="TariffResultMap">
+       select * from tariff where status="1"
+   </select>
+   
+   <select id="findOneTariff" parameterType="int" resultMap="TariffResultMap">
+       select * from tariff where tariffId=#{tariffId}
+   </select>
+   <select id="selectByPage" parameterType="Page" resultMap="TariffResultMap">
+       select tariffId,tariffName,timeLong,timeTariff,tariff,createTime,openTime,status,tariffType,tariffExplain 
+       from tariff LIMIT #{index},#{size}
+   </select>
+   <select id="findIdByName" resultType="Tariff">
+       select * from tariffId where tariffName=#{tariffName}
+   </select>
+   <insert id="addTariff">
+        insert into tariff(tariffName,tariff,timeLong,timeTariff,createTime,status,tariffType,tariffExplain)
+		values(#{tariffName},#{tariff},#{timeLong},#{timeTariff},now(),0,#{tariffType},#{tariffExplain})
+   </insert>
+   <delete id="delTariff" parameterType="int">
+       update tariff set status = '2' where tariffId=#{tariffId}
+   </delete>
+   <update id="updateTariff" parameterType="int">
+       update tariff
+       <set>
+         <if test="tariffName!=null and tariffName!=''">
+           tariffName=#{tariffName},
+         </if>
+         <if test="tariff!=null and tariff!=''">
+           tariff=#{tariff},
+         </if>
+         <if test="timeLong!=null and timeLong!=''">
+           timeLong=#{timeLong},
+         </if>
+         <if test="timeTariff!=null and timeTariff!=''">
+           timeTariff=#{timeTariff},
+         </if>
+         <if test="tariffType!=null and tariffType!=''">
+           tariffType=#{tariffType},
+         </if>
+         <if test="tariffExplain!=null and tariffExplain!=''">
+           tariffExplain=#{tariffExplain}
+         </if>
+       </set>
+       where tariffId=#{tariffId}
+   </update>
+   <update id="updateTariffStatus">
+       update tariff SET openTime=now(),status='1' WHERE tariffId=#{tariffId}   
+   </update>
+   <select id="selectTariffCount" resultType="int">
+	    	 SELECT count(tariffId) FROM tariff
+		</select>
+</mapper>

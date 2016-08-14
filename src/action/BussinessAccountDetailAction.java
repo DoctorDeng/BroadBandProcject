@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.viewBean.AccountViewBean;
-import dao.impl.AccountViewDaoImpl;
+import org.apache.ibatis.session.SqlSession;
+
+import bean.Customer;
+import bean.vo.AccountViewBean;
+import mapper.CustomerMapper;
+import service.AccountService;
+import util.SqlSessionUtil;
 
 /**
  * Servlet implementation class BussinessAccountDetailAction
@@ -36,10 +42,9 @@ public class BussinessAccountDetailAction extends HttpServlet {
 		int bussinessId = -1;
 		if(strId!=null&&!strId.equals("")){
 			bussinessId = Integer.parseInt(strId);
-		}
-		
-		AccountViewBean a = new AccountViewDaoImpl().getOneAccountViewBean(bussinessId);
-		System.out.println("当前状态时："+a.getStatus());
+		}		
+		AccountViewBean a = new AccountViewBean();
+		a = new AccountService().getDetail(bussinessId);
 		HttpSession session = request.getSession();
 		session.setAttribute("acc", a);
 		response.sendRedirect(request.getContextPath()+"/account/account_detail.jsp");

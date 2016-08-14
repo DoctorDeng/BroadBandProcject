@@ -1,9 +1,8 @@
 package action;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.AdminInfor;
-import bean.Page;
-import dao.impl.AdminDaoImpl;
+import bean.Admin;
+import bean.Power;
+import bean.dto.PageDto;
 import service.AccountManage;
+import service.AdminService;
 
 /**
  * Servlet implementation class ShowAdminMess
@@ -23,105 +23,109 @@ import service.AccountManage;
 @WebServlet(urlPatterns="/ShowAdminAction")
 public class ShowAdminAction extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	private AdminDaoImpl admim;
+	private AdminService adminService;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ShowAdminAction() {
         super();
-        admim = new AdminDaoImpl();
+        adminService = new AdminService();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String operation = request.getParameter("operation");
+		
 		if (null == operation | "".equals(operation)) {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 			return;
 		}
 		
-		/*Page page       = new Page();
-		int pageSize    = 8;
-  		int currentPage = 1;
-  		int indexPage   = 1;
-		int nextPage    = 1;
- 		int upPage      = 1;	 		
- 		int recordNum   = admim.findAllAdminInfor().size();
- 		int pageNum     = (int) Math.ceil(recordNum/pageSize)+1;
- 		int endPage     = pageNum;
- 		
- 		String currentPageStr = request.getParameter("currentPage");
-		if (null !=currentPageStr && !"".equals(currentPageStr)){
-			currentPage = Integer.parseInt(currentPageStr);
-		}
-				
-		if (currentPage!=1 && pageNum > 1) {
-  			upPage = currentPage - 1; 
-  		}
-  		if (currentPage<pageNum && pageNum>2) {
-  			nextPage = currentPage +1;
-  		}
-  		if (currentPage== pageNum) {
-  			nextPage = pageNum;
-  		}
-  		page.setIndexPage(indexPage);
-  		page.setEndPage(endPage);
-  		page.setNextPage(nextPage);
-  		page.setUpPage(upPage);
-  		page.setCurrentPage(currentPage);
-  		*/
-  		List<Map<String, Object>> admininforList = admim.findAllAdminInfor(); 
-  	
+  		String currentPageStr = request.getParameter("currentPage");
+  		
 		switch (operation) {
-		case "init" :		
-			session.setAttribute("admininforList", admininforList);
-			/*request.setAttribute("page", page);
-			request.setAttribute("isPage", "yes");*/
+		case "init" :	
+			PageDto<Admin> pagedto = adminService.selectFromPage(currentPageStr, 4);
+			session.setAttribute("adminPage", pagedto);
+			session.setAttribute("isPage", true);
 		    response.sendRedirect("admin/admin_list.jsp");
 		    return;
 		  
 		case "search":
-			 String adminId = request.getParameter("adminId");
-			 if(null==adminId||"".equals(adminId)){
-				 session.setAttribute("admininforList", admininforList);  
-				 response.sendRedirect("admin/admin_list.jsp");
-				 return;
-			 } 
-			 else{	 
-			   for(int i=0;i<admininforList.size(); i++) {	
-				 Map<String, Object> adminInfor = admininforList.get(i);
-				  if(adminId.equals(adminInfor.get("adminId").toString().trim())){
-				    List<Map<String, Object>> inforList =new ArrayList<>();
-				    inforList.add(adminInfor);
-				    session.setAttribute("admininforList", "");
-				    session.setAttribute("admininforList", inforList);
-				    response.sendRedirect("admin/admin_list.jsp");
-				    return;
-				  }
+			String power 	 = request.getParameter("power");
+			String adminName = request.getParameter("adminName");
+			System.out.println(adminName);
+			System.out.println(power);
+			
+			PrintWriter out = response.getWriter();
+			List<Admin> admins = adminService.getAdminByCondition(adminName,power);
+			if (admins.size() == 0) {
+				out.println("<tr>");
+				//out.println("<td><input type=\"checkbox\" name=\"choose\" /></td>");
+				//out.println("<td colspan="0">没有搜索到!</td>");
+				out.print("</tr>");
+			}
+			for(Admin admin :admins) {
+				out.println("<tr>");
+				out.println("<td><input type=\"checkbox\" name=\"choose\" value=\""+admin.getAdminId()+"\" /></td>");
+				out.println("<td>" +admin.getAdminId()+"</td>");
+				out.println("<td>" +admin.getAdminName()+"</td>");
+				out.println("<td>" +admin.getAdminAccount()+"</td>");
+				out.println("<td>" +admin.getPhone()+"</td>");
+				out.println("<td>" +admin.getEmail()+"</td>");
+				out.println("<td>" +admin.getCreateTime()+"</td>");
+				out.println("<td>");
+				out.println("<a class=\"summary\"  onmouseover=\"showDetail(true,this);\" onmouseout=\"showDetail(false,this);\">查看权限</a>");
+				out.println("<div class=\"detail_info\">");
+				for(Power temp:admin.getPowers()) {
+					out.println(temp.getPowerName()+"&nbsp;");
 				}
-			   List<Map<String, Object>> inforList1 =new ArrayList<>();
-			   session.setAttribute("admininforList", inforList1);
-			   response.sendRedirect("admin/admin_list.jsp");
-			   return;
-			 }
+				out.println("</div>");
+				out.println("</td>");
+				out.println("<td class=\"td_modi\">");
+				out.println("<input type=\"button\" value=\"修改\" class=\"btn_modify\" onclick=\"location.href='"+request.getContextPath()+"/ShowAdminAction?operation=initById&adminId="+admin.getAdminId()+"';\"/>");
+				out.println("<input type=\"button\" value=\"删除\" class=\"btn_delete\" onclick=\"location.href='"+request.getContextPath()+"/DelAdminAction?adminId="+admin.getAdminId()+"';\"/>");
+				out.println("</td>");
+				out.print("</tr>");
+			}
+			out.flush();
+			out.close();
+			
+			session.setAttribute("isPage", false);
+			return;
+			 
 	     case "reset" :
 	    	 String[] arrays = request.getParameterValues("choose");
 	         int[] adminIds =new int[arrays.length]; 
 	         
 	         for(int i=0;i<adminIds.length;i++){
 	        	 adminIds[i]=Integer.parseInt(arrays[i]);
-	        	 System.out.println(adminIds[0]);
 	         }	   
 	         boolean resetResult = new AccountManage().resetPassword(adminIds);
 	         if(resetResult){
-	        	 response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=search");
+	        	 response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
+	        	 return;
+	         } else {
+	        	 response.sendRedirect(request.getContextPath()+"/operationError.jsp");
+	        	 return;
 	         }
+	         
+	     case "initById" :
+	    	 String adminIdStr = request.getParameter("adminId");
+	    	 if (null == adminIdStr | "".equals(adminIdStr)) {
+	    		 response.sendRedirect(request.getContextPath()+"/operationError.jsp");
+	        	 return;
+	    	 } else {
+	    		 Admin admin = adminService.getAdminById(Integer.parseInt(adminIdStr));
+	    		 request.setAttribute("modiAdmin", admin);
+	    		 request.getRequestDispatcher("/admin/admin_modi.jsp").forward(request, response);
+	    	 }
+	    	 break;
 		}
 	 }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

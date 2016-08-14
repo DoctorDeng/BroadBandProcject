@@ -1,59 +1,100 @@
 package bean;
 
 public class Bussiness {
-    private int bussinessId;   		//账务账号ID
-    private int customerId;   	    //业务账号ID
-    private String loginAccount;  		//登陆账号
-    private String createTime;			//账号创建日期
-    private String status;				//状态
-    private String lastLoginTime;		//上次登录时间
-    
 
-	public String getPassword() {
-		return password;
+	private int bussinessId;
+	private int osId;
+	private String createTime; //创建时间
+	private String openTime;   //开通时间
+	private String deletTime;  //删除时间
+	private String pauseTime;  //暂停时间
+	private Os os;
+
+	
+	public Os getOs() {
+		return os;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+
+	public void setOs(Os os) {
+		this.os = os;
 	}
-	private String password;			//账户密码
+
+
+	public Bussiness() {
+		super();
+	}
+
+
 	public int getBussinessId() {
 		return bussinessId;
 	}
+	
+
+
+	public Bussiness(int bussinessId, int osId) {
+		super();
+		this.bussinessId = bussinessId;
+		this.osId = osId;
+	}
+
+
+	public Bussiness(int osId) {
+		super();
+		this.osId = osId;
+	}
+
+
 	public void setBussinessId(int bussinessId) {
 		this.bussinessId = bussinessId;
-	}
-	
-	
-	public int getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-	public String getLoginAccount() {
-		return loginAccount;
-	}
-	public void setLoginAccount(String loginAccount) {
-		this.loginAccount = loginAccount;
 	}
 	public String getCreateTime() {
 		return createTime;
 	}
+
+
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
-	public String getStatus() {
-		return status;
+
+
+	public int getOsId() {
+		return osId;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setOsId(int osId) {
+		this.osId = osId;
 	}
-	public String getLastLoginTime() {
-		return lastLoginTime;
+
+
+	public String getOpenTime() {
+		return openTime;
 	}
-	public void setLastLoginTime(String lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
+
+
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
 	}
+
+
+	public String getDeletTime() {
+		return deletTime;
+	}
+
+
+	public void setDeletTime(String deletTime) {
+		this.deletTime = deletTime;
+	}
+
+
+	public String getPauseTime() {
+		return pauseTime;
+	}
+
+
+	public void setPauseTime(String pauseTime) {
+		this.pauseTime = pauseTime;
+	}
+
 	
 	
 }

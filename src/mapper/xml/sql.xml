@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 通过月份和OsId查找指定OsId的登陆记录 -->
+<!-- select loginIp,loginInTime,loginOutTime ,ta.tariffName,ta.tariff,ta.timeLong,ta.timeTariff,ta.tariffType,
+TIMESTAMPDIFF(SECOND,loginInTime,loginOutTime) timeLogin
+FROM oslogin  as ol  
+INNER JOIN os
+ON os.osId = ol.osId
+INNER JOIN tariff as ta
+ON os.tariffId = ta.tariffId
+WHERE DATE_FORMAT(loginOutTime,'%Y%m')= 201606 AND ol.osId = 2 -->
+
+<!-- 通过CustomerId和月份来查询客户的指定月份，每个账号的消费情况 -->
+<!-- SELECT cu.customerId,os.osAccount,os.serverIp,
+cu.customerAccount,ta.tariffName,os.osId ,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,
+(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId AND DATE_FORMAT(loginOutTime,'%Y%m')= 201606) as totalTime 
+FROM customer as cu
+INNER JOIN os 
+ON cu.customerId = os.customerId
+INNER JOIN tariff as ta
+ON ta.tariffId = os.tariffId
+WHERE cu.customerId =2  -->
+
+<!-- 查询指定账号指定月份的总时间 -->
+<!-- select osLoginId ,osId,loginIp,DATE_FORMAT(loginOutTime,'%Y%m') months ,
+sum(TIMESTAMPDIFF(SECOND,loginInTime,loginOutTime)) totalTime FROM oslogin 
+WHERE DATE_FORMAT(loginOutTime,'%Y%m')= 201606 AND osId = 2 GROUP BY osId, months  -->
+
+<!-- 查询出客户每个月的账单待补充 -->
+<!-- select cu.customerName,cu.idNumber,cu.customerAccount,DATE_FORMAT(ol.loginOutTime,'%Y%m') months , 
+(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid in (SELECT osId FROM os WHERE customerId = cu.customerId) AND DATE_FORMAT(loginOutTime,'%Y%m') = months ) as totalTime
+FROM osLogin as ol
+INNER JOIN os 
+on os.osId = ol.osId 
+Inner JOIN  customer as cu
+on cu.customerId = os.customerId
+GROUP BY  cu.customerId, months-->
+<!-- 批量插入账单Bills表信息 -->
+<!-- INSERT into bills (customerId,months) 
+(select cu.customerId,DATE_FORMAT(ol.loginOutTime,'%Y%m') months 
+FROM osLogin as ol
+INNER JOIN os 
+on os.osId = ol.osId 
+Inner JOIN  customer as cu
+on cu.customerId = os.customerId
+GROUP BY  cu.customerId, months) -->

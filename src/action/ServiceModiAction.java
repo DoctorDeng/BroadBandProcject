@@ -1,15 +1,16 @@
 package action;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.viewBean.BussinessViewBean;
-import bean.viewBean.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
+import bean.Tariff;
+import bean.dto.OsDto;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceModiAction
@@ -31,15 +32,16 @@ public class ServiceModiAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BussinessViewBean bussinessViewBean  = new BussinessViewBean();
-		String tariffId = request.getParameter("traiffId");
-		/*System.out.println(request.getParameter("traiffId"));
-		System.out.println(request.getParameter("osAccount"));*/
-		bussinessViewBean.setOsAccount(request.getParameter("osAccount"));
-		bussinessViewBean.setTariffId(Integer.parseInt(tariffId));
-		boolean b = new BussinessViewBeanDaoImpl().update(bussinessViewBean);
+		OsDto osDto  = new OsDto();
+		/*String tariffName = request.getParameter("traiffName");
+		Tariff tariff = new ProfessionService().selTarriffId(tariffName);
+		int tariffId = tariff.getTariffId();*/
+		int tariffId = Integer.parseInt(request.getParameter("tariffId"));
+		osDto.setOsAccount(request.getParameter("osAccount"));
+		osDto.setTariffId(tariffId);
+		boolean b = new ProfessionService().upForOneService(osDto);
 		if(b){
-			response.sendRedirect("ServiceMainAction");
+			response.sendRedirect("ServiceListAction");
 		}
 	}
 

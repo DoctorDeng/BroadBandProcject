@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="mapper.BillMapper">
+		<select id="selectBillDetailByMonthById" parameterType="Map" resultType="BillDetailDto">
+			SELECT cu.customerId,os.osAccount,os.serverIp,
+			cu.customerAccount,os.osId ,ta.tariffName,ta.tariff,ta.timeTariff,ta.timeLong,ta.tariffType,
+			(SELECT sum(TIMESTAMPDIFF(SECOND ,loginInTime,loginOutTime)) FROM oslogin WHERE osid = os.osId AND DATE_FORMAT(loginOutTime,'%Y%m')= #{months}) as totalTime 
+			FROM customer as cu
+			INNER JOIN os 
+			ON cu.customerId = os.customerId
+			INNER JOIN tariff as ta
+			ON ta.tariffId = os.tariffId
+			WHERE cu.customerId = #{customerId}
+		</select>
+		
+		<select id="selectMonthBillByPage" parameterType="Page" resultType="BillDto">
+			select billId,cu.customerId,cu.customerName,cu.idNumber,cu.customerAccount,cost,months,payWay,payStatus
+			FROM bills as bi
+			INNER JOIN customer as cu
+			ON bi.customerId = cu.customerId
+			LIMIT #{index},#{size}
+		</select>
+		
+		<select id="getBillsNum" resultType="int">
+			select count(*) as count
+			FROM bills as bi
+			INNER JOIN customer as cu
+			ON bi.customerId = cu.customerId
+		</select>
+		
+		<select id="selectMonthBillByCondition" parameterType="BillSearchDto" resultType="BillDto">
+	    	select billId,cu.customerId,cu.customerName,cu.idNumber,cu.customerAccount,cost,months,payWay,payStatus
+			FROM bills as bi
+			INNER JOIN customer as cu
+			ON bi.customerId = cu.customerId
+			<where>
+				<if test="idNumber != null and idNumber != '' ">
+					  cu.idNumber like  CONCAT(CONCAT('%',#{idNumber}),'%') 
+				</if>
+				
+				<if test="customerAccount != null and customerAccount != '' ">
+			 		 AND cu.customerAccount like  CONCAT(CONCAT('%',#{customerAccount}),'%') 
+				</if>
+				
+				<if test="customerName != null and customerName != '' ">
+					 AND cu.customerName like  CONCAT(CONCAT('%',#{customerName}),'%') 
+				</if>
+				<if test="months != null and months != '' ">
+					 AND months like  CONCAT(CONCAT('%',#{months}),'%') 
+				</if>
+			</where>
+	    </select>
+	    
+	    <update id="updateBill" parameterType="Map">
+	    	UPDATE bills SET cost = #{cost} 
+	    	WHERE  customerId = #{customerId} 
+	    	AND    months = #{months}
+	    </update>
+	    
+	    <select id="selectAllMonthBill" resultType="BillDto">
+	    	select billId,cu.customerId,cu.customerName,cu.idNumber,cu.customerAccount,cost,months,payWay,payStatus
+			FROM bills as bi
+			INNER JOIN customer as cu
+			ON bi.customerId = cu.customerId
+	    </select>
+	</mapper>

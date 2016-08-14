@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
-import dao.impl.BussinessDaoImpl;
+import bean.Customer;
+import bean.dto.OsDto;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceOpenAction
@@ -36,11 +38,21 @@ public class ServiceOpenAction extends HttpServlet {
 			bussinessId = Integer.parseInt(strId);
 		}
 		String status = request.getParameter("status");
-		Bussiness b = new Bussiness();
-		b.setBussinessId(bussinessId);
-		b.setStatus(status);
-		new BussinessDaoImpl().updateStatus(b);
-		response.sendRedirect(request.getContextPath()+"/service/service_list.jsp");
+		OsDto customer = new OsDto();
+		customer.setCustomerId(bussinessId);
+		if("1".equals(status)){
+			customer.setStatus("0");
+		}else if("0".equals(status)){
+			customer.setStatus("1");
+		}else if("2".equals(status)){
+			customer.setStatus("1");
+		}
+		boolean b = new ProfessionService().upStutas(customer);
+		if(b){
+			response.sendRedirect("ServiceListAction");
+		}else{
+			
+		}
 	}
 
 	/**

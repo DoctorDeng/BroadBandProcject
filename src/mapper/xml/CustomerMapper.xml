@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CustomerMapper">
+	<insert id="insertCustomer" parameterType="Customer">
+		insert into customer values(null,#{customerName},#{idNumber},#{phone},#{customerAccount},#{password},#{createTime},#{status},#{lastLoginTime},#{pauseTime},#{delTime})
+	</insert>
+	<delete id="deleteCustomer" parameterType="int">
+		delete from customer where customerId=#{id}
+	</delete>
+	<update id="updateCustomer" parameterType="Customer">
+		update customer
+		<set>
+			<if test="customerName!=null and customerName!=''">
+				customerName=#{customerName},
+			</if>
+			<if test="idNumber!=null and idNumber!=''">
+				idNumber=#{idNumber},
+			</if>
+			<if test="phone!=null and phone!=''">
+				phone=#{phone},
+			</if>
+			<if test="customerAccount!=null and customerAccount!=''">
+				customerAccount=#{customerAccount},
+			</if>
+			<if test="password!=null and password!=''">
+				password=#{password},
+			</if>
+			<if test="createTime!=null and createTime!=''">
+				createTime=#{createTime},
+			</if>
+			<if test="status!=null and status!=''">
+				status=#{status},
+			</if>
+			<if test="lastLoginTime!=null and lastLoginTime!=''">
+				lastLoginTime=#{lastLoginTime},
+			</if>
+			<if test="pauseTime!=null and pauseTime!=''">
+				pauseTime=#{pauseTime},
+			</if>
+			<if test="delTime!=null and delTime!=''">
+				delTime=#{delTime},
+			</if>
+		</set>
+		where customerId=#{customerId}
+	</update>
+	<select id="selectAllCustomer" parameterType="Map" resultType="Customer">
+		select * from Customer limit #{startPage},#{pageSize};
+	</select>
+	<select id="selectCustomerById" parameterType="int" resultType="Customer">
+		select * from Customer 
+		<where>
+			customerId=#{customerId}
+		</where>
+	</select>
+	<select id="selectCustomerByIdNumber" parameterType="String" resultType="Customer">
+		select * from customer where idNumber=#{idNumber}
+	</select>
+	<select id="selectCustomerByCondition" parameterType="Map" resultType="Customer">
+		select * from customer
+		<where>
+			<if test="idNumber!=null and idNumber!='' and idNumber!='不验证'">
+				and idNumber=#{idNumber} 
+			</if>
+			<if test="customerName!=null and customerName!='' and customerName!='不验证'">
+				and customerName like concat(concat('%',#{customerName}),'%')
+			</if>
+			<if test="customerAccount!=null and customerAccount!='' and customerAccount!='不验证'">
+				and customerAccount like '%' #{customerAccount} '%'
+			</if>
+			<if test="status!=null and status!='' and status!='-1'">
+				and status=#{status}
+			</if>
+		</where>
+		limit #{startPage},#{pageSize}
+	</select>
+	<select id="countCustomer" parameterType="Map" resultType="int">
+		select count(*) from Customer
+		<where>
+			<if test="idNumber!=null and idNumber!='' and idNumber!='不验证'">
+				and idNumber like '%' #{idNumber} '%'
+			</if>
+			<if test="customerName!=null and customerName!='' and customerName!='不验证'">
+				and customerName like concat(concat('%',#{customerName}),'%')
+			</if>
+			<if test="customerAccount!=null and customerAccount!='' and customerAccount!='不验证'">
+				and customerAccount like '%' #{customerAccount} '%'
+			</if>
+			<if test="status!=null and status!='' and status!='-1'">
+				and status=#{status}
+			</if>
+		</where>
+	</select>
+</mapper>

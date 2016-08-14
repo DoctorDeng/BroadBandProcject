@@ -1,17 +1,18 @@
 package bean;
 
 public class Power {
-   private int powerId;   //权限ID
-   private String powerName;    //权限名称
-   private int power;       //权限
-	public Power() {
-   }
-	
-	public Power(int powerId, String powerName, int power) {
-		this.powerId = powerId;
-		this.powerName = powerName;
-		this.power = power;
-	}
+	/**
+	 * 权限ID
+	 */
+	private int powerId;
+	/**
+	 * 权限名称
+	 */
+	private String powerName;
+	/**
+	 * 权限
+	 */
+	private String power;
 	
 	public int getPowerId() {
 		return powerId;
@@ -25,10 +26,10 @@ public class Power {
 	public void setPowerName(String powerName) {
 		this.powerName = powerName;
 	}
-	public int getPower() {
+	public String getPower() {
 		return power;
 	}
-	public void setPower(int power) {
+	public void setPower(String power) {
 		this.power = power;
 	}
 }

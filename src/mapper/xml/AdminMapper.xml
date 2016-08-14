@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="mapper.AdminMapper">
+		<resultMap type="Admin" id="AdminResultMap">
+			 <id property="adminId" column="adminId" />
+			 <result property="adminAccount" column="adminAccount" />
+			 <result property="password" column="password" />
+			 <result property="adminName" column="adminName" />
+			 <result property="idNumber" column="idNumber" />
+			 <result property="phone" column="phone" />
+			 <result property="email" column="email" />
+			 <result property="createTime" column="createTime" />
+			 <association property="powers" column="adminId" select="mapper.PowerMapper.selectPowerByAdminId" ></association>
+		</resultMap>
+		<!-- <resultMap type="Student" id="StudentResultMapTest">
+			<id property="stuId" column="stuId"/>
+			<result property="stuName" column="stuName"/>
+			<result property="stuAge" column="stuAge"/>
+			<association property="grade" javaType="Grade">
+				<id property="gradeId" column="gradeId"/> 
+    			<result property="gradeName" column="gradeName"/>
+			</association>
+		</resultMap> 
+		
+		<resultMap type="Student" id="StudentResultMap">
+			<id property="stuId" column="stuId" javaType="int" jdbcType="NUMERIC"/>
+			<result property="stuName" column="stuName" javaType="String" jdbcType="VARCHAR" />
+			<result property="stuAge" column="stuAge" javaType="int" jdbcType="NUMERIC"/>
+			<association property="grade" column="gradeId" select="com.doctor.mapper.GradeMapper.selectGradeById" />
+		</resultMap> -->
+		
+		<!-- <select id="selectStu" parameterType="int" resultType="Student">
+			select * from Student where stuId = #{stuId}
+		</select>
+		
+	<insert id="addStu"  useGeneratedKeys="true" keyProperty="stuId">
+		 insert into student(stuName,stuAge) values(#{stuName},#{stuAge})
+		</insert>
+		
+		<update id="updateStu" parameterType="Student" >
+			UPDATE student SET stuName= #{stuName}, stuAge= #{stuAge} WHERE stuId = #{stuId}
+		</update>
+		
+		<delete id="delStu" parameterType="int">
+			DELETE FROM student WHERE stuId = #{stuId}
+		</delete>
+		-->
+	<!-- 	<select id="selectAllStu" resultType="Student">
+			SELECT stuId,stuName, stuAge FROM Student
+		</select> 
+		
+		<select id="selectAllStuWithTest" resultMap="StudentResultMapTest">
+			SELECT stuId,stuName,stuAge, grade.gradeId,gradeName FROM student INNER JOIN grade WHERE student.gradeId = grade.gradeId;
+		</select> 
+		
+		<select id="selectAllStuWithGrade"  resultMap="StudentResultMap">
+			select * from Student 
+		</select>
+		
+		
+		<select id="selectStudentsByGradeId" parameterType="int" resultType="Student">
+			select * from Student  where gradeId = #{gradeId}
+		</select>
+		
+		<select id="selectStudentsByCondition" parameterType="Student" resultType="Student">
+			select * from student 
+		<where>
+			<if test="stuId != null and stuId != '' ">
+				 AND stuId = #{stuId}
+			</if>
+			<if test="stuName != null and stuName != '' ">
+			 	AND stuName like  CONCAT(CONCAT('%',#{stuName}),'%') 
+			</if> 
+			<if test="stuAge != null and stuAge != '' ">
+				 AND stuAge = #{stuAge}
+			</if>
+		</where>
+		</select>
+		
+		<update id="updateStudent" parameterType="Student" >
+			update student
+    	 <set>
+     		 <if test="stuName != null and stuName != ''">stuName=#{stuName},</if>
+      		 <if test="stuAge != null">stuAge=#{stuAge},</if>
+   		 </set>
+ 		 where stuId=#{stuId}
+		</update>
+		
+		<select id="selectStudentByIds" resultType="Student">
+  			SELECT *  FROM student  WHERE stuId in
+ 			 <foreach item="stuId" index="index" collection="list"
+      				open="(" separator="," close=")">
+       			 #{stuId}
+ 			 </foreach>
+		</select>
+		
+		<select id="selectStudentByChoose" parameterType="Map"  resultType="Student">
+  			SELECT *  FROM student  
+ 		    <where>
+ 		    	<choose>
+					<when test="searchWay == 'stuName' ">
+						and stuName like  CONCAT(CONCAT('%',#{stuName}),'%')
+					</when>
+					<when test="searchWay == 'stuAge' ">
+						and stuAge = #{stuAge}
+					</when>
+ 		    	</choose>
+ 		    </where>	 
+		</select> -->
+		
+		<select id="selectAdminById" parameterType="int" resultMap="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin WHERE adminId = #{adminId}
+		</select> 
+		
+		<select id="selectAllAdmin" resultMap="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin 
+		</select>
+				
+		<insert id="insertAdmin" parameterType="Admin">
+			INSERT INTO admin (adminAccount,password,adminName,idNumber,phone,email,createTime)
+			VALUES (#{adminAccount},#{password},#{adminName},#{idNumber},#{phone},#{email},now())
+		</insert>
+		
+		<update id="updateAdminInfor" parameterType="Admin">
+			UPDATE admin	
+    	 <set>
+     		 <if test="adminName != null and adminName != '' ">adminName=#{adminName},</if>
+      		 <if test="phone != null and phone != '' ">phone=#{phone},</if>
+      		 <if test="email != null and email != '' ">email=#{email}</if>
+   		 </set>
+ 		 where adminId=#{adminId}	
+		</update>
+		
+		<update id="resetAdminsPassword">
+			UPDATE admin set password = '123456789' WHERE adminId in 
+			 <foreach item="item" index="index" collection="array"
+      			open="(" separator="," close=")">
+       			 #{item}
+ 			 </foreach>
+		</update>
+		
+		<delete id="deleteAdminById" parameterType="int">
+			DELETE FROM admin WHERE adminId = #{adminId}
+		</delete>
+		
+		<update id="updateAdminPassword">
+			UPDATE admin set password = #{password} 
+			WHERE adminId = #{adminId}
+		</update>
+		
+		<select id="verifyAdmin" parameterType="Admin" resultMap="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin 
+			where adminAccount=#{adminAccount} 
+			and password=#{password}
+		</select>
+		
+		<select id="verifyAdminAccount" parameterType="String" resultType="String">
+			SELECT adminAccount FROM admin 
+			WHERE adminAccount = #{adminAccount}
+		</select>
+		
+		<select id="selectAdminIdByAccount" parameterType="String" resultType="String">
+			SELECT adminId FROM admin 
+			WHERE adminAccount = #{adminAccount}
+		</select>
+		
+		<select id="selectAdminByCondition" parameterType="Map" resultMap="AdminResultMap">
+			SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+			FROM admin
+			<where>
+				<if test="adminName != null and adminName != '' ">
+					 adminName like CONCAT(CONCAT('%',#{adminName}),'%')
+				</if>
+			</where>
+		</select>
+		
+		<select id="selectAdminCount" resultType="int">
+	    	 SELECT count(adminId) FROM ADMIN
+		</select>
+		<select id="selectByPage" parameterType="Page" resultMap="AdminResultMap">
+	    	 SELECT adminId,adminAccount,password,adminName,idNumber,phone,email,createTime 
+	    	 FROM admin order by adminId desc LIMIT #{index},#{size} 
+		</select>
+	</mapper>

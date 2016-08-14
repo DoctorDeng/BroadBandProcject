@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.impl.TariffDaoImpl;
 import service.TariffService;
 
 /**
@@ -31,14 +30,18 @@ public class TariffDelAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		TariffDaoImpl tt = new TariffDaoImpl();
+		TariffService tt = new TariffService();
 		String mm = request.getParameter("tariffId");
 		int tariffId = 0;
 		if (null != mm && !"".equals(mm)) {
 			tariffId = Integer.parseInt(mm);
 		}
-		boolean isDel = tt.del(tariffId);
-		request.getRequestDispatcher("/fee/fee_list.jsp").forward(request,response );
+		boolean isDel = tt.delTariff(tariffId);
+		if (isDel) {
+			response.sendRedirect(request.getContextPath()+"/TariffListAction ");
+		} else {
+			response.sendRedirect(request.getContextPath()+"/operationError.jsp");
+		}
 	}
 
 	/**

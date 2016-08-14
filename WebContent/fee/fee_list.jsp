@@ -1,31 +1,26 @@
-<%@page import="service.TariffService"%>
-<%@page import="bean.Tariff"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <jsp:include page="../template/powerPage.jsp">
+  	<jsp:param value="3" name="pagePower"/>
+ </jsp:include>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
  <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title></title>
-        <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
-  		<c:set var="power">${adminPower.power}</c:set>
-  			<c:choose>
-  				<c:when test="${power==3}">
-                	<c:set var="hasPower">true</c:set>
-  				</c:when>
-  			</c:choose>
-  		</c:forEach>
-  		<!-- 当用户没有此页面的权限时，跳转到权限提示页面 -->
-  		<c:if test="${hasPower==false}">
-  		<%
-  			response.sendRedirect("../nopower.jsp");
-  		%>
-  		</c:if> 
+        <title>资费列表</title>
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="<%=request.getContextPath() %>/styles/global_color.css" />
+        <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#feeMenu").attr("class","fee_on");
+   		});
+   		</script>
         <script language="javascript" type="text/javascript">
             //排序按钮的点击事件
             function sort(btnObj) {
@@ -47,14 +42,15 @@
             }
             
             
-        </script>        
+            
+        </script>  
+          <script src="<%=request.getContextPath()%>/js/addTariff.js"></script>
     </head>
     <body>
         <!--Logo区域开始-->
         <div id="header">
             <img src="<%=request.getContextPath() %>/images/logo.png" alt="logo" class="left"/>
-			<span>当前账号：<b>scott</b></span>
-            <a href="#">[退出]</a>            
+            <a href="<%=request.getContextPath() %>/loginOutAction">[退出]</a>             
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
@@ -66,10 +62,10 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="" method="">
+            <form action="<%=request.getContextPath()%>/TariffListAction?operation" method="post">
                 <!--排序-->
                 <div class="search_add">
-                    <!-- <div>
+                   <!--  <div>
                         <input type="button" value="月租" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="基费" class="sort_asc" onclick="sort(this);" />
                         <input type="button" value="时长" class="sort_asc" onclick="sort(this);" />
@@ -82,7 +78,10 @@
                     删除成功！
                 </div>    
                 <!--数据区域：用表格展示数据-->     
-                <div id="data">            
+                <div id="data"> 
+                <%
+                  
+                %>           
                     <table id="datalist">
                         <tr>
                             <th>资费ID</th>
@@ -94,28 +93,58 @@
                             <th>开通时间</th>
                             <th class="width50">状态</th>
                             <th class="width200"></th>
-                        </tr>   
-                        <%
-                             TariffService tm = new TariffService();
-                             List<Tariff> tv = tm.getShowMessage();
-                             for(Tariff sv:tv){
-                        %>                   
-                        <tr>
-                            <td><%=sv.getTariffId() %></td>
-                            <td><a href="fee_detail.jsp"><%=sv.getTariffName() %></a></td>
-                            <td><%=sv.getTimeLong() %></td>
-                            <td><%=sv.getTariff() %></td>
-                            <td><%=sv.getTimeTariff() %></td>
-                            <td><%=sv.getCreateTime() %></td>
-                            <td><%=sv.getOpenTime() %></td>
-                            <td><%=sv.getStatus() %></td>
-                            <td>                                
-                                <input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='fee_modi.jsp?id=<%=sv.getTariffId() %>';" />
-                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=<%=sv.getTariffId() %>';" />
-                            </td>
                         </tr>
-                        <%} %>
+                        <c:set var="tariffPage" value="${not empty sessionScope.tariffPage}" />
+  					    <c:if test="${not tariffPage}">
+  						   <tr>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  							   <td>没有信息</td>
+  						   </tr>
+  					    </c:if> 
+  					    <c:forEach items="${sessionScope.tariffPage.dataList}" var="tariff" >
+  							<tr>
+  								<td><c:out value="${tariff.tariffId}"/></td>
+  								<td><a href="<%=request.getContextPath()%>/TariffByNameAction?id=${tariff.tariffId }">${tariff.tariffName }</a></td>
+  								<td><c:out value="${tariff.timeLong}"/></td>
+  								<td><c:out value="${tariff.tariff}"/></td>
+  								<td><c:out value="${tariff.timeTariff}"/></td>
+  								<td><c:out value="${tariff.createTime}"/></td>
+  								<%-- <td><c:out value="${tariff.openTime}"/></td> --%>
+  								<td>
+  								<c:if test="${tariff.openTime==null}">
+  								</c:if>
+  								<c:if test="${tariff.openTime!=null}">
+  								${tariff.openTime}
+  								</c:if>
+  								<%-- <td><c:out value="${tariff.status}"/></td> --%>
+  								</td>
+  								<td>
+  								<c:if test="${tariff.status==1}">
+  								开通
+  								</c:if>
+  								<c:if test="${tariff.status==0}">
+  								暂停
+  								</c:if>
+  								<c:if test="${tariff.status==2}">
+  								删除
+  								</c:if>
+  								</td>
+  								<td>
+  								<c:if test="${tariff.status == '0'}">
+  								<input type="submit" value="启用" class="btn_start" onclick="window.location.href='<%=request.getContextPath()%>/TariffOpenAction?tariffId=${tariff.tariffId}';" />
+                                <input type="button" value="修改" class="btn_modify" onclick="window.location.href='<%=request.getContextPath()%>/TariffDetailAction?id=${tariff.tariffId}';" />
+                                <input type="button" value="删除" name="delTariff" class="btn_delete" onclick="window.location.href='<%=request.getContextPath()%>/TariffDelAction?tariffId=${tariff.tariffId}';" />
+  							    </c:if>
+  							    </td>
+  							<tr>
+  						</c:forEach>  
                     </table>
                     <p>业务说明：<br />
                     1、创建资费时，状态为暂停，记载创建时间；<br />
@@ -125,15 +154,17 @@
                     </p>
                 </div>
                 <!--分页-->
-                <!-- <div id="pages">
-        	        <a href="#">上一页</a>
-                    <a href="#" class="current_page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">下一页</a>
-                </div> -->
+                <div id="pages">
+                 	<c:if test="${sessionScope.isPage == true}">
+	                	 <c:if test="${not empty sessionScope.tariffPage}">
+                			<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.indexPage}" >首页</a>
+        	        		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.upPage}" >上一页</a>
+                            <a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.currentPage}" >第${sessionScope.tariffPage.currentPage}页/共${sessionScope.tariffPage.pageNum}页</a>
+                        	<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.nextPage}">下一页</a>
+                    		<a href="<%=request.getContextPath()%>/TariffListAction?currentPage=${sessionScope.tariffPage.endPage}" >末页</a>
+                		</c:if>
+                 	</c:if>
+                </div>              
             </form>
         </div>
         <!--主要区域结束-->

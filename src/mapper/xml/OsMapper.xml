@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OsMapper">
+	<resultMap type="Os" id="OsGetMapper">
+		<id         property="osId"       column="osId"/>
+		<result     property="osAccount"  column="osAccount"/>
+		<result     property="osPassword" column="osPassword"/>
+		<result     property="serverIp"   column="serverIp"/>
+		<collection property="Customer"   column="customerId" select=""/>
+		<collection property="Tariff"     column="tariffId"   select=""/>
+	</resultMap>
+	<!-- 测试OS方法的map -->
+	<resultMap type="Os" id="OstestMap">
+		<id         property="osId"         column="osId"/>
+		<result     property="osAccount"    column="osAccount"/>
+		<result     property="osPassword"   column="osPassword"/>
+		<result     property="serverIp"     column="serverIp"/>
+	</resultMap>
+	
+	<resultMap type="Os" id="OsResultMap">
+		<id 	property="osId"       column="osId"/>
+		<result property="osAccount"  column="osAccount"/>
+		<result property="osPassword" column="osPassword"/>
+		<result property="serverIp"   column="serverIp"/>
+		<association property="tariff" column="tariffId" select="mapper.TariffMapper.findOneTariff"></association>
+	</resultMap>
+	
+	<!-- 查询一条信息，如需使用请注意修改resultMap -->
+	<select id="selOneOsByOsid" parameterType="Os" resultMap="OstestMap">
+		select * from os where osId=#{osId}
+	</select>
+	<!-- 通过业务账号去修改信息 -->
+	<update id="upOneOsByBussinessId" >
+		update os 
+		<set>
+			<if test="tariffId!=null and tariffId!='' ">
+				tariffId=#{tariffId}
+			</if>
+			<if test="status!=null  and status!='' ">
+				status = #{status}
+			</if>
+		</set> 
+		where osAccount = #{osAccount}
+	</update>
+	<!-- 通过业务账号去删除信息 -->
+	<delete id="delOneOsByOsId">
+		delete from os where osId = #{osId}
+	</delete>
+	<!-- 查询在业务界面所需要显示的信息 -->
+	<select id="selServiceShow" resultType="OsDto">
+		SELECT b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,
+               o.`status`,o.serverIp,t.tariffName,o.tariffId
+               FROM
+			   os AS o 
+               INNER JOIN  bussiness AS b  ON  b.osId = o.osId 
+               INNER JOIN   customer AS c  ON  o.customerId = c.customerId 
+               INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
+			   ORDER BY
+               b.bussinessId desc
+               LIMIT #{index},#{size}
+	</select>
+	<!-- 通过查询身份证进行对Os表的添加功能 -->
+	<insert id="addOsInfo">
+		insert into os values(null,#{customerId},#{tariffId},#{osAccount},#{osPassword},#{serverIp},1)
+	</insert>
+	<!-- 通过条件查询 -->
+	<select id="selChooseInfo" resultType="OsDto">
+		SELECT
+			   b.bussinessId,c.customerId,c.idNumber,c.customerName,o.osAccount,o.serverIp,t.tariffName,o.`status`
+			   FROM
+               bussiness AS b ,customer AS c ,os AS o ,tariff AS t
+              <where>
+              <if test="true">
+                b.osId = o.osId AND
+              </if>
+              <if test="true">
+                o.customerId = c.customerId AND
+              </if>
+              <if test="true">
+                t.tariffId = o.tariffId
+              </if>
+              <if test='osAccount!="#" '>
+               AND o.osAccount like concat(concat('%',#{osAccount}),'%')
+              </if>
+              <if test='serverIp!="#"'>
+               AND o.serverIp=#{serverIp}
+              </if>
+              <if test='idNumber!="#"'>
+               AND c.idNumber=#{idNumber}
+              </if>
+              <if test='status!="-1"'>
+               AND o.`status`=#{status}
+              </if>
+              </where>
+              ORDER BY
+              b.bussinessId desc
+	</select>
+	<!-- 详细查询 -->
+	<select id="setManyInfo"  resultType="OsShowDto">
+				SELECT
+				bussiness.bussinessId,
+				customer.customerId,
+				customer.customerName,
+				customer.idNumber,
+				os.osAccount,
+				os.serverIp,
+				os.`status`,
+				os.tariffId,
+				tariff.tariffId,
+				tariff.tariffName,
+				tariff.tariffExplain,
+				tariff.tariffType
+				FROM
+				bussiness ,
+				customer ,
+				os ,
+				tariff
+			<where>
+				<if test="true">
+				bussiness.osId = os.osId AND
+				</if>
+				<if test="true">
+				customer.customerId = os.customerId AND
+				</if>
+				<if test="true">
+				os.tariffId = tariff.tariffId AND
+				</if>
+				<if test="true">
+				bussiness.bussinessId=#{id}
+				</if>
+			</where>
+	</select>
+	<update id="upStutasWithOsAccount">
+		update os set status=2 where osId=#{osId}
+	</update>
+	<select id="upOsIdByCustomerId">
+		select osId from bussiness where bussinessId=#{id}
+	</select>
+	<update id="upStutas">
+		update os set status=#{status}  where osId=#{osId}
+	</update>
+	<select id="selOsidByOsAccount" resultType="Os">
+		select osid from os where osAccount=#{osAccount}
+	</select>
+	<select id="selOsAcAndOsPa" resultMap="OsResultMap">
+		select osId,customerId,tariffId,osAccount,osPassword,serverIp,status from os where osAccount=#{osAccount} And osPassword=#{osPassword}
+	</select>
+	<select id="selCountSize" resultType="Integer"> 
+		SELECT COUNT(*)
+               FROM
+			   os AS o 
+               INNER JOIN  bussiness AS b  ON  b.osId = o.osId 
+               INNER JOIN   customer AS c  ON  o.customerId = c.customerId 
+               INNER JOIN   tariff AS t    ON  t.tariffId = o.tariffId  
+			   ORDER BY
+               b.bussinessId desc
+	</select>
+	<update id="updateOsByCustomerId" parameterType="Os">
+		update os set status=#{status}  where customerId=#{customerId}
+	</update>
+	<select id="selFindCountSize"  resultType="Integer">
+		SELECT
+			   COUNT(*)
+			   FROM
+               bussiness AS b ,customer AS c ,os AS o ,tariff AS t
+              <where>
+              <if test="true">
+                b.osId = o.osId AND
+              </if>
+              <if test="true">
+                o.customerId = c.customerId AND
+              </if>
+              <if test="true">
+                t.tariffId = o.tariffId
+              </if>
+              <if test='osAccount!="#" '>
+               AND o.osAccount like concat(concat('%',#{osAccount}),'%')
+              </if>
+              <if test='serverIp!="#"'>
+               AND o.serverIp=#{serverIp}
+              </if>
+              <if test='idNumber!="#"'>
+               AND c.idNumber=#{idNumber}
+              </if>
+              <if test='status!="-1"'>
+               AND o.`status`=#{status}
+              </if>
+              </where>
+              ORDER BY
+              b.bussinessId desc
+	</select>
+</mapper>

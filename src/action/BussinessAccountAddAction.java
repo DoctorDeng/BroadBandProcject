@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
-import bean.viewBean.AccountViewBean;
+import bean.vo.AccountViewBean;
 import service.AccountService;
 
 /**
@@ -45,8 +45,10 @@ public class BussinessAccountAddAction extends HttpServlet {
 		b.setLoginAccount(request.getParameter("loginAccount"));
 		b.setStatus("1");
 		b.setLastLoginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
-		new AccountService().addBussinessAccount(b);
-		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
+		int result = new AccountService().addBussinessAccount(b);
+		System.out.println(result);
+		response.getWriter().println(result);
+		//response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction");
 	}
 
 	/**

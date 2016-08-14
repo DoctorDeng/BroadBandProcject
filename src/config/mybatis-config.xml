@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<package name="bean"/>
+		<package name="bean.vo" />
+		<package name="bean.dto" />
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://119.29.223.16:3306/refactor?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false" />
+				<property name="username" value="root" />
+				<property name="password" value="denghuajie123" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="mapper/xml/AdminMapper.xml"/>
+		<mapper resource="mapper/xml/PowerMapper.xml"/>
+		<mapper resource="mapper/xml/BillMapper.xml"/> 
+		<mapper resource="mapper/xml/BussinessMapper.xml"/>
+		<mapper resource="mapper/xml/CustomerMapper.xml"/>
+		<mapper resource="mapper/xml/OsMapper.xml"/>
+		<mapper resource="mapper/xml/OsLoginMapper.xml"/> 
+		<mapper resource="mapper/xml/TariffMapper.xml"/> 
+		<mapper resource="mapper/xml/AdminPowerMapper.xml"/> 
+		<mapper resource="mapper/xml/StatementMapper.xml"/> 
+	</mappers>
+</configuration>

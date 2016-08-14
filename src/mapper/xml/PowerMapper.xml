@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PowerMapper">
+	<select id="selectPowerByAdminId" parameterType="int" resultType="Power">
+		SELECT p.powerId,p.powerName,p.power FROM adminPower as ap INNER JOIN power as p
+		ON ap.powerId = p.powerId 
+		WHERE ap.adminId = #{adminId}
+	</select>
+	
+	<select id="selectAllPower" resultType="Power">
+		SELECT powerId,powerName,power FROM power 
+	</select>
+</mapper>

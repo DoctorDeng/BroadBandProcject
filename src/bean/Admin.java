@@ -3,51 +3,145 @@ package bean;
 import java.util.List;
 
 public class Admin {
-    
-	private int adminId;   //管理员ID
-    private String adminAccount;   //管理员登录账号
-    private String password;      //账号密码
-    private List<Power> powerList; //管理员权限集合
-    public Admin() {
+	/**
+	 * 管理员ID
+	 */
+	private int adminId;
+	/**
+	 * 管理员账号
+	 */
+	private String adminAccount;
+	/**
+	 * 管理员密码
+	 */
+	private String password;
+	/**
+	 * 管理员姓名
+	 */
+	private String adminName;
+	/**
+	 * 管理员身份证号
+	 */
+	private String idNumber;
+	/**
+	 * 管理员电话
+	 */
+	private String phone;
+	/**
+	 * 管理员邮箱
+	 */
+	private String email;
+	/**
+	 * 管理员创建时间
+	 */
+	private String createTime;
+	/**
+	 * 管理员权限
+	 */
+	private List<Power> powers;
+	
+	public Admin(){}
+
+	public Admin(String adminAccount, String password, String adminName, String idNumber, String phone, String email) {
+		super();
+		this.adminAccount = adminAccount;
+		this.password = password;
+		this.adminName = adminName;
+		this.idNumber = idNumber;
+		this.phone = phone;
+		this.email = email;
 	}
-    
-    public Admin(int adminId, String adminAccount, String password) {
+	
+	public Admin(int adminId, String adminAccount, String password, String adminName, String idNumber, String phone,
+			String email, String createTime, List<Power> powers) {
+		super();
 		this.adminId = adminId;
 		this.adminAccount = adminAccount;
 		this.password = password;
+		this.adminName = adminName;
+		this.idNumber = idNumber;
+		this.phone = phone;
+		this.email = email;
+		this.createTime = createTime;
+		this.powers = powers;
 	}
-    
-    public Admin(int adminId, String adminAccount, String password,List<Power> powerList) {
-		this.adminId = adminId;
-		this.adminAccount = adminAccount;
-		this.password = password;
-		this.powerList = powerList;
-	}
-    
+
 	public int getAdminId() {
 		return adminId;
 	}
+
 	public void setAdminId(int adminId) {
 		this.adminId = adminId;
 	}
+
 	public String getAdminAccount() {
 		return adminAccount;
 	}
+
 	public void setAdminAccount(String adminAccount) {
 		this.adminAccount = adminAccount;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public List<Power> getPowerList() {
-		return powerList;
+	public String getAdminName() {
+		return adminName;
 	}
 
-	public void setPowerList(List<Power> powerList) {
-		this.powerList = powerList;
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public String getIdNumber() {
+		return idNumber;
+	}
+
+	public void setIdNumber(String idNumber) {
+		this.idNumber = idNumber;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+	public List<Power> getPowers() {
+		return powers;
+	}
+
+	public void setPowers(List<Power> powers) {
+		this.powers = powers;
+	}
+
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminAccount=" + adminAccount + ", password=" + password
+				+ ", adminName=" + adminName + ", idNumber=" + idNumber + ", phone=" + phone + ", email=" + email
+				+ ", createTime=" + createTime + ", powers=" + powers + "]";
 	}
 }

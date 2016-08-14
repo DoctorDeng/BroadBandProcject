@@ -1,17 +1,23 @@
 package bean;
 
 public class AdminPower {
-    private int adminPowerId;   //管理员权限ID
-    private int adminId;    //管理员ID
-    private int powerId;     //权限ID
+	private int adminPowerId;
+	/**
+	 * 管理员ID
+	 */
+	private int adminId;
+	/**
+	 * 权限ID
+	 */
+	private int powerId;
 	
-	public AdminPower() {
-	}
-	public AdminPower(int adminPowerId, int adminId, int powerId) {
-		this.adminPowerId = adminPowerId;
+	public AdminPower(){}
+	
+	public AdminPower(int adminId, int powerId) {
 		this.adminId = adminId;
 		this.powerId = powerId;
 	}
+	
 	public int getAdminPowerId() {
 		return adminPowerId;
 	}

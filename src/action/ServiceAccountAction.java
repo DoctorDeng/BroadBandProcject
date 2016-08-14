@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Bussiness;
 import bean.Customer;
-import bean.viewBean.BussinessViewBean;
-import dao.impl.BussinessDaoImpl;
-import dao.impl.BussinessViewBeanDaoImpl;
-import dao.impl.CustomerDaoImpl;
+import bean.dto.OsDto;
+import bean.vo.BussinessViewBean;
+import service.ProfessionService;
+
 
 /**
  * Servlet implementation class ServiceAccountAction
@@ -34,16 +34,14 @@ public class ServiceAccountAction extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int bussinessId = 0;
-		if(request.getParameter("id")!=null&&request.getParameter("id")!=""){
-			bussinessId = Integer.parseInt(request.getParameter("id"));
-		}
-		boolean b = true;
-		BussinessViewBean bussinessViewBean = new BussinessViewBean();
-		bussinessViewBean.setBussinessId(bussinessId);
-		b = b&&new BussinessViewBeanDaoImpl().del(bussinessViewBean);
+		
+		int bussinessId = Integer.parseInt(request.getParameter("id"));
+		OsDto osDto = new OsDto();
+		osDto.setBussinessId(bussinessId);
+		ProfessionService pro = new ProfessionService();
+		boolean b = pro.upStutasWithOsAccount(osDto);
 		if(b){
-			response.sendRedirect("service/service_list.jsp");
+			response.sendRedirect("ServiceListAction");
 		}
 	}
 

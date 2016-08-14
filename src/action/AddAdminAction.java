@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Admin;
-import bean.AdminInfor;
 import bean.Power;
 import service.AdminService;
+import util.StringUtil;
 
 /**
  * Servlet implementation class AddAdminAction
@@ -42,15 +42,18 @@ public class AddAdminAction extends HttpServlet {
 			String idNumber     = request.getParameter("idNumber");
 			String email        = request.getParameter("email");
 			String[] powerStr   = request.getParameterValues("power");
+			if (StringUtil.isNull(adminAccount) | StringUtil.isNull(adminName) | StringUtil.isNull(idNumber) | StringUtil.isNull(password)) {
+				response.sendRedirect("operationError.jsp");
+				return;
+			}
 			
 			Admin admin = new Admin();
 			admin.setAdminAccount(adminAccount);
 			admin.setPassword(password);
-			AdminInfor adminInfor = new AdminInfor();
-			adminInfor.setAdminName(adminName);
-			adminInfor.setPhone(phone);
-			adminInfor.setIdNumber(idNumber);
-			adminInfor.setEmail(email);
+			admin.setAdminName(adminName);
+			admin.setPhone(phone);
+			admin.setIdNumber(idNumber);
+			admin.setEmail(email);
 
 			List<Power> powerList = new ArrayList<>();
 			for (String str : powerStr) {
@@ -58,9 +61,10 @@ public class AddAdminAction extends HttpServlet {
 				power.setPowerId(Integer.parseInt(str));
 				powerList.add(power);
 			}
-		
+			admin.setPowers(powerList);
+			
 			AdminService adminManage = new AdminService();
-			boolean isAdd = adminManage.addAdmin(admin, adminInfor, powerList);
+			boolean isAdd = adminManage.addAdmin(admin);
 			if(isAdd==true){
 				response.sendRedirect(request.getContextPath()+"/ShowAdminAction?operation=init");
 			}else{

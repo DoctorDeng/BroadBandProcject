@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BussinessMapper">
+	<resultMap type="Bussiness" id="BussinessResultMap">
+		<id property="bussinessId" column="bussinessId"/>
+		<result property="osId" column="osId"/>
+		<collection property="os" javaType="Os" column="osId" select="mapper.OsMapper.selOneOsByOsid" />
+	</resultMap>
+	<insert id="insertBussiness" parameterType="Bussiness">
+		insert into bussiness values(null,#{osId},#{createTime},#{openTime},null,null)
+	</insert>
+	<delete id="deleteBussiness" parameterType="int">
+		delete from bussiness where bussinessId=#{id}
+	</delete>
+	<update id="updateBussiness" parameterType="Bussiness">
+		update bussiness
+		<set>
+			osId=#{osId}
+		</set>
+		where bussinessId=#{bussinessId}
+	</update>
+	<select id="selectAllBussiness" resultMap="BussinessResultMap">
+		select * from bussiness
+	</select>
+	<select id="selectBussinessById" parameterType="int" resultMap="BussinessResultMap">
+		select * from bussiness 
+		<where>
+			bussinessId=#{bussinessId}
+		</where>
+	</select>
+	<update id="updatePauseTime">
+		update bussiness 
+		<set>
+			pauseTime=#{pauseTime}
+		</set>
+		where osId=#{osId}
+	</update>
+	<update id="updatePauseTimeToNull">
+		update bussiness 
+		<set>
+			pauseTime=null
+		</set>
+		where osId=#{osId}
+	</update>
+	<update id="deletedDeletTime">
+		update bussiness 
+		<set>
+			deletTime=#{deletTime}
+		</set>
+		where osId=#{osId}
+	</update>
+</mapper>

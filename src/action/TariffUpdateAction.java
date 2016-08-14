@@ -31,6 +31,7 @@ public class TariffUpdateAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		TariffService tar= new TariffService();
 		Tariff t = new Tariff();
 		String ss = request.getParameter("tariffId");
@@ -39,6 +40,7 @@ public class TariffUpdateAction extends HttpServlet {
 			tariffId = Integer.parseInt(ss);
 		}
 		t.setTariffId(tariffId);
+		
 		String tariffName = request.getParameter("tariffName");
 		t.setTariffName(tariffName);
 		String tariffType = request.getParameter("tariffType");
@@ -69,6 +71,11 @@ public class TariffUpdateAction extends HttpServlet {
 		}
 		t.setTimeLong(timeLong);
 		boolean a = tar.updateTariff(t);
+		if (a) {
+			response.sendRedirect(request.getContextPath()+"/fee/fee_list.jsp");
+		} else {
+			response.sendRedirect(request.getContextPath()+"/operationError.jsp");
+		}
 	}
 
 	/**

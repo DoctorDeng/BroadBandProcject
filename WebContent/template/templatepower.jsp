@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 判断session中是否有admin，即判断用户是否登陆过 -->
+	<!-- 判断session中是否有admin，即判断用户是否登录过 -->
 	<c:set var="admin" value="${not empty sessionScope.admin}" />
   	<c:if test="${not admin}">
   		<%

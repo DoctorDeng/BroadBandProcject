@@ -8,12 +8,22 @@
  		<c:set var="admin" value="${not empty sessionScope.admin}" />
   		<c:if test="${not admin}">
   			<script type="text/javascript">
-  				window.location.href="/lanqiao/login.jsp";
+  				window.location.href="<%=request.getContextPath()%>/login.jsp";
   			</script>
   		</c:if>
-<title>Insert title here</title>
- <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" /> 
+	<title>首页</title>
+ 	<link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
+    <script src="<%=request.getContextPath()%>/js/jquery-1.12.4.js"></script>
+   		<script type="text/javascript">
+   		/**
+   		 * 让模块对应的菜单样式为选中
+   		 * @returns
+   		 */
+   		$(function(){
+   			$("#indexMenu").attr("class","index_on");
+   		});
+   		</script>
     </head>
     <body class="index">
         <!--导航区域开始-->

@@ -1,7 +1,10 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page import="bean.viewBean.BussinessViewBean" %>
+<%@page import="service.*" %>
+<%@page import="bean.dto.*" %>
+<%@page import="bean.*" %>
 <%@page import="java.util.List"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title></title>
         <c:set var="hasPower">false</c:set>
-        <c:forEach items="${sessionScope.admin.powerList}" var="adminPower" >
+        <c:forEach items="${sessionScope.admin.powers}" var="adminPower" >
   		<c:set var="power">${adminPower.power}</c:set>
   			<c:choose>
   				<c:when test="${power==5}">
@@ -42,55 +45,45 @@
     </head>
     <body>
         <!--Logo区域开始-->
-        <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="#">[退出]</a>            
-        </div>
+        <%@include file="../template/head.jsp" %>
         <!--Logo区域结束-->
         <!--导航区域开始-->
-        <div id="navi">
-            <ul id="menu">
-               <%@include file= "../template/power.jsp" %>
-            </ul>
-        </div>
+            <%
+	            TariffService tm = new TariffService();
+            	List<Tariff> tv = tm.selectByOpenStatus();
+	            request.getSession().setAttribute("tariffs",tv );
+            %>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
             <!--保存操作的提示信息-->
             <form action="../ServiceModiAction" method="post" class="main_form">
                 <!--必填项-->
-               <%
-        		List<BussinessViewBean> list = (List<BussinessViewBean>)session.getAttribute("lv");
-       		    BussinessViewBean bv = null;
-        		int id = Integer.parseInt(request.getParameter("id"));
-        		for(BussinessViewBean sa : list){
-        			if(sa.getBussinessId() == id)
-        				bv = sa;
-        		}
-      		  %>
+      		  	<c:forEach items="${sessionScope.pageDto.dataList}"  var="OsDto">
+      		  	<c:if test="${OsDto.bussinessId==param.id}">
                 <div class="text_info clearfix"><span>业务账号ID：</span></div>
                 <div class="input_info">
-                    <input type="text" value="<%=request.getParameter("id") %>" readonly class="readonly" />
+                    <input type="text" value="${param.id} " readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>OS 账号：</span></div>
                 <div class="input_info">
-                    <input type="text" name= "osAccount" value="<%=bv.getOsAccount() %>" readonly class="readonly" />
+                    <input type="text" name= "osAccount" value="${OsDto.osAccount}" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>服务器 IP：</span></div>
                 <div class="input_info">
-                    <input name = "serverId" type="text" value="<%=bv.getServerId() %>" readonly class="readonly" />
+                    <input name = "serverId" type="text" value="${OsDto.serverIp}" readonly class="readonly" />
                 </div>
                 <div class="text_info clearfix"><span>资费类型：</span></div>             
                 <div class="input_info">
-                    <select name = "traiffId" class="width150" value = "<%=bv.getTraiffName()%>">
-                        <option value= "1">包50小时</option>
-                        <option value= "2">包时8888</option>
-                        <option value= "3">包月</option>
-						<option value= "4">季卡</option>
-						<option value= "5">年卡</option>
+                    <select name = "tariffId" class="width150"  id="tariffId">
+                 		<c:forEach items="${sessionScope.tariffs}" var="Tariff">
+                        	<option value="${Tariff.tariffId}">${Tariff.tariffName}</option>
+                    	</c:forEach>
                     </select> 
                     <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>                      
                 </div>
+                </c:if>
+                </c:forEach>
                 <!--操作按钮-->
                 <div class="button_info clearfix">
                     <input type="submit" value="保存" class="btn_save" />

@@ -28,4 +28,23 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <servlet-name>Log4JInitServlet</servlet-name>
+    <servlet-class>log4j.Log4JInitServlet</servlet-class>
+    <init-param>
+      <param-name>log4j-properties-location</param-name>
+      <param-value>/WEB-INF/log4j.properties</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <filter>
+    <display-name>PowerFilter</display-name>
+    <filter-name>PowerFilter</filter-name>
+    <filter-class>filter.PowerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PowerFilter</filter-name>
+    <!-- 劫护路径 -->
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

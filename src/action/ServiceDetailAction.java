@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.viewBean.BussinessViewBean;
-import bean.viewBean.ServiceAddViewBean;
-import dao.impl.BussinessViewBeanDaoImpl;
-import service.impl.ProfessionServiceImpl;
+import bean.Bussiness;
+import bean.dto.OsDto;
+import bean.dto.OsShowDto;
+import bean.vo.BussinessViewBean;
+import bean.vo.ServiceAddViewBean;
+import service.ProfessionService;
 
 /**
  * Servlet implementation class ServiceDetailAction
@@ -36,9 +38,9 @@ public class ServiceDetailAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String bussinessId = request.getParameter("bussinessId");
-		ServiceAddViewBean serviceAddViewBean = new ServiceAddViewBean();
-		serviceAddViewBean.setBussinessId(Integer.parseInt(bussinessId));
-		List<ServiceAddViewBean>  lsit = new ProfessionServiceImpl().toShowService(serviceAddViewBean);
+		Bussiness bussiness = new  Bussiness();
+		bussiness.setBussinessId(Integer.parseInt(bussinessId));
+		List<OsShowDto>  lsit = new ProfessionService().upServiceF(bussiness);
 		HttpSession  session = request.getSession();
 		session.setAttribute("lsit", lsit);
 		response.sendRedirect("service/service_detail.jsp");

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.AdminPowerMapper">
+	
+	<!-- <resultMap type="AdminPower" id="adminPowerResultMap">
+		<id column="adminPowerId" jdbcType="int" javaType="int" />
+		<result column="adminId" property="adminId" /> 
+		<result column="powerId" property="powerId" /> 
+	</resultMap> -->
+
+	<delete id="deleteAdminPower" parameterType="int">
+		DELETE FROM adminPower WHERE adminId = #{adminId}
+	</delete>
+	
+	<insert id="insertAdminPower">
+		INSERT INTO adminPower (adminId,powerId)
+		 VALUES  
+		<foreach collection="list" item="item" index="index" separator="," >  
+        	(#{item.adminId},#{item.powerId})  
+      	 </foreach>
+	</insert>
+</mapper>

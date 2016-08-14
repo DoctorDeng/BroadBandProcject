@@ -1,16 +1,22 @@
 package action;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Bussiness;
+import org.apache.ibatis.session.SqlSession;
+
 import bean.Customer;
-import dao.impl.BussinessDaoImpl;
-import dao.impl.CustomerDaoImpl;
+import bean.vo.AccountViewBean;
+import mapper.CustomerMapper;
+import service.AccountService;
+import util.SqlSessionUtil;
 
 /**
  * Servlet implementation class BussinessAccountAction
@@ -38,20 +44,12 @@ public class BussinessAccountAction extends HttpServlet {
 			String bus = request.getParameter("id");
 			bussinessId = Integer.parseInt(bus);
 		}
-		boolean b = true;
-		int customerId = new BussinessDaoImpl().findOne(bussinessId).getCustomerId();
-		System.out.println(customerId);
-		Customer customer = new Customer();
-		customer.setCustomerId(customerId);
-		b = b&&new CustomerDaoImpl().del(customer);
-		
-		Bussiness bussiness = new Bussiness();
-		bussiness.setBussinessId(bussinessId);
-		b = b&&new BussinessDaoImpl().del(bussiness);
-		if(b){
-			response.sendRedirect("account_list.jsp");
-		}
-		response.sendRedirect(request.getContextPath()+"/account/account_list.jsp");
+		AccountViewBean a = new AccountViewBean();
+		a.setBussinessId(bussinessId);
+		a.setStatus("2");
+		a.setDelTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+		new AccountService().updateBussinessAccount(a);
+		response.sendRedirect(request.getContextPath()+"/BussinessAccountShowAction?currentPage="+request.getParameter("currentPage"));
 		
 	}
 
