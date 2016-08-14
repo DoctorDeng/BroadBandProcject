@@ -80,6 +80,9 @@ public class OsLoginAction extends HttpServlet {
 				boolean result = osLoginService.recordOsLoginOut(osLoginId);
 				if (result) {
 					double loginTariff = osLoginService.countLoginTariff(osLoginId, osTemp);
+					/**
+					 * 向数据库OsLogin插入本次费用
+					 */
 					out.println("本次登陆费用: " + loginTariff+"元");
 				} else {
 					out.print("登出发生异常,请重新登陆");

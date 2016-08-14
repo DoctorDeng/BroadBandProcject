@@ -2,13 +2,10 @@ function search() {
 	var idNumber = $("#idNumber").val();
 	var loginAccount = $("#loginAccount").val();
 	var customerName = $("#customerName").val();
-	var year = $("#selYears").find("option:selected").text();
-	var month = $("#selMonths").find("option:selected").text();
-	if(month !="" && month != null) {
-		var months = year + month;
-	} else {
-		var months = "";
-	}
+	var year = $("#selYears").find("option:selected").val();
+	var month = $("#selMonths").find("option:selected").val();
+	var months = year + month;
+	
 	$("#pages").hide();
 	$("#datalist").hide("fast");
 
@@ -47,11 +44,11 @@ function initialYearAndMonth() {
 	}
 	//写入 12 月
 	var monthObj = document.getElementById("selMonths");
-	var opObj = new Option("全部", "全");
+	var opObj = new Option("全部", "");
 	monthObj.options[0] = opObj;
 	for (var i = 1; i < 13; i++) {
 		if (i < 10) {
-			var opObj = new Option("0" + (i), i);
+			var opObj = new Option(i, "0"+(i));
 		} else {
 			var opObj = new Option(i, i);
 		}

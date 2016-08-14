@@ -47,7 +47,7 @@
 					 AND cu.customerName like  CONCAT(CONCAT('%',#{customerName}),'%') 
 				</if>
 				<if test="months != null and months != '' ">
-					 AND months = #{months} 
+					 AND months like  CONCAT(CONCAT('%',#{months}),'%') 
 				</if>
 			</where>
 	    </select>
